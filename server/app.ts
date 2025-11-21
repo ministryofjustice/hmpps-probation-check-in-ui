@@ -15,9 +15,7 @@ import setUpWebSession from './middleware/setUpWebSession'
 import populateValidationErrors from './middleware/populateValidationErrors'
 import storeFormDataInSession from './middleware/storeFormDataInSession'
 import routes from './routes'
-import statisticsRoutes from './routes/statisticsRoutes'
 import submissionRoutes from './routes/submissionRoutes'
-import practitionersRoutes from './routes/practitionersRoutes'
 import featureFlags from './middleware/featureFlags'
 
 import type { Services } from './services'
@@ -56,11 +54,6 @@ export default function createApp(services: Services): express.Application {
   app.use(routes())
 
   app.use('/submission/:submissionId', submissionRoutes(services))
-  app.use('/statistics', statisticsRoutes())
-  app.use('/practitioners', practitionersRoutes())
-  app.use('/practitioners', (req, res) => {
-    res.status(404).render('pages/practitioners/not-found')
-  })
 
   app.use((req, res) => {
     res.status(404).render('pages/not-found')

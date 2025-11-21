@@ -42,14 +42,14 @@ export default function setupAuthentication() {
 
   router.get('/autherror', (req, res) => {
     res.status(401)
-    return res.render('pages/practitioners/auth-error')
+    return res.render('pages/error')
   })
 
   router.get('/sign-in', passport.authenticate('oauth2'))
 
   router.get('/sign-in/callback', (req, res, next) =>
     passport.authenticate('oauth2', {
-      successReturnToOrRedirect: req.session.returnTo || '/practitioners/dashboard',
+      successReturnToOrRedirect: req.session.returnTo || '/',
       failureRedirect: '/autherror',
     })(req, res, next),
   )

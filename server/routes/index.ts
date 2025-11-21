@@ -6,7 +6,7 @@ export default function routes(): Router {
   const get = (path: string | string[], handler: RequestHandler) => router.get(path, asyncMiddleware(handler))
 
   get('/', async (req, res, next) => {
-    return res.redirect('/practitioners/')
+    return res.status(404).render('pages/not-found')
   })
 
   get('/privacy-notice', (req, res, next) => {
