@@ -1,0 +1,92 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "../../../partials/errorSummary.njk" import errorSummary %}
+{%- from "moj/components/date-picker/macro.njk" import mojDatePicker -%}
+{% extends "../layout.njk" %}
+{% set section = "register" %}
+
+{%
+  set name = [
+    formData['firstName'], ' ', formData['lastName']
+  ] | join
+%}
+{% set title = "Set up online check ins" %}
+{% set pageTitle = title %}
+
+{% block beforeContent %}
+  {{
+    govukBackLink({
+      text: "Back",
+      href: "/practitioners/register/check-answers" if cya else "/practitioners/register/contact"
+    })
+  }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ errorSummary(validationErrors) }}
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+      <p>Any in-person check ins will need to be scheduled outside of this service.</p>
+      <form method="POST">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+
+        {{
+          mojDatePicker({
+            id: "startDate",
+            name: "startDate",
+            minDate: yesterday,
+            value: formData["startDate"],
+            label: {
+              text: "When would you like " + name + " to complete their first check in?",
+              classes: "govuk-label--m"
+            },
+            hint: {
+              text: "The person will be sent a notification to use the service from this date."
+            },
+            errorMessage: validationErrors | findError("startDate") | default(null)
+          })
+        }}
+
+        {{
+          govukRadios({
+            name: "frequency",
+            errorMessage: validationErrors | findError("frequency") | default(null),
+            value: formData["frequency"],
+            fieldset: {
+              legend: {
+                text: "How often would you like " + name + " to check in?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "WEEKLY",
+                text: "Every week"
+              },
+              {
+                value: "TWO_WEEKS",
+                text: "Every 2 weeks"
+              },
+              {
+                value: "FOUR_WEEKS",
+                text: "Every 4 weeks"
+              },
+              {
+                value: "EIGHT_WEEKS",
+                text: "Every 8 weeks"
+              }
+            ]
+          })
+        }}
+        {{
+          govukButton({
+            text: "Continue"
+          })
+        }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

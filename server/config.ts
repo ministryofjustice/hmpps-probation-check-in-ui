@@ -28,7 +28,16 @@ const auditConfig = () => {
   }
 }
 
+function getAuthorisedUserRoles(): Array<string> {
+  const roles = get('AUTHORISED_USER_ROLES', '')
+  return roles.split(',').flatMap(roleStr => {
+    const role = roleStr.trim()
+    return role === '' ? [] : [role]
+  })
+}
+
 export default {
+  serviceName: 'Submit a remote check-in',
   buildNumber: get('BUILD_NUMBER', '1_0_0', requiredInProduction),
   productId: get('PRODUCT_ID', 'UNASSIGNED', requiredInProduction),
   gitRef: get('GIT_REF', 'xxxxxxxxxxxxxxxxxxx', requiredInProduction),
@@ -36,6 +45,7 @@ export default {
   production,
   https: process.env.NO_HTTPS === 'true' ? false : production,
   staticResourceCacheDuration: '1h',
+  authorisedUserRoles: getAuthorisedUserRoles(),
   redis: {
     enabled: get('REDIS_ENABLED', 'false', requiredInProduction) === 'true',
     host: get('REDIS_HOST', 'localhost', requiredInProduction),
@@ -46,12 +56,13 @@ export default {
   session: {
     secret: get('SESSION_SECRET', 'app-insecure-default-session', requiredInProduction),
     expiryMinutes: Number(get('WEB_SESSION_TIMEOUT_IN_MINUTES', 120)),
+    offenderSessionTimeoutMinutes: Number(get('OFFENDER_SESSION_TIMEOUT_IN_MINUTES', 30)),
   },
   apis: {
     hmppsAuth: {
-      url: get('HMPPS_AUTH_URL', 'http://localhost:9090/auth', requiredInProduction),
+      url: get('HMPPS_AUTH_URL', 'http://localhost:8090/auth', requiredInProduction),
       healthPath: '/health/ping',
-      externalUrl: get('HMPPS_AUTH_EXTERNAL_URL', get('HMPPS_AUTH_URL', 'http://localhost:9090/auth')),
+      externalUrl: get('HMPPS_AUTH_EXTERNAL_URL', get('HMPPS_AUTH_URL', 'http://localhost:8090/auth')),
       timeout: {
         response: Number(get('HMPPS_AUTH_TIMEOUT_RESPONSE', 10000)),
         deadline: Number(get('HMPPS_AUTH_TIMEOUT_DEADLINE', 10000)),
@@ -72,12 +83,12 @@ export default {
       agent: new AgentConfig(Number(get('TOKEN_VERIFICATION_API_TIMEOUT_RESPONSE', 5000))),
       enabled: get('TOKEN_VERIFICATION_ENABLED', 'false') === 'true',
     },
-    exampleApi: {
-      url: get('EXAMPLE_API_URL', 'http://localhost:8080', requiredInProduction),
+    esupervisionApi: {
+      url: get('ESUPERVISION_API_URL', 'http://localhost:8080', requiredInProduction),
       healthPath: '/health/ping',
       timeout: {
-        response: Number(get('EXAMPLE_API_TIMEOUT_RESPONSE', 5000)),
-        deadline: Number(get('EXAMPLE_API_TIMEOUT_DEADLINE', 5000)),
+        response: Number(get('ESUPERVISION_API_TIMEOUT_RESPONSE', 5000)),
+        deadline: Number(get('ESUPERVISION_API_TIMEOUT_DEADLINE', 5000)),
       },
       agent: new AgentConfig(Number(get('EXAMPLE_API_TIMEOUT_RESPONSE', 5000))),
     },

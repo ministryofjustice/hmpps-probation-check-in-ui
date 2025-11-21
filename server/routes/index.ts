@@ -1,16 +1,24 @@
-import { Router } from 'express'
+import { type RequestHandler, Router } from 'express'
+import asyncMiddleware from '../middleware/asyncMiddleware'
 
-import type { Services } from '../services'
-import { Page } from '../services/auditService'
-
-export default function routes({ auditService, exampleService }: Services): Router {
+export default function routes(): Router {
   const router = Router()
+  const get = (path: string | string[], handler: RequestHandler) => router.get(path, asyncMiddleware(handler))
 
-  router.get('/', async (req, res, next) => {
-    await auditService.logPageView(Page.EXAMPLE_PAGE, { who: res.locals.user.username, correlationId: req.id })
+  get('/', async (req, res, next) => {
+    return res.redirect('/practitioners/')
+  })
 
-    const currentTime = await exampleService.getCurrentTime()
-    return res.render('pages/index', { currentTime })
+  get('/privacy-notice', (req, res, next) => {
+    res.render('pages/privacy')
+  })
+
+  get('/accessibility', (req, res, next) => {
+    res.render('pages/accessibility')
+  })
+
+  get('/.well-known/appspecific/com.chrome.devtools.json', async (req, res, next) => {
+    return res.status(404).render('pages/error')
   })
 
   return router

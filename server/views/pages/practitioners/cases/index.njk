@@ -1,0 +1,80 @@
+{% extends "../layout.njk" %}
+
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+{%- from "moj/components/sub-navigation/macro.njk" import mojSubNavigation -%}
+{% from "../../../partials/pagination.njk" import pagination %}
+
+{% set section = "cases" %}
+
+{% block content %}
+  {% if successMessage %}
+    {{
+      govukNotificationBanner({
+      html: '<p class="govuk-body">' + successMessage.message + '</p>',
+      type: 'success',
+      titleId: 'success-title'
+      })
+    }}
+  {% endif %}
+  <div class="es-page-header">
+    <h1 class="govuk-heading-l">Cases</h1>
+    <a href="/practitioners/register/start" class="govuk-button" data-module="govuk-button" role="button">Add person</a>
+  </div>
+<div id="casesFilter">
+  {{
+  mojSubNavigation({
+  label: "Filter check ins",
+  items: [{
+          text: "Active",
+          href: "/practitioners/cases#casesFilter",
+          active: true if stopped == false else false
+        }, {
+          text: "Stopped",
+          href: "/practitioners/cases/stopped#casesFilter",
+          active: true if stopped == true else false
+        }]
+  })
+  }}
+</div>
+  {% if cases.content | length > 0 %}
+    <table class="govuk-table es-table--responsive" data-module="moj-sortable-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col" aria-sort="ascending">Name</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Date of birth</th>
+          {% if stopped == false %}
+          <th class="govuk-table__header" scope="col" aria-sort="none">Contact details</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Next check in</th>
+          {% endif %}
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for case in cases.content %}
+          <tr>
+            <td class="govuk-table__cell" data-label="Name">{{ case.firstName }} {{ case.lastName }}</td>
+            <td class="govuk-table__cell" data-label="Date of birth">{{ case.dateOfBirth | gdsDate }}</td>
+            {% if stopped == false %}
+            <td class="govuk-table__cell" data-label="Contact details">
+              {{ case.phoneNumber if case.phoneNumber else case.email }}&nbsp;
+            </td>
+            <td class="govuk-table__cell" data-label="Next check in">
+              {% if case.nextCheckinDate %}
+                {{ case.nextCheckinDate | gdsDate }}
+              {% else %}
+                -
+              {% endif %}
+            </td>
+            {% endif %}
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-label="Action">
+              <a href="/practitioners/cases/{{ case.uuid }}" class="govuk-link govuk-link--no-visited-state"
+                >{{ "Manage" if stopped == false else "View" }}<span class="govuk-visually-hidden"> {{ case.firstName }} {{ case.lastName }}</span></a
+              >
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {{ pagination(page, size, cases.content | length) }}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,53 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "../../../../partials/errorSummary.njk" import errorSummary %}
+{% extends "../../layout.njk" %}
+{% set section = "cases" %}
+
+{% set title = "What is " + offender.firstName + " " + offender.lastName + "'s mobile number?" %}
+
+{% block beforeContent %}
+  <div class="es-page-actions">
+    <div class="es-page-actions__back">
+      {{
+        govukBackLink({
+          text: "Back",
+          href: "../update/contact-details"
+        })
+      }}
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ errorSummary(validationErrors) }}
+      <form method="POST" novalidate>
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+        {{
+          govukInput({
+          label: {
+          text: title,
+          classes: "govuk-label--l",
+          isPageHeading: true
+          },
+          id: "mobile",
+          name: "mobile",
+          errorMessage: validationErrors | findError("mobile") | default(null),
+          value: offender.phoneNumber,
+          type: "tel",
+          classes: "govuk-input--width-20"
+          })
+        }}
+
+        {{
+          govukButton({
+          text: "Save changes"
+          })
+        }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
