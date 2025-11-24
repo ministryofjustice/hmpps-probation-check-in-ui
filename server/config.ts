@@ -28,14 +28,6 @@ const auditConfig = () => {
   }
 }
 
-function getAuthorisedUserRoles(): Array<string> {
-  const roles = get('AUTHORISED_USER_ROLES', '')
-  return roles.split(',').flatMap(roleStr => {
-    const role = roleStr.trim()
-    return role === '' ? [] : [role]
-  })
-}
-
 export default {
   serviceName: 'Submit a remote check-in',
   buildNumber: get('BUILD_NUMBER', '1_0_0', requiredInProduction),
@@ -45,7 +37,6 @@ export default {
   production,
   https: process.env.NO_HTTPS === 'true' ? false : production,
   staticResourceCacheDuration: '1h',
-  authorisedUserRoles: getAuthorisedUserRoles(),
   redis: {
     enabled: get('REDIS_ENABLED', 'false', requiredInProduction) === 'true',
     host: get('REDIS_HOST', 'localhost', requiredInProduction),
@@ -62,26 +53,13 @@ export default {
     hmppsAuth: {
       url: get('HMPPS_AUTH_URL', 'http://localhost:8090/auth', requiredInProduction),
       healthPath: '/health/ping',
-      externalUrl: get('HMPPS_AUTH_EXTERNAL_URL', get('HMPPS_AUTH_URL', 'http://localhost:8090/auth')),
       timeout: {
         response: Number(get('HMPPS_AUTH_TIMEOUT_RESPONSE', 10000)),
         deadline: Number(get('HMPPS_AUTH_TIMEOUT_DEADLINE', 10000)),
       },
       agent: new AgentConfig(Number(get('HMPPS_AUTH_TIMEOUT_RESPONSE', 10000))),
-      authClientId: get('AUTH_CODE_CLIENT_ID', 'clientid', requiredInProduction),
-      authClientSecret: get('AUTH_CODE_CLIENT_SECRET', 'clientsecret', requiredInProduction),
       systemClientId: get('CLIENT_CREDS_CLIENT_ID', 'clientid', requiredInProduction),
       systemClientSecret: get('CLIENT_CREDS_CLIENT_SECRET', 'clientsecret', requiredInProduction),
-    },
-    tokenVerification: {
-      url: get('TOKEN_VERIFICATION_API_URL', 'http://localhost:8100', requiredInProduction),
-      healthPath: '/health/ping',
-      timeout: {
-        response: Number(get('TOKEN_VERIFICATION_API_TIMEOUT_RESPONSE', 5000)),
-        deadline: Number(get('TOKEN_VERIFICATION_API_TIMEOUT_DEADLINE', 5000)),
-      },
-      agent: new AgentConfig(Number(get('TOKEN_VERIFICATION_API_TIMEOUT_RESPONSE', 5000))),
-      enabled: get('TOKEN_VERIFICATION_ENABLED', 'false') === 'true',
     },
     esupervisionApi: {
       url: get('ESUPERVISION_API_URL', 'http://localhost:8080', requiredInProduction),
@@ -90,12 +68,11 @@ export default {
         response: Number(get('ESUPERVISION_API_TIMEOUT_RESPONSE', 5000)),
         deadline: Number(get('ESUPERVISION_API_TIMEOUT_DEADLINE', 5000)),
       },
-      agent: new AgentConfig(Number(get('EXAMPLE_API_TIMEOUT_RESPONSE', 5000))),
+      agent: new AgentConfig(Number(get('ESUPERVISION_API_TIMEOUT_RESPONSE', 5000))),
     },
   },
   sqs: {
     audit: auditConfig(),
   },
-  ingressUrl: get('INGRESS_URL', 'http://localhost:3000', requiredInProduction),
   environmentName: get('ENVIRONMENT_NAME', ''),
 }

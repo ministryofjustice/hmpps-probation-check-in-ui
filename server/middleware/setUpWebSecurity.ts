@@ -28,7 +28,7 @@ export default function setUpWebSecurity(): Router {
           styleSrc: ["'self'", (_req: Request, res: Response) => `'nonce-${res.locals.cspNonce}'`],
           mediaSrc: "'self' data: blob localhost",
           fontSrc: ["'self'"],
-          formAction: [`'self' ${config.apis.hmppsAuth.externalUrl}`],
+          formAction: ["'self'"],
         },
       },
       crossOriginEmbedderPolicy: true,
