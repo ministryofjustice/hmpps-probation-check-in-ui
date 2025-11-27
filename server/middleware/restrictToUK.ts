@@ -81,7 +81,7 @@ export default async function restrictToUK(req: Request, res: Response, next: Ne
 
     // 3) Get IP
     const ip = getClientIp(req)
-    const matches = req.path.match(/\/submission\/([0-9a-z-]*)[#?]*.*/)
+    const matches = req.path.match(/^\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/)
     const checkinId = matches && matches[1] ? matches[1] : undefined
     const logAccess = checkinId ? logOutsideAccess : async (_checkinId: string, _ip: string, _countryCode: string) => {}
 
