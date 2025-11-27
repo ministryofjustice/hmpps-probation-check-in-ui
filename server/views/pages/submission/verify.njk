@@ -1,0 +1,93 @@
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "../../partials/errorSummary.njk" import errorSummary %}
+{% from "../../partials/validatedDateInput.njk" import validatedDateInput %}
+{% extends "../../partials/layout.njk" %}
+
+{% set pageTitle = "Personal details" %}
+
+{% block beforeContent %}
+  {{
+    govukBackLink({
+      text: "Back",
+      href: "/" + submissionId
+    })
+  }}
+{% endblock %}
+
+{% block content %}
+  {% if errorMessage %}
+    {{
+      govukNotificationBanner({
+        html: '<p class="govuk-body">' + errorMessage.title + '</p>',
+        type: 'error',
+        titleId: 'error-title'
+      })
+    }}
+  {% endif %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ errorSummary(validationErrors) }}
+
+      <h1 class="govuk-heading-l">Personal details</h1>
+      <p>We will use your personal details to make sure you are signed up to use this service.</p>
+      <form method="POST">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+
+        {{
+          govukInput({
+            label: {
+              text: "First name",
+              classes: "govuk-label--m"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "firstName",
+            name: "firstName",
+            autocomplete: "given-name",
+            errorMessage: validationErrors | findError("firstName"),
+            value: formData["firstName"]
+          })
+        }}
+
+        {{
+          govukInput({
+            label: {
+              text: "Last name",
+              classes: "govuk-label--m"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "lastName",
+            name: "lastName",
+            autocomplete: "family-name",
+            errorMessage: validationErrors | findError("lastName"),
+            value: formData["lastName"]
+          })
+        }}
+
+        {{
+          validatedDateInput({
+            id: "dob",
+            title: {
+              text: "Date of birth",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            },
+            hintText: "For example, 27 3 2007",
+            validationErrors: validationErrors,
+            day: formData["day"],
+            month: formData["month"],
+            year: formData["year"]
+          })
+        }}
+
+        {{
+          govukButton({
+            text: "Continue"
+          })
+        }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

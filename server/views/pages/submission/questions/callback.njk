@@ -1,0 +1,87 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "../../../partials/errorSummary.njk" import errorSummary %}
+{% extends "../../../partials/layout.njk" %}
+
+{% set title = "Is there anything else you need to speak with your probation officer about?" %}
+{% set pageTitle = title %}
+
+{% block beforeContent %}
+  {{
+    govukBackLink({
+      text: "Back",
+      href: "/" + submissionId + "/check-your-answers" if cya else "/" + submissionId + "/questions/assistance"
+    })
+  }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ errorSummary(validationErrors) }}
+
+
+      {% set callbackDetails %}
+        {{
+          govukTextarea({
+            name: "callbackDetails",
+            id: "callbackDetails",
+            errorMessage: validationErrors | findError("callbackDetails"),
+            value: formData["callbackDetails"],
+            label: {
+              text: "Tell us what you need to talk about (optional)"
+            }
+          })
+        }}
+      {% endset -%}
+
+      <form method="POST">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+
+        {{
+          govukRadios({
+              name: "callback",
+              errorMessage: validationErrors | findError("callback"),
+              value: formData["callback"],
+              hint: {
+                text: "There may be a delay in your probation officer contacting you. They may refer you to support services if you have asked for help. "
+              },
+              fieldset: {
+                legend: {
+                  text: title,
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--l"
+                }
+              },
+              items: [
+              {
+                value: "YES",
+                text: "Yes",
+                conditional: {
+                                  html: callbackDetails
+                                }
+              },
+              {
+                value: "NO",
+                text: "No"
+              }
+            ]
+          })
+        }}
+        {{
+          govukInsetText({
+            text: 'If this is urgent, you should contact your probation officer yourself. If there is an emergency, call 999.'
+          })
+        }}
+        {{
+          govukButton({
+            text: "Continue"
+          })
+        }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

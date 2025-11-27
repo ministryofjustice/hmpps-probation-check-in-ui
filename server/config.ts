@@ -29,6 +29,7 @@ const auditConfig = () => {
 }
 
 export default {
+  serviceName: 'Submit a remote check-in',
   buildNumber: get('BUILD_NUMBER', '1_0_0', requiredInProduction),
   productId: get('PRODUCT_ID', 'UNASSIGNED', requiredInProduction),
   gitRef: get('GIT_REF', 'xxxxxxxxxxxxxxxxxxx', requiredInProduction),
@@ -46,45 +47,32 @@ export default {
   session: {
     secret: get('SESSION_SECRET', 'app-insecure-default-session', requiredInProduction),
     expiryMinutes: Number(get('WEB_SESSION_TIMEOUT_IN_MINUTES', 120)),
+    offenderSessionTimeoutMinutes: Number(get('OFFENDER_SESSION_TIMEOUT_IN_MINUTES', 30)),
   },
   apis: {
     hmppsAuth: {
-      url: get('HMPPS_AUTH_URL', 'http://localhost:9090/auth', requiredInProduction),
+      url: get('HMPPS_AUTH_URL', 'http://localhost:8090/auth', requiredInProduction),
       healthPath: '/health/ping',
-      externalUrl: get('HMPPS_AUTH_EXTERNAL_URL', get('HMPPS_AUTH_URL', 'http://localhost:9090/auth')),
       timeout: {
         response: Number(get('HMPPS_AUTH_TIMEOUT_RESPONSE', 10000)),
         deadline: Number(get('HMPPS_AUTH_TIMEOUT_DEADLINE', 10000)),
       },
       agent: new AgentConfig(Number(get('HMPPS_AUTH_TIMEOUT_RESPONSE', 10000))),
-      authClientId: get('AUTH_CODE_CLIENT_ID', 'clientid', requiredInProduction),
-      authClientSecret: get('AUTH_CODE_CLIENT_SECRET', 'clientsecret', requiredInProduction),
       systemClientId: get('CLIENT_CREDS_CLIENT_ID', 'clientid', requiredInProduction),
       systemClientSecret: get('CLIENT_CREDS_CLIENT_SECRET', 'clientsecret', requiredInProduction),
     },
-    tokenVerification: {
-      url: get('TOKEN_VERIFICATION_API_URL', 'http://localhost:8100', requiredInProduction),
+    esupervisionApi: {
+      url: get('ESUPERVISION_API_URL', 'http://localhost:8080', requiredInProduction),
       healthPath: '/health/ping',
       timeout: {
-        response: Number(get('TOKEN_VERIFICATION_API_TIMEOUT_RESPONSE', 5000)),
-        deadline: Number(get('TOKEN_VERIFICATION_API_TIMEOUT_DEADLINE', 5000)),
+        response: Number(get('ESUPERVISION_API_TIMEOUT_RESPONSE', 5000)),
+        deadline: Number(get('ESUPERVISION_API_TIMEOUT_DEADLINE', 5000)),
       },
-      agent: new AgentConfig(Number(get('TOKEN_VERIFICATION_API_TIMEOUT_RESPONSE', 5000))),
-      enabled: get('TOKEN_VERIFICATION_ENABLED', 'false') === 'true',
-    },
-    exampleApi: {
-      url: get('EXAMPLE_API_URL', 'http://localhost:8080', requiredInProduction),
-      healthPath: '/health/ping',
-      timeout: {
-        response: Number(get('EXAMPLE_API_TIMEOUT_RESPONSE', 5000)),
-        deadline: Number(get('EXAMPLE_API_TIMEOUT_DEADLINE', 5000)),
-      },
-      agent: new AgentConfig(Number(get('EXAMPLE_API_TIMEOUT_RESPONSE', 5000))),
+      agent: new AgentConfig(Number(get('ESUPERVISION_API_TIMEOUT_RESPONSE', 5000))),
     },
   },
   sqs: {
     audit: auditConfig(),
   },
-  ingressUrl: get('INGRESS_URL', 'http://localhost:3000', requiredInProduction),
   environmentName: get('ENVIRONMENT_NAME', ''),
 }

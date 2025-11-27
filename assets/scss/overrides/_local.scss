@@ -1,3 +1,37 @@
-.govuk-main-wrapper {
-  min-height: 600px;
+@use 'govuk-frontend/dist/govuk/index' as gds;
+
+.govuk-error-message:empty {
+  display: none;
+}
+
+.govuk-summary-list__key,
+.govuk-summary-list__value,
+.govuk-summary-list__actions {
+  vertical-align: top;
+}
+
+.es-inset-text--error {
+  border-left-color: gds.$govuk-error-colour;
+}
+
+.es-heading--error {
+  color: gds.$govuk-error-colour;
+}
+
+.es-hidden {
+  display: none;
+}
+
+.es-show {
+  display: block;
+}
+
+.es-debug {
+  background: #f499be;
+  outline: 3px solid #f499be;
+  color: #000;
+}
+
+.govuk-table__cell--numeric {
+  font-variant: unset;
 }

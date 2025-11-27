@@ -1,0 +1,215 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "../../partials/errorSummary.njk" import errorSummary %}
+{% extends "../../partials/layout.njk" %}
+
+{% set pageTitle = "Check your answers before you complete your check in" %}
+
+{% block beforeContent %}
+  {{
+    govukBackLink({
+      text: "Back",
+      href: "/" + submissionId + "/video/view"
+    })
+  }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ errorSummary(validationErrors) }}
+
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+
+      <h2 class="govuk-heading-m">About you</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">How are you feeling?</dt>
+          <dd class="govuk-summary-list__value">{{ formData['mentalHealth'] | userFriendlyString }}</dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true"
+              >Change<span class="govuk-visually-hidden"> answer for how are you feeling</span></a
+            >
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Is there anything you need help with?</dt>
+          <dd class="govuk-summary-list__value">
+            {% for a in formData['assistance'] | split(",") %}
+              {{ a | userFriendlyString }}{% if not loop.last %},{% endif %}
+            {% endfor %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+              >Change<span class="govuk-visually-hidden"> answer for is there anything you need help with</span></a
+            >
+          </dd>
+        </div>
+
+        {% if formData['mentalHealthSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us why you need help with mental health</dt>
+            <dd class="govuk-summary-list__value">{{ formData['mentalHealthSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden">
+                  answer for tell us why you need help with mental health</span
+                ></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if formData['alcoholSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us why you need help with alcohol</dt>
+            <dd class="govuk-summary-list__value">{{ formData['alcoholSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> answer for tell us why you need help with alcohol</span></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+        {% if formData['drugsSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us why you need help with drugs</dt>
+            <dd class="govuk-summary-list__value">{{ formData['drugsSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> answer for tell us why you need help with drugs</span></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+        {% if formData['moneySupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us why you need help with money</dt>
+            <dd class="govuk-summary-list__value">{{ formData['moneySupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> answer for tell us why you need help with money</span></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+        {% if formData['housingSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us why you need help with housing</dt>
+            <dd class="govuk-summary-list__value">{{ formData['housingSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> answer for tell us why you need help with housing</span></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if formData['supportSystemSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us why you need help with support system</dt>
+            <dd class="govuk-summary-list__value">{{ formData['supportSystemSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden">
+                  answer for tell us why you need help with your support system</span
+                ></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if formData['otherSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us why you need help with (other)</dt>
+            <dd class="govuk-summary-list__value">{{ formData['otherSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> answer for tell us why you need help </span></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Is there anything else you need to speak with your probation officer about?
+          </dt>
+          <dd class="govuk-summary-list__value">{{ formData['callback'] | userFriendlyString }}</dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/{{ submissionId }}/questions/callback?checkAnswers=true"
+              >Change<span class="govuk-visually-hidden">
+                answer for is there anything else you need to speak with your probation officer about</span
+              ></a
+            >
+          </dd>
+        </div>
+
+        {% if formData['callback'] == "YES" and formData['callbackDetails'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us what you need to talk about</dt>
+            <dd class="govuk-summary-list__value">{{ formData['callbackDetails'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/callback?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you need to talk about</span></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+      </dl>
+
+      <h2 class="govuk-heading-m">Video</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Video check</dt>
+          <dd class="govuk-summary-list__value">
+            {{ 'We have confirmed this is you' if submission.checkin.autoIdCheck == 'MATCH' else 'We cannot confirm this is you' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/{{ submissionId }}/video/view?checkAnswers=true"
+              >View<span class="govuk-visually-hidden"> video</span></a
+            >
+          </dd>
+        </div>
+      </dl>
+
+      <form method="POST">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+        <input type="hidden" id="device-data" name="deviceData" />
+
+        {{
+          govukCheckboxes({
+            name: "checkAnswers",
+            errorMessage: validationErrors | findError("checkAnswers"),
+            fieldset: {
+              legend: {
+                classes: "govuk-fieldset__legend--m",
+                text: "Complete your check in"
+              }
+            },
+            items: [
+              {
+                value: "CONFIRM",
+                text: "I confirm that, to the best of my knowledge, the details I have provided are correct. I understand that this information will be shared with my probation officer."
+              }
+            ]
+          })
+        }}
+
+        {{
+          govukButton({
+            text: "Complete check in"
+          })
+        }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block bodyEnd %}
+  {{ super() }} <script type="module" src="{{ '/assets/js/detect-device.js' | assetMap }}"></script>
+{% endblock %}

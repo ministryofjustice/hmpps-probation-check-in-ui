@@ -11,7 +11,7 @@ export default function setUpWebSession(): Router {
   if (config.redis.enabled) {
     const client = createRedisClient()
     client.connect().catch((err: Error) => logger.error(`Error connecting to Redis`, err))
-    store = new RedisStore({ client })
+    store = new RedisStore({ client, prefix: 'probation-check-in:' })
   } else {
     store = new MemoryStore()
   }

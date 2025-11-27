@@ -1,0 +1,221 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "../../../partials/errorSummary.njk" import errorSummary %}
+{% extends "../../../partials/layout.njk" %}
+
+{% set title = "Is there anything you need help with?" %}
+{% set pageTitle = title %}
+{% set mainClasses = "app-container govuk-body" %}
+
+{% block beforeContent %}
+  {{
+    govukBackLink({
+      text: "Back",
+      href: "/" + submissionId + "/check-your-answers" if cya else "/" + submissionId + "/questions/mental-health"
+    })
+  }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ errorSummary(validationErrors) }}
+
+
+      {% set mentalHealthSupport %}
+        {{
+          govukTextarea({
+            name: "mentalHealthSupport",
+            id: "mentalHealthSupport",
+            errorMessage: validationErrors | findError("mentalHealthSupport"),
+            value: formData["mentalHealthSupport"],
+            label: {
+              text: "Tell us why you need help with mental health (optional)"
+            }
+          })
+        }}
+      {% endset -%}
+
+
+      {% set alcoholSupport %}
+        {{
+          govukTextarea({
+            name: "alcoholSupport",
+            id: "alcoholSupport",
+            errorMessage: validationErrors | findError("alcoholSupport"),
+            value: formData["alcoholSupport"],
+            label: {
+              text: "Tell us why you need help with alcohol (optional)"
+            }
+          })
+        }}
+      {% endset -%}
+
+
+      {% set drugsSupport %}
+        {{
+          govukTextarea({
+            name: "drugsSupport",
+            id: "drugsSupport",
+            errorMessage: validationErrors | findError("drugsSupport"),
+            value: formData["drugsSupport"],
+            label: {
+              text: "Tell us why you need help with drugs (optional)"
+            }
+          })
+        }}
+      {% endset -%}
+
+
+      {% set moneySupport %}
+        {{
+          govukTextarea({
+            name: "moneySupport",
+            id: "moneySupport",
+            errorMessage: validationErrors | findError("moneySupport"),
+            value: formData["moneySupport"],
+            label: {
+              text: "Tell us why you need help with money (optional)"
+            }
+          })
+        }}
+      {% endset -%}
+
+
+      {% set housingSupport %}
+        {{
+          govukTextarea({
+            name: "housingSupport",
+            id: "housingSupport",
+            errorMessage: validationErrors | findError("housingSupport"),
+            value: formData["housingSupport"],
+            label: {
+              text: "Tell us why you need help with housing (optional)"
+            }
+          })
+        }}
+      {% endset -%}
+
+
+      {% set supportSystemSupport %}
+        {{
+          govukTextarea({
+            name: "supportSystemSupport",
+            id: "supportSystemSupport",
+            errorMessage: validationErrors | findError("supportSystemSupport"),
+            value: formData["supportSystemSupport"],
+            label: {
+              text: "Tell us why you need help with your support system (optional)"
+            }
+          })
+        }}
+      {% endset -%}
+      {% set otherSupport %}
+        {{
+          govukTextarea({
+            name: "otherSupport",
+            id: "otherSupport",
+            errorMessage: validationErrors | findError("otherSupport"),
+            value: formData["otherSupport"],
+            label: {
+              text: "Tell us what you need help with (optional)"
+            }
+          })
+        }}
+      {% endset -%}
+
+      <form method="POST">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+
+        {{
+          govukCheckboxes({
+            name: "assistance",
+            errorMessage: validationErrors | findError("assistance"),
+            fieldset: {
+              legend: {
+                text: title,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "MENTAL_HEALTH",
+                text: "Mental health",
+                checked: checked("assistance", "MENTAL_HEALTH"),
+                conditional: {
+                  html: mentalHealthSupport
+                }
+              },
+              {
+                value: "ALCOHOL",
+                text: "Alcohol",
+                checked: checked("assistance", "ALCOHOL"),
+                conditional: {
+                  html: alcoholSupport
+                }
+              },
+              {
+                value: "DRUGS",
+                text: "Drugs",
+                checked: checked("assistance", "DRUGS"),
+                conditional: {
+                  html: drugsSupport
+                }
+              },
+              {
+                value: "MONEY",
+                text: "Money",
+                checked: checked("assistance", "MONEY"),
+                conditional: {
+                  html: moneySupport
+                }
+              },
+              {
+                value: "HOUSING",
+                text: "Housing",
+                checked: checked("assistance", "HOUSING"),
+                conditional: {
+                  html: housingSupport
+                }
+              },
+              {
+                value: "SUPPORT_SYSTEM",
+                text: "Support system (family, relationships, friends)",
+                checked: checked("assistance", "SUPPORT_SYSTEM"),
+                conditional: {
+                  html: supportSystemSupport
+                }
+              },
+              {
+                value: "OTHER",
+                text: "Other",
+                checked: checked("assistance", "OTHER"),
+                conditional: {
+                  html: otherSupport
+                }
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "NO_HELP",
+                checked: checked("assistance", "NO_HELP"),
+                text: "No, I do not need help",
+                behaviour: "exclusive"
+              }
+            ]
+          })
+        }}
+
+        {{
+          govukButton({
+            text: "Continue"
+          })
+        }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

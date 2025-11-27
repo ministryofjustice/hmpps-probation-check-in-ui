@@ -1,0 +1,34 @@
+import EsupervisionApiClient, { CheckinUploadContentTypes } from '../data/esupervisionApiClient'
+import Checkin from '../data/models/checkin'
+import CheckinSubmission from '../data/models/checkinSubmission'
+import CheckinUploadLocationResponse from '../data/models/checkinUploadLocationResponse'
+import OffenderCheckinResponse from '../data/models/offenderCheckinResponse'
+import AutomaticCheckinVerificationResult from '../data/models/automaticCheckinVerificationResult'
+import { CheckinEventType } from '../data/models/checkinEvent'
+
+export default class EsupervisionService {
+  constructor(private readonly esupervisionApiClient: EsupervisionApiClient) {}
+
+  getCheckin(submissionId: string, includeUploads?: boolean): Promise<OffenderCheckinResponse> {
+    return this.esupervisionApiClient.getCheckin(submissionId, includeUploads)
+  }
+
+  getCheckinUploadLocation(
+    submissionId: string,
+    contentTypes: CheckinUploadContentTypes,
+  ): Promise<CheckinUploadLocationResponse> {
+    return this.esupervisionApiClient.getCheckinUploadLocation(submissionId, contentTypes)
+  }
+
+  submitCheckin(checkinId: string, submission: CheckinSubmission): Promise<Checkin> {
+    return this.esupervisionApiClient.submitCheckin(checkinId, submission)
+  }
+
+  autoVerifyCheckinIdentity(checkinId: string, numSnapshots: number): Promise<AutomaticCheckinVerificationResult> {
+    return this.esupervisionApiClient.autoVerifyCheckinIdentity(checkinId, numSnapshots)
+  }
+
+  logCheckinEvent(checkinId: string, eventType: CheckinEventType, comment?: string): Promise<{ event: string }> {
+    return this.esupervisionApiClient.logCheckinEvent(checkinId, eventType, comment)
+  }
+}

@@ -1,0 +1,49 @@
+@use 'govuk-frontend/dist/govuk/index' as gds;
+
+.es-page-actions {
+  @include gds.govuk-media-query(tablet) {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: -2rem;
+  }
+
+  & {
+    margin-top: 1rem;
+  }
+
+  &__back {
+    display: flex;
+    align-items: center;
+  }
+
+  &__actions {
+    @include gds.govuk-font($size: 19);
+
+    & {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .govuk-link {
+      width: 100%;
+      text-align: center;
+      @include gds.govuk-media-query(tablet) {
+        width: auto;
+      }
+    }
+  }
+}
+
+.es-flagged-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .govuk-tag {
+    max-width: fit-content;
+  }
+}

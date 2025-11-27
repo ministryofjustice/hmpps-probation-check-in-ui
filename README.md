@@ -36,22 +36,6 @@ the [Cloud Platform User Guide](https://user-guide.cloud-platform.service.justic
 
 As part of the automation to create the new service, various parts of the codebase will be updated to reflect it's specific name.
 
-## Oauth2 Credentials
-
-The template project is set up to run with two sets of credentials, each one support a different oauth2 flows.
-These need to be requested from the auth team by filling in
-this [template](https://dsdmoj.atlassian.net/browse/HAAR-140) and raising on their slack channel.
-
-### Auth Code flow
-
-These are used to allow authenticated users to access the application. After the user is redirected from auth back to
-the application, the typescript app will use the returned auth code to request a JWT token for that user containing the
-user's roles. The JWT token will be verified and then stored in the user's session.
-
-These credentials are configured using the following env variables:
-
-- AUTH_CODE_CLIENT_ID
-- AUTH_CODE_CLIENT_SECRET
 
 ### Client Credentials flow
 
@@ -70,12 +54,6 @@ These credentials are configured using the following env variables:
 - CLIENT_CREDS_CLIENT_SECRET
 
 ### Dependencies
-
-### HMPPS Auth
-
-To allow authenticated users to access your application you need to point it to a running instance of `hmpps-auth`.
-By default the application is configured to run against an instance running in docker that can be started
-via `docker-compose`.
 
 **NB:** It's common for developers to run against the instance of auth running in the development/T3 environment for
 local development.

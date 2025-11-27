@@ -1,7 +1,6 @@
 import crypto from 'crypto'
 import express, { Router, Request, Response, NextFunction } from 'express'
 import helmet from 'helmet'
-import config from '../config'
 
 export default function setUpWebSecurity(): Router {
   const router = express.Router()
@@ -26,9 +25,9 @@ export default function setUpWebSecurity(): Router {
           // page by an attacker.
           scriptSrc: ["'self'", (_req: Request, res: Response) => `'nonce-${res.locals.cspNonce}'`],
           styleSrc: ["'self'", (_req: Request, res: Response) => `'nonce-${res.locals.cspNonce}'`],
+          mediaSrc: "'self' data: blob localhost",
           fontSrc: ["'self'"],
-          formAction: [`'self' ${config.apis.hmppsAuth.externalUrl}`],
-          ...(config.production ? {} : { upgradeInsecureRequests: null }),
+          formAction: ["'self'"],
         },
       },
       crossOriginEmbedderPolicy: true,
