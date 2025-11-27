@@ -28,8 +28,8 @@
     "precommit:verify": "npm run typecheck && npm test"
   },
   "engines": {
-    "node": "^22",
-    "npm": "^10"
+    "node": ">=24.11.1",
+    "npm": ">=11.6.2"
   },
   "jest": {
     "transform": {
