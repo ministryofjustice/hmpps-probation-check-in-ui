@@ -200,7 +200,7 @@ async function uploadAndRekognition(videoClip, screenShot) {
     return { status: 'ERROR', message: 'Video upload failed' }
   }
 
-  const faceRecognitionResult = await fetch(`/submission/${this.urls.submissionId}/video/verify`)
+  const faceRecognitionResult = await fetch(`/${this.urls.submissionId}/video/verify`)
     .then(res => res.json())
     .catch(error => {
       return { status: 'ERROR', message: `Face recognition request failed - ${error.message}` }

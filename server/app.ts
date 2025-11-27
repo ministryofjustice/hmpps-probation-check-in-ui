@@ -53,7 +53,7 @@ export default function createApp(services: Services): express.Application {
 
   app.use(routes())
 
-  app.use('/submission/:submissionId', submissionRoutes(services))
+  app.use('/:submissionId', submissionRoutes(services))
 
   app.use((req, res) => {
     res.status(404).render('pages/not-found')

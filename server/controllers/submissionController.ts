@@ -24,13 +24,13 @@ const pageParams = (req: Request): Record<string, string | boolean> => {
 
 export const handleStart: RequestHandler = async (req, res, next) => {
   const { submissionId } = req.params
-  res.redirect(`/submission/${submissionId}/verify`)
+  res.redirect(`/${submissionId}/verify`)
 }
 
 export const handleRedirect = (submissionPath: string): RequestHandler => {
   return (req, res) => {
     const { submissionId } = req.params
-    const basePath = `/submission/${submissionId}`
+    const basePath = `/${submissionId}`
     let redirectUrl = `${basePath}${submissionPath}`
 
     if (req.query.checkAnswers === 'true') {
@@ -80,7 +80,7 @@ export const handleVerify: RequestHandler = async (req, res: Response<object, Su
 
   req.session.submissionAuthorized = submissionId
   logger.info(`User is verified and check in authorised for submissionId ${submissionId}`)
-  return res.redirect(`/submission/${submissionId}/questions/mental-health`)
+  return res.redirect(`/${submissionId}/questions/mental-health`)
 }
 
 export const renderVideoInform: RequestHandler = async (req, res, next) => {
@@ -207,7 +207,7 @@ export const handleAssistance: RequestHandler = async (req, res, next) => {
     }
   }
 
-  const basePath = `/submission/${submissionId}`
+  const basePath = `/${submissionId}`
   let redirectUrl = `${basePath}/questions/callback`
 
   if (req.query.checkAnswers === 'true') {
@@ -289,7 +289,7 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
 
   try {
     await esupervisionService.submitCheckin(submissionId, submission)
-    res.redirect(`/submission/${submissionId}/confirmation`)
+    res.redirect(`/${submissionId}/confirmation`)
   } catch (error) {
     next(error)
   }

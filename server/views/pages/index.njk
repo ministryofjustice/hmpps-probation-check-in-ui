@@ -1,12 +1,33 @@
 {% extends "../partials/layout.njk" %}
 
-{% set pageTitle = applicationName + " - Home" %}
+{% set pageTitle = "Probation Check-in Service" %}
 {% set mainClasses = "govuk-body" %}
 
 {% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
 
-  <h1>This site is under construction...</h1>
-  <p>Please check back later when there is content to view.</p>
-  <p data-qa="timestamp">The time is currently {{ currentTime }}</p>
+      {# TODO: Content to be provided by content designer #}
 
+      <p class="govuk-body-l">
+        This service allows you to check in with your probation officer remotely.
+      </p>
+
+      <h2 class="govuk-heading-m">How to access this service</h2>
+      <p class="govuk-body">
+        To use this service, you need a unique link provided by your probation officer.
+        If you have not received a link, please contact your probation officer.
+      </p>
+
+      <div class="govuk-inset-text">
+        If you have received a link to check in, please use that link to access the service.
+      </div>
+
+      <h2 class="govuk-heading-m">Need help?</h2>
+      <p class="govuk-body">
+        If you are having difficulty accessing this service, contact your probation officer for assistance.
+      </p>
+    </div>
+  </div>
 {% endblock %}

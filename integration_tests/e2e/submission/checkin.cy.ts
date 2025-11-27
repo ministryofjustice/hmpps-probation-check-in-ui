@@ -37,7 +37,7 @@ describe('Start Check-in Journey', () => {
     })
   })
   it('should allow a user to submit a checkin', () => {
-    cy.visit(`/submission/${testCheckin.uuid}`)
+    cy.visit(`/${testCheckin.uuid}`)
     const submissionIndexPage = SubmissionPage.verifyOnPage(CheckinIndexPage)
     cy.contains('h1', 'Check in with your probation officer').should('be.visible')
     submissionIndexPage.startButton().should('contain.text', 'Start now')
@@ -83,7 +83,7 @@ describe('Start Check-in Journey', () => {
     const recordPage = SubmissionPage.verifyOnPage(VideoRecordPage)
     recordPage.videoElement().should('exist')
     recordPage.startRecordingButton().should('exist')
-    cy.visit(`/submission/${testCheckin.uuid}/video/view`) // overriding for now, also we set AutomatedIdVerificationResult to Match when creating the checkin
+    cy.visit(`/${testCheckin.uuid}/video/view`) // overriding for now, also we set AutomatedIdVerificationResult to Match when creating the checkin
     const videoViewPage = SubmissionPage.verifyOnPage(VideoViewPage)
     videoViewPage.submitAnywayButton().click()
 

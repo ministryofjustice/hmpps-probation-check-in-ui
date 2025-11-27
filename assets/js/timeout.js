@@ -5,8 +5,8 @@ function SessionTimeOutModal(submissionId) {
   this.modalCountdownTime = document.body.dataset.modalcount || 300 // seconds
   this.modalTimeout = null
   this.urls = {
-    renew: `/submission/${submissionId}/keepalive`,
-    logout: `/submission/${submissionId}/timeout`,
+    renew: `/${submissionId}/keepalive`,
+    logout: `/${submissionId}/timeout`,
   }
   this.modalHtml = `
         <div class="es-modal" role="dialog" aria-modal="true" id="${this.modalId}" tabindex="-1">

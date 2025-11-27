@@ -2,9 +2,6 @@ generic-service:
   nameOverride: hmpps-probation-check-in-ui
   productId: 'HMPPS9999' # productId for the product that this belongs too, i.e. DPS001, see README.md for details
 
-  # the IRSA service account name for accessing AWS resources
-  # serviceAccountName: "hmpps-probation-check-in-ui"
-
   replicaCount: 4
 
   image:
@@ -16,6 +13,15 @@ generic-service:
     enabled: true
     host: app-hostname.local # override per environment
     tlsSecretName: hmpps-probation-check-in-ui-cert
+
+    # modsecurity
+    modsecurity_enabled: true
+    modsecurity_github_team: stg-pathfinders
+    modsecurity_snippet: |
+      SecRuleEngine DetectionOnly
+      SecAuditEngine RelevantOnly
+      SecRequestBodyAccess On
+      SecDefaultAction "phase:2,pass,log,tag:github_team=stg-pathfinders,tag:namespace={{ .Release.Namespace }}"
 
   livenessProbe:
     httpGet:
@@ -30,9 +36,9 @@ generic-service:
     NODE_ENV: 'production'
     REDIS_ENABLED: 'true'
     REDIS_TLS_ENABLED: 'true'
-    TOKEN_VERIFICATION_ENABLED: 'true'
+    TOKEN_VERIFICATION_ENABLED: 'false'
     AUDIT_SQS_REGION: 'eu-west-2'
-    AUDIT_SERVICE_NAME: 'HMPPS9999' # Your audit service name
+    AUDIT_SERVICE_NAME: 'UNASSIGNED' # Your audit service name
 
   # Pre-existing kubernetes secrets to load as environment variables in the deployment.
   # namespace_secrets:
@@ -44,16 +50,15 @@ generic-service:
     hmpps-probation-check-in-ui-client-creds:
       CLIENT_CREDS_CLIENT_ID: 'CLIENT_CREDS_CLIENT_ID'
       CLIENT_CREDS_CLIENT_SECRET: 'CLIENT_CREDS_CLIENT_SECRET'
-    hmpps-probation-check-in-ui-auth-code:
-      AUTH_CODE_CLIENT_ID: 'AUTH_CODE_CLIENT_ID'
-      AUTH_CODE_CLIENT_SECRET: 'AUTH_CODE_CLIENT_SECRET'    
     hmpps-probation-check-in-ui-session-secret:
       SESSION_SECRET: 'SESSION_SECRET'
     hmpps-probation-check-in-ui-elasticache-redis:
       REDIS_HOST: 'primary_endpoint_address'
       REDIS_AUTH_TOKEN: 'auth_token'
     hmpps-probation-check-in-ui-application-insights:
-      APPLICATIONINSIGHTS_CONNECTION_STRING: "APPLICATIONINSIGHTS_CONNECTION_STRING"
+      APPLICATIONINSIGHTS_CONNECTION_STRING: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+    ip-info-token:
+      IP_INFO_TOKEN: 'token'
     # This secret will need to be created in your namespace (note it isn't in hmpps-templates-dev)
     # IRSA configuration in your namespace will also be required, and then uncomment serviceAccountName above.
     # sqs-hmpps-audit-secret:

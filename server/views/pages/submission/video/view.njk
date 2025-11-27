@@ -9,7 +9,7 @@
   {{
     govukBackLink({
       text: "Back",
-      href: "/submission/" + submissionId + "/check-your-answers" if cya else "/submission/" + submissionId + "/video/record"
+      href: "/" + submissionId + "/check-your-answers" if cya else "/" + submissionId + "/video/record"
     })
   }}
 {% endblock %}
@@ -35,7 +35,7 @@
             class="govuk-button"
             data-module="govuk-button"
             role="button"
-            href="/submission/{{ submissionId }}/check-your-answers"
+            href="/{{ submissionId }}/check-your-answers"
             >Continue</a
           >
         </div>
@@ -62,14 +62,14 @@
           <li>you are not wearing a hat or sunglasses</li>
         </ul>
         <div class="govuk-button-group">
-          <a class="govuk-button" role="button" href="/submission/{{ submissionId }}/video/record"
+          <a class="govuk-button" role="button" href="/{{ submissionId }}/video/record"
             >Record video again</a
           >
           <a
             class="govuk-button govuk-button--secondary"
             role="button"
             data-module="govuk-button"
-            href="/submission/{{ submissionId }}/check-your-answers"
+            href="/{{ submissionId }}/check-your-answers"
           >
             Submit video anyway
           </a>
