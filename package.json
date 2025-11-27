@@ -1,8 +1,8 @@
 {
-  "name": "hmpps-esupervision-ui",
+  "name": "hmpps-probation-check-in-ui",
   "version": "0.0.1",
-  "description": "HMPPS eSupervision",
-  "repository": "git@github.com:ministryofjustice/hmpps-esupervision-ui.git",
+  "description": "HMPPS Probation Check In",
+  "repository": "git@github.com:ministryofjustice/hmpps-probation-check-in-ui.git",
   "license": "MIT",
   "scripts": {
     "prepare": "hmpps-precommit-hooks-prepare",
