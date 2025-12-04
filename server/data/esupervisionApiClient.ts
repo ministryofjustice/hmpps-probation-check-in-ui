@@ -14,7 +14,6 @@ import { CheckinEventType } from './models/checkinEvent'
  */
 export type CheckinUploadContentTypes = {
   video: string
-  reference?: string
   snapshots: string[]
 }
 
@@ -37,15 +36,10 @@ export default class EsupervisionApiClient extends RestClient {
     checkinId: string,
     contentTypes: CheckinUploadContentTypes,
   ): Promise<CheckinUploadLocationResponse> {
-    const { video, reference, snapshots } = contentTypes
+    const { video, snapshots } = contentTypes
     const query: Record<string, string> = {
       video,
       snapshots: snapshots.join(','),
-    }
-
-    // Only include reference if provided (V1 backward compatibility)
-    if (reference) {
-      query.reference = reference
     }
 
     const locations = await this.post<CheckinUploadLocationResponse>(
