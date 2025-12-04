@@ -2,17 +2,16 @@ import CheckinStatus from './checkinStatus'
 import AutomatedIdVerificationResult from './automatedIdVerificationResult'
 import ManualIdVerificationResult from './manualIdVerificationResult'
 import SurveyResponse from './survey/surveyResponse'
-import Offender from './offender'
 import { ExternalUserId } from './loggedInUser'
 
 export default class Checkin {
   uuid: string
 
+  crn: string
+
   status: CheckinStatus
 
   dueDate: string // TODO: parse datetime
-
-  offender: Offender
 
   submittedAt?: string // TODO: parse datetime
 

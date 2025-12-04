@@ -14,7 +14,7 @@ import { CheckinEventType } from './models/checkinEvent'
  */
 export type CheckinUploadContentTypes = {
   video: string
-  reference: string
+  reference?: string
   snapshots: string[]
 }
 
@@ -23,11 +23,11 @@ export default class EsupervisionApiClient extends RestClient {
     super('eSupervision API', config.apis.esupervisionApi, logger, authenticationClient)
   }
 
-  getCheckin(checkinId: string, includeUploads?: boolean): Promise<OffenderCheckinResponse> {
+  getCheckin(checkinId: string, includePersonalDetails?: boolean): Promise<OffenderCheckinResponse> {
     return this.get<OffenderCheckinResponse>(
       {
         path: `/offender_checkins/${checkinId}`,
-        query: { 'include-uploads': includeUploads },
+        query: { 'include-personal-details': includePersonalDetails },
       },
       asSystem(),
     )
@@ -38,10 +38,20 @@ export default class EsupervisionApiClient extends RestClient {
     contentTypes: CheckinUploadContentTypes,
   ): Promise<CheckinUploadLocationResponse> {
     const { video, reference, snapshots } = contentTypes
+    const query: Record<string, string> = {
+      video,
+      snapshots: snapshots.join(','),
+    }
+
+    // Only include reference if provided (V1 backward compatibility)
+    if (reference) {
+      query.reference = reference
+    }
+
     const locations = await this.post<CheckinUploadLocationResponse>(
       {
         path: `/offender_checkins/${checkinId}/upload_location`,
-        query: { video, reference, snapshots: snapshots.join(',') },
+        query,
         headers: { 'Content-Type': 'application/json' },
       },
       asSystem(),
@@ -67,7 +77,7 @@ export default class EsupervisionApiClient extends RestClient {
   ): Promise<AutomaticCheckinVerificationResult> {
     return this.post<AutomaticCheckinVerificationResult>(
       {
-        path: `/offender_checkins/${checkinId}/auto_id_verify`,
+        path: `/offender_checkins/${checkinId}/video-verify`,
         headers: { 'Content-Type': 'application/json' },
         query: { numSnapshots },
       },
@@ -78,9 +88,27 @@ export default class EsupervisionApiClient extends RestClient {
   async logCheckinEvent(checkinId: string, eventType: CheckinEventType, comment?: string): Promise<{ event: string }> {
     return this.post<{ event: string }>(
       {
-        path: `/offender_checkins/${checkinId}/event`,
+        path: `/offender_checkins/${checkinId}/log-event`,
         headers: { 'Content-Type': 'application/json' },
         data: JSON.stringify({ eventType, comment }),
+      },
+      asSystem(),
+    )
+  }
+
+  async verifyIdentity(
+    checkinId: string,
+    personalDetails: {
+      crn: string
+      name: { forename: string; surname: string }
+      dateOfBirth: string
+    },
+  ): Promise<{ verified: boolean; error?: string }> {
+    return this.post<{ verified: boolean; error?: string }>(
+      {
+        path: `/offender_checkins/${checkinId}/identity-verify`,
+        headers: { 'Content-Type': 'application/json' },
+        data: JSON.stringify(personalDetails),
       },
       asSystem(),
     )

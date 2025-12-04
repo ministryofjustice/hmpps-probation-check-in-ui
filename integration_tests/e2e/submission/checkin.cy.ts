@@ -32,6 +32,7 @@ describe('Start Check-in Journey', () => {
       cy.task('stubGetCheckinUploadLocation', testCheckin)
       cy.task('stubFakeS3Upload')
 
+      cy.task('stubVerifyIdentity', testCheckin)
       cy.task('stubAutoVerifyCheckinIdentity', testCheckin)
       cy.task('stubSubmitCheckin', testCheckin)
     })

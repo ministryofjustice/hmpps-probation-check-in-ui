@@ -58,9 +58,9 @@ export const createMockCheckin = (offender: Offender, overrides: Partial<Checkin
   const status = overrides.status || faker.helpers.arrayElement(Object.values(CheckinStatus))
   const checkin: Checkin = {
     uuid: faker.string.uuid(),
+    crn: offender.crn,
     status,
     dueDate: format(addDays(new Date(), 7), 'yyyy-MM-dd'),
-    offender,
     questions: '{}',
     createdBy: practitionerUsername,
     createdAt: faker.date.recent({ days: 3 }).toISOString(),
@@ -403,7 +403,7 @@ export default {
     stubFor({
       request: {
         method: 'POST',
-        urlPath: `/offender_checkins/${checkin.uuid}/auto_id_verify`,
+        urlPath: `/offender_checkins/${checkin.uuid}/video-verify`,
         queryParameters: {
           numSnapshots: {
             equalTo: '1',
@@ -417,6 +417,20 @@ export default {
       },
     })
     return response
+  },
+
+  stubVerifyIdentity: (checkin: Checkin, verified = true): SuperAgentRequest => {
+    return stubFor({
+      request: {
+        method: 'POST',
+        urlPath: `/offender_checkins/${checkin.uuid}/identity-verify`,
+      },
+      response: {
+        status: 200,
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        jsonBody: { verified, error: verified ? null : 'Personal details do not match our records' },
+      },
+    })
   },
 
   stubReviewCheckin: (checkin: Checkin): SuperAgentRequest => {

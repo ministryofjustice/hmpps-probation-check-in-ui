@@ -31,4 +31,15 @@ export default class EsupervisionService {
   logCheckinEvent(checkinId: string, eventType: CheckinEventType, comment?: string): Promise<{ event: string }> {
     return this.esupervisionApiClient.logCheckinEvent(checkinId, eventType, comment)
   }
+
+  verifyIdentity(
+    checkinId: string,
+    personalDetails: {
+      crn: string
+      name: { forename: string; surname: string }
+      dateOfBirth: string
+    },
+  ): Promise<{ verified: boolean; error?: string }> {
+    return this.esupervisionApiClient.verifyIdentity(checkinId, personalDetails)
+  }
 }

@@ -1,14 +1,13 @@
 import { RequestHandler, Request, Response } from 'express'
-import { isEqual } from 'date-fns'
 import logger from '../../logger'
 import { services } from '../services'
 import MentalHealth from '../data/models/survey/mentalHealth'
 import SupportAspect from '../data/models/survey/supportAspect'
 import CallbackRequested from '../data/models/survey/callbackRequested'
-import OffenderCheckinResponse from '../data/models/offenderCheckinResponse'
+import Checkin from '../data/models/checkin'
 import { DeviceInfo } from '../data/models/survey/surveyResponse'
 
-type SubmissionLocals = { submission: OffenderCheckinResponse }
+type SubmissionLocals = { checkin: Checkin }
 
 const { esupervisionService } = services()
 
@@ -63,24 +62,39 @@ export const renderVerify: RequestHandler = async (req, res, next) => {
 export const handleVerify: RequestHandler = async (req, res: Response<object, SubmissionLocals>, next) => {
   const { submissionId } = req.params
   const { firstName, lastName, day, month, year } = req.body
-  const dateOfBirth = new Date(`${year}-${month}-${day} 00:00 UTC`)
+  const { crn } = res.locals.checkin
 
-  const checkIn = res.locals.submission.checkin
-
-  const { offender } = checkIn
-  const offDob = new Date(`${offender.dateOfBirth} 00:00 UTC`)
-  const isMatch =
-    offender.firstName.toLocaleLowerCase().trim() === firstName.toLocaleLowerCase().trim() &&
-    offender.lastName.toLocaleLowerCase().trim() === lastName.toLocaleLowerCase().trim() &&
-    isEqual(offDob, dateOfBirth)
-
-  if (!isMatch) {
-    return res.render('pages/submission/no-match-found', { firstName, lastName, dateOfBirth, submissionId })
+  if (!crn) {
+    logger.error(`No CRN found for submissionId ${submissionId}`)
+    return next(new Error('CRN not found'))
   }
 
-  req.session.submissionAuthorized = submissionId
-  logger.info(`User is verified and check in authorised for submissionId ${submissionId}`)
-  return res.redirect(`/${submissionId}/questions/mental-health`)
+  // Format date as YYYY-MM-DD for V2 API
+  const dateOfBirth = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+
+  try {
+    // Call V2 API to verify identity against Ndilius
+    const result = await esupervisionService.verifyIdentity(submissionId, {
+      crn,
+      name: {
+        forename: firstName,
+        surname: lastName,
+      },
+      dateOfBirth,
+    })
+
+    if (!result.verified) {
+      logger.info(`Identity verification failed for submissionId ${submissionId}: ${result.error}`)
+      return res.render('pages/submission/no-match-found', { firstName, lastName, dateOfBirth, submissionId })
+    }
+
+    req.session.submissionAuthorized = submissionId
+    logger.info(`User is verified and check in authorised for submissionId ${submissionId}`)
+    return res.redirect(`/${submissionId}/questions/mental-health`)
+  } catch (error) {
+    logger.error(`Error verifying identity for submissionId ${submissionId}`, error)
+    return next(error)
+  }
 }
 
 export const renderVideoInform: RequestHandler = async (req, res, next) => {
@@ -97,42 +111,13 @@ export const renderVideoRecord: RequestHandler = async (req, res: Response<objec
     const videoContentType = 'video/mp4'
     const frameContentType = 'image/jpeg'
 
-    const checkIn = res.locals.submission.checkin
-    const offenderPhoto = checkIn.offender.photoUrl
-    // fetch the offender photo and create a blob
-    const offenderReferencePhoto = await fetch(offenderPhoto).then(response => {
-      if (!response.ok) {
-        throw new Error(`Failed to fetch offender photo: ${response.statusText}`)
-      }
-      return response.blob()
-    })
-
     const uploadLocations = await esupervisionService.getCheckinUploadLocation(submissionId, {
       video: videoContentType,
-      reference: offenderReferencePhoto.type,
       snapshots: [frameContentType, frameContentType],
     })
 
-    if (
-      uploadLocations.references.length === 0 ||
-      uploadLocations.snapshots.length === 0 ||
-      uploadLocations.video === undefined
-    ) {
+    if (uploadLocations.snapshots.length === 0 || uploadLocations.video === undefined) {
       throw new Error(`Failed to get upload locations: ${JSON.stringify(uploadLocations)}`)
-    }
-
-    const referencePhotoUploadResult = await fetch(uploadLocations.references[0].url, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': uploadLocations.references[0].contentType,
-      },
-      body: offenderReferencePhoto,
-    })
-
-    if (!referencePhotoUploadResult.ok) {
-      throw new Error(`Failed to upload reference photo: ${referencePhotoUploadResult.statusText}`)
-    } else {
-      logger.debug('Reference photo uploaded successfully', uploadLocations.references[0].url)
     }
 
     res.render('pages/submission/video/record', {
@@ -268,7 +253,6 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
 
   const submissionId = getSubmissionId(req)
   const submission = {
-    offender: res.locals.submission.checkin.offender.uuid,
     survey: {
       version: '2025-07-10@pilot',
       mentalHealth: mentalHealth as MentalHealth,
