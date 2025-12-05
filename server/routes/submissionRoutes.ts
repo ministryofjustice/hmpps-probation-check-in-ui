@@ -52,7 +52,7 @@ export default function routes({ esupervisionService }: Services): Router {
       if (submissionId) {
         // lookup submission from the API
         try {
-          const checkinResponse = await esupervisionService.getCheckin(submissionId, true)
+          const checkinResponse = await esupervisionService.getCheckin(submissionId)
           if (checkinResponse.checkin.status === 'SUBMITTED' && req.originalUrl.endsWith('/confirmation')) {
             next()
           } else if (checkinResponse.checkin.status === 'EXPIRED') {
@@ -60,7 +60,7 @@ export default function routes({ esupervisionService }: Services): Router {
           } else if (checkinResponse.checkin.status !== 'CREATED') {
             notFound()
           } else {
-            res.locals.submission = checkinResponse
+            res.locals.checkin = checkinResponse.checkin
             next()
           }
         } catch (err) {

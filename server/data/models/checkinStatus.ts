@@ -3,6 +3,7 @@ enum CheckinStatus {
   Submitted = 'SUBMITTED',
   Reviewed = 'REVIEWED',
   Expired = 'EXPIRED',
+  Cancelled = 'CANCELLED',
 }
 
 export default CheckinStatus
