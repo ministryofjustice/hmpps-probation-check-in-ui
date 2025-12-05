@@ -27,7 +27,7 @@ export default class Checkin {
 
   reviewedAt?: string
 
-  videoUrl: string // TODO: parse url?
+  videoUrl?: string
 
   autoIdCheck?: AutomatedIdVerificationResult
 

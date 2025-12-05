@@ -9,8 +9,8 @@ import { CheckinEventType } from '../data/models/checkinEvent'
 export default class EsupervisionService {
   constructor(private readonly esupervisionApiClient: EsupervisionApiClient) {}
 
-  getCheckin(submissionId: string, includeUploads?: boolean): Promise<OffenderCheckinResponse> {
-    return this.esupervisionApiClient.getCheckin(submissionId, includeUploads)
+  getCheckin(submissionId: string): Promise<OffenderCheckinResponse> {
+    return this.esupervisionApiClient.getCheckin(submissionId)
   }
 
   getCheckinUploadLocation(

@@ -22,14 +22,15 @@ export default class EsupervisionApiClient extends RestClient {
     super('eSupervision API', config.apis.esupervisionApi, logger, authenticationClient)
   }
 
-  getCheckin(checkinId: string, includePersonalDetails?: boolean): Promise<OffenderCheckinResponse> {
-    return this.get<OffenderCheckinResponse>(
+  async getCheckin(checkinId: string): Promise<OffenderCheckinResponse> {
+    const checkin = await this.get<Checkin>(
       {
         path: `/offender_checkins/${checkinId}`,
-        query: { 'include-personal-details': includePersonalDetails },
       },
       asSystem(),
     )
+    // Wrap response to maintain compatibility with existing UI code
+    return { checkin, checkinLogs: { hint: 'OMITTED', logs: [] } }
   }
 
   async getCheckinUploadLocation(
