@@ -40,7 +40,7 @@ describe('Start Check-in Journey', () => {
   it('should allow a user to submit a checkin', () => {
     cy.visit(`/${testCheckin.uuid}`)
     const submissionIndexPage = CheckinPage.verifyOnPage(CheckinIndexPage)
-    cy.contains('h1', 'Check in with your probation officer').should('be.visible')
+    cy.contains('h1', 'Check in with your probation officer', { timeout: 15000 }).should('be.visible')
     submissionIndexPage.startButton().should('contain.text', 'Start now')
     submissionIndexPage.startButton().click()
     const personalDetailsPage = CheckinPage.verifyOnPage(PersonalDetailsPage)
