@@ -1,0 +1,126 @@
+{% extends "../layouts/base.njk" %}
+{% from "../partials/video-tips.njk" import videoTips %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back", href: "/" + submissionId + "/video/inform" }) }}
+{% endblock %}
+
+{% block pageContent %}
+  <div data-module="videoRecorder">
+    <div class="es-pane" id="recordingScreen">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-l">Record your video</h1>
+          <div
+            class="videoRecorder__container"
+            id="videoContainer"
+            data-video-upload-url="{{ videoUploadUrl }}"
+            data-submission-id="{{ submissionId }}"
+            {% if frameUploadUrl.length > 0 %}
+              data-image-upload-url="{{ frameUploadUrl[0] }}"
+            {% endif %}
+          >
+            <div class="videoRecorder__videoWrap">
+              <video id="video" class="videoRecorder__video" autoplay muted playsinline></video>
+              <span class="videoRecorder__frame"></span>
+              <canvas id="canvas" hidden></canvas>
+              <div id="statusTag" class="govuk-tag govuk-tag--red videoRecorder__tag"></div>
+            </div>
+          </div>
+          <div class="videoRecorder__error" id="errorMessage" hidden>
+            <div class="govuk-inset-text es-inset-text--error">
+              <h2 class="govuk-heading-m es-heading--error">You need to accept permissions on your device</h2>
+              <p class="govuk-body">
+                We are unable to access your camera to record a video. Check your browser settings and permissions. If
+                you are having trouble using this service, contact your probation officer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="stickyActionBar" class="sticky-action-bar">
+        <div class="sticky-action-bar__inner">
+          <button id="startBtn" class="govuk-button" disabled aria-disabled="true">Start recording</button>
+        </div>
+      </div>
+      <div id="stickyActionSpacer" aria-hidden="true"></div>
+      <div id="stickyActionSentinel" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <div class="es-pane" id="loadingScreen" hidden aria-hidden="true">
+    <div class="es-loader">
+      <div class="es-loader__spinner" aria-live="polite" role="status"></div>
+      <div class="es-loader__content">
+        <h1 class="govuk-heading-{{ videoContent.states.loading.headingSize }}">{{ videoContent.states.loading.heading }}</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="es-pane" id="matchScreen" hidden aria-hidden="true">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">{{ videoContent.states.match.heading }}</h1>
+        <p>{{ videoContent.states.match.body }}</p>
+        <div class="videoRecorder__videoWrap">
+          <video class="videoRecorder__video-preview" id="matchPreview" controls>
+            Your browser does not support video
+          </video>
+        </div>
+        {{
+          govukButton({
+            text: videoContent.states.match.buttonText,
+            href: "/" + submissionId + "/check-your-answers"
+          })
+        }}
+      </div>
+    </div>
+  </div>
+
+  <div class="es-pane" id="noMatchScreen" hidden aria-hidden="true">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">{{ videoContent.states.noMatch.heading }}</h1>
+        <p>{{ videoContent.states.noMatch.body }}</p>
+        <div class="videoRecorder__videoWrap">
+          <video class="videoRecorder__video-preview" id="noMatchPreview" controls>
+            Your browser does not support video
+          </video>
+        </div>
+        <h2 class="govuk-heading-m">{{ videoContent.states.noMatch.subheading }}</h2>
+        {{ videoTips(videoContent.recordingTips.items, videoContent.recordingTips.intro) }}
+        <div class="govuk-button-group">
+          {{
+            govukButton({
+              text: videoContent.states.noMatch.primaryButtonText,
+              href: ""
+            })
+          }}
+          {{
+            govukButton({
+              text: videoContent.states.noMatch.secondaryButtonText,
+              href: "/" + submissionId + "/check-your-answers",
+              classes: "govuk-button--secondary"
+            })
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="es-pane" id="errorScreen" hidden aria-hidden="true">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">{{ videoContent.states.error.heading }}</h1>
+        <p>{{ videoContent.states.error.body }}</p>
+        {{ videoTips(videoContent.recordingTips.items, videoContent.recordingTips.intro, boldIntro = true) }}
+        {{
+          govukButton({
+            text: videoContent.states.error.buttonText,
+            href: ""
+          })
+        }}
+      </div>
+    </div>
+  </div>
+{% endblock %}

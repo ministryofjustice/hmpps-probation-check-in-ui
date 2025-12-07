@@ -1,0 +1,20 @@
+{% extends "./govuk.njk" %}
+
+{% block content %}
+  <div class="govuk-width-container {{ containerClasses }}">
+    {% block beforeContent %}{% endblock %}
+
+    <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main">
+      {% if validationErrors | length %}
+        {{
+          govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: validationErrors
+          })
+        }}
+      {% endif %}
+
+      {% block pageContent %}{% endblock %}
+    </main>
+  </div>
+{% endblock %}

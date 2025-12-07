@@ -1,0 +1,49 @@
+{% extends "../layouts/base.njk" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back", href: "/" + submissionId + "/verify" }) }}
+{% endblock %}
+
+{% block pageContent %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">No match found</h1>
+      <p class="govuk-body">We were unable to verify your identity on our system. Check your information for any errors and try again.</p>
+
+      {{
+        govukTable({
+          caption: "Details that were used to verify your identity",
+          captionClasses: "govuk-visually-hidden",
+          firstCellIsHeader: true,
+          rows: [
+            [
+              { text: "First name" },
+              { text: firstName | default("Not provided") }
+            ],
+            [
+              { text: "Last name" },
+              { text: lastName | default("Not provided") }
+            ],
+            [
+              { text: "Date of birth" },
+              { text: dateOfBirth | gdsDate | default("Not provided") }
+            ]
+          ]
+        })
+      }}
+
+      {{
+        govukButton({
+          text: "Try again",
+          href: "/" + submissionId + "/verify"
+        })
+      }}
+
+      <h2 class="govuk-heading-m">Need help?</h2>
+      <p class="govuk-body">
+        If your information is correct and you are still unable to verify your identity, you must contact your probation
+        officer.
+      </p>
+    </div>
+  </div>
+{% endblock %}

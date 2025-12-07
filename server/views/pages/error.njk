@@ -1,4 +1,4 @@
-{% extends "../partials/layout.njk" %}
+{% extends "../layouts/govuk.njk" %}
 
 {% set pageTitle = applicationName + " - Error" %}
 
@@ -6,8 +6,44 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ message }}</h1>
-      <h2 class="govuk-heading-m">{{ status }}</h2>
-      <pre>{{ stack }}</pre>
+
+      <p class="govuk-body">Try again later.</p>
+
+      {% if errorReference %}
+        <p class="govuk-body">
+          Your reference number is <strong>{{ errorReference }}</strong>
+        </p>
+        <p class="govuk-body">
+          Quote this reference if you contact us about this problem.
+        </p>
+      {% endif %}
+
+      {% if apiErrorUuid %}
+        <details class="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Technical details
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p>API Error ID: {{ apiErrorUuid }}</p>
+          </div>
+        </details>
+      {% endif %}
+
+      {% if stack %}
+        <details class="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Developer information
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <h2 class="govuk-heading-m">{{ status }}</h2>
+            <pre>{{ stack }}</pre>
+          </div>
+        </details>
+      {% endif %}
     </div>
   </div>
 {% endblock %}

@@ -1,0 +1,16 @@
+{% extends "../layouts/base.njk" %}
+
+{% block pageContent %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Your check in has been reset</h1>
+      <p class="govuk-body">For your security, your answers have been deleted.</p>
+      {{
+        govukButton({
+          text: "Restart check in",
+          href: "/" + submissionId
+        })
+      }}
+    </div>
+  </div>
+{% endblock %}
