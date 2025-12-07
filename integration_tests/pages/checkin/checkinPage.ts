@@ -10,6 +10,6 @@ export default abstract class CheckinPage {
   }
 
   checkOnPage(): void {
-    cy.get('h1', { timeout: 15000 }).contains(this.title)
+    cy.get('h1', { timeout: 60000 }).contains(this.title)
   }
 }

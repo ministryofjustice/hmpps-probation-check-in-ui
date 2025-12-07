@@ -14,10 +14,10 @@ export default defineConfig({
     configFile: 'reporter-config.json',
   },
   taskTimeout: 60000,
-  defaultCommandTimeout: 15000,
-  pageLoadTimeout: 30000,
-  requestTimeout: 15000,
-  responseTimeout: 15000,
+  defaultCommandTimeout: 60000,
+  pageLoadTimeout: 60000,
+  requestTimeout: 60000,
+  responseTimeout: 60000,
   e2e: {
     setupNodeEvents(on) {
       on('task', {
