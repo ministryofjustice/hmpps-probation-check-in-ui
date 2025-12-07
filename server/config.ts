@@ -62,7 +62,7 @@ export default {
       systemClientSecret: get('CLIENT_CREDS_CLIENT_SECRET', 'clientsecret', requiredInProduction),
     },
     esupervisionApi: {
-      url: get('ESUPERVISION_API_URL', 'http://localhost:8080', requiredInProduction),
+      url: get('ESUPERVISION_API_URL', 'http://localhost:8080/v2', requiredInProduction),
       healthPath: '/health/ping',
       timeout: {
         response: Number(get('ESUPERVISION_API_TIMEOUT_RESPONSE', 5000)),

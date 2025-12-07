@@ -1,0 +1,46 @@
+{% extends "../layouts/base.njk" %}
+{% from "../macros/contentSection.njk" import contentSection %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back", href: "/" + submissionId + "/verify" }) }}
+{% endblock %}
+
+{% block pageContent %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ content.title }}</h1>
+      <p class="govuk-body">{{ content.message }}</p>
+
+      {{
+        govukTable({
+          caption: content.tableCaption,
+          captionClasses: "govuk-visually-hidden",
+          firstCellIsHeader: true,
+          rows: [
+            [
+              { text: content.fields.firstName },
+              { text: firstName }
+            ],
+            [
+              { text: content.fields.lastName },
+              { text: lastName }
+            ],
+            [
+              { text: content.fields.dateOfBirth },
+              { text: dateOfBirth | gdsDate }
+            ]
+          ]
+        })
+      }}
+
+      {{
+        govukButton({
+          text: content.tryAgainButton,
+          href: "/" + submissionId + "/verify"
+        })
+      }}
+
+      {{ contentSection(content.needHelp.heading, content.needHelp.message) }}
+    </div>
+  </div>
+{% endblock %}

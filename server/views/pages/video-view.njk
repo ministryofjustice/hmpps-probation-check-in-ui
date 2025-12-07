@@ -1,0 +1,67 @@
+{% extends "../layouts/base.njk" %}
+{% from "../partials/video-tips.njk" import videoTips %}
+
+{% block beforeContent %}
+  {{
+    govukBackLink({
+      text: "Back",
+      href: "/" + submissionId + "/check-your-answers" if cya else "/" + submissionId + "/video/record"
+    })
+  }}
+{% endblock %}
+
+{% block pageContent %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if submission.checkin.autoIdCheck == 'MATCH' or autoVerifyResult == 'MATCH' %}
+        <h1 class="govuk-heading-l">{{ videoContent.states.match.heading }}</h1>
+        <p class="govuk-body">{{ videoContent.states.match.body }}</p>
+        <div class="videoRecorder__videoWrap">
+          <video
+            class="videoRecorder__video-preview"
+            id="matchPreview"
+            src="{{ submission.checkin.videoUrl }}"
+            controls
+          >
+            Your browser does not support video
+          </video>
+        </div>
+        {{
+          govukButton({
+            text: videoContent.states.match.buttonText,
+            href: "/" + submissionId + "/check-your-answers"
+          })
+        }}
+      {% else %}
+        <h1 class="govuk-heading-l">{{ videoContent.states.noMatch.heading }}</h1>
+        <p class="govuk-body">{{ videoContent.states.noMatch.body }}</p>
+        <div class="videoRecorder__videoWrap">
+          <video
+            class="videoRecorder__video-preview"
+            id="noMatchPreview"
+            src="{{ submission.checkin.videoUrl }}"
+            controls
+          >
+            Your browser does not support video
+          </video>
+        </div>
+        {{ videoTips(videoContent.recordingTips.items, videoContent.recordingTips.intro, boldIntro = true) }}
+        <div class="govuk-button-group">
+          {{
+            govukButton({
+              text: videoContent.states.noMatch.primaryButtonText,
+              href: "/" + submissionId + "/video/record"
+            })
+          }}
+          {{
+            govukButton({
+              text: videoContent.states.noMatch.secondaryButtonText,
+              href: "/" + submissionId + "/check-your-answers",
+              classes: "govuk-button--secondary"
+            })
+          }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,241 @@
+{% extends "../layouts/base.njk" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back", href: "/" + submissionId + "/video/view" }) }}
+{% endblock %}
+
+{% block pageContent %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Check your answers before you complete your check in</h1>
+
+      <h2 class="govuk-heading-m">About you</h2>
+
+      {{
+        govukSummaryList({
+          rows: [
+            {
+              key: { text: "How are you feeling?" },
+              value: { text: formData['mentalHealth'] | userFriendlyString },
+              actions: {
+                items: [
+                  {
+                    href: "/" + submissionId + "/questions/mental-health?checkAnswers=true",
+                    text: "Change",
+                    visuallyHiddenText: "answer for how are you feeling"
+                  }
+                ]
+              }
+            },
+            {
+              key: { text: "Is there anything you need help with?" },
+              value: {
+                html: (formData['assistance'] | split(",") | map("userFriendlyString") | join(", "))
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/" + submissionId + "/questions/assistance?checkAnswers=true",
+                    text: "Change",
+                    visuallyHiddenText: "answer for is there anything you need help with"
+                  }
+                ]
+              }
+            }
+          ] + (
+            ([
+              {
+                key: { text: "Tell us why you need help with mental health" },
+                value: { text: formData['mentalHealthSupport'] },
+                actions: {
+                  items: [
+                    {
+                      href: "/" + submissionId + "/questions/assistance?checkAnswers=true",
+                      text: "Change",
+                      visuallyHiddenText: "answer for tell us why you need help with mental health"
+                    }
+                  ]
+                }
+              }
+            ] if formData['mentalHealthSupport'] else []) +
+            ([
+              {
+                key: { text: "Tell us why you need help with alcohol" },
+                value: { text: formData['alcoholSupport'] },
+                actions: {
+                  items: [
+                    {
+                      href: "/" + submissionId + "/questions/assistance?checkAnswers=true",
+                      text: "Change",
+                      visuallyHiddenText: "answer for tell us why you need help with alcohol"
+                    }
+                  ]
+                }
+              }
+            ] if formData['alcoholSupport'] else []) +
+            ([
+              {
+                key: { text: "Tell us why you need help with drugs" },
+                value: { text: formData['drugsSupport'] },
+                actions: {
+                  items: [
+                    {
+                      href: "/" + submissionId + "/questions/assistance?checkAnswers=true",
+                      text: "Change",
+                      visuallyHiddenText: "answer for tell us why you need help with drugs"
+                    }
+                  ]
+                }
+              }
+            ] if formData['drugsSupport'] else []) +
+            ([
+              {
+                key: { text: "Tell us why you need help with money" },
+                value: { text: formData['moneySupport'] },
+                actions: {
+                  items: [
+                    {
+                      href: "/" + submissionId + "/questions/assistance?checkAnswers=true",
+                      text: "Change",
+                      visuallyHiddenText: "answer for tell us why you need help with money"
+                    }
+                  ]
+                }
+              }
+            ] if formData['moneySupport'] else []) +
+            ([
+              {
+                key: { text: "Tell us why you need help with housing" },
+                value: { text: formData['housingSupport'] },
+                actions: {
+                  items: [
+                    {
+                      href: "/" + submissionId + "/questions/assistance?checkAnswers=true",
+                      text: "Change",
+                      visuallyHiddenText: "answer for tell us why you need help with housing"
+                    }
+                  ]
+                }
+              }
+            ] if formData['housingSupport'] else []) +
+            ([
+              {
+                key: { text: "Tell us why you need help with support system" },
+                value: { text: formData['supportSystemSupport'] },
+                actions: {
+                  items: [
+                    {
+                      href: "/" + submissionId + "/questions/assistance?checkAnswers=true",
+                      text: "Change",
+                      visuallyHiddenText: "answer for tell us why you need help with your support system"
+                    }
+                  ]
+                }
+              }
+            ] if formData['supportSystemSupport'] else []) +
+            ([
+              {
+                key: { text: "Tell us why you need help with (other)" },
+                value: { text: formData['otherSupport'] },
+                actions: {
+                  items: [
+                    {
+                      href: "/" + submissionId + "/questions/assistance?checkAnswers=true",
+                      text: "Change",
+                      visuallyHiddenText: "answer for tell us why you need help"
+                    }
+                  ]
+                }
+              }
+            ] if formData['otherSupport'] else []) +
+            [
+              {
+                key: { text: "Is there anything else you need to speak with your probation officer about?" },
+                value: { text: formData['callback'] | userFriendlyString },
+                actions: {
+                  items: [
+                    {
+                      href: "/" + submissionId + "/questions/callback?checkAnswers=true",
+                      text: "Change",
+                      visuallyHiddenText: "answer for is there anything else you need to speak with your probation officer about"
+                    }
+                  ]
+                }
+              }
+            ] +
+            ([
+              {
+                key: { text: "Tell us what you need to talk about" },
+                value: { text: formData['callbackDetails'] },
+                actions: {
+                  items: [
+                    {
+                      href: "/" + submissionId + "/questions/callback?checkAnswers=true",
+                      text: "Change",
+                      visuallyHiddenText: "answer for tell us what you need to talk about"
+                    }
+                  ]
+                }
+              }
+            ] if (formData['callback'] == "YES" and formData['callbackDetails']) else [])
+          )
+        })
+      }}
+
+      <h2 class="govuk-heading-m">Video</h2>
+
+      {{
+        govukSummaryList({
+          rows: [
+            {
+              key: { text: "Video check" },
+              value: {
+                text: 'We have confirmed this is you' if submission.checkin.autoIdCheck == 'MATCH' else 'We cannot confirm this is you'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/" + submissionId + "/video/view?checkAnswers=true",
+                    text: "View",
+                    visuallyHiddenText: "video"
+                  }
+                ]
+              }
+            }
+          ]
+        })
+      }}
+
+      <form method="POST">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+        <input type="hidden" id="device-data" name="deviceData" />
+
+        {{
+          govukCheckboxes({
+            name: "checkAnswers",
+            errorMessage: validationErrors | findError("checkAnswers"),
+            fieldset: {
+              legend: {
+                classes: "govuk-fieldset__legend--m",
+                text: "Complete your check in"
+              }
+            },
+            items: [
+              {
+                value: "CONFIRM",
+                text: "I confirm that, to the best of my knowledge, the details I have provided are correct. I understand that this information will be shared with my probation officer."
+              }
+            ]
+          })
+        }}
+
+        {{ govukButton({ text: "Complete check in" }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block bodyEnd %}
+  {{ super() }}
+  <script type="module" src="{{ '/assets/js/detect-device.js' | assetMap }}"></script>
+{% endblock %}

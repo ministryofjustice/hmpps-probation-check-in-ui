@@ -1,13 +1,43 @@
-{% extends "../partials/layout.njk" %}
+{% extends "../layouts/govuk.njk" %}
+{% from "../macros/errorReference.njk" import errorReference %}
 
-{% set pageTitle = applicationName + " - Error" %}
+{% set pageTitle = applicationName + " - " + content.titleSuffix %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ message }}</h1>
-      <h2 class="govuk-heading-m">{{ status }}</h2>
-      <pre>{{ stack }}</pre>
+
+      <p class="govuk-body">{{ content.tryAgainText }}</p>
+
+      {{ errorReference(errorReference, content) }}
+
+      {% if apiErrorUuid %}
+        <details class="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              {{ content.technicalDetailsSummary }}
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p>{{ content.apiErrorLabel }} {{ apiErrorUuid }}</p>
+          </div>
+        </details>
+      {% endif %}
+
+      {% if stack %}
+        <details class="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              {{ content.developerInfoSummary }}
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <h2 class="govuk-heading-m">{{ status }}</h2>
+            <pre>{{ stack }}</pre>
+          </div>
+        </details>
+      {% endif %}
     </div>
   </div>
 {% endblock %}

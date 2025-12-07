@@ -1,0 +1,25 @@
+{% extends "../layouts/base.njk" %}
+{% from "../macros/contentSection.njk" import contentSection %}
+
+{% set mainClasses = "app-container govuk-body" %}
+
+{% block pageContent %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukPanel({ titleText: content.panelTitle }) }}
+      <p class="govuk-body">{{ content.confirmationMessage }}</p>
+
+      {{ contentSection(content.whatHappensNext.heading, content.whatHappensNext.paragraphs) }}
+
+      <p class="govuk-body">
+        <a
+          href="{{ content.feedback.url }}"
+          target="_blank"
+          class="govuk-link govuk-link--no-visited-state"
+          rel="noopener noreferrer"
+          >{{ content.feedback.linkText }}</a
+        >
+      </p>
+    </div>
+  </div>
+{% endblock %}

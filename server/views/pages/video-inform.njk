@@ -1,0 +1,24 @@
+{% extends "../layouts/base.njk" %}
+{% from "../macros/contentSection.njk" import contentSection %}
+{% from "../macros/bulletList.njk" import bulletList %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back", href: "/" + submissionId + "/questions/callback" }) }}
+{% endblock %}
+
+{% block pageContent %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ content.title }}</h1>
+      <p class="govuk-body">{{ content.introduction }}</p>
+      <p class="govuk-body">{{ content.explanation }}</p>
+      <p class="govuk-body">{{ content.permissionsNote }}</p>
+
+      <h2 class="govuk-heading-s">{{ content.beforeRecording.heading }}</h2>
+      {{ bulletList(content.beforeRecording.tips, content.beforeRecording.intro) }}
+
+      {{ govukInsetText({ text: content.insetText }) }}
+      {{ govukButton({ text: content.continueButton, href: "/" + submissionId + "/video/record" }) }}
+    </div>
+  </div>
+{% endblock %}

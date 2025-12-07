@@ -1,0 +1,9 @@
+{# Reusable video recording tips macro - used in both video-record and video-view templates #}
+{% macro videoTips(tips, intro, boldIntro = false) %}
+  <p class="{% if boldIntro %}govuk-!-font-weight-bold{% endif %}">{{ intro }}</p>
+  <ul class="govuk-list govuk-list--bullet">
+    {% for tip in tips %}
+      <li>{{ tip }}</li>
+    {% endfor %}
+  </ul>
+{% endmacro %}

@@ -1,33 +1,33 @@
-{% extends "../partials/layout.njk" %}
+{% extends "../layouts/base.njk" %}
+{% from "../macros/contentSection.njk" import contentSection %}
+{% from "../macros/bulletList.njk" import bulletList %}
 
-{% set pageTitle = "Probation Check-in Service" %}
-{% set mainClasses = "govuk-body" %}
-
-{% block content %}
+{% block pageContent %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+      <h1 class="govuk-heading-l">{{ content.title }}</h1>
+      <p class="govuk-body">{{ content.introduction }}</p>
 
-      {# TODO: Content to be provided by content designer #}
+      {{ contentSection(content.beforeYouStart.heading) }}
+      {{ bulletList(content.beforeYouStart.items, content.beforeYouStart.intro) }}
+      <p class="govuk-body">{{ content.beforeYouStart.disclaimer }}</p>
 
-      <p class="govuk-body-l">
-        This service allows you to check in with your probation officer remotely.
-      </p>
+      {{ contentSection(content.whatYouNeedToDo.heading) }}
+      {{ bulletList(content.whatYouNeedToDo.items, content.whatYouNeedToDo.intro) }}
+      <p class="govuk-body">{{ content.whatYouNeedToDo.explanation }}</p>
+      <p class="govuk-body">{{ content.whatYouNeedToDo.reviewNote }}</p>
 
-      <h2 class="govuk-heading-m">How to access this service</h2>
-      <p class="govuk-body">
-        To use this service, you need a unique link provided by your probation officer.
-        If you have not received a link, please contact your probation officer.
-      </p>
+      {{ contentSection(content.needHelp.heading, content.needHelp.text) }}
 
-      <div class="govuk-inset-text">
-        If you have received a link to check in, please use that link to access the service.
-      </div>
-
-      <h2 class="govuk-heading-m">Need help?</h2>
-      <p class="govuk-body">
-        If you are having difficulty accessing this service, contact your probation officer for assistance.
-      </p>
+      <form action="/{{ submissionId }}/start" method="POST">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+        {{
+          govukButton({
+            text: content.startButton,
+            isStartButton: true
+          })
+        }}
+      </form>
     </div>
   </div>
 {% endblock %}

@@ -1,7 +1,13 @@
 import { RequestHandler, Request, Response, NextFunction } from 'express'
 
 export default function storeFormDataInSession(): RequestHandler {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    // Guard against undefined session
+    if (!req.session) {
+      next(new Error('Session not initialized'))
+      return
+    }
+
     if (!req.session.formData) {
       req.session.formData = {}
     }

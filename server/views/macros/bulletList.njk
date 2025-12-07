@@ -1,0 +1,11 @@
+{% macro bulletList(items, intro = "", classes = "") %}
+  {% if intro %}
+    <p class="govuk-body">{{ intro }}</p>
+  {% endif %}
+
+  <ul class="govuk-list govuk-list--bullet {{ classes }}">
+    {% for item in items %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
