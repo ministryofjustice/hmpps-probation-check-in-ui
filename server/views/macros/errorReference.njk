@@ -1,0 +1,10 @@
+{% macro errorReference(referenceNumber, content) %}
+  {% if referenceNumber %}
+    <p class="govuk-body">
+      {{ content.referenceLabel }} <strong>{{ referenceNumber }}</strong>
+    </p>
+    <p class="govuk-body">
+      {{ content.referenceInstructions }}
+    </p>
+  {% endif %}
+{% endmacro %}

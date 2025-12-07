@@ -1,0 +1,8 @@
+export { INDEX_CONTENT } from './index.content'
+export { VIDEO_INFORM_CONTENT } from './video-inform.content'
+export { VIDEO_RECORD_CONTENT } from './video-record.content'
+export { CONFIRMATION_CONTENT } from './confirmation.content'
+export { ERROR_CONTENT } from './error.content'
+export { EXPIRED_CONTENT } from './expired.content'
+export { TIMEOUT_CONTENT } from './timeout.content'
+export { NO_MATCH_FOUND_CONTENT } from './no-match-found.content'

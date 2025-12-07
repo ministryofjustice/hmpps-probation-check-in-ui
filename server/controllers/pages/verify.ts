@@ -2,6 +2,7 @@ import { RequestHandler, Response } from 'express'
 import logger from '../../../logger'
 import { services } from '../../services'
 import { PAGES } from '../../config/pages.config'
+import { NO_MATCH_FOUND_CONTENT } from '../../config/content'
 import Checkin from '../../data/models/checkin'
 import { getSubmissionId } from '../../utils/controllerHelpers'
 
@@ -60,7 +61,13 @@ export const handleVerify: RequestHandler = async (req, res: Response<object, Ve
 
     if (!result.verified) {
       logger.info(`Identity verification failed for submissionId ${submissionId}: ${result.error}`)
-      return res.render('pages/no-match-found', { firstName, lastName, dateOfBirth, submissionId })
+      return res.render('pages/no-match-found', {
+        firstName,
+        lastName,
+        dateOfBirth,
+        submissionId,
+        content: NO_MATCH_FOUND_CONTENT,
+      })
     }
 
     req.session.submissionAuthorized = submissionId

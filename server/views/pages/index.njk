@@ -1,44 +1,29 @@
 {% extends "../layouts/base.njk" %}
+{% from "../macros/contentSection.njk" import contentSection %}
+{% from "../macros/bulletList.njk" import bulletList %}
 
 {% block pageContent %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Check in with your probation officer</h1>
-      <p class="govuk-body">
-        You can use this service to check in with your probation officer as part of your probation. Your probation
-        officer will have signed you up for this service during a face to face appointment.
-      </p>
-      <h2 class="govuk-heading-m">Before you start</h2>
-      <p class="govuk-body">You will need:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>access to the internet</li>
-        <li>a device with a camera</li>
-        <li>your name and date of birth</li>
-      </ul>
-      <p class="govuk-body">You will not be able to use this service to check in if you are outside of the UK.</p>
-      <h2 class="govuk-heading-m">What you need to do</h2>
-      <p class="govuk-body">As part of this service you will need to:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>answer a set of questions relating to how you are and if you need any help</li>
-        <li>give permission to access your device's camera</li>
-        <li>record a short video of yourself so we can check it's you using the service</li>
-      </ul>
-      <p class="govuk-body">
-        We will use your video to confirm who you are. We will do this by comparing it with the photo your probation
-        officer took when they signed you up.
-      </p>
-      <p class="govuk-body">The answers to your questions will be sent to your probation officer to review.</p>
+      <h1 class="govuk-heading-l">{{ content.title }}</h1>
+      <p class="govuk-body">{{ content.introduction }}</p>
 
-      <h2 class="govuk-heading-m">If you need help</h2>
-      <p class="govuk-body">
-        If you have difficulty using this service, or you do not have access to everything you need, you should contact
-        your probation officer and let them know.
-      </p>
+      {{ contentSection(content.beforeYouStart.heading) }}
+      {{ bulletList(content.beforeYouStart.items, content.beforeYouStart.intro) }}
+      <p class="govuk-body">{{ content.beforeYouStart.disclaimer }}</p>
+
+      {{ contentSection(content.whatYouNeedToDo.heading) }}
+      {{ bulletList(content.whatYouNeedToDo.items, content.whatYouNeedToDo.intro) }}
+      <p class="govuk-body">{{ content.whatYouNeedToDo.explanation }}</p>
+      <p class="govuk-body">{{ content.whatYouNeedToDo.reviewNote }}</p>
+
+      {{ contentSection(content.needHelp.heading, content.needHelp.text) }}
+
       <form action="/{{ submissionId }}/start" method="POST">
         <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
         {{
           govukButton({
-            text: "Start now",
+            text: content.startButton,
             isStartButton: true
           })
         }}

@@ -3,6 +3,7 @@ import { Session } from 'express-session'
 import { renderVideoInform, renderVideoRecord, handleVideoVerify, renderVideoView } from './video'
 import { PAGES } from '../../config/pages.config'
 import VIDEO_CONTENT from '../../config/video.config'
+import { VIDEO_INFORM_CONTENT, VIDEO_RECORD_CONTENT } from '../../config/content'
 
 const mockGetCheckinUploadLocation = jest.fn()
 const mockAutoVerifyCheckinIdentity = jest.fn()
@@ -51,6 +52,7 @@ describe('Video Controller', () => {
         backLink: '/test-uuid/questions/callback',
         submissionId: 'test-uuid',
         cya: false,
+        content: VIDEO_INFORM_CONTENT,
       })
     })
   })
@@ -79,6 +81,7 @@ describe('Video Controller', () => {
         submissionId: 'test-uuid',
         cya: false,
         videoContent: VIDEO_CONTENT,
+        content: VIDEO_RECORD_CONTENT,
       })
     })
 

@@ -1,4 +1,5 @@
 {% extends "../layouts/base.njk" %}
+{% from "../macros/contentSection.njk" import contentSection %}
 
 {% block beforeContent %}
   {{ govukBackLink({ text: "Back", href: "/" + submissionId + "/verify" }) }}
@@ -7,26 +8,26 @@
 {% block pageContent %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">No match found</h1>
-      <p class="govuk-body">We were unable to verify your identity on our system. Check your information for any errors and try again.</p>
+      <h1 class="govuk-heading-l">{{ content.title }}</h1>
+      <p class="govuk-body">{{ content.message }}</p>
 
       {{
         govukTable({
-          caption: "Details that were used to verify your identity",
+          caption: content.tableCaption,
           captionClasses: "govuk-visually-hidden",
           firstCellIsHeader: true,
           rows: [
             [
-              { text: "First name" },
-              { text: firstName | default("Not provided") }
+              { text: content.fields.firstName },
+              { text: firstName }
             ],
             [
-              { text: "Last name" },
-              { text: lastName | default("Not provided") }
+              { text: content.fields.lastName },
+              { text: lastName }
             ],
             [
-              { text: "Date of birth" },
-              { text: dateOfBirth | gdsDate | default("Not provided") }
+              { text: content.fields.dateOfBirth },
+              { text: dateOfBirth | gdsDate }
             ]
           ]
         })
@@ -34,16 +35,12 @@
 
       {{
         govukButton({
-          text: "Try again",
+          text: content.tryAgainButton,
           href: "/" + submissionId + "/verify"
         })
       }}
 
-      <h2 class="govuk-heading-m">Need help?</h2>
-      <p class="govuk-body">
-        If your information is correct and you are still unable to verify your identity, you must contact your probation
-        officer.
-      </p>
+      {{ contentSection(content.needHelp.heading, content.needHelp.message) }}
     </div>
   </div>
 {% endblock %}

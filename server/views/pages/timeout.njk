@@ -3,11 +3,11 @@
 {% block pageContent %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Your check in has been reset</h1>
-      <p class="govuk-body">For your security, your answers have been deleted.</p>
+      <h1 class="govuk-heading-l">{{ content.title }}</h1>
+      <p class="govuk-body">{{ content.message }}</p>
       {{
         govukButton({
-          text: "Restart check in",
+          text: content.buttonText,
           href: "/" + submissionId
         })
       }}

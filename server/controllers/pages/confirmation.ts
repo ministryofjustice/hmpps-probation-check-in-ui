@@ -1,5 +1,6 @@
 import { RequestHandler } from 'express'
 import { PAGES } from '../../config/pages.config'
+import { CONFIRMATION_CONTENT } from '../../config/content'
 import { getSubmissionId } from '../../utils/controllerHelpers'
 
 const renderConfirmation: RequestHandler = (req, res, next) => {
@@ -15,6 +16,7 @@ const renderConfirmation: RequestHandler = (req, res, next) => {
     res.render('pages/confirmation', {
       pageTitle,
       submissionId,
+      content: CONFIRMATION_CONTENT,
     })
   } catch (error) {
     next(error)

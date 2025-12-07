@@ -3,6 +3,7 @@ import type { HTTPError } from 'superagent'
 import logger from '../logger'
 import { services } from './services'
 import { generateErrorReference, buildErrorContext, extractApiErrorUuid } from './utils/errorReference'
+import { ERROR_CONTENT } from './config/content'
 
 const { auditService } = services()
 
@@ -57,6 +58,7 @@ export default function createErrorHandler(production: boolean) {
     res.locals.apiErrorUuid = apiErrorUuid
     res.locals.status = status
     res.locals.stack = production ? null : error.stack
+    res.locals.content = ERROR_CONTENT
 
     res.status(status)
 

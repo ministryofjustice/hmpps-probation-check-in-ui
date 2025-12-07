@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import validateStatus from './validateStatus'
 import CheckinStatus from '../../data/models/checkinStatus'
+import { EXPIRED_CONTENT } from '../../config/content'
 
 describe('validateStatus middleware', () => {
   let req: Partial<Request>
@@ -44,7 +45,7 @@ describe('validateStatus middleware', () => {
 
     validateStatus(req as Request, res as Response, next)
 
-    expect(res.render).toHaveBeenCalledWith('pages/expired')
+    expect(res.render).toHaveBeenCalledWith('pages/expired', { content: EXPIRED_CONTENT })
     expect(next).not.toHaveBeenCalled()
   })
 

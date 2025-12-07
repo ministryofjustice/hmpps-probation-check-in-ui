@@ -1,32 +1,26 @@
 {% extends "../layouts/govuk.njk" %}
+{% from "../macros/errorReference.njk" import errorReference %}
 
-{% set pageTitle = applicationName + " - Error" %}
+{% set pageTitle = applicationName + " - " + content.titleSuffix %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ message }}</h1>
 
-      <p class="govuk-body">Try again later.</p>
+      <p class="govuk-body">{{ content.tryAgainText }}</p>
 
-      {% if errorReference %}
-        <p class="govuk-body">
-          Your reference number is <strong>{{ errorReference }}</strong>
-        </p>
-        <p class="govuk-body">
-          Quote this reference if you contact us about this problem.
-        </p>
-      {% endif %}
+      {{ errorReference(errorReference, content) }}
 
       {% if apiErrorUuid %}
         <details class="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
-              Technical details
+              {{ content.technicalDetailsSummary }}
             </span>
           </summary>
           <div class="govuk-details__text">
-            <p>API Error ID: {{ apiErrorUuid }}</p>
+            <p>{{ content.apiErrorLabel }} {{ apiErrorUuid }}</p>
           </div>
         </details>
       {% endif %}
@@ -35,7 +29,7 @@
         <details class="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
-              Developer information
+              {{ content.developerInfoSummary }}
             </span>
           </summary>
           <div class="govuk-details__text">

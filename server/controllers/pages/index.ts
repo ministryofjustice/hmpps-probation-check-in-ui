@@ -1,5 +1,6 @@
 import { RequestHandler } from 'express'
 import { PAGES } from '../../config/pages.config'
+import { INDEX_CONTENT } from '../../config/content'
 import { getSubmissionId } from '../../utils/controllerHelpers'
 
 export const renderIndex: RequestHandler = (req, res, next) => {
@@ -16,6 +17,7 @@ export const renderIndex: RequestHandler = (req, res, next) => {
     res.render('pages/index', {
       pageTitle,
       submissionId,
+      content: INDEX_CONTENT,
     })
   } catch (error) {
     next(error)

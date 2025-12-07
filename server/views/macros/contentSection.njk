@@ -1,0 +1,13 @@
+{% macro contentSection(heading, content, headingLevel = "m") %}
+  {% if heading %}
+    <h2 class="govuk-heading-{{ headingLevel }}">{{ heading }}</h2>
+  {% endif %}
+
+  {% if content is string %}
+    <p class="govuk-body">{{ content | safe }}</p>
+  {% elif content is iterable %}
+    {% for paragraph in content %}
+      <p class="govuk-body">{{ paragraph | safe }}</p>
+    {% endfor %}
+  {% endif %}
+{% endmacro %}

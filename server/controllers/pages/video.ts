@@ -3,6 +3,7 @@ import logger from '../../../logger'
 import { services } from '../../services'
 import { PAGES } from '../../config/pages.config'
 import VIDEO_CONTENT from '../../config/video.config'
+import { VIDEO_INFORM_CONTENT, VIDEO_RECORD_CONTENT } from '../../config/content'
 import Checkin from '../../data/models/checkin'
 import { getSubmissionId, isCheckAnswersMode, buildBackLink } from '../../utils/controllerHelpers'
 import { extractApiErrorUuid } from '../../utils/errorReference'
@@ -26,6 +27,7 @@ export const renderVideoInform: RequestHandler = (req, res, next) => {
       backLink,
       submissionId,
       cya,
+      content: VIDEO_INFORM_CONTENT,
     })
   } catch (error) {
     next(error)
@@ -56,6 +58,7 @@ export const renderVideoRecord: RequestHandler = async (req, res: Response<objec
       submissionId,
       cya: false,
       videoContent: VIDEO_CONTENT,
+      content: VIDEO_RECORD_CONTENT,
     })
   } catch (error) {
     next(error)

@@ -1,11 +1,12 @@
 import { RequestHandler, Response } from 'express'
 import CheckinStatus from '../../data/models/checkinStatus'
+import { EXPIRED_CONTENT } from '../../config/content'
 
 const isConfirmationPage = (path: string): boolean => path.endsWith('/confirmation')
 
 const renderStatusError = (res: Response, status: CheckinStatus): void => {
   if (status === CheckinStatus.Expired) {
-    res.render('pages/expired')
+    res.render('pages/expired', { content: EXPIRED_CONTENT })
     return
   }
   res.render('pages/not-found')
