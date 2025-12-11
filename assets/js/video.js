@@ -155,15 +155,19 @@ function handleRecordingComplete() {
     // Delay the loading screen to simulate processing time
     // Hide loading screen after the delay - show match or no match screen
     setTimeout(() => {
-      if (result === 'MATCH') {
-        this.matchPreview.src = videoURL
-        this.showScreen('match')
-      } else if (result === 'NO_MATCH') {
-        this.noMatchPreview.src = videoURL
-        this.showScreen('noMatch')
-      } else {
-        console.warn('Unexpected error: ', result.message) // eslint-disable-line no-console
-        this.showScreen('error')
+      switch (result) {
+        case 'MATCH':
+          this.matchPreview.src = videoURL
+          this.showScreen('match')
+          break
+        case 'NO_MATCH':
+        case 'NO_FACE_DETECTED':
+          this.noMatchPreview.src = videoURL
+          this.showScreen('noMatch')
+          break
+        default:
+          console.warn('Unexpected error: ', result.message) // eslint-disable-line no-console
+          this.showScreen('error')
       }
     }, delay)
   })
