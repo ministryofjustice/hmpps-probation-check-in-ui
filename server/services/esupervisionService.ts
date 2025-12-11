@@ -9,8 +9,8 @@ import { CheckinEventType } from '../data/models/checkinEvent'
 export default class EsupervisionService {
   constructor(private readonly esupervisionApiClient: EsupervisionApiClient) {}
 
-  getCheckin(submissionId: string, includeUploads?: boolean): Promise<OffenderCheckinResponse> {
-    return this.esupervisionApiClient.getCheckin(submissionId, includeUploads)
+  getCheckin(submissionId: string): Promise<OffenderCheckinResponse> {
+    return this.esupervisionApiClient.getCheckin(submissionId)
   }
 
   getCheckinUploadLocation(
@@ -30,5 +30,16 @@ export default class EsupervisionService {
 
   logCheckinEvent(checkinId: string, eventType: CheckinEventType, comment?: string): Promise<{ event: string }> {
     return this.esupervisionApiClient.logCheckinEvent(checkinId, eventType, comment)
+  }
+
+  verifyIdentity(
+    checkinId: string,
+    personalDetails: {
+      crn: string
+      name: { forename: string; surname: string }
+      dateOfBirth: string
+    },
+  ): Promise<{ verified: boolean; error?: string }> {
+    return this.esupervisionApiClient.verifyIdentity(checkinId, personalDetails)
   }
 }

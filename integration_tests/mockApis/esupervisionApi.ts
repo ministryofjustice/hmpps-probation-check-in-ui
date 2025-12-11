@@ -14,6 +14,8 @@ import CallbackRequested from '../../server/data/models/survey/callbackRequested
 import MentalHealth from '../../server/data/models/survey/mentalHealth'
 import SupportAspect from '../../server/data/models/survey/supportAspect'
 
+const apiUrlPattern = (path: string): string => `/(?:v2/)?${path.replace(/^\//, '')}`
+
 // mock generators
 
 const practitionerUsername = 'AUTH_USER'
@@ -58,9 +60,9 @@ export const createMockCheckin = (offender: Offender, overrides: Partial<Checkin
   const status = overrides.status || faker.helpers.arrayElement(Object.values(CheckinStatus))
   const checkin: Checkin = {
     uuid: faker.string.uuid(),
+    crn: offender.crn,
     status,
     dueDate: format(addDays(new Date(), 7), 'yyyy-MM-dd'),
-    offender,
     questions: '{}',
     createdBy: practitionerUsername,
     createdAt: faker.date.recent({ days: 3 }).toISOString(),
@@ -126,7 +128,7 @@ export default {
     return stubFor({
       request: {
         method: 'GET',
-        urlPattern: '/health/ping',
+        urlPattern: apiUrlPattern('/health/ping'),
       },
       response: {
         status: httpStatus,
@@ -140,7 +142,7 @@ export default {
     return stubFor({
       request: {
         method: 'GET',
-        urlPattern: `/offenders\\?practitioner=.+?`,
+        urlPattern: apiUrlPattern(`/offenders\\?practitioner=.+?`),
       },
       response: {
         status: 200,
@@ -156,7 +158,7 @@ export default {
     return stubFor({
       request: {
         method: 'GET',
-        urlPattern: `/offenders\\?practitioner=.+?&(.+?=.+?)`,
+        urlPattern: apiUrlPattern(`/offenders\\?practitioner=.+?&(.+?=.+?)`),
       },
       response: {
         status: 200,
@@ -172,7 +174,7 @@ export default {
     return stubFor({
       request: {
         method: 'GET',
-        urlPattern: `/offenders/${offender.uuid}`,
+        urlPattern: apiUrlPattern(`/offenders/${offender.uuid}`),
       },
       response: {
         status: 200,
@@ -190,7 +192,7 @@ export default {
     return stubFor({
       request: {
         method: 'POST',
-        urlPath: `/offender_setup`,
+        urlPathPattern: apiUrlPattern(`/offender_setup`),
       },
       response: {
         status: 201,
@@ -214,7 +216,7 @@ export default {
     return stubFor({
       request: {
         method: 'POST',
-        urlPattern: `/offenders/${offender.uuid}/details`,
+        urlPattern: apiUrlPattern(`/offenders/${offender.uuid}/details`),
       },
       response,
     })
@@ -224,7 +226,7 @@ export default {
     return stubFor({
       request: {
         method: 'POST',
-        urlPathPattern: `/offender_setup/.+?/upload_location`,
+        urlPathPattern: apiUrlPattern(`/offender_setup/.+?/upload_location`),
       },
       response: {
         status: httpStatus,
@@ -253,7 +255,7 @@ export default {
     return stubFor({
       request: {
         method: 'POST',
-        urlPattern: `/offender_setup/.+?/complete`,
+        urlPattern: apiUrlPattern(`/offender_setup/.+?/complete`),
       },
       response: {
         status: httpStatus,
@@ -273,7 +275,7 @@ export default {
     return stubFor({
       request: {
         method: 'GET',
-        urlPattern: `/offender_checkins\\?practitioner=.+?`,
+        urlPattern: apiUrlPattern(`/offender_checkins\\?practitioner=.+?`),
       },
       response: {
         status: 200,
@@ -295,7 +297,7 @@ export default {
     return stubFor({
       request: {
         method: 'GET',
-        urlPath: '/offender_checkins',
+        urlPathPattern: apiUrlPattern('/offender_checkins'),
         queryParameters: {
           practitioner: { matches: '.+' },
           offenderId: { equalTo: offender.uuid },
@@ -318,7 +320,7 @@ export default {
     return stubFor({
       request: {
         method: 'POST',
-        urlPathPattern: `/offender_checkins/${checkin.uuid}/invite`,
+        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/invite`),
       },
       response: {
         status: 200,
@@ -331,7 +333,7 @@ export default {
     return stubFor({
       request: {
         method: 'GET',
-        urlPathPattern: `/offender_checkins/${checkin.uuid}`,
+        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}`),
       },
       response: {
         status: 200,
@@ -352,7 +354,7 @@ export default {
     return stubFor({
       request: {
         method: 'POST',
-        urlPattern: `/offenders/${offender.uuid}/checkin-settings`,
+        urlPattern: apiUrlPattern(`/offenders/${offender.uuid}/checkin-settings`),
       },
       response,
     })
@@ -371,7 +373,7 @@ export default {
     return stubFor({
       request: {
         method: 'POST',
-        urlPattern: `/offenders/${offender.uuid}/deactivate`,
+        urlPattern: apiUrlPattern(`/offenders/${offender.uuid}/deactivate`),
       },
       response: {
         status: 200,
@@ -385,7 +387,7 @@ export default {
     return stubFor({
       request: {
         method: 'POST',
-        urlPathPattern: `/offender_checkins/${checkin.uuid}/upload_location`,
+        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/upload_location`),
       },
       response: {
         status: 200,
@@ -403,7 +405,7 @@ export default {
     stubFor({
       request: {
         method: 'POST',
-        urlPath: `/offender_checkins/${checkin.uuid}/auto_id_verify`,
+        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/video-verify`),
         queryParameters: {
           numSnapshots: {
             equalTo: '1',
@@ -419,12 +421,26 @@ export default {
     return response
   },
 
+  stubVerifyIdentity: (checkin: Checkin, verified = true): SuperAgentRequest => {
+    return stubFor({
+      request: {
+        method: 'POST',
+        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/identity-verify`),
+      },
+      response: {
+        status: 200,
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        jsonBody: { verified, error: verified ? null : 'Personal details do not match our records' },
+      },
+    })
+  },
+
   stubReviewCheckin: (checkin: Checkin): SuperAgentRequest => {
     const reviewedCheckin = { ...checkin, status: CheckinStatus.Reviewed }
     return stubFor({
       request: {
         method: 'POST',
-        urlPathPattern: `/offender_checkins/${checkin.uuid}/review`,
+        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/review`),
       },
       response: {
         status: 200,
@@ -438,7 +454,7 @@ export default {
     return stubFor({
       request: {
         method: 'POST',
-        urlPath: `/offender_checkins/${checkin.uuid}/submit`,
+        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/submit`),
       },
       response: {
         status: 200,
