@@ -17,6 +17,12 @@ export default function routes(): Router {
     res.render('pages/accessibility')
   })
 
+  get('/guidance', (req, res, next) => {
+    const { submissionId } = req.query
+    const backLink = submissionId ? `/submission/${submissionId}` : undefined
+    res.render('pages/guidance', { backLink })
+  })
+
   get('/practitioner-guidance', (req, res, next) => {
     res.render('pages/practitioner-guidance')
   })
