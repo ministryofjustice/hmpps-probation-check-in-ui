@@ -21,6 +21,8 @@ export default function routes(): Router {
     const { submissionId } = req.query
     const backLink = submissionId ? `/submission/${submissionId}` : undefined
     res.render('pages/guidance', { backLink })
+  })
+
   get('/practitioner-guidance', (req, res, next) => {
     res.render('pages/practitioner-guidance')
   })
