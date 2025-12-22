@@ -1,0 +1,69 @@
+{
+  "inform": {
+    "pageTitle": "Cadarnhau pwy ydych chi",
+    "title": "Cadarnhau pwy ydych chi",
+    "intro": "Nesaf, mae angen i ni recordio fideo 5 eiliad ohonoch chi ar y ddyfais hon. Ni fydd angen i chi siarad yn y fideo.",
+    "explanation": "Byddwn yn defnyddio'ch fideo i gadarnhau pwy ydych chi. Byddwn yn gwneud hyn trwy gymharu'ch fideo â'r llun a dynnodd eich swyddog prawf pan wnaethant eich cofrestru. Dim ond i gadarnhau pwy ydych chi y bydd y fideo hwn yn cael ei ddefnyddio.",
+    "permissionNote": "Bydd angen i chi dderbyn caniatâd i recordio fideo ar eich dyfais.",
+    "beforeYouRecord": {
+      "title": "Cyn i chi recordio'ch fideo",
+      "description": "Cyn i chi recordio'ch fideo, gwnewch yn siŵr:",
+      "items": [
+        "eich bod mewn ardal sydd wedi'i goleuo'n dda",
+        "eich bod o flaen cefndir plaen",
+        "bod eich wyneb yn y ffrâm",
+        "nad ydych yn gwisgo het na sbectol haul"
+      ]
+    },
+    "clothingReminder": "Cofiwch mai cofrestriad prawf yw hwn a dylid ei drin yr un fath â chyfarfod wyneb yn wyneb. Dylech wisgo dillad priodol wrth gymryd y fideo."
+  },
+  "record": {
+    "pageTitle": "Recordio eich fideo",
+    "title": "Recordio eich fideo",
+    "startButton": "Dechrau recordio",
+    "countdown": "Byddwn yn dechrau recordio mewn {countdown} eiliad",
+    "recording": "Recordio: {seconds} eiliad ar ôl",
+    "permissionError": {
+      "title": "Mae angen i chi dderbyn caniatâd ar eich dyfais",
+      "body": "Nid ydym yn gallu cael mynediad i'ch camera i recordio fideo. Gwiriwch osodiadau a chaniatâd eich porwr. Os ydych chi'n cael trafferth defnyddio'r gwasanaeth hwn, cysylltwch â'ch swyddog prawf."
+    }
+  },
+  "view": {
+    "pageTitle": "Gwiriwch eich fideo",
+    "title": "Gwiriwch eich fideo"
+  },
+  "loading": {
+    "title": "Yn gwirio mai chi yw hwn"
+  },
+  "match": {
+    "title": "Rydym wedi cadarnhau mai chi yw hwn",
+    "body": "Rydym wedi cadarnhau mai chi yw hwn. Gallwch nawr barhau i wirio'ch atebion.",
+    "continueButton": "Parhau"
+  },
+  "noMatch": {
+    "title": "Ni allwn gadarnhau mai chi yw hwn",
+    "body": "Rydym wedi gwirio ac ni allwn gadarnhau mai chi yw hwn. Gallwch geisio recordio eto neu gyflwyno'ch fideo beth bynnag.",
+    "recordAgainTitle": "Os ydych chi'n recordio'ch fideo eto",
+    "recordAgainDescription": "Yn eich fideo, gwnewch yn siŵr:",
+    "recordAgainItems": [
+      "eich bod mewn ardal sydd wedi'i goleuo'n dda",
+      "eich bod o flaen cefndir plaen",
+      "bod eich wyneb yn y ffrâm",
+      "nad ydych yn gwisgo het na sbectol haul"
+    ],
+    "retryButton": "Recordio fideo eto",
+    "submitAnywayButton": "Cyflwyno fideo beth bynnag"
+  },
+  "error": {
+    "title": "Ni allwn gadarnhau mai chi yw hwn oherwydd digwyddodd gwall",
+    "body": "Rydym wedi gwirio ac ni allwn gadarnhau mai chi yw hwn. Gallwch geisio recordio eto.",
+    "instructionsTitle": "Yn eich fideo, gwnewch yn siŵr:",
+    "instructionsItems": [
+      "eich bod mewn ardal sydd wedi'i goleuo'n dda",
+      "eich bod o flaen cefndir plaen",
+      "bod eich wyneb yn y ffrâm",
+      "nad ydych yn gwisgo het na sbectol haul"
+    ],
+    "retryButton": "Rhowch gynnig arall ar recordio'ch fideo"
+  }
+}

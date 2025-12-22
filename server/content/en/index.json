@@ -1,0 +1,34 @@
+{
+  "start": {
+    "pageTitle": "Check in with your probation officer",
+    "title": "Check in with your probation officer",
+    "intro": "You can use this service to check in with your probation officer as part of your probation. Your probation officer will have signed you up for this service during a face to face appointment.",
+    "beforeYouStart": {
+      "title": "Before you start",
+      "description": "You will need:",
+      "items": [
+        "access to the internet",
+        "a device with a camera",
+        "your name and date of birth"
+      ],
+      "ukWarning": "You will not be able to use this service to check in if you are outside of the UK."
+    },
+    "whatYouNeedToDo": {
+      "title": "What you need to do",
+      "description": "As part of this service you will need to:",
+      "items": [
+        "answer a set of questions relating to how you are and if you need any help",
+        "give permission to access your device's camera",
+        "record a short video of yourself so we can check it's you using the service"
+      ],
+      "videoExplanation": "We will use your video to confirm who you are. We will do this by comparing it with the photo your probation officer took when they signed you up.",
+      "answersExplanation": "The answers to your questions will be sent to your probation officer to review."
+    },
+    "needHelp": {
+      "title": "If you need help",
+      "description": "If you have difficulty using this service, or you do not have access to everything you need, you should contact your probation officer and let them know.",
+      "guidanceLink": "You can <a href=\"/guidance?submissionId={{ submissionId }}\" class=\"govuk-link\">learn more about online check ins in our guidance</a>."
+    },
+    "startButton": "Start now"
+  }
+}

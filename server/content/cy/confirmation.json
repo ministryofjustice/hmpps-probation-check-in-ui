@@ -1,0 +1,16 @@
+{
+  "pageTitle": "Cofrestriad wedi'i gwblhau",
+  "panel": {
+    "title": "Cofrestriad wedi'i gwblhau"
+  },
+  "confirmationMessage": "Rydym wedi anfon neges gadarnhau atoch.",
+  "whatNext": {
+    "title": "Beth sy'n digwydd nesaf?",
+    "body": "Mae eich fideo ac atebion wedi'u rhannu â'ch swyddog prawf. Byddant yn cysylltu â chi os oes unrhyw bryderon gyda'r wybodaeth rydych chi wedi'i rhoi, neu os gwnaethoch ofyn am gysylltiad.",
+    "reminder": "Byddwn yn eich atgoffa pan fydd hi'n amser ar gyfer eich cofrestriad nesaf."
+  },
+  "feedback": {
+    "linkText": "Beth oeddech chi'n feddwl o'r gwasanaeth hwn? (yn agor mewn tab newydd)",
+    "url": "https://forms.office.com/pages/responsepage.aspx?id=KEeHxuZx_kGp4S6MNndq2GF5fsslU5tImfiqSSPf6JhUQko3QVg0MkVGRTVYV0dFMEJJUzBZUTIyVCQlQCN0PWcu&route=shorturl"
+  }
+}

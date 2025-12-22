@@ -18,41 +18,47 @@
 
 {% block header %}
   {% include "partials/header.njk" %}
-  {{
-    govukServiceNavigation({
-      serviceName: serviceName
-    })
-  }}
-  {{
-    govukPhaseBanner({
+
+  {% set navItems = [] %}
+  {% if languageToggle %}
+    {% set navItems = [{
+      html: '<a href="' + languageToggle.switchUrl + '" lang="' + languageToggle.switchLang + '" hreflang="' + languageToggle.switchLang + '" class="govuk-link govuk-link--no-visited-state">' + languageToggle.switchLabel + '</a>',
+      active: false
+    }] %}
+  {% endif %}
+
+  {{ govukServiceNavigation({
+    serviceName: t('common.serviceName') if t else serviceName,
+    serviceUrl: "/",
+    navigation: navItems if navItems | length else undefined
+  }) }}
+
+  {{ govukPhaseBanner({
     tag: {
-      text: "Private Beta"
+      text: t('common.phaseBanner') if t else "Private Beta"
     },
-    html: 'This is a new service – your <a class="govuk-link govuk-link--no-visited-state" target="_blank" rel="nofollow" href="https://forms.office.com/pages/responsepage.aspx?id=KEeHxuZx_kGp4S6MNndq2GF5fsslU5tImfiqSSPf6JhUQko3QVg0MkVGRTVYV0dFMEJJUzBZUTIyVCQlQCN0PWcu&route=shorturl">feedback (opens in a new tab)</a> will help us to improve it.'
-    })
-  }}
+    html: t('common.feedbackBanner') if t else 'This is a new service – your <a class="govuk-link govuk-link--no-visited-state" target="_blank" rel="nofollow" href="https://forms.office.com/pages/responsepage.aspx?id=KEeHxuZx_kGp4S6MNndq2GF5fsslU5tImfiqSSPf6JhUQko3QVg0MkVGRTVYV0dFMEJJUzBZUTIyVCQlQCN0PWcu&route=shorturl">feedback (opens in a new tab)</a> will help us to improve it.'
+  }) }}
 {% endblock %}
 
 {% block bodyStart %}
 {% endblock %}
 
 {% block footer %}
-  {{
-    govukFooter({
+  {{ govukFooter({
     meta: {
-    items: [
-          {
-            href: "/accessibility",
-            text: "Accessibility statement"
-          },
-          {
-            href: "/privacy-notice",
-            text: "Privacy"
-          }
-        ]
+      items: [
+        {
+          href: "/accessibility",
+          text: t('common.footer.accessibility') if t else "Accessibility statement"
+        },
+        {
+          href: "/privacy-notice",
+          text: t('common.footer.privacy') if t else "Privacy"
+        }
+      ]
     }
-    })
-  }}
+  }) }}
 {% endblock %}
 
 {% block bodyEnd %}

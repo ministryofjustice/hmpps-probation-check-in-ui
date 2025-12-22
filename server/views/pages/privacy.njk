@@ -1,8 +1,13 @@
 {% extends "../partials/layout.njk" %}
-{% set pageTitle = "Probation Service Privacy Notice" %}
+
+{% set pageContent = getContent('privacy') %}
+{% set pageTitle = pageContent.pageTitle %}
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds govuk-body">{% include "pages/privacy-notice-content.njk" %}</div>
+    <div class="govuk-grid-column-two-thirds govuk-body">
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+      {{ pageContent.content | safe }}
+    </div>
   </div>
 {% endblock %}

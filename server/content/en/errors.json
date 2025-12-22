@@ -1,0 +1,33 @@
+{
+  "notFound": {
+    "pageTitle": "Page not found",
+    "title": "Page not found",
+    "body": "If you typed the web address, check it is correct. If you pasted the web address, check you copied the entire address."
+  },
+  "submissionNotFound": {
+    "pageTitle": "Check in not found",
+    "title": "Check in not found",
+    "body": "We could not find this check in. Please check the link you were sent or contact your probation officer."
+  },
+  "expired": {
+    "pageTitle": "This check in has expired",
+    "title": "This check in has expired",
+    "body": "This check in is no longer available. Please contact your probation officer if you need to complete a check in."
+  },
+  "timeout": {
+    "pageTitle": "Your check in has been reset",
+    "title": "Your check in has been reset",
+    "body": "For your security, your answers have been deleted.",
+    "restartButton": "Restart check in"
+  },
+  "outsideUK": {
+    "pageTitle": "This service is not available",
+    "title": "This service is not available",
+    "body": "This service is only available from within the United Kingdom."
+  },
+  "generic": {
+    "pageTitle": "Sorry, there is a problem with the service",
+    "title": "Sorry, there is a problem with the service",
+    "body": "Try again later. If the problem continues, contact your probation officer."
+  }
+}

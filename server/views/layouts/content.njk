@@ -1,0 +1,19 @@
+{% extends "layouts/base.njk" %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% block pageBeforeContent %}
+  {% if backLink %}
+    {{ govukBackLink({
+      text: t('common.back'),
+      href: backLink
+    }) }}
+  {% endif %}
+{% endblock %}
+
+{% block pageContent %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% block contentBody %}{% endblock %}
+    </div>
+  </div>
+{% endblock %}

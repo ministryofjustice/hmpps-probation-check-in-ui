@@ -12,6 +12,7 @@ import logger from '../../logger'
 
 import { findError } from '../middleware/validateFormData'
 import getUserFriendlyString from './userFriendlyStrings'
+import { t as translate, getContent, getNamespace, Language, DEFAULT_LANGUAGE } from '../content'
 
 export default function nunjucksSetup(app: express.Express): void {
   app.set('view engine', 'njk')
@@ -57,6 +58,58 @@ export default function nunjucksSetup(app: express.Express): void {
   njkEnv.addFilter('userFriendlyString', (term: string) => {
     return getUserFriendlyString(term)
   })
+
+  /**
+   * Translate a string using the current language from context
+   * Usage in templates: {{ 'common.back' | t }} or {{ t('common.back') }}
+   */
+  njkEnv.addFilter('t', function translateFilter(key: string, fallback?: string) {
+    const lang: Language = this.ctx?.lang || DEFAULT_LANGUAGE
+    return translate(lang, key, fallback)
+  })
+
+  /**
+   * Get translated content using the current language
+   * For use when res.locals.t is not yet available (e.g., in macros)
+   */
+  njkEnv.addGlobal('t', function translateGlobal(key: string, fallback?: string) {
+    const lang: Language = this.ctx?.lang || DEFAULT_LANGUAGE
+    return translate(lang, key, fallback)
+  })
+
+  /**
+   * Get a content object by key path
+   * Usage: {% set content = getContent('questions.mentalHealth') %}
+   */
+  njkEnv.addGlobal('getContent', function getContentGlobal<T = unknown>(key: string): T | undefined {
+    const lang: Language = this.ctx?.lang || DEFAULT_LANGUAGE
+    return getContent<T>(lang, key)
+  })
+
+  /**
+   * Get a namespace of content
+   * Usage: {% set videoContent = getNamespace('video') %}
+   */
+  njkEnv.addGlobal('getNamespace', function getNamespaceGlobal<T = Record<string, unknown>>(namespace: string): T {
+    const lang: Language = this.ctx?.lang || DEFAULT_LANGUAGE
+    return getNamespace<T>(lang, namespace)
+  })
+
+  /**
+   * Translate user-friendly strings with language awareness
+   * Tries to get translated version from content, falls back to utility function
+   */
+  njkEnv.addFilter(
+    'userFriendlyStringTranslated',
+    function userFriendlyStringTranslated(term: string, prefix?: string) {
+      const lang: Language = this.ctx?.lang || DEFAULT_LANGUAGE
+      if (prefix) {
+        const translated = getContent<string>(lang, `${prefix}.${term}`)
+        if (translated) return translated
+      }
+      return getUserFriendlyString(term)
+    },
+  )
 
   njkEnv.addFilter('formatDate', (date: string) => {
     if (!date) {

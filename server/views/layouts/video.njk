@@ -1,0 +1,15 @@
+{% extends "layouts/base.njk" %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% block pageBeforeContent %}
+  {% if backLink %}
+    {{ govukBackLink({
+      text: t('common.back'),
+      href: backLink
+    }) }}
+  {% endif %}
+{% endblock %}
+
+{% block pageScripts %}
+  <script type="module" src="{{ '/assets/js/video.js' | assetMap }}"></script>
+{% endblock %}

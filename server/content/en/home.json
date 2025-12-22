@@ -1,0 +1,14 @@
+{
+  "pageTitle": "Probation Check-in Service",
+  "heading": "Probation Check-in Service",
+  "intro": "This service allows you to check in with your probation officer remotely.",
+  "howToAccess": {
+    "heading": "How to access this service",
+    "body": "To use this service, you need a unique link provided by your probation officer. If you have not received a link, please contact your probation officer."
+  },
+  "insetText": "If you have received a link to check in, please use that link to access the service.",
+  "needHelp": {
+    "heading": "Need help?",
+    "body": "If you are having difficulty accessing this service, contact your probation officer for assistance."
+  }
+}

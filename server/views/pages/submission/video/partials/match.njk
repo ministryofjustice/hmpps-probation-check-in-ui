@@ -1,8 +1,11 @@
+{# Match Screen - shown when identity is verified #}
+{% set matchContent = getContent('video.match') %}
+
 <div class="es-pane" id="matchScreen" hidden aria-hidden="true">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">We have confirmed this is you</h1>
-      <p>We have confirmed this is you. You can now continue to check your answers.</p>
+      <h1 class="govuk-heading-l">{{ matchContent.title }}</h1>
+      <p class="govuk-body">{{ matchContent.body }}</p>
       <div class="videoRecorder__videoWrap">
         <video class="videoRecorder__video-preview" id="matchPreview" controls>
           Your browser does not support video
@@ -14,8 +17,7 @@
           data-module="govuk-button"
           role="button"
           href="/{{ submissionId }}/check-your-answers"
-          >Continue</a
-        >
+        >{{ matchContent.continueButton }}</a>
       </div>
     </div>
   </div>

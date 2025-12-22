@@ -1,0 +1,27 @@
+{
+  "pageTitle": "Personal details",
+  "title": "Personal details",
+  "intro": "We will use your personal details to make sure you are signed up to use this service.",
+  "firstName": {
+    "label": "First name",
+    "error": "Enter your first name"
+  },
+  "lastName": {
+    "label": "Last name",
+    "error": "Enter your last name"
+  },
+  "dateOfBirth": {
+    "label": "Date of birth",
+    "hint": "For example, 27 3 2007",
+    "error": {
+      "required": "Enter your date of birth",
+      "invalid": "Enter a valid date of birth",
+      "future": "Date of birth must be in the past"
+    }
+  },
+  "noMatch": {
+    "pageTitle": "We could not find your details",
+    "title": "We could not find your details",
+    "body": "The details you entered do not match our records. Please check and try again, or contact your probation officer for help."
+  }
+}

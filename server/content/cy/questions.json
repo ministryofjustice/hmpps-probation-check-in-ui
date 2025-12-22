@@ -1,0 +1,53 @@
+{
+  "mentalHealth": {
+    "pageTitle": "Sut ydych chi'n teimlo?",
+    "title": "Sut ydych chi'n teimlo?",
+    "hint": "Meddyliwch am bethau fel a ydych chi wedi sylwi ar newid yn eich hwyliau.",
+    "error": "Dewiswch sut rydych chi'n teimlo",
+    "options": {
+      "VERY_WELL": "Da iawn",
+      "WELL": "Da",
+      "OK": "Iawn",
+      "NOT_GREAT": "Ddim yn wych",
+      "STRUGGLING": "Yn cael trafferth"
+    },
+    "nhsLink": "Os oes angen i chi siarad â rhywun ar frys am sut rydych chi'n teimlo, edrychwch ar <a href=\"https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/help-for-suicidal-thoughts/\" class=\"govuk-link\" target=\"_blank\">wefan y GIG am help (yn agor mewn tab newydd)</a>."
+  },
+  "assistance": {
+    "pageTitle": "A oes unrhyw beth rydych chi angen cymorth gydag ef neu eisiau rhoi gwybod i ni amdano?",
+    "title": "A oes unrhyw beth rydych chi angen cymorth gydag ef neu eisiau rhoi gwybod i ni amdano?",
+    "error": "Dewiswch beth rydych chi angen help gydag ef neu dewiswch 'Na, nid oes angen help arnaf'",
+    "options": {
+      "MENTAL_HEALTH": "Iechyd meddwl",
+      "ALCOHOL": "Alcohol",
+      "DRUGS": "Cyffuriau",
+      "MONEY": "Arian",
+      "HOUSING": "Tai",
+      "SUPPORT_SYSTEM": "System gymorth (teulu, perthnasoedd, ffrindiau)",
+      "OTHER": "Arall",
+      "NO_HELP": "Na, nid oes angen help arnaf"
+    },
+    "conditionalLabels": {
+      "mentalHealthSupport": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am iechyd meddwl (dewisol)",
+      "alcoholSupport": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am alcohol (dewisol)",
+      "drugsSupport": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am gyffuriau (dewisol)",
+      "moneySupport": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am arian (dewisol)",
+      "housingSupport": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am dai (dewisol)",
+      "supportSystemSupport": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am eich system gymorth (dewisol)",
+      "otherSupport": "Dywedwch wrthym beth rydych chi angen help gydag ef (dewisol)"
+    },
+    "divider": "neu"
+  },
+  "callback": {
+    "pageTitle": "A oes unrhyw beth arall y mae angen i chi siarad â'ch swyddog prawf amdano?",
+    "title": "A oes unrhyw beth arall y mae angen i chi siarad â'ch swyddog prawf amdano?",
+    "hint": "Efallai y bydd oedi cyn i'ch swyddog prawf gysylltu â chi. Efallai y byddant yn eich cyfeirio at wasanaethau cymorth os ydych wedi gofyn am help.",
+    "error": "Dewiswch ie os oes angen i chi siarad â'ch swyddog prawf",
+    "options": {
+      "YES": "Oes",
+      "NO": "Nac oes"
+    },
+    "conditionalLabel": "Dywedwch wrthym am beth rydych chi angen siarad (dewisol)",
+    "insetText": "Os yw hyn yn frys, dylech gysylltu â'ch swyddog prawf eich hun. Os oes argyfwng, ffoniwch 999."
+  }
+}

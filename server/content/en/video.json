@@ -1,0 +1,69 @@
+{
+  "inform": {
+    "pageTitle": "Confirm your identity",
+    "title": "Confirm your identity",
+    "intro": "Next, we need to record a 5 second video of you on this device. You will not need to speak in the video.",
+    "explanation": "We'll use your video to confirm who you are. We'll do this by comparing your video with the photo your probation officer took when they signed you up. This video will only be used to confirm your identity.",
+    "permissionNote": "You'll need to accept permissions to record a video on your device.",
+    "beforeYouRecord": {
+      "title": "Before you record your video",
+      "description": "Before you record your video, make sure:",
+      "items": [
+        "you are in a well lit area",
+        "you are in front of a plain background",
+        "your face is in the frame",
+        "you are not wearing a hat or sunglasses"
+      ]
+    },
+    "clothingReminder": "Remember this is a probation check in and should be treated the same as a face to face meeting. You should wear appropriate clothing when taking the video."
+  },
+  "record": {
+    "pageTitle": "Record your video",
+    "title": "Record your video",
+    "startButton": "Start recording",
+    "countdown": "We will start recording in {countdown} seconds",
+    "recording": "Recording: {seconds} seconds left",
+    "permissionError": {
+      "title": "You need to accept permissions on your device",
+      "body": "We are unable to access your camera to record a video. Check your browser settings and permissions. If you are having trouble using this service, contact your probation officer."
+    }
+  },
+  "view": {
+    "pageTitle": "Check your video",
+    "title": "Check your video"
+  },
+  "loading": {
+    "title": "Checking this is you"
+  },
+  "match": {
+    "title": "We have confirmed this is you",
+    "body": "We have confirmed this is you. You can now continue to check your answers.",
+    "continueButton": "Continue"
+  },
+  "noMatch": {
+    "title": "We cannot confirm this is you",
+    "body": "We have checked and we cannot confirm this is you. You can try recording again or submit your video anyway.",
+    "recordAgainTitle": "If you record your video again",
+    "recordAgainDescription": "In your video, make sure:",
+    "recordAgainItems": [
+      "you are in a well lit area",
+      "you are in front of a plain background",
+      "your face is in the frame",
+      "you are not wearing a hat or sunglasses"
+    ],
+    "retryButton": "Record video again",
+    "submitAnywayButton": "Submit video anyway"
+  },
+  "error": {
+    "title": "We cannot confirm this is you because an error occured",
+    "body": "We have checked and we cannot confirm this is you. You can try recording again.",
+    "instructionsTitle": "In your video, make sure:",
+    "instructionsItems": [
+      "you are in a well lit area",
+      "you are in front of a plain background",
+      "your face is in the frame",
+      "you are not wearing a hat or sunglasses"
+    ],
+    "retryButton": "Try recording your video again"
+  }
+}

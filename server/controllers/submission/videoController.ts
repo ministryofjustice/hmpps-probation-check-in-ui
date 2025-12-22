@@ -1,0 +1,104 @@
+import { RequestHandler } from 'express'
+import logger from '../../../logger'
+import { services } from '../../services'
+import { buildPageParams, getSubmissionId } from './helpers'
+import { SubmissionResponse } from './types'
+
+const { esupervisionService } = services()
+
+/**
+ * GET /:submissionId/video/inform
+ * Render the video recording instructions page
+ */
+export const renderVideoInform: RequestHandler = async (req, res, next) => {
+  try {
+    const { submissionId } = req.params
+    const videoContent = res.locals.getNamespace('video')
+    const informContent = videoContent.inform as Record<string, unknown>
+
+    res.render('pages/submission/video/inform', {
+      ...buildPageParams(req),
+      pageTitle: informContent.pageTitle,
+      backLink: `/${submissionId}/questions/callback`,
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+/**
+ * GET /:submissionId/video/record
+ * Render the video recording page with upload URLs
+ */
+export const renderVideoRecord: RequestHandler = async (req, res: SubmissionResponse, next) => {
+  try {
+    const { submissionId } = req.params
+    const videoContent = res.locals.getNamespace('video')
+    const recordContent = videoContent.record as Record<string, unknown>
+
+    const videoContentType = 'video/mp4'
+    const frameContentType = 'image/jpeg'
+
+    // Get presigned upload URLs from API
+    const uploadLocations = await esupervisionService.getCheckinUploadLocation(submissionId, {
+      video: videoContentType,
+      snapshots: [frameContentType, frameContentType],
+    })
+
+    if (uploadLocations.snapshots.length === 0 || uploadLocations.video === undefined) {
+      throw new Error(`Failed to get upload locations: ${JSON.stringify(uploadLocations)}`)
+    }
+
+    res.render('pages/submission/video/record', {
+      ...buildPageParams(req),
+      pageTitle: recordContent.pageTitle,
+      backLink: `/${submissionId}/video/inform`,
+      videoUploadUrl: uploadLocations.video.url,
+      frameUploadUrl: uploadLocations.snapshots.map(snapshot => snapshot.url),
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+/**
+ * GET /:submissionId/video/verify
+ * API endpoint to verify the uploaded video (called by client JS)
+ */
+export const handleVideoVerify: RequestHandler = async (req, res) => {
+  try {
+    const submissionId = getSubmissionId(req)
+    logger.info('handleVideoVerify', submissionId)
+
+    res.setHeader('Content-Type', 'application/json')
+    res.setHeader('Cache-Control', 'no-cache')
+    res.setHeader('Connection', 'keep-alive')
+
+    const result = await esupervisionService.autoVerifyCheckinIdentity(submissionId, 1)
+    req.session.formData.autoVerifyResult = result.result
+
+    res.json({ status: 'SUCCESS', result: result.result })
+  } catch (error) {
+    res.json({ status: 'ERROR', message: (error as Error).message })
+  }
+}
+
+/**
+ * GET /:submissionId/video/view
+ * Render the video review page
+ */
+export const renderViewVideo: RequestHandler = async (req, res, next) => {
+  try {
+    const { submissionId } = req.params
+    const videoContent = res.locals.getNamespace('video')
+    const viewContent = videoContent.view as Record<string, unknown>
+
+    res.render('pages/submission/video/view', {
+      ...buildPageParams(req),
+      pageTitle: viewContent.pageTitle,
+      backLink: `/${submissionId}/video/record`,
+    })
+  } catch (error) {
+    next(error)
+  }
+}
