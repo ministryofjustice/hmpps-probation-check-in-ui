@@ -127,6 +127,14 @@ export default function nunjucksSetup(app: express.Express): void {
     return str.split(sep).map(item => item.trim())
   })
 
+  /**
+   * Merge two objects together
+   * Usage: {% set item = item | merge({ key: value }) %}
+   */
+  njkEnv.addFilter('merge', (obj: Record<string, unknown>, mergeObj: Record<string, unknown>) => {
+    return { ...obj, ...mergeObj }
+  })
+
   njkEnv.addFilter('gdsDate', (input?: string | Date | null) => {
     if (!input) return ''
 
