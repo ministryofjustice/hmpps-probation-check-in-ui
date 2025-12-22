@@ -3,12 +3,27 @@ import HmppsAuditClient from '../data/hmppsAuditClient'
 
 jest.mock('../data/hmppsAuditClient')
 
+/**
+ * Create a mock HmppsAuditClient for testing.
+ * Since jest.mock() replaces the constructor, we don't need real config.
+ */
+function createMockAuditClient(): jest.Mocked<HmppsAuditClient> {
+  const MockedClass = HmppsAuditClient as jest.MockedClass<typeof HmppsAuditClient>
+  // The mocked constructor accepts any arguments since the real implementation is replaced
+  return new MockedClass({
+    queueUrl: 'mock-queue-url',
+    region: 'mock-region',
+    serviceName: 'mock-service',
+    enabled: false,
+  }) as jest.Mocked<HmppsAuditClient>
+}
+
 describe('Audit service', () => {
   let hmppsAuditClient: jest.Mocked<HmppsAuditClient>
   let auditService: AuditService
 
   beforeEach(() => {
-    hmppsAuditClient = new HmppsAuditClient(null) as jest.Mocked<HmppsAuditClient>
+    hmppsAuditClient = createMockAuditClient()
     auditService = new AuditService(hmppsAuditClient)
   })
 

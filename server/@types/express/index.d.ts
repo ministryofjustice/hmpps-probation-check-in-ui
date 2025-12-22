@@ -1,20 +1,12 @@
+import { CheckinFormData } from '../../data/models/formData'
+
 export declare module 'express-session' {
   // Declare that the session will potentially contain these additional fields
   interface SessionData {
     returnTo: string
     nowInMinutes: number
     submissionAuthorized?: string
-    formData?: {
-      circumstances?: string | string[]
-      policeContact?: string
-      alcoholUse?: string
-      alcoholUnits?: string
-      drugsUse?: string
-      physicalHealth?: string
-      mentalHealth?: string
-      callback?: string
-      [key: string]: unknown
-    } | null
+    formData?: CheckinFormData | null
   }
 }
 
@@ -37,17 +29,7 @@ export declare global {
 
     interface Locals {
       user: LoggedInUser
-      formData?: {
-        circumstances?: string | string[]
-        policeContact?: string
-        alcoholUse?: string
-        alcoholUnits?: string
-        drugsUse?: string
-        physicalHealth?: string
-        mentalHealth?: string
-        callback?: string
-        [key: string]: unknown
-      } | null
+      formData?: CheckinFormData | null
     }
   }
 }

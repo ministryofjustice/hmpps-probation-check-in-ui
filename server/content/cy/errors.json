@@ -1,0 +1,33 @@
+{
+  "notFound": {
+    "pageTitle": "Tudalen heb ei chanfod",
+    "title": "Tudalen heb ei chanfod",
+    "body": "Os gwnaethoch deipio'r cyfeiriad gwe, gwiriwch ei fod yn gywir. Os gwnaethoch gludo'r cyfeiriad gwe, gwiriwch eich bod wedi copïo'r cyfeiriad cyfan."
+  },
+  "submissionNotFound": {
+    "pageTitle": "Cofrestriad heb ei ganfod",
+    "title": "Cofrestriad heb ei ganfod",
+    "body": "Ni allem ddod o hyd i'r cofrestriad hwn. Gwiriwch y ddolen a anfonwyd atoch neu cysylltwch â'ch swyddog prawf."
+  },
+  "expired": {
+    "pageTitle": "Mae'r cofrestriad hwn wedi dod i ben",
+    "title": "Mae'r cofrestriad hwn wedi dod i ben",
+    "body": "Nid yw'r cofrestriad hwn ar gael mwyach. Cysylltwch â'ch swyddog prawf os oes angen i chi gwblhau cofrestriad."
+  },
+  "timeout": {
+    "pageTitle": "Mae eich cofrestriad wedi'i ailosod",
+    "title": "Mae eich cofrestriad wedi'i ailosod",
+    "body": "Er eich diogelwch, mae eich atebion wedi'u dileu.",
+    "restartButton": "Ailddechrau cofrestriad"
+  },
+  "outsideUK": {
+    "pageTitle": "Nid yw'r gwasanaeth hwn ar gael",
+    "title": "Nid yw'r gwasanaeth hwn ar gael",
+    "body": "Dim ond o fewn y Deyrnas Unedig y mae'r gwasanaeth hwn ar gael."
+  },
+  "generic": {
+    "pageTitle": "Mae'n ddrwg gennym, mae problem gyda'r gwasanaeth",
+    "title": "Mae'n ddrwg gennym, mae problem gyda'r gwasanaeth",
+    "body": "Rhowch gynnig arall arni yn nes ymlaen. Os bydd y broblem yn parhau, cysylltwch â'ch swyddog prawf."
+  }
+}

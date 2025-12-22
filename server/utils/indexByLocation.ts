@@ -1,7 +1,11 @@
 export type WithLocation = { location: string }
 
+/**
+ * Index an array of rows by their location field.
+ * Handles null/undefined inputs gracefully by returning empty object.
+ */
 export function indexByLocation<T extends WithLocation, V>(
-  rows: T[] | undefined,
+  rows: T[] | null | undefined,
   mapper: (row: T) => V,
   reducer?: (acc: V, val: V) => V,
 ): Record<string, V> {

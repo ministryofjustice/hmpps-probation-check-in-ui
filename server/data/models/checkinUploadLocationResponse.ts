@@ -1,7 +1,6 @@
 import LocationInfo from './locationInfo'
 
-export default class CheckinUploadLocationResponse {
+export default interface CheckinUploadLocationResponse {
   snapshots?: LocationInfo[]
-
   video?: LocationInfo
 }

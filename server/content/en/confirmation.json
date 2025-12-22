@@ -1,0 +1,16 @@
+{
+  "pageTitle": "Check in completed",
+  "panel": {
+    "title": "Check in completed"
+  },
+  "confirmationMessage": "We have sent you a confirmation message.",
+  "whatNext": {
+    "title": "What happens next?",
+    "body": "Your video and answers have been shared with your probation officer. They will contact you if there are any concerns with the information you've entered, or if you requested contact.",
+    "reminder": "We will remind you when it is time for your next check in."
+  },
+  "feedback": {
+    "linkText": "What did you think of this service? (opens in new tab)",
+    "url": "https://forms.office.com/pages/responsepage.aspx?id=KEeHxuZx_kGp4S6MNndq2GF5fsslU5tImfiqSSPf6JhUQko3QVg0MkVGRTVYV0dFMEJJUzBZUTIyVCQlQCN0PWcu&route=shorturl"
+  }
+}

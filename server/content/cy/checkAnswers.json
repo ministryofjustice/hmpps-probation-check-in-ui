@@ -1,0 +1,66 @@
+{
+  "pageTitle": "Gwiriwch eich atebion cyn i chi gwblhau eich cofrestriad",
+  "title": "Gwiriwch eich atebion cyn i chi gwblhau eich cofrestriad",
+  "sections": {
+    "aboutYou": "Amdanoch chi",
+    "video": "Fideo"
+  },
+  "rows": {
+    "mentalHealth": {
+      "key": "Sut ydych chi'n teimlo?",
+      "changeHidden": "ateb ar gyfer sut ydych chi'n teimlo"
+    },
+    "assistance": {
+      "key": "A oes unrhyw beth rydych chi angen cymorth gydag ef neu eisiau rhoi gwybod i ni amdano?",
+      "changeHidden": "ateb ar gyfer a oes unrhyw beth rydych chi angen cymorth gydag ef neu eisiau rhoi gwybod i ni amdano"
+    },
+    "mentalHealthSupport": {
+      "key": "Dywedwch wrthym pam mae angen help arnoch gydag iechyd meddwl",
+      "changeHidden": "ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gydag iechyd meddwl"
+    },
+    "alcoholSupport": {
+      "key": "Dywedwch wrthym pam mae angen help arnoch gydag alcohol",
+      "changeHidden": "ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gydag alcohol"
+    },
+    "drugsSupport": {
+      "key": "Dywedwch wrthym pam mae angen help arnoch gyda chyffuriau",
+      "changeHidden": "ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gyda chyffuriau"
+    },
+    "moneySupport": {
+      "key": "Dywedwch wrthym pam mae angen help arnoch gydag arian",
+      "changeHidden": "ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gydag arian"
+    },
+    "housingSupport": {
+      "key": "Dywedwch wrthym pam mae angen help arnoch gyda thai",
+      "changeHidden": "ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gyda thai"
+    },
+    "supportSystemSupport": {
+      "key": "Dywedwch wrthym pam mae angen help arnoch gyda system gymorth",
+      "changeHidden": "ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gyda'ch system gymorth"
+    },
+    "otherSupport": {
+      "key": "Dywedwch wrthym pam mae angen help arnoch (arall)",
+      "changeHidden": "ateb ar gyfer dywedwch wrthym pam mae angen help arnoch"
+    },
+    "callback": {
+      "key": "A oes unrhyw beth arall y mae angen i chi siarad â'ch swyddog prawf amdano?",
+      "changeHidden": "ateb ar gyfer a oes unrhyw beth arall y mae angen i chi siarad â'ch swyddog prawf amdano"
+    },
+    "callbackDetails": {
+      "key": "Dywedwch wrthym am beth rydych chi angen siarad",
+      "changeHidden": "ateb ar gyfer dywedwch wrthym am beth rydych chi angen siarad"
+    },
+    "videoCheck": {
+      "key": "Gwiriad fideo",
+      "match": "Rydym wedi cadarnhau mai chi yw hwn",
+      "noMatch": "Ni allwn gadarnhau mai chi yw hwn",
+      "viewHidden": "fideo"
+    }
+  },
+  "confirm": {
+    "legend": "Cwblhewch eich cofrestriad",
+    "label": "Rwy'n cadarnhau, hyd eithaf fy ngwybodaeth, bod y manylion rwyf wedi'u darparu yn gywir. Rwy'n deall y bydd y wybodaeth hon yn cael ei rhannu â'm swyddog prawf.",
+    "error": "Cadarnhewch fod eich manylion yn gywir"
+  },
+  "submitButton": "Cwblhau cofrestriad"
+}

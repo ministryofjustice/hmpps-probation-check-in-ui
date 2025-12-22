@@ -1,0 +1,20 @@
+{
+  "serviceName": "Cofrestru gyda'ch swyddog prawf",
+  "back": "Yn ôl",
+  "continue": "Parhau",
+  "change": "Newid",
+  "view": "Gweld",
+  "error": "Gwall",
+  "errorSummaryTitle": "Mae yna broblem",
+  "feedbackBanner": "Mae hwn yn wasanaeth newydd – bydd eich <a class=\"govuk-link govuk-link--no-visited-state\" target=\"_blank\" rel=\"nofollow\" href=\"https://forms.office.com/pages/responsepage.aspx?id=KEeHxuZx_kGp4S6MNndq2GF5fsslU5tImfiqSSPf6JhUQko3QVg0MkVGRTVYV0dFMEJJUzBZUTIyVCQlQCN0PWcu&route=shorturl\">adborth (yn agor mewn tab newydd)</a> yn ein helpu i'w wella.",
+  "phaseBanner": "Beta Preifat",
+  "footer": {
+    "accessibility": "Datganiad hygyrchedd",
+    "privacy": "Preifatrwydd"
+  },
+  "language": {
+    "english": "English",
+    "welsh": "Cymraeg",
+    "switchTo": "Newid iaith"
+  }
+}

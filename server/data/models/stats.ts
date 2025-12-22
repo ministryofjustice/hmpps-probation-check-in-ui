@@ -54,48 +54,27 @@ export type LabeledSiteCount = {
   percentage?: number
 }
 
-export default class Stats {
+export default interface Stats {
   invitesPerSite: SiteCount[]
-
   inviteStatusPerSite: LabeledSiteCount[]
-
   completedCheckinsPerSite: SiteCount[]
-
   completedCheckinsPerNth: SiteCountOnNthDay[]
-
   offendersPerSite: SiteCount[]
-
   checkinAverages: SiteCheckinAverage[]
-
   checkinOutsideAccess: SiteCount[]
-
   automatedIdCheckAccuracy: IdCheckAccuracy[]
-
   flaggedCheckinsPerSite: SiteCount[]
-
   stoppedCheckinsPerSite: SiteCount[]
-
   averageFlagsPerCheckinPerSite: SiteAverage[]
-
   callbackRequestPercentagePerSite: SiteAverage[]
-
   checkinFrequencyPerSite: FrequencyCount[]
-
   averageReviewTimePerCheckinPerSite: SiteFormattedTimeAverage[]
-
   averageReviewTimePerCheckinTotal: string
-
   averageTimeToRegisterPerSite: SiteFormattedTimeAverage[]
-
   averageTimeToRegisterTotal: string
-
   averageCheckinCompletionTimePerSite: SiteFormattedTimeAverage[]
-
   averageCheckinCompletionTimeTotal: string
-
   averageTimeTakenToCompleteCheckinReviewPerSite: SiteFormattedTimeAverage[]
-
   averageTimeTakenToCompleteCheckinReviewTotal: string
-
   deviceType: LabeledSiteCount[]
 }

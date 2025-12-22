@@ -1,0 +1,20 @@
+{
+  "serviceName": "Check in with your probation officer",
+  "back": "Back",
+  "continue": "Continue",
+  "change": "Change",
+  "view": "View",
+  "error": "Error",
+  "errorSummaryTitle": "There is a problem",
+  "feedbackBanner": "This is a new service – your <a class=\"govuk-link govuk-link--no-visited-state\" target=\"_blank\" rel=\"nofollow\" href=\"https://forms.office.com/pages/responsepage.aspx?id=KEeHxuZx_kGp4S6MNndq2GF5fsslU5tImfiqSSPf6JhUQko3QVg0MkVGRTVYV0dFMEJJUzBZUTIyVCQlQCN0PWcu&route=shorturl\">feedback (opens in a new tab)</a> will help us to improve it.",
+  "phaseBanner": "Private Beta",
+  "footer": {
+    "accessibility": "Accessibility statement",
+    "privacy": "Privacy"
+  },
+  "language": {
+    "english": "English",
+    "welsh": "Cymraeg",
+    "switchTo": "Switch language"
+  }
+}

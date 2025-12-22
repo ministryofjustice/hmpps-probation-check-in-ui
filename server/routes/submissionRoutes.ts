@@ -3,123 +3,136 @@ import protectSubmission from '../middleware/submissionMiddleware'
 import asyncMiddleware from '../middleware/asyncMiddleware'
 import validateFormData from '../middleware/validateFormData'
 import {
-  handleStart,
-  handleRedirect,
-  handleVerify,
-  handleSubmission,
-  handleVideoVerify,
-  renderAssistance,
-  renderQuestionsMentalHealth,
-  renderCheckAnswers,
-  renderConfirmation,
-  renderIndex,
-  renderQuestionsCallback,
-  renderVerify,
-  renderVideoInform,
-  renderVideoRecord,
-  renderViewVideo,
-  handleAssistance,
-} from '../controllers/submissionController'
-
-import {
   personalDetailsSchema,
   mentalHealthSchema,
   assistanceSchema,
   callbackSchema,
   checkAnswersSchema,
 } from '../schemas/submissionSchemas'
-
 import { Services } from '../services'
-import logger from '../../logger'
+
+// Import from new modular controllers
+import {
+  renderIndex,
+  handleStart,
+  renderVerify,
+  handleVerify,
+  renderMentalHealth,
+  handleMentalHealth,
+  renderAssistance,
+  handleAssistance,
+  renderCallback,
+  handleCallback,
+  renderVideoInform,
+  renderVideoRecord,
+  handleVideoVerify,
+  renderViewVideo,
+  renderCheckAnswers,
+  handleSubmission,
+  renderConfirmation,
+  renderTimeout,
+  handleKeepalive,
+} from '../controllers/submission'
 
 export default function routes({ esupervisionService }: Services): Router {
   const router = Router({ mergeParams: true })
+
+  // Helper to wrap handlers with async error handling
   const get = (routePath: string | string[], ...handlers: RequestHandler[]) =>
     router.get(routePath, ...handlers.map(handler => asyncMiddleware(handler)))
 
-  // all submission routes require a valid submission
-  // fetch from the API and return a 404 if the submission doesn't exist
+  const post = (routePath: string | string[], ...handlers: RequestHandler[]) =>
+    router.post(routePath, ...handlers.map(handler => asyncMiddleware(handler)))
+
+  // Middleware: Validate submission exists and is in valid state
   router.use(
     asyncMiddleware(async (req, res, next) => {
       const { submissionId } = req.params
-      const notFound = () => {
-        res.render('pages/submission/not-found')
-      }
-      const expired = () => {
-        res.render('pages/submission/expired')
+
+      // Inject esupervisionService into res.locals for controllers
+      res.locals.esupervisionService = esupervisionService
+
+      const notFound = () => res.render('pages/submission/not-found')
+      const expired = () => res.render('pages/submission/expired')
+
+      if (!submissionId) {
+        return notFound()
       }
 
-      if (submissionId) {
-        // lookup submission from the API
-        try {
-          const checkinResponse = await esupervisionService.getCheckin(submissionId)
-          if (checkinResponse.checkin.status === 'SUBMITTED' && req.originalUrl.endsWith('/confirmation')) {
-            next()
-          } else if (checkinResponse.checkin.status === 'EXPIRED') {
-            expired()
-          } else if (checkinResponse.checkin.status !== 'CREATED') {
-            notFound()
-          } else {
-            res.locals.checkin = checkinResponse.checkin
-            next()
-          }
-        } catch (err) {
-          if (err.responseStatus === 404) {
-            notFound()
-          } else {
-            throw err
-          }
+      try {
+        const checkinResponse = await esupervisionService.getCheckin(submissionId)
+        const { status } = checkinResponse.checkin
+
+        // Allow confirmation page for submitted check-ins
+        if (status === 'SUBMITTED' && req.originalUrl.endsWith('/confirmation')) {
+          return next()
         }
-      } else {
-        notFound()
+
+        if (status === 'EXPIRED') {
+          return expired()
+        }
+
+        if (status !== 'CREATED') {
+          return notFound()
+        }
+
+        // Store checkin in locals for controllers
+        res.locals.checkin = checkinResponse.checkin
+        return next()
+      } catch (err) {
+        if ((err as { responseStatus?: number }).responseStatus === 404) {
+          return notFound()
+        }
+        throw err
       }
     }),
   )
 
-  router.post('/start', handleStart)
+  // ==========================================
+  // PUBLIC ROUTES (no session protection)
+  // ==========================================
 
+  // Start page
   get('/', renderIndex)
-  get('/verify', renderVerify)
-  router.post('/verify', validateFormData(personalDetailsSchema), handleVerify)
+  post('/start', handleStart)
 
-  get('/questions/mental-health', protectSubmission, renderQuestionsMentalHealth)
-  router.post('/questions/mental-health', validateFormData(mentalHealthSchema), handleRedirect('/questions/assistance'))
+  // Identity verification
+  get('/verify', renderVerify)
+  post('/verify', validateFormData(personalDetailsSchema), handleVerify)
+
+  // ==========================================
+  // PROTECTED ROUTES (require verified session)
+  // ==========================================
+
+  // Questions flow
+  get('/questions/mental-health', protectSubmission, renderMentalHealth)
+  post('/questions/mental-health', protectSubmission, validateFormData(mentalHealthSchema), handleMentalHealth)
 
   get('/questions/assistance', protectSubmission, renderAssistance)
-  router.post('/questions/assistance', protectSubmission, validateFormData(assistanceSchema), handleAssistance)
+  post('/questions/assistance', protectSubmission, validateFormData(assistanceSchema), handleAssistance)
 
-  get('/questions/callback', protectSubmission, renderQuestionsCallback)
-  router.post(
-    '/questions/callback',
-    protectSubmission,
-    validateFormData(callbackSchema),
-    handleRedirect('/video/inform'),
-  )
+  get('/questions/callback', protectSubmission, renderCallback)
+  post('/questions/callback', protectSubmission, validateFormData(callbackSchema), handleCallback)
 
+  // Video flow
   get('/video/inform', protectSubmission, renderVideoInform)
   get('/video/record', protectSubmission, renderVideoRecord)
   get('/video/verify', protectSubmission, handleVideoVerify)
   get('/video/view', protectSubmission, renderViewVideo)
 
+  // Check answers and submit
   get('/check-your-answers', protectSubmission, renderCheckAnswers)
-  router.post('/check-your-answers', protectSubmission, validateFormData(checkAnswersSchema), handleSubmission)
+  post('/check-your-answers', protectSubmission, validateFormData(checkAnswersSchema), handleSubmission)
 
+  // Confirmation (public - session may be cleared)
   get('/confirmation', renderConfirmation)
 
-  // Session management routes
+  // ==========================================
+  // SESSION MANAGEMENT ROUTES
+  // ==========================================
 
-  // Timeout route to handle session expiration
-  get('/timeout', (req, res) => {
-    const { submissionId } = req.params
-    logger.info(`User session timed out for submissionId ${submissionId}`)
-    req.session.submissionAuthorized = null
-    res.render('pages/submission/timeout', { submissionId })
-  })
-
-  // Keepalive route for session management
-  get('/keepalive', (req, res) => {
-    res.json({ status: 'OK' })
-  })
+  get('/timeout', renderTimeout)
+  get('/keepalive', handleKeepalive)
 
   return router
 }

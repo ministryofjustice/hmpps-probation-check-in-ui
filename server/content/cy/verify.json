@@ -1,0 +1,27 @@
+{
+  "pageTitle": "Manylion personol",
+  "title": "Manylion personol",
+  "intro": "Byddwn yn defnyddio'ch manylion personol i wneud yn siŵr eich bod wedi cofrestru i ddefnyddio'r gwasanaeth hwn.",
+  "firstName": {
+    "label": "Enw cyntaf",
+    "error": "Rhowch eich enw cyntaf"
+  },
+  "lastName": {
+    "label": "Cyfenw",
+    "error": "Rhowch eich cyfenw"
+  },
+  "dateOfBirth": {
+    "label": "Dyddiad geni",
+    "hint": "Er enghraifft, 27 3 2007",
+    "error": {
+      "required": "Rhowch eich dyddiad geni",
+      "invalid": "Rhowch ddyddiad geni dilys",
+      "future": "Rhaid i'r dyddiad geni fod yn y gorffennol"
+    }
+  },
+  "noMatch": {
+    "pageTitle": "Ni allem ddod o hyd i'ch manylion",
+    "title": "Ni allem ddod o hyd i'ch manylion",
+    "body": "Nid yw'r manylion a roddoch yn cyfateb i'n cofnodion. Gwiriwch a cheisiwch eto, neu cysylltwch â'ch swyddog prawf am help."
+  }
+}

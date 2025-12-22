@@ -1,0 +1,85 @@
+{% extends "govuk/template.njk" %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/footer/macro.njk" import govukFooter %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+{% block head %}
+  <link href="{{ '/assets/css/index.css' | assetMap }}" rel="stylesheet" />
+  {% block pageHead %}{% endblock %}
+{% endblock %}
+
+{% block pageTitle %}
+  {% set pageTitlePrefix = "" %}
+  {% if validationErrors | length %}
+    {% set pageTitlePrefix = t('common.error') + " - " %}
+  {% endif %}
+  {{ pageTitlePrefix + pageTitle + ' - ' + t('common.serviceName') if pageTitle else pageTitlePrefix + t('common.serviceName') }}
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "https://www.gov.uk"
+  }) }}
+
+  {% set navItems = [] %}
+  {% if languageToggle %}
+    {% set navItems = [{
+      html: '<a href="' + languageToggle.switchUrl + '" lang="' + languageToggle.switchLang + '" hreflang="' + languageToggle.switchLang + '" class="govuk-link govuk-link--no-visited-state">' + languageToggle.switchLabel + '</a>',
+      active: false
+    }] %}
+  {% endif %}
+
+  {{ govukServiceNavigation({
+    serviceName: t('common.serviceName'),
+    serviceUrl: "/",
+    navigation: navItems if navItems | length else undefined
+  }) }}
+
+  {{ govukPhaseBanner({
+    tag: {
+      text: t('common.phaseBanner')
+    },
+    html: t('common.feedbackBanner')
+  }) }}
+{% endblock %}
+
+{% block bodyStart %}
+  {% block pageBodyStart %}{% endblock %}
+{% endblock %}
+
+{% block beforeContent %}
+  {% block pageBeforeContent %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+  {% block pageContent %}{% endblock %}
+{% endblock %}
+
+{% block footer %}
+  {{ govukFooter({
+    meta: {
+      items: [
+        {
+          href: "/accessibility",
+          text: t('common.footer.accessibility')
+        },
+        {
+          href: "/privacy-notice",
+          text: t('common.footer.privacy')
+        }
+      ]
+    }
+  }) }}
+{% endblock %}
+
+{% block bodyEnd %}
+  <script type="module" src="{{ '/assets/js/index.js' | assetMap }}"></script>
+  {% if submissionAuthorized %}
+    <script nonce="{{ cspNonce }}">
+      document.body.dataset.submissionId = "{{ submissionId }}";
+    </script>
+    <script type="module" src="{{ '/assets/js/timeout.js' | assetMap }}"></script>
+  {% endif %}
+  {% block pageScripts %}{% endblock %}
+{% endblock %}
