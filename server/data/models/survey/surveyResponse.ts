@@ -49,4 +49,6 @@ export default class SurveyResponse implements Versioned {
   callbackDetails: string
 
   device?: DeviceInfo
+
+  checkinStartedAt?: number
 }

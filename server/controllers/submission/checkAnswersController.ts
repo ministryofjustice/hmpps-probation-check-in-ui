@@ -215,7 +215,7 @@ export const handleSubmission: RequestHandler = async (req, res: SubmissionRespo
       callback: formData.callback as CallbackRequested,
       callbackDetails: formData.callbackDetails as string,
       device,
-      checkinStartedAt: formData.checkinStartedAt as Date,
+      checkinStartedAt: formData.checkinStartedAt as number,
     },
   }
 

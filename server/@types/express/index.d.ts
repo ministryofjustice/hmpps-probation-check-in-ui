@@ -13,6 +13,18 @@ export declare module 'express-session' {
       physicalHealth?: string
       mentalHealth?: string
       callback?: string
+      callbackDetails?: string
+      assistance?: string | string[]
+      mentalHealthSupport?: string
+      alcoholSupport?: string
+      drugsSupport?: string
+      moneySupport?: string
+      housingSupport?: string
+      supportSystemSupport?: string
+      otherSupport?: string
+      autoVerifyResult?: string
+      checkinStartedAt?: number
+      deviceData?: string
       [key: string]: unknown
     } | null
   }
@@ -46,6 +58,18 @@ export declare global {
         physicalHealth?: string
         mentalHealth?: string
         callback?: string
+        callbackDetails?: string
+        assistance?: string | string[]
+        mentalHealthSupport?: string
+        alcoholSupport?: string
+        drugsSupport?: string
+        moneySupport?: string
+        housingSupport?: string
+        supportSystemSupport?: string
+        otherSupport?: string
+        autoVerifyResult?: string
+        checkinStartedAt?: number
+        deviceData?: string
         [key: string]: unknown
       } | null
     }
