@@ -330,6 +330,7 @@ export default {
     })
   },
   stubGetCheckin: (checkin: Checkin): SuperAgentRequest => {
+    // Return raw Checkin object - the esupervisionApiClient wraps it in { checkin, checkinLogs }
     return stubFor({
       request: {
         method: 'GET',
@@ -338,10 +339,7 @@ export default {
       response: {
         status: 200,
         headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: {
-          checkin,
-          checkinLogs: { logs: [] },
-        },
+        jsonBody: checkin,
       },
     })
   },
@@ -421,7 +419,13 @@ export default {
     return response
   },
 
-  stubVerifyIdentity: (checkin: Checkin, verified = true): SuperAgentRequest => {
+  stubVerifyIdentity: (
+    checkinOrOptions: Checkin | (Checkin & { verified?: boolean }),
+    verified = true,
+  ): SuperAgentRequest => {
+    // Support both old signature (checkin, verified) and object format { ...checkin, verified }
+    const checkin = checkinOrOptions
+    const isVerified = 'verified' in checkinOrOptions ? (checkinOrOptions.verified ?? true) : verified
     return stubFor({
       request: {
         method: 'POST',
@@ -430,7 +434,7 @@ export default {
       response: {
         status: 200,
         headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: { verified, error: verified ? null : 'Personal details do not match our records' },
+        jsonBody: { verified: isVerified, error: isVerified ? null : 'Personal details do not match our records' },
       },
     })
   },

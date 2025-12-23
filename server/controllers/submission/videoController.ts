@@ -85,18 +85,17 @@ export const handleVideoVerify: RequestHandler = async (req, res) => {
 
 /**
  * GET /:submissionId/video/view
- * Render the video review page
+ * Render the video review page with match/no-match result
  */
 export const renderViewVideo: RequestHandler = async (req, res, next) => {
   try {
     const { submissionId } = req.params
-    const videoContent = res.locals.getNamespace('video')
-    const viewContent = videoContent.view as Record<string, unknown>
+    const autoVerifyResult = req.session.formData?.autoVerifyResult
 
     res.render('pages/submission/video/view', {
       ...buildPageParams(req),
-      pageTitle: viewContent.pageTitle,
       backLink: `/${submissionId}/video/record`,
+      autoVerifyResult,
     })
   } catch (error) {
     next(error)

@@ -225,11 +225,13 @@ describe('videoController', () => {
       expect(mockRes.render).toHaveBeenCalledWith('pages/submission/video/view', expect.any(Object))
     })
 
-    it('includes page title from content', async () => {
+    it('includes autoVerifyResult from session', async () => {
+      mockReq.session!.formData = { autoVerifyResult: 'MATCH' }
+
       await renderViewVideo(mockReq as Request, mockRes as Response, mockNext)
 
       const renderCall = (mockRes.render as jest.Mock).mock.calls[0]
-      expect(renderCall[1].pageTitle).toBe('View Video')
+      expect(renderCall[1].autoVerifyResult).toBe('MATCH')
     })
 
     it('includes back link to record page', async () => {
@@ -241,7 +243,7 @@ describe('videoController', () => {
 
     it('calls next with error on failure', async () => {
       const error = new Error('Test error')
-      ;(mockRes.locals!.getNamespace as jest.Mock).mockImplementation(() => {
+      ;(mockRes.render as jest.Mock).mockImplementation(() => {
         throw error
       })
 

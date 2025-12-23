@@ -1,19 +1,69 @@
 {% extends "layouts/content.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
-{% set pageTitle = t('video.view.pageTitle') %}
-{% set content = getContent('video.view') %}
+{% set matchContent = getContent('video.match') %}
+{% set noMatchContent = getContent('video.noMatch') %}
+{% set isMatch = (autoVerifyResult == 'MATCH') %}
+
+{% set pageTitle = matchContent.title if isMatch else noMatchContent.title %}
 
 {% block contentBody %}
-  <h1 class="govuk-heading-l">{{ content.title }}</h1>
+  {% if isMatch %}
+    <h1 class="govuk-heading-l">{{ matchContent.title }}</h1>
+    <p class="govuk-body">{{ matchContent.body }}</p>
 
-  {# Video preview would go here - placeholder for video playback #}
-  <div class="es-video-preview">
-    {# Video element populated by JavaScript #}
-  </div>
+    <div class="videoRecorder__videoWrap">
+      <video
+        class="videoRecorder__video-preview"
+        id="matchPreview"
+        controls
+      >
+        Your browser does not support video
+      </video>
+    </div>
 
-  {{ govukButton({
-    text: t('common.continue'),
-    href: "/" + submissionId + "/check-your-answers"
-  }) }}
+    <div class="govuk-button-group">
+      <a
+        class="govuk-button"
+        data-module="govuk-button"
+        role="button"
+        href="/{{ submissionId }}/check-your-answers"
+      >{{ matchContent.continueButton }}</a>
+    </div>
+  {% else %}
+    <h1 class="govuk-heading-l">{{ noMatchContent.title }}</h1>
+    <p class="govuk-body">{{ noMatchContent.body }}</p>
+
+    <div class="videoRecorder__videoWrap">
+      <video
+        class="videoRecorder__video-preview"
+        id="noMatchPreview"
+        controls
+      >
+        Your browser does not support video
+      </video>
+    </div>
+
+    <p class="govuk-body govuk-!-font-weight-bold">{{ noMatchContent.recordAgainTitle }}</p>
+    <p class="govuk-body">{{ noMatchContent.recordAgainDescription }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+      {% for item in noMatchContent.recordAgainItems %}
+        <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+
+    <div class="govuk-button-group">
+      <a
+        class="govuk-button"
+        role="button"
+        href="/{{ submissionId }}/video/record"
+      >{{ noMatchContent.retryButton }}</a>
+      <a
+        class="govuk-button govuk-button--secondary"
+        role="button"
+        data-module="govuk-button"
+        href="/{{ submissionId }}/check-your-answers"
+      >{{ noMatchContent.submitAnywayButton }}</a>
+    </div>
+  {% endif %}
 {% endblock %}

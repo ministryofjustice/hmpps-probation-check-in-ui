@@ -5,5 +5,7 @@ export default class ConfirmationPage extends SubmissionPage {
     super('Check in completed')
   }
 
-  panelBody = (): PageElement => cy.get('.govuk-panel__body')
+  panel = (): PageElement => cy.get('.govuk-panel')
+
+  panelTitle = (): PageElement => cy.get('.govuk-panel__title')
 }
