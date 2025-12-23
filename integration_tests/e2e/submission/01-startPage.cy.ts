@@ -1,14 +1,12 @@
 import CheckinIndexPage from '../../pages/submission/checkinIndexPage'
 import SubmissionPage from '../../pages/submission/submissionPage'
-import { createTestFixtures, setupCommonStubs, Checkin, Offender } from './_support'
+import { createTestFixtures, setupCommonStubs, Checkin } from './_support'
 
 describe('Start Page', () => {
-  let testOffender: Offender
   let testCheckin: Checkin
 
   beforeEach(() => {
     const fixtures = createTestFixtures()
-    testOffender = fixtures.testOffender
     testCheckin = fixtures.testCheckin
     setupCommonStubs(testCheckin)
   })

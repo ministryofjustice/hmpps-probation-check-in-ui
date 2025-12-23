@@ -44,6 +44,10 @@ const buildConfig = {
         from: path.join(cwd, 'server/content/**/*.json'),
         to: path.join(cwd, 'dist/server/content'),
       },
+      {
+        from: path.join(cwd, 'server/content/**/*.html'),
+        to: path.join(cwd, 'dist/server/content'),
+      },
     ],
   },
 

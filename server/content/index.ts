@@ -1,4 +1,5 @@
 import { get as getKeypath } from 'lodash'
+import loadContentPage from '../utils/contentPageLoader'
 
 // English content
 import enCommon from './en/common.json'
@@ -10,10 +11,6 @@ import enConfirmation from './en/confirmation.json'
 import enErrors from './en/errors.json'
 import enIndex from './en/index.json'
 import enHome from './en/home.json'
-import enAccessibility from './en/accessibility.json'
-import enGuidance from './en/guidance.json'
-import enPractitionerGuidance from './en/practitioner-guidance.json'
-import enPrivacy from './en/privacy.json'
 
 // Welsh content
 import cyCommon from './cy/common.json'
@@ -25,10 +22,17 @@ import cyConfirmation from './cy/confirmation.json'
 import cyErrors from './cy/errors.json'
 import cyIndex from './cy/index.json'
 import cyHome from './cy/home.json'
-import cyAccessibility from './cy/accessibility.json'
-import cyGuidance from './cy/guidance.json'
-import cyPractitionerGuidance from './cy/practitioner-guidance.json'
-import cyPrivacy from './cy/privacy.json'
+
+// Content pages loaded from HTML files
+const enAccessibility = loadContentPage('accessibility', 'en')
+const enGuidance = loadContentPage('guidance', 'en')
+const enPractitionerGuidance = loadContentPage('practitioner-guidance', 'en')
+const enPrivacy = loadContentPage('privacy', 'en')
+
+const cyAccessibility = loadContentPage('accessibility', 'cy')
+const cyGuidance = loadContentPage('guidance', 'cy')
+const cyPractitionerGuidance = loadContentPage('practitioner-guidance', 'cy')
+const cyPrivacy = loadContentPage('privacy', 'cy')
 
 export type Language = 'en' | 'cy'
 
