@@ -12,7 +12,8 @@ describe('confirmationController', () => {
       query: {},
       session: {
         formData: { mentalHealth: 'WELL' },
-      } as Request['session'],
+        destroy: jest.fn((cb: () => void) => cb()),
+      } as unknown as Request['session'],
     }
     mockRes = {
       render: jest.fn(),
@@ -27,7 +28,7 @@ describe('confirmationController', () => {
     it('clears session data', async () => {
       await renderConfirmation(mockReq as Request, mockRes as Response, mockNext)
 
-      expect(mockReq.session).toBeNull()
+      expect(mockReq.session!.destroy).toHaveBeenCalled()
     })
 
     it('renders the confirmation page', async () => {

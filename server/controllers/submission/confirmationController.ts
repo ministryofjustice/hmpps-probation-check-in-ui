@@ -11,7 +11,7 @@ export const renderConfirmation: RequestHandler = async (req, res, next) => {
     const confirmationContent = res.locals.getNamespace('confirmation')
 
     // Clear session data
-    req.session = null
+    req.session.destroy(() => {})
 
     res.render('pages/submission/confirmation', {
       ...buildPageParams(req),

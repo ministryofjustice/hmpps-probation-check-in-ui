@@ -13,7 +13,7 @@ export const renderTimeout: RequestHandler = async (req, res) => {
   logger.info(`User session timed out for submissionId ${submissionId}`)
 
   // Clear session authorization
-  req.session.submissionAuthorized = null
+  req.session.submissionAuthorized = undefined
 
   res.render('pages/submission/timeout', {
     submissionId,

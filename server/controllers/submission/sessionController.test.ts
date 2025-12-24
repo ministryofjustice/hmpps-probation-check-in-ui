@@ -35,7 +35,7 @@ describe('sessionController', () => {
     it('clears submissionAuthorized from session', async () => {
       await renderTimeout(mockReq as Request, mockRes as Response, mockNext)
 
-      expect(mockReq.session!.submissionAuthorized).toBeNull()
+      expect(mockReq.session!.submissionAuthorized).toBeUndefined()
     })
 
     it('renders timeout page', async () => {

@@ -1,8 +1,8 @@
-import { Response } from 'express'
+import { Response, Locals } from 'express'
 import Checkin from '../../data/models/checkin'
 import { Language } from '../../content'
 
-export interface SubmissionLocals {
+export interface SubmissionLocals extends Locals {
   checkin: Checkin
   formData: Record<string, unknown>
   submissionAuthorized?: string
@@ -20,4 +20,4 @@ export interface SubmissionLocals {
   }
 }
 
-export type SubmissionResponse = Response<object, SubmissionLocals>
+export type SubmissionResponse = Response<unknown, SubmissionLocals>

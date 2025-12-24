@@ -275,7 +275,7 @@ describe('checkAnswersController', () => {
         'test-submission-id',
         expect.objectContaining({
           survey: expect.objectContaining({
-            device: null,
+            device: undefined,
           }),
         }),
       )

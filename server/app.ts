@@ -11,6 +11,7 @@ import setUpHealthChecks from './middleware/setUpHealthChecks'
 import setUpStaticResources from './middleware/setUpStaticResources'
 import setUpWebRequestParsing from './middleware/setupRequestParsing'
 import setUpWebSession from './middleware/setUpWebSession'
+import setUpWebSecurity from './middleware/setUpWebSecurity'
 import populateValidationErrors from './middleware/populateValidationErrors'
 import storeFormDataInSession from './middleware/storeFormDataInSession'
 import languageMiddleware from './middleware/languageMiddleware'
@@ -37,6 +38,7 @@ export default function createApp(services: Services): express.Application {
 
   app.use(appInsightsMiddleware())
   app.use(setUpHealthChecks(services.applicationInfo))
+  app.use(setUpWebSecurity())
   app.use(setUpWebSession())
   app.use(setUpWebRequestParsing())
   app.use(setUpStaticResources())

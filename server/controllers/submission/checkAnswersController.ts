@@ -2,7 +2,7 @@ import { RequestHandler } from 'express'
 import logger from '../../../logger'
 import { services } from '../../services'
 import { buildPageParams, getSubmissionId } from './helpers'
-import { SubmissionResponse } from './types'
+import { SubmissionLocals } from './types'
 import MentalHealth from '../../data/models/survey/mentalHealth'
 import SupportAspect from '../../data/models/survey/supportAspect'
 import CallbackRequested from '../../data/models/survey/callbackRequested'
@@ -176,8 +176,9 @@ export const renderCheckAnswers: RequestHandler = async (req, res, next) => {
  * POST /:submissionId/check-your-answers
  * Handle final submission
  */
-export const handleSubmission: RequestHandler = async (req, res: SubmissionResponse, next) => {
-  const { formData } = res.locals
+export const handleSubmission: RequestHandler = async (req, res, next) => {
+  const locals = res.locals as SubmissionLocals
+  const { formData } = locals
 
   let assistance = formData.assistance as string | string[]
   // If user selects a single assistance option, convert it to an array
@@ -187,7 +188,7 @@ export const handleSubmission: RequestHandler = async (req, res: SubmissionRespo
 
   // Parse device data if present
   const { deviceData } = formData
-  let device: DeviceInfo | null = null
+  let device: DeviceInfo | undefined
 
   if (deviceData && typeof deviceData === 'string') {
     try {

@@ -2,7 +2,7 @@ import { RequestHandler } from 'express'
 import logger from '../../../logger'
 import { services } from '../../services'
 import { buildPageParams } from './helpers'
-import { SubmissionResponse } from './types'
+import { SubmissionLocals } from './types'
 
 const { esupervisionService } = services()
 
@@ -28,10 +28,11 @@ export const renderVerify: RequestHandler = async (req, res, next) => {
  * POST /:submissionId/verify
  * Handle identity verification form submission
  */
-export const handleVerify: RequestHandler = async (req, res: SubmissionResponse, next) => {
+export const handleVerify: RequestHandler = async (req, res, next) => {
   const { submissionId } = req.params
   const { firstName, lastName, day, month, year } = req.body
-  const { crn } = res.locals.checkin
+  const locals = res.locals as SubmissionLocals
+  const { crn } = locals.checkin
 
   if (!crn) {
     logger.error(`No CRN found for submissionId ${submissionId}`)

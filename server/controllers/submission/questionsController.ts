@@ -126,7 +126,7 @@ export const handleAssistance: RequestHandler = async (req, res) => {
   // Clear support fields when parent checkbox is unchecked
   const selectedAssistance = Array.isArray(assistance) ? assistance : [assistance]
   for (const [key, field] of Object.entries(supportFieldsMap)) {
-    if (!selectedAssistance.includes(key)) {
+    if (!selectedAssistance.includes(key) && req.session.formData) {
       req.session.formData[field] = ''
     }
   }

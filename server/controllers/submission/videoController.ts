@@ -2,7 +2,6 @@ import { RequestHandler } from 'express'
 import logger from '../../../logger'
 import { services } from '../../services'
 import { buildPageParams, getSubmissionId } from './helpers'
-import { SubmissionResponse } from './types'
 
 const { esupervisionService } = services()
 
@@ -30,7 +29,7 @@ export const renderVideoInform: RequestHandler = async (req, res, next) => {
  * GET /:submissionId/video/record
  * Render the video recording page with upload URLs
  */
-export const renderVideoRecord: RequestHandler = async (req, res: SubmissionResponse, next) => {
+export const renderVideoRecord: RequestHandler = async (req, res, next) => {
   try {
     const { submissionId } = req.params
     const videoContent = res.locals.getNamespace('video')
@@ -45,7 +44,7 @@ export const renderVideoRecord: RequestHandler = async (req, res: SubmissionResp
       snapshots: [frameContentType, frameContentType],
     })
 
-    if (uploadLocations.snapshots.length === 0 || uploadLocations.video === undefined) {
+    if (!uploadLocations.snapshots || uploadLocations.snapshots.length === 0 || uploadLocations.video === undefined) {
       throw new Error(`Failed to get upload locations: ${JSON.stringify(uploadLocations)}`)
     }
 
@@ -54,7 +53,7 @@ export const renderVideoRecord: RequestHandler = async (req, res: SubmissionResp
       pageTitle: recordContent.pageTitle,
       backLink: `/${submissionId}/video/inform`,
       videoUploadUrl: uploadLocations.video.url,
-      frameUploadUrl: uploadLocations.snapshots.map(snapshot => snapshot.url),
+      frameUploadUrl: uploadLocations.snapshots.map((snapshot: { url: string }) => snapshot.url),
     })
   } catch (error) {
     next(error)
@@ -75,7 +74,9 @@ export const handleVideoVerify: RequestHandler = async (req, res) => {
     res.setHeader('Connection', 'keep-alive')
 
     const result = await esupervisionService.autoVerifyCheckinIdentity(submissionId, 1)
-    req.session.formData.autoVerifyResult = result.result
+    if (req.session.formData) {
+      req.session.formData.autoVerifyResult = result.result
+    }
 
     res.json({ status: 'SUCCESS', result: result.result })
   } catch (error) {
