@@ -76,7 +76,7 @@
 {% block bodyEnd %}
   <script type="module" src="{{ '/assets/js/index.js' | assetMap }}"></script>
   {% if submissionAuthorized %}
-    <script type="application/javascript">
+    <script nonce="{{ cspNonce }}">
       document.body.dataset.submissionId = "{{ submissionId }}";
     </script>
     <script type="module" src="{{ '/assets/js/timeout.js' | assetMap }}"></script>

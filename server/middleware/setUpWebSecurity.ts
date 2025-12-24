@@ -25,6 +25,7 @@ export default function setUpWebSecurity(): Router {
           // page by an attacker.
           scriptSrc: ["'self'", (_req, res) => `'nonce-${(res as Response).locals.cspNonce}'`],
           styleSrc: ["'self'", (_req, res) => `'nonce-${(res as Response).locals.cspNonce}'`],
+          connectSrc: ["'self'", '*.amazonaws.com'],
           mediaSrc: "'self' data: blob localhost",
           fontSrc: ["'self'"],
           formAction: ["'self'"],

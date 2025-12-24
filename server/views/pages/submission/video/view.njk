@@ -16,6 +16,7 @@
       <video
         class="videoRecorder__video-preview"
         id="matchPreview"
+        src="{{ submission.checkin.videoUrl }}"
         controls
       >
         Your browser does not support video
@@ -38,14 +39,14 @@
       <video
         class="videoRecorder__video-preview"
         id="noMatchPreview"
+        src="{{ submission.checkin.videoUrl }}"
         controls
       >
         Your browser does not support video
       </video>
     </div>
 
-    <p class="govuk-body govuk-!-font-weight-bold">{{ noMatchContent.recordAgainTitle }}</p>
-    <p class="govuk-body">{{ noMatchContent.recordAgainDescription }}</p>
+    <p class="govuk-!-font-weight-bold">{{ noMatchContent.recordAgainDescription }}</p>
     <ul class="govuk-list govuk-list--bullet">
       {% for item in noMatchContent.recordAgainItems %}
         <li>{{ item }}</li>

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import populateValidationErrors from './populateValidationErrors'
-import { CheckinFormData, VerifyFormData } from '../data/models/formData'
+import { CheckinFormData } from '../data/models/formData'
 import MentalHealth from '../data/models/survey/mentalHealth'
 
 describe('populateValidationErrors middleware', () => {
@@ -83,20 +83,19 @@ describe('populateValidationErrors middleware', () => {
     expect(mockReq.flash).toHaveBeenCalledWith('validationErrors')
   })
 
-  describe('verify form data restoration', () => {
-    it('restores verify form data to verifyFormData', async () => {
-      const formBody: VerifyFormData = { firstName: 'John', lastName: 'Doe' }
+  describe('form data restoration', () => {
+    it('restores verify form data to formData', async () => {
+      const formBody = { firstName: 'John', lastName: 'Doe' }
       const flashMock = createFlashMock([], [JSON.stringify(formBody)])
       mockReq.flash = jest.fn().mockImplementation(flashMock)
 
       await populateValidationErrors()(mockReq as Request, mockRes as Response, mockNext)
 
-      expect(mockRes.locals!.verifyFormData).toEqual({ firstName: 'John', lastName: 'Doe' })
-      expect(mockRes.locals!.formData).toEqual({})
+      expect(mockRes.locals!.formData).toEqual({ firstName: 'John', lastName: 'Doe' })
     })
 
     it('restores all verify form fields', async () => {
-      const formBody: VerifyFormData = {
+      const formBody = {
         firstName: 'John',
         lastName: 'Doe',
         day: '15',
@@ -108,20 +107,18 @@ describe('populateValidationErrors middleware', () => {
 
       await populateValidationErrors()(mockReq as Request, mockRes as Response, mockNext)
 
-      expect(mockRes.locals!.verifyFormData).toEqual(formBody)
+      expect(mockRes.locals!.formData).toEqual(formBody)
     })
 
-    it('does not set verifyFormData when formBody flash is empty', async () => {
+    it('does not modify formData when formBody flash is empty', async () => {
       const flashMock = createFlashMock()
       mockReq.flash = jest.fn().mockImplementation(flashMock)
 
       await populateValidationErrors()(mockReq as Request, mockRes as Response, mockNext)
 
-      expect(mockRes.locals!.verifyFormData).toBeUndefined()
+      expect(mockRes.locals!.formData).toEqual({})
     })
-  })
 
-  describe('checkin form data restoration', () => {
     it('restores checkin form data to formData', async () => {
       const formBody: CheckinFormData = { mentalHealth: MentalHealth.Well }
       const flashMock = createFlashMock([], [JSON.stringify(formBody)])
@@ -130,7 +127,6 @@ describe('populateValidationErrors middleware', () => {
       await populateValidationErrors()(mockReq as Request, mockRes as Response, mockNext)
 
       expect(mockRes.locals!.formData).toEqual({ mentalHealth: MentalHealth.Well })
-      expect(mockRes.locals!.verifyFormData).toBeUndefined()
     })
 
     it('merges checkin form body with existing formData', async () => {

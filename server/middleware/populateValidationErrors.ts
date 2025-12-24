@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express'
-import { isVerifyFormData } from '../data/models/formData'
 
 export default function populateValidationErrors(): RequestHandler {
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -12,13 +11,7 @@ export default function populateValidationErrors(): RequestHandler {
     const formBody = req.flash('formBody')[0]
     if (formBody) {
       const parsedFormBody = JSON.parse(formBody)
-
-      // Route to appropriate locals field based on form type
-      if (isVerifyFormData(parsedFormBody)) {
-        res.locals.verifyFormData = parsedFormBody
-      } else {
-        res.locals.formData = { ...res.locals.formData, ...parsedFormBody }
-      }
+      res.locals.formData = { ...res.locals.formData, ...parsedFormBody }
     }
 
     next()
