@@ -1,9 +1,7 @@
 import { RequestHandler } from 'express'
 import logger from '../../../logger'
-import { services } from '../../services'
 import { buildPageParams, getSubmissionId } from './helpers'
-
-const { esupervisionService } = services()
+import { SubmissionLocals } from './types'
 
 /**
  * GET /:submissionId/video/inform
@@ -32,6 +30,8 @@ export const renderVideoInform: RequestHandler = async (req, res, next) => {
 export const renderVideoRecord: RequestHandler = async (req, res, next) => {
   try {
     const { submissionId } = req.params
+    const locals = res.locals as SubmissionLocals
+    const { esupervisionService } = locals
     const videoContent = res.locals.getNamespace('video')
     const recordContent = videoContent.record as Record<string, unknown>
 
@@ -67,6 +67,8 @@ export const renderVideoRecord: RequestHandler = async (req, res, next) => {
 export const handleVideoVerify: RequestHandler = async (req, res) => {
   try {
     const submissionId = getSubmissionId(req)
+    const locals = res.locals as SubmissionLocals
+    const { esupervisionService } = locals
     logger.info('handleVideoVerify', submissionId)
 
     res.setHeader('Content-Type', 'application/json')

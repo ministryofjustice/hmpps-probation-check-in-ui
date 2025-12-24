@@ -6,25 +6,18 @@ jest.mock('../../../logger', () => ({
   info: jest.fn(),
 }))
 
-const mockGetCheckinUploadLocation = jest.fn()
-const mockAutoVerifyCheckinIdentity = jest.fn()
-
-jest.mock('../../services', () => ({
-  services: () => ({
-    esupervisionService: {
-      getCheckinUploadLocation: (...args: unknown[]) => mockGetCheckinUploadLocation(...args),
-      autoVerifyCheckinIdentity: (...args: unknown[]) => mockAutoVerifyCheckinIdentity(...args),
-    },
-  }),
-}))
-
 describe('videoController', () => {
   let mockReq: Partial<Request>
   let mockRes: Partial<Response>
   let mockNext: jest.MockedFunction<NextFunction>
+  let mockGetCheckinUploadLocation: jest.Mock
+  let mockAutoVerifyCheckinIdentity: jest.Mock
 
   beforeEach(() => {
     jest.clearAllMocks()
+
+    mockGetCheckinUploadLocation = jest.fn()
+    mockAutoVerifyCheckinIdentity = jest.fn()
 
     mockReq = {
       params: { submissionId: 'test-submission-id' },
@@ -50,6 +43,10 @@ describe('videoController', () => {
             pageTitle: 'View Video',
           },
         })),
+        esupervisionService: {
+          getCheckinUploadLocation: mockGetCheckinUploadLocation,
+          autoVerifyCheckinIdentity: mockAutoVerifyCheckinIdentity,
+        },
       } as unknown as Response['locals'],
     }
     mockNext = jest.fn()

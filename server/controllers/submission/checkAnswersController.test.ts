@@ -9,23 +9,16 @@ jest.mock('../../../logger', () => ({
   error: jest.fn(),
 }))
 
-const mockSubmitCheckin = jest.fn()
-
-jest.mock('../../services', () => ({
-  services: () => ({
-    esupervisionService: {
-      submitCheckin: (...args: unknown[]) => mockSubmitCheckin(...args),
-    },
-  }),
-}))
-
 describe('checkAnswersController', () => {
   let mockReq: Partial<Request>
   let mockRes: Partial<Response>
   let mockNext: jest.MockedFunction<NextFunction>
+  let mockSubmitCheckin: jest.Mock
 
   beforeEach(() => {
     jest.clearAllMocks()
+
+    mockSubmitCheckin = jest.fn()
 
     mockReq = {
       params: { submissionId: 'test-submission-id' },
@@ -53,6 +46,9 @@ describe('checkAnswersController', () => {
           callback: CallbackRequested.Yes,
           callbackDetails: 'Please call in afternoon',
           autoVerifyResult: 'MATCH',
+        },
+        esupervisionService: {
+          submitCheckin: mockSubmitCheckin,
         },
       } as unknown as Response['locals'],
     }

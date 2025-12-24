@@ -1,10 +1,7 @@
 import { RequestHandler } from 'express'
 import logger from '../../../logger'
-import { services } from '../../services'
 import { buildPageParams } from './helpers'
 import { SubmissionLocals } from './types'
-
-const { esupervisionService } = services()
 
 /**
  * GET /:submissionId/verify
@@ -32,6 +29,7 @@ export const handleVerify: RequestHandler = async (req, res, next) => {
   const { submissionId } = req.params
   const { firstName, lastName, day, month, year } = req.body
   const locals = res.locals as SubmissionLocals
+  const { esupervisionService } = locals
   const { crn } = locals.checkin
 
   if (!crn) {
@@ -55,6 +53,10 @@ export const handleVerify: RequestHandler = async (req, res, next) => {
 
     if (!result.verified) {
       logger.info(`Identity verification failed for submissionId ${submissionId}: ${result.error}`)
+
+      // Preserve entered form data so the verify page can repopulate fields when the user tries again
+      req.flash('formBody', JSON.stringify(req.body))
+
       return res.render('pages/submission/no-match-found', {
         firstName,
         lastName,

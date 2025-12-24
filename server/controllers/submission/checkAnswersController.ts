@@ -1,13 +1,10 @@
 import { RequestHandler } from 'express'
 import logger from '../../../logger'
-import { services } from '../../services'
 import { buildPageParams, getSubmissionId } from './helpers'
 import { buildSummaryRows, buildVideoRows } from './summaryRowBuilder'
 import { SubmissionLocals } from './types'
 import { DeviceInfo } from '../../data/models/survey/surveyResponse'
 import { createEmptyFormData, normalizeAssistance } from '../../data/models/formData'
-
-const { esupervisionService } = services()
 
 /**
  * GET /:submissionId/check-your-answers
@@ -44,7 +41,7 @@ export const renderCheckAnswers: RequestHandler = async (req, res, next) => {
  */
 export const handleSubmission: RequestHandler = async (req, res, next) => {
   const locals = res.locals as SubmissionLocals
-  const { formData } = locals
+  const { formData, esupervisionService } = locals
   const submissionId = getSubmissionId(req)
 
   // Validate required fields before submission

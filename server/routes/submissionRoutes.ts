@@ -49,6 +49,9 @@ export default function routes({ esupervisionService }: Services): Router {
     asyncMiddleware(async (req, res, next) => {
       const { submissionId } = req.params
 
+      // Inject esupervisionService into res.locals for controllers
+      res.locals.esupervisionService = esupervisionService
+
       const notFound = () => res.render('pages/submission/not-found')
       const expired = () => res.render('pages/submission/expired')
 

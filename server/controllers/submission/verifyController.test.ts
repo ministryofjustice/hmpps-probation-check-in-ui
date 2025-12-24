@@ -7,23 +7,16 @@ jest.mock('../../../logger', () => ({
   error: jest.fn(),
 }))
 
-const mockVerifyIdentity = jest.fn()
-
-jest.mock('../../services', () => ({
-  services: () => ({
-    esupervisionService: {
-      verifyIdentity: (...args: unknown[]) => mockVerifyIdentity(...args),
-    },
-  }),
-}))
-
 describe('verifyController', () => {
   let mockReq: Partial<Request>
   let mockRes: Partial<Response>
   let mockNext: jest.MockedFunction<NextFunction>
+  let mockVerifyIdentity: jest.Mock
 
   beforeEach(() => {
     jest.clearAllMocks()
+
+    mockVerifyIdentity = jest.fn()
 
     mockReq = {
       params: { submissionId: 'test-submission-id' },
@@ -38,6 +31,9 @@ describe('verifyController', () => {
       locals: {
         t: jest.fn((key: string) => `translated:${key}`),
         checkin: { crn: 'ABC123' },
+        esupervisionService: {
+          verifyIdentity: mockVerifyIdentity,
+        },
       } as unknown as Response['locals'],
     }
     mockNext = jest.fn()
