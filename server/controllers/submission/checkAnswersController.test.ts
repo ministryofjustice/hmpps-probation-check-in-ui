@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
 
 import { renderCheckAnswers, handleSubmission } from './checkAnswersController'
+import MentalHealth from '../../data/models/survey/mentalHealth'
+import CallbackRequested from '../../data/models/survey/callbackRequested'
+import SupportAspect from '../../data/models/survey/supportAspect'
 
 jest.mock('../../../logger', () => ({
   error: jest.fn(),
@@ -43,11 +46,11 @@ describe('checkAnswersController', () => {
           submitButton: 'Submit',
         })),
         formData: {
-          mentalHealth: 'WELL',
-          assistance: ['MENTAL_HEALTH', 'ALCOHOL'],
+          mentalHealth: MentalHealth.Well,
+          assistance: [SupportAspect.MentalHealth, SupportAspect.Alcohol],
           mentalHealthSupport: 'Need help with anxiety',
           alcoholSupport: 'Cutting back',
-          callback: 'YES',
+          callback: CallbackRequested.Yes,
           callbackDetails: 'Please call in afternoon',
           autoVerifyResult: 'MATCH',
         },
@@ -146,7 +149,7 @@ describe('checkAnswersController', () => {
     })
 
     it('does not include callback details when callback is NO', async () => {
-      mockRes.locals!.formData!.callback = 'NO'
+      mockRes.locals!.formData!.callback = CallbackRequested.No
       mockRes.locals!.formData!.callbackDetails = undefined
 
       await renderCheckAnswers(mockReq as Request, mockRes as Response, mockNext)
@@ -202,10 +205,10 @@ describe('checkAnswersController', () => {
   describe('handleSubmission', () => {
     beforeEach(() => {
       mockRes.locals!.formData = {
-        mentalHealth: 'WELL',
-        assistance: ['MENTAL_HEALTH'],
+        mentalHealth: MentalHealth.Well,
+        assistance: [SupportAspect.MentalHealth],
         mentalHealthSupport: 'Need help',
-        callback: 'YES',
+        callback: CallbackRequested.Yes,
         callbackDetails: 'Call me',
         checkinStartedAt: Date.now(),
       }
@@ -231,7 +234,7 @@ describe('checkAnswersController', () => {
     })
 
     it('converts string assistance to array', async () => {
-      mockRes.locals!.formData!.assistance = 'MENTAL_HEALTH'
+      mockRes.locals!.formData!.assistance = SupportAspect.MentalHealth
 
       await handleSubmission(mockReq as Request, mockRes as Response, mockNext)
 

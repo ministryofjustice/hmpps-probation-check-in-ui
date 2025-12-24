@@ -31,9 +31,9 @@ export default class LoggedInUser {
 
   public static fromUserToken(token: string): LoggedInUser {
     const {
-      name,
-      user_id: userId,
-      user_name: userName,
+      name = '',
+      user_id: userId = '',
+      user_name: userName = '',
       authorities: roles = [],
     } = jwtDecode(token) as {
       name?: string

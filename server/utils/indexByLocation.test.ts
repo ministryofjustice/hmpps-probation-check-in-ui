@@ -99,7 +99,7 @@ describe('indexByLocation', () => {
     })
 
     it('returns empty object for null input', () => {
-      const result = indexByLocation(null as unknown as TestRow[], row => row)
+      const result = indexByLocation(null, row => row)
       expect(result).toEqual({})
     })
 

@@ -12,8 +12,8 @@ describe('convert to title case', () => {
     ['Leading spaces', '  RobeRT', '  Robert'],
     ['Trailing spaces', 'RobeRT  ', 'Robert  '],
     ['Hyphenated', 'Robert-John SmiTH-jONes-WILSON', 'Robert-John Smith-Jones-Wilson'],
-  ])('%s convertToTitleCase(%s, %s)', (_: string, a: string, expected: string) => {
-    expect(convertToTitleCase(a)).toEqual(expected)
+  ])('%s convertToTitleCase(%s, %s)', (_: string | null, a: string | null, expected: string) => {
+    expect(convertToTitleCase(a as string)).toEqual(expected)
   })
 })
 
@@ -25,8 +25,8 @@ describe('initialise name', () => {
     ['Two words', 'Robert James', 'R. James'],
     ['Three words', 'Robert James Smith', 'R. Smith'],
     ['Double barrelled', 'Robert-John Smith-Jones-Wilson', 'R. Smith-Jones-Wilson'],
-  ])('%s initialiseName(%s, %s)', (_: string, a: string, expected: string) => {
-    expect(initialiseName(a)).toEqual(expected)
+  ])('%s initialiseName(%s, %s)', (_: string | null, a: string | null, expected: string | null) => {
+    expect(initialiseName(a ?? undefined)).toEqual(expected)
   })
 })
 
@@ -44,8 +44,8 @@ describe('formatDate', () => {
     ['custom format d MMM', '2024-03-15', 'd MMM', '15 Mar'],
   ])(
     '%s formatDate(%s, %s) = %s',
-    (_: string, date: string | Date | undefined, fmt: string | undefined, expected: string | undefined) => {
-      expect(formatDate(date, fmt)).toEqual(expected)
+    (_: string, date: string | Date | null | undefined, fmt: string | undefined, expected: string | undefined) => {
+      expect(formatDate(date ?? undefined, fmt)).toEqual(expected)
     },
   )
 })

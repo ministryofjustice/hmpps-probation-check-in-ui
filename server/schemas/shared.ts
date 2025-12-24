@@ -31,12 +31,13 @@ export function createDateSchema({
   prefix,
   who = 'your',
   label = 'date',
-  groupPath = prefix,
+  groupPath,
   rules,
 }: DateSchemaOptions<string>) {
   const dayKey = prefix ? `${prefix}Day` : 'day'
   const monthKey = prefix ? `${prefix}Month` : 'month'
   const yearKey = prefix ? `${prefix}Year` : 'year'
+  const effectiveGroupPath = groupPath ?? prefix ?? 'date'
   const sentenceCaseLabel = sentenceCase(label)
   return z
     .object({
@@ -56,7 +57,7 @@ export function createDateSchema({
         ctx.addIssue({
           code: 'custom',
           message: `Enter ${who} ${label.toLowerCase()}`,
-          path: [groupPath],
+          path: [effectiveGroupPath],
         })
         return
       }
@@ -108,7 +109,7 @@ export function createDateSchema({
               return [yearKey]
           }
         }
-        return [groupPath]
+        return [effectiveGroupPath]
       }
 
       if (missingParts.length > 0) {
@@ -139,9 +140,9 @@ export function createDateSchema({
         path = [monthKey]
       } else if (dayInvalid && monthInvalid) {
         // Both day and month are invalid, highlight date group
-        path = [groupPath]
+        path = [effectiveGroupPath]
       } else if (yearInvalid || !isExists(year, monthIndex, day)) {
-        path = [groupPath]
+        path = [effectiveGroupPath]
       }
 
       if (path) {
@@ -163,7 +164,7 @@ export function createDateSchema({
         ctx.addIssue({
           code: 'custom',
           message: `${sentenceCaseLabel} must be today or in the future`,
-          path: [groupPath],
+          path: [effectiveGroupPath],
         })
       }
 
@@ -173,7 +174,7 @@ export function createDateSchema({
           ctx.addIssue({
             code: 'custom',
             message: `${sentenceCaseLabel} must be in the future`,
-            path: [groupPath],
+            path: [effectiveGroupPath],
           })
         }
       }
@@ -184,7 +185,7 @@ export function createDateSchema({
           ctx.addIssue({
             code: 'custom',
             message: `${sentenceCaseLabel} must be in the past`,
-            path: [groupPath],
+            path: [effectiveGroupPath],
           })
         }
       }

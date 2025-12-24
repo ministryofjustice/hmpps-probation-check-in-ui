@@ -14,6 +14,13 @@ import { findError } from '../middleware/validateFormData'
 import getUserFriendlyString from './userFriendlyStrings'
 import { t as translate, getContent, getNamespace, Language, DEFAULT_LANGUAGE } from '../content'
 
+interface NunjucksContext {
+  ctx?: {
+    lang?: Language
+    formData?: Record<string, unknown>
+  }
+}
+
 export default function nunjucksSetup(app: express.Express): void {
   app.set('view engine', 'njk')
 
@@ -63,8 +70,8 @@ export default function nunjucksSetup(app: express.Express): void {
    * Translate a string using the current language from context
    * Usage in templates: {{ 'common.back' | t }} or {{ t('common.back') }}
    */
-  njkEnv.addFilter('t', function translateFilter(key: string, fallback?: string) {
-    const lang: Language = this.ctx?.lang || DEFAULT_LANGUAGE
+  njkEnv.addFilter('t', function translateFilter(this: NunjucksContext, key: string, fallback?: string) {
+    const lang: Language = this.ctx?.lang ?? DEFAULT_LANGUAGE
     return translate(lang, key, fallback)
   })
 
@@ -72,8 +79,8 @@ export default function nunjucksSetup(app: express.Express): void {
    * Get translated content using the current language
    * For use when res.locals.t is not yet available (e.g., in macros)
    */
-  njkEnv.addGlobal('t', function translateGlobal(key: string, fallback?: string) {
-    const lang: Language = this.ctx?.lang || DEFAULT_LANGUAGE
+  njkEnv.addGlobal('t', function translateGlobal(this: NunjucksContext, key: string, fallback?: string) {
+    const lang: Language = this.ctx?.lang ?? DEFAULT_LANGUAGE
     return translate(lang, key, fallback)
   })
 
@@ -81,8 +88,10 @@ export default function nunjucksSetup(app: express.Express): void {
    * Get a content object by key path
    * Usage: {% set content = getContent('questions.mentalHealth') %}
    */
-  njkEnv.addGlobal('getContent', function getContentGlobal<T = unknown>(key: string): T | undefined {
-    const lang: Language = this.ctx?.lang || DEFAULT_LANGUAGE
+  njkEnv.addGlobal('getContent', function getContentGlobal<T = unknown>(this: NunjucksContext, key: string):
+    | T
+    | undefined {
+    const lang: Language = this.ctx?.lang ?? DEFAULT_LANGUAGE
     return getContent<T>(lang, key)
   })
 
@@ -90,8 +99,10 @@ export default function nunjucksSetup(app: express.Express): void {
    * Get a namespace of content
    * Usage: {% set videoContent = getNamespace('video') %}
    */
-  njkEnv.addGlobal('getNamespace', function getNamespaceGlobal<T = Record<string, unknown>>(namespace: string): T {
-    const lang: Language = this.ctx?.lang || DEFAULT_LANGUAGE
+  njkEnv.addGlobal('getNamespace', function getNamespaceGlobal<
+    T = Record<string, unknown>,
+  >(this: NunjucksContext, namespace: string): T {
+    const lang: Language = this.ctx?.lang ?? DEFAULT_LANGUAGE
     return getNamespace<T>(lang, namespace)
   })
 
@@ -101,8 +112,8 @@ export default function nunjucksSetup(app: express.Express): void {
    */
   njkEnv.addFilter(
     'userFriendlyStringTranslated',
-    function userFriendlyStringTranslated(term: string, prefix?: string) {
-      const lang: Language = this.ctx?.lang || DEFAULT_LANGUAGE
+    function userFriendlyStringTranslated(this: NunjucksContext, term: string, prefix?: string) {
+      const lang: Language = this.ctx?.lang ?? DEFAULT_LANGUAGE
       if (prefix) {
         const translated = getContent<string>(lang, `${prefix}.${term}`)
         if (translated) return translated
@@ -156,13 +167,17 @@ export default function nunjucksSetup(app: express.Express): void {
       }
     }
 
-    if (!isValid(d)) {
+    if (!d || !isValid(d)) {
       try {
         d = new Date(String(input))
       } catch (e) {
         logger.error(e, `Could not parse date -> ${input}`)
         return ''
       }
+    }
+
+    if (!d || !isValid(d)) {
+      return ''
     }
 
     return format(d, 'd MMMM yyyy')
@@ -176,13 +191,13 @@ export default function nunjucksSetup(app: express.Express): void {
     return format(d, "d MMMM yyyy', ' h:mmaaa")
   })
 
-  njkEnv.addGlobal('checked', function isChecked(name: string, value: string) {
-    if (this.ctx.formData === undefined) {
+  njkEnv.addGlobal('checked', function isChecked(this: NunjucksContext, name: string, value: string) {
+    if (this.ctx?.formData === undefined) {
       return ''
     }
 
-    name = !name.match(/[.[]/g) ? `['${name}']` : name
-    const storedValue = getKeypath(this.ctx.formData, name)
+    const keyPath = !name.match(/[.[]/g) ? `['${name}']` : name
+    const storedValue = getKeypath(this.ctx.formData, keyPath)
 
     if (storedValue === undefined) {
       return ''

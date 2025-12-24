@@ -1,5 +1,4 @@
-export default class PageInfo {
+export default interface PageInfo {
   pageNumber: number
-
   pageSize: number
 }

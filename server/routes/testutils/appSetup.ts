@@ -7,11 +7,28 @@ import nunjucksSetup from '../../utils/nunjucksSetup'
 import errorHandler from '../../errorHandler'
 import type { Services } from '../../services'
 import AuditService from '../../services/auditService'
+import HmppsAuditClient from '../../data/hmppsAuditClient'
 import setUpWebSession from '../../middleware/setUpWebSession'
 
 jest.mock('../../services/auditService')
+jest.mock('../../data/hmppsAuditClient')
 
 export const flashProvider = jest.fn()
+
+/**
+ * Create a mock AuditService for testing.
+ * Since jest.mock() replaces the constructor, we provide a mock HmppsAuditClient.
+ */
+function createMockAuditService(): jest.Mocked<AuditService> {
+  const MockedHmppsAuditClient = HmppsAuditClient as jest.MockedClass<typeof HmppsAuditClient>
+  const mockAuditClient = new MockedHmppsAuditClient({
+    queueUrl: 'mock-queue-url',
+    region: 'mock-region',
+    serviceName: 'mock-service',
+    enabled: false,
+  })
+  return new AuditService(mockAuditClient) as jest.Mocked<AuditService>
+}
 
 function appSetup(services: Services, production: boolean): Express {
   const app = express()
@@ -40,7 +57,7 @@ function appSetup(services: Services, production: boolean): Express {
 export function appWithAllRoutes({
   production = false,
   services = {
-    auditService: new AuditService(null) as jest.Mocked<AuditService>,
+    auditService: createMockAuditService(),
   },
 }: {
   production?: boolean

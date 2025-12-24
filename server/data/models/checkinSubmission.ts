@@ -1,5 +1,5 @@
 import SurveyResponse from './survey/surveyResponse'
 
-export default class CheckinSubmission {
+export default interface CheckinSubmission {
   survey: SurveyResponse
 }

@@ -14,7 +14,7 @@ export function buildPageParams(req: Request): Record<string, string | boolean> 
   const cya = req.query.checkAnswers === 'true'
   return {
     cya,
-    autoVerifyResult: cya ? (req.session?.formData?.autoVerifyResult as string) || '' : '',
+    autoVerifyResult: cya ? (req.session?.formData?.autoVerifyResult ?? '') : '',
     submissionId: getSubmissionId(req),
   }
 }

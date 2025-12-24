@@ -1,23 +1,46 @@
 import { RequestHandler, Request, Response, NextFunction } from 'express'
+import {
+  CheckinFormData,
+  isCheckinFormDataKey,
+  createEmptyFormData,
+  setFormDataValue,
+  deleteFormDataValue,
+} from '../data/models/formData'
 
+/**
+ * Middleware to store form data in session and expose it via res.locals.
+ *
+ * This middleware:
+ * 1. Initializes formData in session if not present
+ * 2. Processes incoming form data from req.body
+ * 3. Handles checkbox unchecking patterns (_unchecked values)
+ * 4. Only accepts known form data keys (ignores unknown fields)
+ * 5. Copies session formData to res.locals for template access
+ */
 export default function storeFormDataInSession(): RequestHandler {
   return async (req: Request, res: Response, next: NextFunction) => {
-    if (!req.session.formData) {
-      req.session.formData = {}
-    }
-    res.locals.formData = {}
+    // Initialize session formData if not present
+    const formData: CheckinFormData = req.session.formData ?? createEmptyFormData()
+    req.session.formData = formData
+    res.locals.formData = createEmptyFormData()
 
     if (req.body) {
-      Object.keys(req.body).forEach(i => {
-        if (i.indexOf('_') === 0) {
+      Object.keys(req.body).forEach(key => {
+        // Skip private/hidden fields (starting with underscore)
+        if (key.startsWith('_')) {
           return
         }
 
-        let val = req.body[i]
+        // Only process known form data keys for type safety
+        if (!isCheckinFormDataKey(key)) {
+          return
+        }
+
+        let val = req.body[key]
 
         // Delete values when users unselect checkboxes
         if (val === '_unchecked') {
-          delete req.session.formData[i]
+          deleteFormDataValue(formData, key)
           return
         }
 
@@ -26,11 +49,12 @@ export default function storeFormDataInSession(): RequestHandler {
           val = val.filter((item: string) => item !== '_unchecked')
         }
 
-        req.session.formData[i] = val
+        setFormDataValue(formData, key, val)
       })
     }
 
-    Object.assign(res.locals.formData || {}, req.session.formData)
+    // Copy session formData to res.locals
+    Object.assign(res.locals.formData, req.session.formData)
 
     next()
   }

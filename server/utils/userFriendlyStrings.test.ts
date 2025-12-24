@@ -13,6 +13,7 @@ describe('getUserFriendlyString', () => {
       ['EIGHT_WEEKS', 'Every 8 weeks'],
       ['VERY_WELL', 'Very well'],
       ['WELL', 'Well'],
+      ['OK', 'OK'],
       ['NOT_GREAT', 'Not great'],
       ['STRUGGLING', 'Struggling'],
       ['MENTAL_HEALTH', 'Mental health'],
@@ -63,11 +64,11 @@ describe('getUserFriendlyString', () => {
 
   describe('handles edge cases', () => {
     it('returns empty string for null', () => {
-      expect(getUserFriendlyString(null as unknown as string)).toEqual('')
+      expect(getUserFriendlyString(null)).toEqual('')
     })
 
     it('returns empty string for undefined', () => {
-      expect(getUserFriendlyString(undefined as unknown as string)).toEqual('')
+      expect(getUserFriendlyString(undefined)).toEqual('')
     })
 
     it('returns empty string for empty string', () => {

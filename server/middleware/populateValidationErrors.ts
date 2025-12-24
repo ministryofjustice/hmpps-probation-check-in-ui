@@ -6,6 +6,15 @@ export default function populateValidationErrors(): RequestHandler {
     if (validationErrors) {
       res.locals.validationErrors = JSON.parse(validationErrors)
     }
+
+    // Restore form body on validation failure (preserves user input)
+    const formBody = req.flash('formBody')[0]
+    if (formBody) {
+      const parsedFormBody = JSON.parse(formBody)
+      // Merge with existing formData, preserving session data but overriding with flashed values
+      res.locals.formData = { ...res.locals.formData, ...parsedFormBody }
+    }
+
     next()
   }
 }

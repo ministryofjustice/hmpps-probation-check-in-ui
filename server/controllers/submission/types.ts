@@ -1,10 +1,11 @@
 import { Response, Locals } from 'express'
 import Checkin from '../../data/models/checkin'
 import { Language } from '../../content'
+import { CheckinFormData } from '../../data/models/formData'
 
 export interface SubmissionLocals extends Locals {
   checkin: Checkin
-  formData: Record<string, unknown>
+  formData: CheckinFormData
   submissionAuthorized?: string
   // Language/i18n helpers from languageMiddleware
   lang: Language

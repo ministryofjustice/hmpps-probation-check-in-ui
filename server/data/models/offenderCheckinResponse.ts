@@ -1,8 +1,7 @@
 import Checkin from './checkin'
 import OffenderCheckinLogs from './offenderCheckinLogs'
 
-export default class OffenderCheckinResponse {
+export default interface OffenderCheckinResponse {
   checkin: Checkin
-
   checkinLogs: OffenderCheckinLogs
 }

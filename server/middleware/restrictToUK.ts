@@ -56,8 +56,8 @@ function isAllowed(countryCode: string | null): boolean {
   return (countryCode ?? '').toUpperCase() === ALLOWED_COUNTRY
 }
 
-const logOutsideAccess = async (checkinId: string, ip: string, countryCode: string) => {
-  if (checkinId) {
+const logOutsideAccess = async (checkinId: string | undefined, ip: string, countryCode: string | null) => {
+  if (checkinId && countryCode) {
     await esupervisionService.logCheckinEvent(
       checkinId,
       'CHECKIN_OUTSIDE_ACCESS',
@@ -83,7 +83,7 @@ export default async function restrictToUK(req: Request, res: Response, next: Ne
     const ip = getClientIp(req)
     const matches = req.path.match(/^\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/)
     const checkinId = matches && matches[1] ? matches[1] : undefined
-    const logAccess = checkinId ? logOutsideAccess : async (_checkinId: string, _ip: string, _countryCode: string) => {}
+    const logAccess = logOutsideAccess
 
     // 4) Allow local development to bypass
     if (localDevBypass(ip)) return next()

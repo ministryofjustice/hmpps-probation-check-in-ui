@@ -19,12 +19,17 @@ export default function validateFormData(schema: z.ZodTypeAny) {
       })
 
       req.flash('validationErrors', JSON.stringify(errorMessages))
+      req.flash('formBody', JSON.stringify(req.body))
       res.redirect(req.originalUrl)
     }
   }
 }
 
-export const findError = (errors: validationErrors, fieldName: string) => {
+/**
+ * Find a validation error for a specific field.
+ * Handles null/undefined errors gracefully.
+ */
+export const findError = (errors: validationErrors | null | undefined, fieldName: string) => {
   if (!errors || !Array.isArray(errors)) {
     return null
   }

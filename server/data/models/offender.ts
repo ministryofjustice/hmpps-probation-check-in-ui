@@ -1,32 +1,18 @@
 import OffenderStatus from './offenderStatus'
 import CheckinInterval from './checkinInterval'
 
-export default class Offender {
+export default interface Offender {
   uuid: string
-
   firstName: string
-
   lastName: string
-
   crn: string
-
-  dateOfBirth: string // TODO: parse date
-
+  dateOfBirth: string
   status: OffenderStatus
-
-  createdAt: string // TODO: parse datetime
-
-  // val updatedAt: Instant,
+  createdAt: string
   email: string
-
   phoneNumber: string
-
-  // NOTE: not always present!
-  photoUrl: string // TODO: parse URL
-
+  photoUrl: string
   firstCheckin: string
-
   checkinInterval: CheckinInterval
-
   deactivationEntry?: { createdAt: string; comment: string; uuid: string }
 }

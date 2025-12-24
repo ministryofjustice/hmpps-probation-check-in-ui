@@ -1,5 +1,28 @@
 import { RequestHandler } from 'express'
 import { buildPageParams, buildBackLink, buildRedirectUrl } from './helpers'
+import SupportAspect from '../../data/models/survey/supportAspect'
+import { CheckinFormData, SupportFieldKey } from '../../data/models/formData'
+
+/**
+ * Mapping of SupportAspect values to their corresponding form field names.
+ */
+const SUPPORT_FIELDS_MAP: Record<string, SupportFieldKey> = {
+  [SupportAspect.MentalHealth]: 'mentalHealthSupport',
+  [SupportAspect.Alcohol]: 'alcoholSupport',
+  [SupportAspect.Drugs]: 'drugsSupport',
+  [SupportAspect.Money]: 'moneySupport',
+  [SupportAspect.Housing]: 'housingSupport',
+  [SupportAspect.SupportSystem]: 'supportSystemSupport',
+  [SupportAspect.Other]: 'otherSupport',
+}
+
+/**
+ * Clear a support field in formData.
+ */
+function clearSupportField(formData: CheckinFormData, field: SupportFieldKey): void {
+  // eslint-disable-next-line no-param-reassign
+  formData[field] = ''
+}
 
 /**
  * GET /:submissionId/questions/mental-health
@@ -112,22 +135,14 @@ function getConditionalFieldName(value: string): string | null {
 export const handleAssistance: RequestHandler = async (req, res) => {
   const { assistance } = req.body
 
-  // Field mapping for conditional support fields
-  const supportFieldsMap: Record<string, string> = {
-    MENTAL_HEALTH: 'mentalHealthSupport',
-    ALCOHOL: 'alcoholSupport',
-    DRUGS: 'drugsSupport',
-    MONEY: 'moneySupport',
-    HOUSING: 'housingSupport',
-    SUPPORT_SYSTEM: 'supportSystemSupport',
-    OTHER: 'otherSupport',
-  }
-
   // Clear support fields when parent checkbox is unchecked
   const selectedAssistance = Array.isArray(assistance) ? assistance : [assistance]
-  for (const [key, field] of Object.entries(supportFieldsMap)) {
-    if (!selectedAssistance.includes(key) && req.session.formData) {
-      req.session.formData[field] = ''
+
+  if (req.session.formData) {
+    for (const [aspectValue, fieldKey] of Object.entries(SUPPORT_FIELDS_MAP)) {
+      if (!selectedAssistance.includes(aspectValue)) {
+        clearSupportField(req.session.formData, fieldKey)
+      }
     }
   }
 

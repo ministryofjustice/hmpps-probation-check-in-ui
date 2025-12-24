@@ -75,12 +75,21 @@ describe('validateFormData middleware', () => {
 
       validateFormData(schema)(mockReq as Request, mockRes as Response, mockNext)
 
-      const flashCall = (mockReq.flash as jest.Mock).mock.calls[0]
+      const flashCall = (mockReq.flash as jest.Mock).mock.calls.find(call => call[0] === 'validationErrors')
       const errors = JSON.parse(flashCall[1])
       expect(errors).toContainEqual({
         text: 'Invalid email',
         href: '#email',
       })
+    })
+
+    it('stores form body in flash for restoration', () => {
+      const schema = z.object({ name: z.string().min(1, 'Name is required') })
+      mockReq.body = { name: '', email: 'test@example.com' }
+
+      validateFormData(schema)(mockReq as Request, mockRes as Response, mockNext)
+
+      expect(mockReq.flash).toHaveBeenCalledWith('formBody', JSON.stringify({ name: '', email: 'test@example.com' }))
     })
 
     it('handles nested field paths', () => {
@@ -93,7 +102,7 @@ describe('validateFormData middleware', () => {
 
       validateFormData(schema)(mockReq as Request, mockRes as Response, mockNext)
 
-      const flashCall = (mockReq.flash as jest.Mock).mock.calls[0]
+      const flashCall = (mockReq.flash as jest.Mock).mock.calls.find(call => call[0] === 'validationErrors')
       const errors = JSON.parse(flashCall[1])
       expect(errors).toContainEqual({
         text: 'Name required',
@@ -124,17 +133,18 @@ describe('findError', () => {
   })
 
   it('returns null for undefined errors', () => {
-    const result = findError(undefined as unknown as validationErrors, 'name')
+    const result = findError(undefined, 'name')
     expect(result).toBeNull()
   })
 
   it('returns null for null errors', () => {
-    const result = findError(null as unknown as validationErrors, 'name')
+    const result = findError(null, 'name')
     expect(result).toBeNull()
   })
 
   it('returns null for non-array errors', () => {
-    const result = findError('not-an-array' as unknown as validationErrors, 'name')
+    // @ts-expect-error - Testing runtime handling of invalid input type
+    const result = findError('not-an-array', 'name')
     expect(result).toBeNull()
   })
 
