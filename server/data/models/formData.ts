@@ -157,3 +157,35 @@ export function normalizeAssistance(assistance: SupportAspect | SupportAspect[] 
   }
   return [assistance]
 }
+
+/**
+ * Form data for identity verification page.
+ * This is transient data used only for form restoration on validation failure.
+ * It is NOT persisted in session and NOT submitted to the API.
+ */
+export interface VerifyFormData {
+  firstName?: string
+  lastName?: string
+  day?: string
+  month?: string
+  year?: string
+}
+
+/**
+ * Keys that identify verify form data.
+ */
+export const VERIFY_FORM_DATA_KEYS: readonly (keyof VerifyFormData)[] = [
+  'firstName',
+  'lastName',
+  'day',
+  'month',
+  'year',
+] as const
+
+/**
+ * Check if form data contains verify page fields.
+ * Used to route flashed form data to the correct res.locals field.
+ */
+export function isVerifyFormData(data: Record<string, unknown>): boolean {
+  return VERIFY_FORM_DATA_KEYS.some(key => key in data)
+}

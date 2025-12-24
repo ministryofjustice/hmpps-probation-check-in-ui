@@ -1,4 +1,4 @@
-import { CheckinFormData } from '../../data/models/formData'
+import { CheckinFormData, VerifyFormData } from '../../data/models/formData'
 
 export declare module 'express-session' {
   // Declare that the session will potentially contain these additional fields
@@ -30,6 +30,7 @@ export declare global {
     interface Locals {
       user: LoggedInUser
       formData?: CheckinFormData | null
+      verifyFormData?: VerifyFormData | null
     }
   }
 }

@@ -30,7 +30,7 @@
     name: "firstName",
     autocomplete: "given-name",
     errorMessage: validationErrors | findError("firstName"),
-    value: formData["firstName"]
+    value: verifyFormData["firstName"] if verifyFormData else ""
   }) }}
 
   {{ govukInput({
@@ -43,7 +43,7 @@
     name: "lastName",
     autocomplete: "family-name",
     errorMessage: validationErrors | findError("lastName"),
-    value: formData["lastName"]
+    value: verifyFormData["lastName"] if verifyFormData else ""
   }) }}
 
   {{ validatedDateInput({
@@ -55,8 +55,8 @@
     },
     hintText: content.dateOfBirth.hint,
     validationErrors: validationErrors,
-    day: formData["day"],
-    month: formData["month"],
-    year: formData["year"]
+    day: verifyFormData["day"] if verifyFormData else "",
+    month: verifyFormData["month"] if verifyFormData else "",
+    year: verifyFormData["year"] if verifyFormData else ""
   }) }}
 {% endblock %}
