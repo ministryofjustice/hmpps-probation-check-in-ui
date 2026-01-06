@@ -91,7 +91,7 @@ describe.skip('Start Check-in Journey', () => {
 
     cy.url().should('include', '/check-your-answers')
     const checkAnswersPage = SubmissionPage.verifyOnPage(CheckAnswersPage)
-    checkAnswersPage.verifySummaryValue('How are you feeling?', 'OK')
+    checkAnswersPage.verifySummaryValue('How have you been feeling since we last spoke?', 'OK')
     checkAnswersPage.verifySummaryValue(
       'Tell us why you need help with money',
       'I am having trouble with my budgeting.',
@@ -105,12 +105,12 @@ describe.skip('Start Check-in Journey', () => {
       'Tell us what you need to talk about',
       'I would like to discuss my upcoming appointment.',
     )
-    checkAnswersPage.clickChangeLink('How are you feeling?')
+    checkAnswersPage.clickChangeLink('How have you been feeling since we last spoke?')
     mentalHealthPage.wellRadio().click()
     mentalHealthPage.continueButton().click()
 
     SubmissionPage.verifyOnPage(CheckAnswersPage)
-    checkAnswersPage.verifySummaryValue('How are you feeling?', 'Well')
+    checkAnswersPage.verifySummaryValue('How have you been feeling since we last spoke?', 'Well')
 
     checkAnswersPage.confirmCheckbox().check()
     checkAnswersPage.completeCheckinButton().click()
