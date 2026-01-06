@@ -206,6 +206,8 @@ export const handleMentalHealth: RequestHandler = async (req, res, next) => {
   const { mentalHealth } = req.body
   const { submissionId } = req.params
 
+  req.session.formData.mentalHealth = mentalHealth
+
   const mentalHealthFieldsMap: Record<string, string> = {
     VERY_WELL: 'mentalHealthVeryWell',
     WELL: 'mentalHealthWell',
@@ -215,7 +217,9 @@ export const handleMentalHealth: RequestHandler = async (req, res, next) => {
   }
 
   for (const [option, fieldName] of Object.entries(mentalHealthFieldsMap)) {
-    if (mentalHealth !== option) {
+    if (mentalHealth === option) {
+      req.session.formData[fieldName] = req.body[fieldName]
+    } else {
       req.session.formData[fieldName] = ''
     }
   }
