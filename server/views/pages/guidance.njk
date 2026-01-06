@@ -1,7 +1,8 @@
 {% extends "../partials/layout.njk" %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-{% set pageTitle = "About the Check in with your probation officer service" %}
-{% set privacyPolicyHref = "/privacy-notice" %}
+
+{% set pageContent = getContent('guidance') %}
+{% set pageTitle = pageContent.pageTitle %}
 
 {% block beforeContent %}
   {% if backLink %}
@@ -9,7 +10,7 @@
       <div class="es-page-actions__back">
         {{
           govukBackLink({
-            text: "Back",
+            text: t('common.back') if t else "Back",
             href: backLink
           })
         }}
@@ -137,4 +138,5 @@
 
         </div>
     </div>
+  </div>
 {% endblock %}

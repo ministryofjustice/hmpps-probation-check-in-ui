@@ -10,10 +10,11 @@ import setUpCsrf from './middleware/setUpCsrf'
 import setUpHealthChecks from './middleware/setUpHealthChecks'
 import setUpStaticResources from './middleware/setUpStaticResources'
 import setUpWebRequestParsing from './middleware/setupRequestParsing'
-// import setUpWebSecurity from './middleware/setUpWebSecurity'
 import setUpWebSession from './middleware/setUpWebSession'
+import setUpWebSecurity from './middleware/setUpWebSecurity'
 import populateValidationErrors from './middleware/populateValidationErrors'
 import storeFormDataInSession from './middleware/storeFormDataInSession'
+import languageMiddleware from './middleware/languageMiddleware'
 import routes from './routes'
 import submissionRoutes from './routes/submissionRoutes'
 import featureFlags from './middleware/featureFlags'
@@ -31,9 +32,13 @@ export default function createApp(services: Services): express.Application {
   // don't send X-Powered-By header
   app.disable('x-powered-by')
 
+  // ==========================================
+  // GLOBAL MIDDLEWARE (all routes)
+  // ==========================================
+
   app.use(appInsightsMiddleware())
   app.use(setUpHealthChecks(services.applicationInfo))
-  // app.use(setUpWebSecurity())
+  app.use(setUpWebSecurity())
   app.use(setUpWebSession())
   app.use(setUpWebRequestParsing())
   app.use(setUpStaticResources())
@@ -41,23 +46,54 @@ export default function createApp(services: Services): express.Application {
   app.use(cookieParser(`esCookieSecret${process.env.COOKIE_SECRET}`))
   app.use(featureFlags())
 
+  // Language detection and translation setup
+  app.use(languageMiddleware())
+
   nunjucksSetup(app)
   app.use(setUpAuthentication())
   app.use(setUpCsrf())
 
-  app.use(bodyParser.json())
-  app.use(storeFormDataInSession())
-  app.use(populateValidationErrors())
-
-  app.use(restrictToUK)
+  // ==========================================
+  // STATIC ROUTES (no form processing middleware)
+  // Routes: /, /privacy-notice, /accessibility, /guidance, etc.
+  // ==========================================
 
   app.use(routes())
 
-  app.use('/:submissionId', submissionRoutes(services))
+  // ==========================================
+  // SUBMISSION ROUTES (with form processing middleware)
+  // Routes: /:submissionId/*
+  // ==========================================
+
+  // Create a sub-router for submission routes with form-specific middleware
+  const submissionRouter = express.Router({ mergeParams: true })
+
+  // Form processing middleware - only for submission routes
+  submissionRouter.use(bodyParser.json())
+  submissionRouter.use(storeFormDataInSession())
+  submissionRouter.use(populateValidationErrors())
+
+  // UK restriction - only for submission routes
+  submissionRouter.use(restrictToUK)
+
+  // Mount submission routes
+  submissionRouter.use('/', submissionRoutes(services))
+
+  // Apply submission router to /:submissionId paths
+  app.use('/:submissionId', submissionRouter)
+
+  // Welsh language routes - redirect /cy/:submissionId/* to use same router
+  // The language middleware will strip /cy/ and set the language
+  app.use('/cy/:submissionId', submissionRouter)
+
+  // ==========================================
+  // ERROR HANDLING
+  // ==========================================
 
   app.use((req, res) => {
     res.status(404).render('pages/not-found')
   })
+
   app.use(errorHandler(process.env.NODE_ENV === 'production'))
 
   return app

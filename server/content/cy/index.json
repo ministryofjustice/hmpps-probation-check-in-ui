@@ -1,0 +1,34 @@
+{
+  "start": {
+    "pageTitle": "Cofrestru gyda'ch swyddog prawf",
+    "title": "Cofrestru gyda'ch swyddog prawf",
+    "intro": "Gallwch ddefnyddio'r gwasanaeth hwn i gofrestru gyda'ch swyddog prawf fel rhan o'ch prawf. Bydd eich swyddog prawf wedi'ch cofrestru ar gyfer y gwasanaeth hwn yn ystod apwyntiad wyneb yn wyneb.",
+    "beforeYouStart": {
+      "title": "Cyn i chi ddechrau",
+      "description": "Bydd angen arnoch:",
+      "items": [
+        "mynediad i'r rhyngrwyd",
+        "dyfais gyda chamera",
+        "eich enw a'ch dyddiad geni"
+      ],
+      "ukWarning": "Ni fyddwch yn gallu defnyddio'r gwasanaeth hwn i gofrestru os ydych y tu allan i'r DU."
+    },
+    "whatYouNeedToDo": {
+      "title": "Beth sydd angen i chi ei wneud",
+      "description": "Fel rhan o'r gwasanaeth hwn bydd angen i chi:",
+      "items": [
+        "ateb set o gwestiynau yn ymwneud â sut ydych chi ac os oes angen unrhyw help arnoch",
+        "rhoi caniatâd i gyrchu camera eich dyfais",
+        "recordio fideo byr ohonoch chi'ch hun fel y gallwn wirio mai chi sy'n defnyddio'r gwasanaeth"
+      ],
+      "videoExplanation": "Byddwn yn defnyddio'ch fideo i gadarnhau pwy ydych chi. Byddwn yn gwneud hyn trwy ei gymharu â'r llun a dynnodd eich swyddog prawf pan wnaethant eich cofrestru.",
+      "answersExplanation": "Bydd yr atebion i'ch cwestiynau yn cael eu hanfon at eich swyddog prawf i'w hadolygu."
+    },
+    "needHelp": {
+      "title": "Os oes angen help arnoch",
+      "description": "Os ydych yn cael anhawster defnyddio'r gwasanaeth hwn, neu os nad oes gennych fynediad i bopeth sydd ei angen arnoch, dylech gysylltu â'ch swyddog prawf a rhoi gwybod iddynt.",
+      "guidanceLink": "Gallwch <a href=\"/guidance?submissionId={{ submissionId }}\" class=\"govuk-link\">ddysgu mwy am gofrestriadau ar-lein yn ein canllawiau</a>."
+    },
+    "startButton": "Dechrau nawr"
+  }
+}

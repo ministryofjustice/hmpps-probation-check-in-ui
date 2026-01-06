@@ -23,30 +23,19 @@ export interface DeviceInfo {
   browserVersion: string
 }
 
-export default class SurveyResponse implements Versioned {
+export default interface SurveyResponse extends Versioned {
   version: SurveyVersion
-
   mentalHealth: MentalHealth
-
   assistance: SupportAspect[]
-
   mentalHealthSupport: string
-
   alcoholSupport: string
-
   drugsSupport: string
-
   moneySupport: string
-
   housingSupport: string
-
   supportSystemSupport: string
-
   otherSupport: string
-
   callback: CallbackRequested
-
   callbackDetails: string
-
   device?: DeviceInfo
+  checkinStartedAt?: number
 }

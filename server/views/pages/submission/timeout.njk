@@ -1,19 +1,15 @@
+{% extends "layouts/content.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
-{% extends "../../partials/layout.njk" %}
 
-{% set pageTitle = "Your check in has been reset" %}
+{% set pageTitle = t('errors.timeout.pageTitle') %}
+{% set content = getContent('errors.timeout') %}
 
-{% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
-      <p>For your security, your answers have been deleted.</p>
-      {{
-        govukButton({
-          text: "Restart check in",
-          href: "/" + submissionId
-        })
-      }}
-    </div>
-  </div>
+{% block contentBody %}
+  <h1 class="govuk-heading-l">{{ content.title }}</h1>
+  <p class="govuk-body">{{ content.body }}</p>
+
+  {{ govukButton({
+    text: content.restartButton,
+    href: "/" + submissionId
+  }) }}
 {% endblock %}

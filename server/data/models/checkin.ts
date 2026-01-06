@@ -4,38 +4,22 @@ import ManualIdVerificationResult from './manualIdVerificationResult'
 import SurveyResponse from './survey/surveyResponse'
 import { ExternalUserId } from './loggedInUser'
 
-export default class Checkin {
+export default interface Checkin {
   uuid: string
-
   crn: string
-
   status: CheckinStatus
-
-  dueDate: string // TODO: parse datetime
-
-  submittedAt?: string // TODO: parse datetime
-
-  questions: string // TODO: find out structure
-
+  dueDate: string
+  submittedAt?: string
+  questions: string
   surveyResponse?: SurveyResponse
-
   createdBy: ExternalUserId
-
-  createdAt: string // TODO: parse datetime
-
+  createdAt: string
   reviewedBy?: ExternalUserId
-
   reviewedAt?: string
-
   videoUrl?: string
-
   autoIdCheck?: AutomatedIdVerificationResult
-
   manualIdCheck?: ManualIdVerificationResult
-
   flaggedResponses: string[]
-
-  reviewDueDate?: string // TODO: parse datetime
-
-  checkinStartedAt?: string // TODO: parse datetime
+  reviewDueDate?: string
+  checkinStartedAt?: string
 }

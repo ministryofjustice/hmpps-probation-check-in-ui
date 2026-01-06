@@ -1,9 +1,7 @@
 import LocationInfo from './locationInfo'
 
-export default class UploadLocationResponse {
+export default interface UploadLocationResponse {
   locationInfo?: LocationInfo
-
   locations?: LocationInfo[]
-
   errorMessage?: string
 }

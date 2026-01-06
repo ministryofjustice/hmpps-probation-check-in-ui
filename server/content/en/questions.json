@@ -1,0 +1,53 @@
+{
+  "mentalHealth": {
+    "pageTitle": "How are you feeling?",
+    "title": "How are you feeling?",
+    "hint": "Think about things like if you have noticed a change in your mood.",
+    "error": "Select how you are feeling",
+    "options": {
+      "VERY_WELL": "Very well",
+      "WELL": "Well",
+      "OK": "OK",
+      "NOT_GREAT": "Not great",
+      "STRUGGLING": "Struggling"
+    },
+    "nhsLink": "If you need to speak to someone urgently about how you are feeling, check the <a href=\"https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/help-for-suicidal-thoughts/\" class=\"govuk-link\" target=\"_blank\">NHS website for help (opens in new tab)</a>."
+  },
+  "assistance": {
+    "pageTitle": "Is there anything you need support with or want to let us know about?",
+    "title": "Is there anything you need support with or want to let us know about?",
+    "error": "Select what you need help with or select 'No, I do not need help'",
+    "options": {
+      "MENTAL_HEALTH": "Mental health",
+      "ALCOHOL": "Alcohol",
+      "DRUGS": "Drugs",
+      "MONEY": "Money",
+      "HOUSING": "Housing",
+      "SUPPORT_SYSTEM": "Support system (family, relationships, friends)",
+      "OTHER": "Other",
+      "NO_HELP": "No, I do not need help"
+    },
+    "conditionalLabels": {
+      "mentalHealthSupport": "Tell us what you want us to know about mental health (optional)",
+      "alcoholSupport": "Tell us what you want us to know about alcohol (optional)",
+      "drugsSupport": "Tell us what you want us to know about drugs (optional)",
+      "moneySupport": "Tell us what you want us to know about money (optional)",
+      "housingSupport": "Tell us what you want us to know about housing (optional)",
+      "supportSystemSupport": "Tell us what you want us to know about your support system (optional)",
+      "otherSupport": "Tell us what you need help with (optional)"
+    },
+    "divider": "or"
+  },
+  "callback": {
+    "pageTitle": "Is there anything else you need to speak with your probation officer about?",
+    "title": "Is there anything else you need to speak with your probation officer about?",
+    "hint": "There may be a delay in your probation officer contacting you. They may refer you to support services if you have asked for help.",
+    "error": "Select yes if you need to speak to your probation officer",
+    "options": {
+      "YES": "Yes",
+      "NO": "No"
+    },
+    "conditionalLabel": "Tell us what you need to talk about (optional)",
+    "insetText": "If this is urgent, you should contact your probation officer yourself. If there is an emergency, call 999."
+  }
+}

@@ -1,221 +1,63 @@
-{% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% extends "layouts/form.njk" %}
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-{% from "../../../partials/errorSummary.njk" import errorSummary %}
-{% extends "../../../partials/layout.njk" %}
 
-{% set title = "Is there anything you need support with or want to let us know about?" %}
-{% set pageTitle = title %}
-{% set mainClasses = "app-container govuk-body" %}
+{% set pageTitle = t('questions.assistance.pageTitle') %}
 
-{% block beforeContent %}
-  {{
-    govukBackLink({
-      text: "Back",
-      href: "/" + submissionId + "/check-your-answers" if cya else "/" + submissionId + "/questions/mental-health"
-    })
-  }}
-{% endblock %}
+{% block formContent %}
+  {% set content = getContent('questions.assistance') %}
 
-{% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {{ errorSummary(validationErrors) }}
+  {# Build checkbox items with conditional textareas #}
+  {% set checkboxItems = [] %}
+  {% for option in assistanceOptions %}
+    {% if option.divider %}
+      {# This is a divider #}
+      {% set checkboxItems = (checkboxItems.push({
+        divider: option.divider
+      }), checkboxItems) %}
+    {% else %}
+      {# Build the item #}
+      {% set item = {
+        value: option.value,
+        text: option.text,
+        checked: checked("assistance", option.value)
+      } %}
 
+      {# Add exclusive behaviour if present #}
+      {% if option.behaviour %}
+        {% set item = item | merge({ behaviour: option.behaviour }) %}
+      {% endif %}
 
-      {% set mentalHealthSupport %}
-        {{
-          govukTextarea({
-            name: "mentalHealthSupport",
-            id: "mentalHealthSupport",
-            errorMessage: validationErrors | findError("mentalHealthSupport"),
-            value: formData["mentalHealthSupport"],
+      {# Add conditional textarea if present #}
+      {% if option.conditional %}
+        {% set conditionalHtml %}
+          {{ govukTextarea({
+            name: option.conditional.fieldName,
+            id: option.conditional.fieldName,
+            errorMessage: validationErrors | findError(option.conditional.fieldName),
+            value: formData[option.conditional.fieldName],
             label: {
-              text: "Tell us what you want us to know about mental health (optional)"
+              text: option.conditional.label
             }
-          })
-        }}
-      {% endset -%}
+          }) }}
+        {% endset %}
+        {% set item = item | merge({ conditional: { html: conditionalHtml } }) %}
+      {% endif %}
 
+      {% set checkboxItems = (checkboxItems.push(item), checkboxItems) %}
+    {% endif %}
+  {% endfor %}
 
-      {% set alcoholSupport %}
-        {{
-          govukTextarea({
-            name: "alcoholSupport",
-            id: "alcoholSupport",
-            errorMessage: validationErrors | findError("alcoholSupport"),
-            value: formData["alcoholSupport"],
-            label: {
-              text: "Tell us what you want us to know about alcohol (optional)"
-            }
-          })
-        }}
-      {% endset -%}
-
-
-      {% set drugsSupport %}
-        {{
-          govukTextarea({
-            name: "drugsSupport",
-            id: "drugsSupport",
-            errorMessage: validationErrors | findError("drugsSupport"),
-            value: formData["drugsSupport"],
-            label: {
-              text: "Tell us what you want us to know about drugs (optional)"
-            }
-          })
-        }}
-      {% endset -%}
-
-
-      {% set moneySupport %}
-        {{
-          govukTextarea({
-            name: "moneySupport",
-            id: "moneySupport",
-            errorMessage: validationErrors | findError("moneySupport"),
-            value: formData["moneySupport"],
-            label: {
-              text: "Tell us what you want us to know about money (optional)"
-            }
-          })
-        }}
-      {% endset -%}
-
-
-      {% set housingSupport %}
-        {{
-          govukTextarea({
-            name: "housingSupport",
-            id: "housingSupport",
-            errorMessage: validationErrors | findError("housingSupport"),
-            value: formData["housingSupport"],
-            label: {
-              text: "Tell us what you want us to know about housing (optional)"
-            }
-          })
-        }}
-      {% endset -%}
-
-
-      {% set supportSystemSupport %}
-        {{
-          govukTextarea({
-            name: "supportSystemSupport",
-            id: "supportSystemSupport",
-            errorMessage: validationErrors | findError("supportSystemSupport"),
-            value: formData["supportSystemSupport"],
-            label: {
-              text: "Tell us what you want us to know about your support system (optional)"
-            }
-          })
-        }}
-      {% endset -%}
-      {% set otherSupport %}
-        {{
-          govukTextarea({
-            name: "otherSupport",
-            id: "otherSupport",
-            errorMessage: validationErrors | findError("otherSupport"),
-            value: formData["otherSupport"],
-            label: {
-              text: "Tell us what you need help with (optional)"
-            }
-          })
-        }}
-      {% endset -%}
-
-      <form method="POST">
-        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
-
-        {{
-          govukCheckboxes({
-            name: "assistance",
-            errorMessage: validationErrors | findError("assistance"),
-            fieldset: {
-              legend: {
-                text: title,
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--l"
-              }
-            },
-            items: [
-              {
-                value: "MENTAL_HEALTH",
-                text: "Mental health",
-                checked: checked("assistance", "MENTAL_HEALTH"),
-                conditional: {
-                  html: mentalHealthSupport
-                }
-              },
-              {
-                value: "ALCOHOL",
-                text: "Alcohol",
-                checked: checked("assistance", "ALCOHOL"),
-                conditional: {
-                  html: alcoholSupport
-                }
-              },
-              {
-                value: "DRUGS",
-                text: "Drugs",
-                checked: checked("assistance", "DRUGS"),
-                conditional: {
-                  html: drugsSupport
-                }
-              },
-              {
-                value: "MONEY",
-                text: "Money",
-                checked: checked("assistance", "MONEY"),
-                conditional: {
-                  html: moneySupport
-                }
-              },
-              {
-                value: "HOUSING",
-                text: "Housing",
-                checked: checked("assistance", "HOUSING"),
-                conditional: {
-                  html: housingSupport
-                }
-              },
-              {
-                value: "SUPPORT_SYSTEM",
-                text: "Support system (family, relationships, friends)",
-                checked: checked("assistance", "SUPPORT_SYSTEM"),
-                conditional: {
-                  html: supportSystemSupport
-                }
-              },
-              {
-                value: "OTHER",
-                text: "Other",
-                checked: checked("assistance", "OTHER"),
-                conditional: {
-                  html: otherSupport
-                }
-              },
-              {
-                divider: "or"
-              },
-              {
-                value: "NO_HELP",
-                checked: checked("assistance", "NO_HELP"),
-                text: "No, I do not need help",
-                behaviour: "exclusive"
-              }
-            ]
-          })
-        }}
-
-        {{
-          govukButton({
-            text: "Continue"
-          })
-        }}
-      </form>
-    </div>
-  </div>
+  {{ govukCheckboxes({
+    name: "assistance",
+    errorMessage: validationErrors | findError("assistance"),
+    fieldset: {
+      legend: {
+        text: content.title,
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--l"
+      }
+    },
+    items: checkboxItems
+  }) }}
 {% endblock %}

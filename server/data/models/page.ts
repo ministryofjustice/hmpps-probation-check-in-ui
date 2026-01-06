@@ -1,7 +1,6 @@
 import PageInfo from './pageInfo'
 
-export default class Page<T> {
+export default interface Page<T> {
   pagination: PageInfo
-
   content: T[]
 }

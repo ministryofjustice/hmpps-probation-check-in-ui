@@ -1,5 +1,5 @@
 import AutomatedIdVerificationResult from './automatedIdVerificationResult'
 
-export default class AutomaticCheckinVerificationResult {
+export default interface AutomaticCheckinVerificationResult {
   result: AutomatedIdVerificationResult
 }

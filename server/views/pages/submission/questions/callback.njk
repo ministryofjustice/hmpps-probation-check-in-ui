@@ -1,87 +1,60 @@
-{% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% extends "layouts/form.njk" %}
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-{% from "../../../partials/errorSummary.njk" import errorSummary %}
-{% extends "../../../partials/layout.njk" %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
-{% set title = "Is there anything else you need to speak with your probation officer about?" %}
-{% set pageTitle = title %}
+{% set pageTitle = t('questions.callback.pageTitle') %}
 
-{% block beforeContent %}
-  {{
-    govukBackLink({
-      text: "Back",
-      href: "/" + submissionId + "/check-your-answers" if cya else "/" + submissionId + "/questions/assistance"
-    })
-  }}
-{% endblock %}
+{% block formContent %}
+  {% set content = getContent('questions.callback') %}
 
-{% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {{ errorSummary(validationErrors) }}
+  {# Build conditional textarea for YES option #}
+  {% set callbackDetailsHtml %}
+    {{ govukTextarea({
+      name: "callbackDetails",
+      id: "callbackDetails",
+      errorMessage: validationErrors | findError("callbackDetails"),
+      value: formData["callbackDetails"],
+      label: {
+        text: conditionalLabel
+      }
+    }) }}
+  {% endset %}
 
+  {# Build radio items #}
+  {% set radioItems = [] %}
+  {% for option in callbackOptions %}
+    {% set item = {
+      value: option.value,
+      text: option.text,
+      checked: checked("callback", option.value)
+    } %}
 
-      {% set callbackDetails %}
-        {{
-          govukTextarea({
-            name: "callbackDetails",
-            id: "callbackDetails",
-            errorMessage: validationErrors | findError("callbackDetails"),
-            value: formData["callbackDetails"],
-            label: {
-              text: "Tell us what you need to talk about (optional)"
-            }
-          })
-        }}
-      {% endset -%}
+    {# Add conditional textarea for YES option #}
+    {% if option.value == "YES" %}
+      {% set item = item | merge({ conditional: { html: callbackDetailsHtml } }) %}
+    {% endif %}
 
-      <form method="POST">
-        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+    {% set radioItems = (radioItems.push(item), radioItems) %}
+  {% endfor %}
 
-        {{
-          govukRadios({
-              name: "callback",
-              errorMessage: validationErrors | findError("callback"),
-              value: formData["callback"],
-              hint: {
-                text: "There may be a delay in your probation officer contacting you. They may refer you to support services if you have asked for help. "
-              },
-              fieldset: {
-                legend: {
-                  text: title,
-                  isPageHeading: true,
-                  classes: "govuk-fieldset__legend--l"
-                }
-              },
-              items: [
-              {
-                value: "YES",
-                text: "Yes",
-                conditional: {
-                                  html: callbackDetails
-                                }
-              },
-              {
-                value: "NO",
-                text: "No"
-              }
-            ]
-          })
-        }}
-        {{
-          govukInsetText({
-            text: 'If this is urgent, you should contact your probation officer yourself. If there is an emergency, call 999.'
-          })
-        }}
-        {{
-          govukButton({
-            text: "Continue"
-          })
-        }}
-      </form>
-    </div>
-  </div>
+  {{ govukRadios({
+    name: "callback",
+    errorMessage: validationErrors | findError("callback"),
+    hint: {
+      text: content.hint
+    },
+    fieldset: {
+      legend: {
+        text: content.title,
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--l"
+      }
+    },
+    items: radioItems
+  }) }}
+
+  {{ govukInsetText({
+    text: content.insetText
+  }) }}
 {% endblock %}
