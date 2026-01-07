@@ -270,6 +270,9 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
     checkinStartedAt,
   } = res.locals.formData
 
+  const mentalHealthComment =
+    mentalHealthVeryWell || mentalHealthWell || mentalHealthOk || mentalHealthNotGreat || mentalHealthStruggling || ''
+
   let { assistance } = res.locals.formData
 
   // If user selects a single assistance option, convert it to an array
@@ -291,13 +294,9 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
   const submissionId = getSubmissionId(req)
   const submission = {
     survey: {
-      version: '2025-07-10@pilot',
+      version: '2026-0-07@pre',
       mentalHealth: mentalHealth as MentalHealth,
-      mentalHealthVeryWell: mentalHealthVeryWell as string,
-      mentalHealthWell: mentalHealthWell as string,
-      mentalHealthOk: mentalHealthOk as string,
-      mentalHealthNotGreat: mentalHealthNotGreat as string,
-      mentalHealthStruggling: mentalHealthStruggling as string,
+      mentalHealthComment: mentalHealthComment as string,
       assistance: assistance as SupportAspect[],
       mentalHealthSupport: mentalHealthSupport as string,
       alcoholSupport: alcoholSupport as string,
