@@ -28,6 +28,8 @@ export default class SurveyResponse implements Versioned {
 
   mentalHealth: MentalHealth
 
+  mentalHealthComment: string
+
   assistance: SupportAspect[]
 
   mentalHealthSupport: string
