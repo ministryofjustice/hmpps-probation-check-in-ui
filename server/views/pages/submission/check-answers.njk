@@ -35,7 +35,8 @@
             >
           </dd>
         </div>
-        {% if formData['mentalHealthVeryWell'] %}
+
+        {% if formData['mentalHealth'] == 'VERY_WELL' and formData['mentalHealthVeryWell'] %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">Tell us why you are very well</dt>
             <dd class="govuk-summary-list__value">{{ formData['mentalHealthVeryWell'] }}</dd>
@@ -47,7 +48,7 @@
           </div>
         {% endif %}
 
-        {% if formData['mentalHealthWell'] %}
+        {% if formData['mentalHealth'] == 'WELL' and formData['mentalHealthWell'] %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">Tell us why you are well</dt>
             <dd class="govuk-summary-list__value">{{ formData['mentalHealthWell'] }}</dd>
@@ -59,7 +60,7 @@
           </div>
         {% endif %}
 
-        {% if formData['mentalHealthOk'] %}
+        {% if formData['mentalHealth'] == 'OK' and formData['mentalHealthOk'] %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">Tell us why you are OK</dt>
             <dd class="govuk-summary-list__value">{{ formData['mentalHealthOk'] }}</dd>
@@ -71,7 +72,7 @@
           </div>
         {% endif %}
 
-        {% if formData['mentalHealthNotGreat'] %}
+        {% if formData['mentalHealth'] == 'NOT_GREAT' and formData['mentalHealthNotGreat'] %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">Tell us why you are not great</dt>
             <dd class="govuk-summary-list__value">{{ formData['mentalHealthNotGreat'] }}</dd>
@@ -83,7 +84,7 @@
           </div>
         {% endif %}
 
-        {% if formData['mentalHealthStruggling'] %}
+        {% if formData['mentalHealth'] == 'STRUGGLING' and formData['mentalHealthStruggling'] %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">Tell us why you are struggling</dt>
             <dd class="govuk-summary-list__value">{{ formData['mentalHealthStruggling'] }}</dd>
