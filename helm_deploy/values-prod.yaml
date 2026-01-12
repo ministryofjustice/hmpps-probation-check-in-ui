@@ -4,6 +4,7 @@
 generic-service:
   ingress:
     host: probation-check-in-ui.hmpps.service.justice.gov.uk
+    className: modsec
 
   env:
     INGRESS_URL: "https://probation-check-in-ui.hmpps.service.justice.gov.uk"
