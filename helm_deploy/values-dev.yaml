@@ -21,4 +21,4 @@ generic-service:
     AUDIT_ENABLED: 'false'
 
 generic-prometheus-alerts:
-  alertSeverity: hmpps_probation_checkin_alerts_nonprod
+  alertSeverity: hmpps_esupervision_alerts_nonprod
