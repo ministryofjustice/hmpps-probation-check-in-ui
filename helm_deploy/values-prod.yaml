@@ -14,4 +14,4 @@ generic-service:
     AUDIT_ENABLED: "false"
 
 generic-prometheus-alerts:
-  alertSeverity: warning
+  alertSeverity: hmpps_esupervision_alerts
