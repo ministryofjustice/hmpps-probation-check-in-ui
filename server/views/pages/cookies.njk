@@ -1,0 +1,55 @@
+{% extends "../partials/layout.njk" %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds govuk-body">
+        <h1 class="govuk-heading-xl">Cookies policy for Check in with your probation officer</h1>
+        <p class="govuk-body">Last reviewed: 5 December 2025</p> 
+
+        <p class="govuk-body">The Check in with your probation officer service stores small pieces of data (known as 'cookies') on your computer in order to operate, and to collect information about how you use online check ins. </p> 
+
+        <p class="govuk-body">Cookies are used to:</p> 
+        <ul class="govuk-list govuk-list--bullet">
+            <li>keep you logged in </li> 
+            <li>measure how you use the sites, so they can be updated and improved based on your needs </li> 
+        </ul>
+
+        <p class="govuk-body">Third-party cookies are not used to identify you personally. </p> 
+
+        <h2 class="govuk-heading-l">Session cookies</h2>
+
+        <p class="govuk-body">The Check in with your probation officer service may store a cookie when you log in to open a session. The cookies used are classed as essential cookies. This means they are necessary to provide this online service, where they are used to transmit, carry out or facilitate the transmission of communications over a network.</p> 
+
+        {{ govukTable({
+            caption: "Types of session cookies used within service",
+            captionClasses: "govuk-visually-hidden",
+            head: [
+                {
+                    text: "Type of cookie"
+                },
+                {
+                    text: "What it's used for"
+                }
+            ],
+            rows: [
+                [
+                    { text: "hmpps-esupervision-ui.session" },
+                    { text: "This is used to manage user authentication and session data. This is essential to make online check ins work." }
+                ],
+                [
+                    { text: "es-feature-flags" },
+                    { text: "This is a functional cookie that controls what functions are available to you." }
+                ]
+            ]
+            })
+        }}
+
+        <h2 class="govuk-heading-l">Analytics cookies</h2> 
+
+        <p class="govuk-body">We do not use any analytics, tracking or marketing cookies in online check ins.</p> 
+
+        <p class="govuk-body">You can <a class="govuk-link" href="/privacy-notice">check our privacy policy to learn more about how we use your data</a>.</p>
+    </div>
+  </div>
+{% endblock %}

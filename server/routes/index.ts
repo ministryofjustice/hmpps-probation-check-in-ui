@@ -17,6 +17,10 @@ export default function routes(): Router {
     res.render('pages/accessibility')
   })
 
+  get('/cookies', (req, res, next) => {
+    res.render('pages/cookies')
+  })
+
   get('/guidance', (req, res, next) => {
     const { submissionId } = req.query
     const backLink = submissionId ? `/submission/${submissionId}` : undefined
