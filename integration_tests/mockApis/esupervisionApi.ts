@@ -245,7 +245,7 @@ export default {
     return stubFor({
       request: {
         method: 'PUT',
-        urlPath: `/fake-s3-upload`,
+        urlPattern: '/fake-s3-upload/.*',
       },
       response: {
         status: httpStatus,
@@ -334,15 +334,12 @@ export default {
     return stubFor({
       request: {
         method: 'GET',
-        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}`),
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}`),
       },
       response: {
         status: 200,
         headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: {
-          checkin,
-          checkinLogs: { logs: [] },
-        },
+        jsonBody: checkin,
       },
     })
   },
@@ -388,15 +385,26 @@ export default {
     return stubFor({
       request: {
         method: 'POST',
-        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/upload_location`),
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/upload_location.*`),
       },
       response: {
         status: 200,
         headers: { 'Content-Type': 'application/json;charset=UTF-8' },
         jsonBody: {
-          video: { url: 'http://localhost:9091/fake-s3-upload', contentType: 'video/mp4' },
-          snapshots: [{ url: 'http://localhost:9091/fake-s3-upload', contentType: 'image/jpeg' }],
-          references: [{ url: 'http://localhost:9091/fake-s3-upload', contentType: 'image/jpeg' }],
+          video: {
+            url: 'http://localhost:4566/fake-s3-upload/video.mp4',
+            headers: { 'Content-Type': 'video/mp4' },
+          },
+          snapshots: [
+            {
+              url: 'http://localhost:4566/fake-s3-upload/snapshot1.jpg',
+              headers: { 'Content-Type': 'image/jpeg' },
+            },
+            {
+              url: 'http://localhost:4566/fake-s3-upload/snapshot2.jpg',
+              headers: { 'Content-Type': 'image/jpeg' },
+            },
+          ],
         },
       },
     })
@@ -406,12 +414,7 @@ export default {
     stubFor({
       request: {
         method: 'POST',
-        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/video-verify`),
-        queryParameters: {
-          numSnapshots: {
-            equalTo: '1',
-          },
-        },
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/video-verify.*`),
       },
       response: {
         status: 200,
@@ -426,12 +429,15 @@ export default {
     return stubFor({
       request: {
         method: 'POST',
-        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/identity-verify`),
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/identity-verify`),
       },
       response: {
         status: 200,
         headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: { verified, error: verified ? null : 'Personal details do not match our records' },
+        jsonBody: {
+          verified,
+          error: verified ? null : 'Personal details do not match our records',
+        },
       },
     })
   },
@@ -455,7 +461,7 @@ export default {
     return stubFor({
       request: {
         method: 'POST',
-        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/submit`),
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/submit`),
       },
       response: {
         status: 200,
