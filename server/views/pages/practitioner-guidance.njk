@@ -1,8 +1,23 @@
 {% extends "../partials/layout.njk" %}
 {% set pageTitle = "About online check ins" %}
 {% set privacyPolicyHref = "/privacy-notice" %}
+{%- from "moj/components/header/macro.njk" import mojHeader -%}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% set privateTeamsChannelHref = "https://teams.microsoft.com/l/team/19%3A-GyJeX7yKgSacOagFqXw8qEH9YHmDbguakWgXIn-DZM1%40thread.tacv2/conversations?groupId=8411171f-dcd5-480b-ab6d-add492294f6b&tenantId=c6874728-71e6-41fe-a9e1-2e8c36776ad8" %}
 {% set feedbackFormHref = "https://portal.consentkit.com/consent/form/b2e85747-2989-41f8-bcd4-e6633bbca324/start" %}
+
+{% block header %}
+  {{ mojHeader({
+    organisationLabel: {
+      text: "HMPPS",
+      href: "/"
+    },
+    serviceLabel: {
+      html: 'Manage probation check ins <strong class="govuk-tag govuk-phase-banner__content__tag">Private Beta</strong>',
+      href: "/"
+    }
+  }) }}
+{% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
