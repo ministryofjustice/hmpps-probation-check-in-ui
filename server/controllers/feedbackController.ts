@@ -3,8 +3,6 @@ import logger from '../../logger'
 import { services } from '../services'
 import Feedback, { GettingSupport, HowEasy, Improvement } from '../data/models/feedback'
 
-const { esupervisionService } = services()
-
 const HOW_EASY_VALUES = new Set<HowEasy>(['veryEasy', 'easy', 'neitherEasyOrDifficult', 'difficult', 'veryDifficult'])
 
 const GETTING_SUPPORT_VALUES = new Set<GettingSupport>(['yes', 'no'])
@@ -67,11 +65,12 @@ export default async function handleFeedbackSubmission(req: Request, res: Respon
   const sanitisedFeedback = sanitiseFeedback(howEasy, gettingSupport, improvements)
 
   if (Object.keys(sanitisedFeedback).length === 0) {
-    logger.info('Feedback was empty or only contained incorrect values')
+    logger.info('Not saving feedback as it was empty or only contained incorrect values')
     return res.render('pages/feedback/thankyou')
   }
 
   try {
+    const { esupervisionService } = services()
     await esupervisionService.submitFeedback(new Feedback({ version: 1, ...sanitisedFeedback }))
     logger.info('Feedback saved')
     return res.render('pages/feedback/thankyou')

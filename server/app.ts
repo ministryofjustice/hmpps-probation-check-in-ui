@@ -53,7 +53,7 @@ export default function createApp(services: Services): express.Application {
 
   app.use(routes())
 
-  app.use('/feedback', feedbackRoutes())
+  app.use(feedbackRoutes())
 
   app.use('/:submissionId', submissionRoutes(services))
 

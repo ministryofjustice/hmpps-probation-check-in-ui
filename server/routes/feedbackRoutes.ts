@@ -25,13 +25,13 @@ export default function feedbackRoutes(): Router {
   const get = (routePath: string | string[], ...handlers: RequestHandler[]) =>
     router.get(routePath, ...handlers.map(handler => asyncMiddleware(handler)))
 
-  get('/provide-feedback', (req, res, next) => {
+  get('/feedback', (req, res, next) => {
     res.render('pages/feedback/provide-feedback', {
       improvementItems: buildImprovementOptions(),
     })
   })
 
-  router.post('/provide-feedback', handleFeedbackSubmission)
+  router.post('/feedback', handleFeedbackSubmission)
 
   return router
 }
