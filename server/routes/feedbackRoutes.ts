@@ -12,8 +12,7 @@ const buildImprovementOptions = () => {
       text: o.text,
     })),
     { divider: 'or' },
-
-    { value: last.value, text: last.text },
+    { value: last.value, text: last.text, behaviour: 'exclusive' },
   ]
 
   return withDivider
