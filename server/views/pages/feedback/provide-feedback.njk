@@ -1,0 +1,98 @@
+{% extends "../../partials/layout.njk" %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Give feedback about online check ins</h1>
+
+      <p>
+        You can answer these questions if you want to give feedback on using online check ins to help us improve it.
+        This is completely optional.
+      </p>
+
+      <p>Your feedback is anonymous.</p>
+
+      <form method="POST" action="/feedback/provide-feedback" id="feedbackForm">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+
+        {{
+          govukRadios({
+              name: "howEasy",
+              fieldset: {
+                legend: {
+                  text: "How easy was it to use online check ins? (optional)",
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+              {
+                value: "veryEasy",
+                text: "Very easy"
+              },
+              {
+                value: "easy",
+                text: "Easy"
+              },
+              {
+                value: "neitherEasyOrDifficult",
+                text: "Neither easy or difficult"
+              },
+              {
+                value: "difficult",
+                text: "Difficult"
+              },
+              {
+                value: "veryDifficult",
+                text: "Very difficult"
+              }
+            ]
+          })
+        }}
+
+        {{
+          govukRadios({
+              name: "gettingSupport",
+              fieldset: {
+                legend: {
+                  text: "Are you getting the support you need from probation? (optional)",
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          })
+        }}
+
+        {{
+          govukCheckboxes({
+            name: "improvements",
+            fieldset: {
+              legend: {
+                text: "What part of online check ins could we improve? (optional)",
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: improvementItems
+          })
+        }}
+
+        {{ govukButton({
+          text: "Submit feedback",
+          preventDoubleClick: true
+        }) 
+        }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

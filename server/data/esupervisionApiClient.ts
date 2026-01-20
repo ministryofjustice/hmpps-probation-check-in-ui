@@ -8,6 +8,7 @@ import CheckinSubmission from './models/checkinSubmission'
 import OffenderCheckinResponse from './models/offenderCheckinResponse'
 import AutomaticCheckinVerificationResult from './models/automaticCheckinVerificationResult'
 import { CheckinEventType } from './models/checkinEvent'
+import Feedback from './models/feedback'
 
 /**
  * Specifies content types for possible upload locations for a checkin.
@@ -104,6 +105,17 @@ export default class EsupervisionApiClient extends RestClient {
         path: `/offender_checkins/${checkinId}/identity-verify`,
         headers: { 'Content-Type': 'application/json' },
         data: JSON.stringify(personalDetails),
+      },
+      asSystem(),
+    )
+  }
+
+  async submitFeedback(feedback: Feedback): Promise<void> {
+    return this.post<void>(
+      {
+        path: '/feedback',
+        headers: { 'Content-Type': 'application/json' },
+        data: JSON.stringify(feedback),
       },
       asSystem(),
     )

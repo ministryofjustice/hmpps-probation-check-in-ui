@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser'
 import nunjucksSetup from './utils/nunjucksSetup'
 import errorHandler from './errorHandler'
 import { appInsightsMiddleware } from './utils/azureAppInsights'
-
+import feedbackRoutes from './routes/feedbackRoutes'
 import setUpAuthentication from './middleware/setUpAuthentication'
 import setUpCsrf from './middleware/setUpCsrf'
 import setUpHealthChecks from './middleware/setUpHealthChecks'
@@ -52,6 +52,8 @@ export default function createApp(services: Services): express.Application {
   app.use(restrictToUK)
 
   app.use(routes())
+
+  app.use('/feedback', feedbackRoutes())
 
   app.use('/:submissionId', submissionRoutes(services))
 
