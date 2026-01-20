@@ -28,7 +28,7 @@
     tag: {
       text: "Private Beta"
     },
-    html: 'This is a new service – your <a class="govuk-link govuk-link--no-visited-state" target="_blank" rel="nofollow" href="https://forms.office.com/pages/responsepage.aspx?id=KEeHxuZx_kGp4S6MNndq2GF5fsslU5tImfiqSSPf6JhUQko3QVg0MkVGRTVYV0dFMEJJUzBZUTIyVCQlQCN0PWcu&route=shorturl">feedback (opens in a new tab)</a> will help us to improve it.'
+    html: 'This is a new service – your <a class="govuk-link govuk-link--no-visited-state" target="_blank" rel="nofollow" href="/feedback">feedback (opens in a new tab)</a> will help us to improve it.'
     })
   }}
 {% endblock %}
@@ -62,9 +62,9 @@
 {% block bodyEnd %}
   <script type="module" src="{{ '/assets/js/index.js' | assetMap }}"></script>
   {% if submissionAuthorized %}
-  <script type="application/javascript">
-    document.body.dataset.submissionId = "{{ submissionId }}";
-  </script>
-  <script type="module" src="{{ '/assets/js/timeout.js' | assetMap }}"></script>
+    <script type="application/javascript">
+      document.body.dataset.submissionId = '{{ submissionId }}'
+    </script>
+    <script type="module" src="{{ '/assets/js/timeout.js' | assetMap }}"></script>
   {% endif %}
 {% endblock %}
