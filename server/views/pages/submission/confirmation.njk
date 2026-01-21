@@ -1,5 +1,6 @@
 {% from "govuk/components/panel/macro.njk" import govukPanel %}
 {% extends "../../partials/layout.njk" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% set pageTitle = "Check in completed" %}
 {% set mainClasses = "app-container govuk-body" %}
@@ -19,15 +20,14 @@
         concerns with the information you’ve entered, or if you requested contact.
       </p>
       <p>We will remind you when it is time for your next check in.</p>
-      <p>
-        <a
-          href="/feedback"
-          target="_blank"
-          class="govuk-link govuk-link--no-visited-state"
-          rel="noopener noreferrer"
-          >What did you think of this service? (opens in new tab)</a
-        >
-      </p>
+
+      <h2 class="govuk-heading-m">Have your say about online check ins</h2>
+      <p>Help us to improve check ins by answering a few questions about your experience.</p>
+      
+      {{ govukButton({
+        text: "Give feedback",
+        href: "/feedback"
+      }) }}
     </div>
   </div>
 {% endblock %}
