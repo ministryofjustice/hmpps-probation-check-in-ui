@@ -470,4 +470,17 @@ export default {
       },
     })
   },
+  stubSubmitFeedback: () => {
+    return stubFor({
+      request: {
+        method: 'POST',
+        urlPattern: apiUrlPattern('/feedback'),
+      },
+      response: {
+        status: 200,
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        jsonBody: {},
+      },
+    })
+  },
 }
