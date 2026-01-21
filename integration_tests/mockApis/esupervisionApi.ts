@@ -105,23 +105,6 @@ export const createMockCheckin = (offender: Offender, overrides: Partial<Checkin
 
   return checkin
 }
-
-const createDefaultOffenders = () => [
-  createMockOffender({ status: OffenderStatus.Verified }),
-  createMockOffender({ status: OffenderStatus.Inactive }),
-  createMockOffender({ status: OffenderStatus.Initial }),
-]
-
-const createDefaultCheckins = () => [
-  createMockCheckin(createMockOffender(), { status: CheckinStatus.Submitted }),
-  createMockCheckin(createMockOffender(), {
-    status: CheckinStatus.Reviewed,
-    reviewedAt: faker.date.recent().toISOString(),
-  }),
-  createMockCheckin(createMockOffender(), { status: CheckinStatus.Created }),
-  createMockCheckin(createMockOffender(), { status: CheckinStatus.Expired }),
-]
-
 // Stubs
 
 export default {
@@ -138,109 +121,9 @@ export default {
       },
     })
   },
-  // offenders
-  stubOffenders: (offenders = createDefaultOffenders()): SuperAgentRequest => {
-    return stubFor({
-      request: {
-        method: 'GET',
-        urlPattern: apiUrlPattern(`/offenders\\?practitioner=.+?`),
-      },
-      response: {
-        status: 200,
-        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: {
-          pagination: { pageNumber: 0, pageSize: 20 },
-          content: offenders,
-        },
-      },
-    })
-  },
-  stubOffenderContactCheck: (): SuperAgentRequest => {
-    return stubFor({
-      request: {
-        method: 'GET',
-        urlPattern: apiUrlPattern(`/offenders\\?practitioner=.+?&(.+?=.+?)`),
-      },
-      response: {
-        status: 200,
-        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: {
-          pagination: { pageNumber: 0, pageSize: 20 },
-          content: [],
-        },
-      },
-    })
-  },
-  stubGetOffender: (offender): SuperAgentRequest => {
-    return stubFor({
-      request: {
-        method: 'GET',
-        urlPattern: apiUrlPattern(`/offenders/${offender.uuid}`),
-      },
-      response: {
-        status: 200,
-        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: offender,
-      },
-    })
-  },
-  stubCreateOffender: (offenderData = createMockOffender()) => {
-    const response = {
-      uuid: offenderData.uuid,
-      practitioner: practitionerUsername,
-      createdAt: new Date().toISOString(),
-    }
-    return stubFor({
-      request: {
-        method: 'POST',
-        urlPathPattern: apiUrlPattern(`/offender_setup`),
-      },
-      response: {
-        status: 201,
-        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: response,
-      },
-    })
-  },
-  stubUpdateOffender: (offender, httpStatus = 200): SuperAgentRequest => {
-    const response = {
-      status: httpStatus,
-      headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-      jsonBody:
-        httpStatus < 400
-          ? offender
-          : {
-              userMessage: 'Could not update contact information, email possibly in use',
-            },
-    }
 
-    return stubFor({
-      request: {
-        method: 'POST',
-        urlPattern: apiUrlPattern(`/offenders/${offender.uuid}/details`),
-      },
-      response,
-    })
-  },
+  // checkin flow
 
-  stubGetProfilePhotoUploadLocation: (httpStatus = 200): SuperAgentRequest => {
-    return stubFor({
-      request: {
-        method: 'POST',
-        urlPathPattern: apiUrlPattern(`/offender_setup/.+?/upload_location`),
-      },
-      response: {
-        status: httpStatus,
-        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: {
-          locationInfo: {
-            url: 'http://localhost:9091/fake-s3-upload',
-            method: 'PUT',
-          },
-        },
-      },
-    })
-  },
   stubFakeS3Upload: (httpStatus = 200): SuperAgentRequest => {
     return stubFor({
       request: {
@@ -249,84 +132,6 @@ export default {
       },
       response: {
         status: httpStatus,
-      },
-    })
-  },
-  stubCompleteOffenderSetup: (httpStatus = 200): SuperAgentRequest => {
-    return stubFor({
-      request: {
-        method: 'POST',
-        urlPattern: apiUrlPattern(`/offender_setup/.+?/complete`),
-      },
-      response: {
-        status: httpStatus,
-        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: {
-          uuid: faker.string.uuid(),
-          practitioner: practitionerUsername,
-          offender: faker.string.uuid(),
-          createdAt: new Date().toISOString(),
-        },
-      },
-    })
-  },
-
-  // checkins
-  stubOffenderCheckins: (checkins = createDefaultCheckins()): SuperAgentRequest => {
-    return stubFor({
-      request: {
-        method: 'GET',
-        urlPattern: apiUrlPattern(`/offender_checkins\\?practitioner=.+?`),
-      },
-      response: {
-        status: 200,
-        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: {
-          pagination: { pageNumber: 0, pageSize: 20 },
-          content: checkins,
-        },
-      },
-    })
-  },
-  stubGetCheckinsForOffender: ({
-    offender,
-    checkins,
-  }: {
-    offender: Offender
-    checkins: Checkin[]
-  }): SuperAgentRequest => {
-    return stubFor({
-      request: {
-        method: 'GET',
-        urlPathPattern: apiUrlPattern('/offender_checkins'),
-        queryParameters: {
-          practitioner: { matches: '.+' },
-          offenderId: { equalTo: offender.uuid },
-          page: { matches: '.*' },
-          size: { matches: '.*' },
-          direction: { matches: '.*' },
-        },
-      },
-      response: {
-        status: 200,
-        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: {
-          pagination: { pageNumber: 0, pageSize: checkins.length, totalElements: checkins.length, totalPages: 1 },
-          content: checkins,
-        },
-      },
-    })
-  },
-  stubResendCheckinInvite: (checkin: Checkin): SuperAgentRequest => {
-    return stubFor({
-      request: {
-        method: 'POST',
-        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/invite`),
-      },
-      response: {
-        status: 200,
-        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: checkin,
       },
     })
   },
@@ -340,43 +145,6 @@ export default {
         status: 200,
         headers: { 'Content-Type': 'application/json;charset=UTF-8' },
         jsonBody: checkin,
-      },
-    })
-  },
-  stubUpdateCheckinSettings: (offender: Offender, httpStatus = 200): SuperAgentRequest => {
-    const response = {
-      status: httpStatus,
-      headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-      jsonBody: offender,
-    }
-    return stubFor({
-      request: {
-        method: 'POST',
-        urlPattern: apiUrlPattern(`/offenders/${offender.uuid}/checkin-settings`),
-      },
-      response,
-    })
-  },
-  stubStopCheckins: (offender: Offender) => {
-    const stoppedOffender = {
-      ...offender,
-      status: OffenderStatus.Inactive,
-      deactivationEntry: {
-        comment: faker.lorem.sentence(),
-        deactivatedBy: practitionerUsername,
-        deactivationDate: new Date().toISOString(),
-      },
-    }
-
-    return stubFor({
-      request: {
-        method: 'POST',
-        urlPattern: apiUrlPattern(`/offenders/${offender.uuid}/deactivate`),
-      },
-      response: {
-        status: 200,
-        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: stoppedOffender,
       },
     })
   },
@@ -442,20 +210,6 @@ export default {
     })
   },
 
-  stubReviewCheckin: (checkin: Checkin): SuperAgentRequest => {
-    const reviewedCheckin = { ...checkin, status: CheckinStatus.Reviewed }
-    return stubFor({
-      request: {
-        method: 'POST',
-        urlPathPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/review`),
-      },
-      response: {
-        status: 200,
-        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-        jsonBody: reviewedCheckin,
-      },
-    })
-  },
   stubSubmitCheckin: (checkin: Checkin): SuperAgentRequest => {
     const submittedCheckin = { ...checkin, status: CheckinStatus.Submitted }
     return stubFor({
@@ -470,6 +224,8 @@ export default {
       },
     })
   },
+
+  // feedback flow
   stubSubmitFeedback: () => {
     return stubFor({
       request: {
