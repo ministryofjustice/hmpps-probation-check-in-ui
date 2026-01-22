@@ -17,7 +17,7 @@ import VideoRecordPage from '../../pages/submission/video/recordPage'
 import VideoViewPage from '../../pages/submission/video/viewPage'
 
 // TODO: Re-enable once flaky CI failure is fixed
-describe.skip('Start Check-in Journey', () => {
+describe('Start Check-in Journey', () => {
   let testOffender: Offender
   let testCheckin: Checkin
   beforeEach(() => {
