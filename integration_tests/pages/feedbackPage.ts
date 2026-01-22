@@ -1,16 +1,5 @@
 import Page, { PageElement } from './page'
-
-type ImprovementValue =
-  | 'findingOutAboutCheckIns'
-  | 'beingSignedUpToCheckIns'
-  | 'textOrEmailNotifications'
-  | 'checkInQuestions'
-  | 'takingAVideo'
-  | 'gettingHelp'
-  | 'whatHappenedAfterAskingForSupport'
-  | 'whatHappenedAfterAskingForContact'
-  | 'somethingElse'
-  | 'nothingNeedsImproving'
+import type { Improvement } from '../../server/data/models/feedback'
 
 export default class FeedbackPage extends Page {
   constructor() {
@@ -25,7 +14,7 @@ export default class FeedbackPage extends Page {
     cy.get('input[name="gettingSupport"]').check(value)
   }
 
-  selectImprovement(value: ImprovementValue): void {
+  selectImprovement(value: Improvement): void {
     cy.get('input[name="improvements"]').check(value)
   }
 
