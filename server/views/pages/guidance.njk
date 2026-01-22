@@ -1,7 +1,6 @@
 {% extends "../partials/layout.njk" %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% set pageTitle = "About the Check in with your probation officer service" %}
-{% set privacyPolicyHref = "/privacy-notice" %}
 
 {% block beforeContent %}
   {% if backLink %}
@@ -117,7 +116,8 @@
 
         <p class="govuk-body">We’ll use the information you give us as part of your check in to update your probation officer about how you are doing, and if you need any support. This is stored in our system securely.</p>  
 
-        <p class="govuk-body">You can <a class="govuk-link" href={{privacyPolicyHref}}>check our privacy policy to learn more about how we use your data</a>.</p>  
+        {# Commenting out until we turn back on the privacy page #}
+        {# <p class="govuk-body">You can <a class="govuk-link" href="/privacy-notice">check our privacy policy to learn more about how we use your data</a>.</p>   #}
 
         <h3 class="govuk-heading-m">Subject access requests</h3> 
 
@@ -127,14 +127,11 @@
 
         <h2 class="govuk-heading-l">How to give feedback about online check ins</h2>
 
-        <p class="govuk-body">We will have an online feedback form for you to tell us your experience of online check ins.</p>   
+        <p class="govuk-body">We have an <a href="/feedback" class="govuk-link">online feedback form for you to tell us your experience of online check ins.</a></p>   
 
-        <p class="govuk-body">You will be able to fill in the form yourself or with your probation officer whenever you have something to share about online check ins.</p>  
+        <p class="govuk-body">You can fill in the form yourself or with your probation officer whenever you have something to share about online check ins.</p>  
 
         <p class="govuk-body">There’ll be other opportunities for you to give feedback, for example, you could choose to talk about your experience in short phone calls.</p> 
-
-        <p class="govuk-body">We will update this guidance when the feedback form is available.</p>  
-
         </div>
     </div>
 {% endblock %}
