@@ -14,9 +14,11 @@ const { esupervisionService } = services()
 const getSubmissionId = (req: Request): string => req.params.submissionId
 const pageParams = (req: Request): Record<string, string | boolean> => {
   const cya = req.query.checkAnswers === 'true'
+  const autoVerifyResult = req.session.formData.autoVerifyResult as string | undefined
+
   return {
     cya,
-    autoVerifyResult: cya ? (req.session.formData.autoVerifyResult as string) : '',
+    autoVerifyResult,
     submissionId: getSubmissionId(req),
   }
 }
