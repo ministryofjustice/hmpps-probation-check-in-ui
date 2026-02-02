@@ -13,6 +13,7 @@ export declare module 'express-session' {
       physicalHealth?: string
       mentalHealth?: string
       callback?: string
+      autoVerifyResult?: string
       [key: string]: unknown
     } | null
   }
