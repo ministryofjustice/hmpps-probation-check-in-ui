@@ -78,6 +78,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-sqs": "^3.940.0",
+    "@maxmind/geoip2-node": "^6.3.4",
     "@ministryofjustice/frontend": "^7.1.0",
     "@ministryofjustice/hmpps-auth-clients": "^1.0.0",
     "@ministryofjustice/hmpps-monitoring": "^1.0.0",
