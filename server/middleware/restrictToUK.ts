@@ -12,6 +12,7 @@ const ALLOWED_COUNTRY = 'GB'
 const BYPASS_PATHS = ['/health', '/ping', '/assets', '/info'] // health check and static asset paths
 const CACHE_TTL_MS = 1000 * 60 * 60 * 24 // 1 day
 const IP_DB_FILE = './../../assets/geo/GeoLite2-Country.mmdb'
+let DB_READER = Reader.openBuffer(readFileSync(path.resolve(__dirname, IP_DB_FILE)))
 
 const cache = new LRUCache<string, { countryCode: string | null }>({
   max: 10_000,
@@ -72,6 +73,7 @@ export default async function restrictToUK(req: Request, res: Response, next: Ne
 
     // 3) Allow local development to bypass
     if (localDevBypass(ip)) return next()
+    // if (localDevBypass(ip)) return next()
 
     // 4) Cache
     const cached = cache.get(ip)
@@ -86,9 +88,10 @@ export default async function restrictToUK(req: Request, res: Response, next: Ne
 
     try {
       // 5) Get the IP details
-      const dbBuffer = readFileSync(path.resolve(__dirname, IP_DB_FILE))
-      const reader = Reader.openBuffer(dbBuffer)
-      const response = reader.country(ip)
+      if (DB_READER === undefined) {
+        DB_READER = Reader.openBuffer(readFileSync(path.resolve(__dirname, IP_DB_FILE)))
+      }
+      const response = DB_READER.country(ip)
       const countryCode = response.country.isoCode
 
       // 6) Cache result
