@@ -8,7 +8,7 @@ import { services } from '../services'
 
 const { esupervisionService } = services()
 
-const ALLOWED_COUNTRY = 'GB'
+const ALLOWED_COUNTRIES = ['GB', 'GG', 'IM', 'JE'] // Great Britain, Guernsey, Isle of Man, Jersey
 const BYPASS_PATHS = ['/health', '/ping', '/assets', '/info'] // health check and static asset paths
 const CACHE_TTL_MS = 1000 * 60 * 60 * 24 // 1 day
 const IP_DB_FILE = './../../assets/geo/GeoLite2-Country.mmdb'
@@ -45,7 +45,7 @@ function localDevBypass(ip: string): boolean {
 }
 
 function isAllowed(countryCode: string | null): boolean {
-  return (countryCode ?? '').toUpperCase() === ALLOWED_COUNTRY
+  return ALLOWED_COUNTRIES.includes((countryCode ?? '').toUpperCase())
 }
 
 const logOutsideAccess = async (checkinId: string, ip: string, countryCode: string) => {
