@@ -9,6 +9,10 @@ export default function routes(): Router {
     res.render('pages/index')
   })
 
+  get('/privacy-notice', (req, res, next) => {
+    res.render('pages/privacy')
+  })
+
   get('/accessibility', (req, res, next) => {
     res.render('pages/accessibility')
   })
