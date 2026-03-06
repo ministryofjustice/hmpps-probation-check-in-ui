@@ -38,6 +38,7 @@ const buildAssets = buildConfig => {
     target: 'es2018',
     external: ['/assets/*'],
     bundle: true,
+    loader: { '.tsx': 'tsx', '.ts': 'ts' },
     plugins: [
       clean({
         patterns: glob.sync(buildConfig.assets.clear),

@@ -1,7 +1,6 @@
 import * as govukFrontend from 'govuk-frontend'
 import * as mojFrontend from '@ministryofjustice/frontend'
 import { forEach } from 'lodash'
-import VideoRecorder from './video'
 
 govukFrontend.initAll()
 mojFrontend.initAll()
@@ -53,8 +52,6 @@ if (errorSummaryLinks.length) {
   })
 }
 
-const videoRecorder = document.querySelector('[data-module="videoRecorder"]')
-
 const IMAGE_CONTENT_TYPE = 'image/jpeg'
 const IMAGE_SESSION_KEY = 'esImageUpload'
 
@@ -66,10 +63,6 @@ const photoContentDisplay = document.getElementById('photoPreview')
 let validationMessage = document.getElementById('photoUploadMessage')
 
 const registerButton = document.getElementById('registerButton')
-
-if (videoRecorder) {
-  new VideoRecorder(videoRecorder).initVideo()
-}
 
 async function capturePhoto(v) {
   const videoContainer = document.getElementById('es-photo-capture')

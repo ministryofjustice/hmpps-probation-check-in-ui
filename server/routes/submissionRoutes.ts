@@ -8,6 +8,8 @@ import {
   handleVerify,
   handleSubmission,
   handleVideoVerify,
+  getLivenessSession,
+  getLivenessCredentials,
   renderAssistance,
   renderQuestionsMentalHealth,
   renderCheckAnswers,
@@ -101,6 +103,8 @@ export default function routes({ esupervisionService }: Services): Router {
   get('/video/record', protectSubmission, renderVideoRecord)
   get('/video/verify', protectSubmission, handleVideoVerify)
   get('/video/view', protectSubmission, renderViewVideo)
+  get('/liveness/session', protectSubmission, getLivenessSession)
+  get('/liveness/credentials', protectSubmission, getLivenessCredentials)
 
   get('/check-your-answers', protectSubmission, renderCheckAnswers)
   router.post('/check-your-answers', protectSubmission, validateFormData(checkAnswersSchema), handleSubmission)

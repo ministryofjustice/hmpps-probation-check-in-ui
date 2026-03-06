@@ -13,7 +13,6 @@ import MentalHealthPage from '../../pages/submission/mentalHealthPage'
 import PersonalDetailsPage from '../../pages/submission/personalDetailsPage'
 import SubmissionPage from '../../pages/submission/submissionPage'
 import VideoInformPage from '../../pages/submission/video/informPage'
-import VideoRecordPage from '../../pages/submission/video/recordPage'
 import VideoViewPage from '../../pages/submission/video/viewPage'
 
 // TODO: Re-enable once flaky CI failure is fixed
@@ -30,11 +29,11 @@ describe('Start Check-in Journey', () => {
     cy.task('reset').then(() => {
       cy.task('stubAuthToken')
       cy.task('stubGetCheckin', testCheckin)
-      cy.task('stubGetCheckinUploadLocation', testCheckin)
-      cy.task('stubFakeS3Upload')
+      cy.task('stubCreateLivenessSession', testCheckin)
+      cy.task('stubGetLivenessCredentials', testCheckin)
+      cy.task('stubVerifyLiveness', testCheckin)
 
       cy.task('stubVerifyIdentity', testCheckin)
-      cy.task('stubAutoVerifyCheckinIdentity', testCheckin)
       cy.task('stubSubmitCheckin', testCheckin)
     })
   })
@@ -82,10 +81,9 @@ describe('Start Check-in Journey', () => {
     const informPage = SubmissionPage.verifyOnPage(VideoInformPage)
     informPage.continueButton().should('exist')
     informPage.continueButton().click()
-    const recordPage = SubmissionPage.verifyOnPage(VideoRecordPage)
-    recordPage.videoElement().should('exist')
-    recordPage.startRecordingButton().should('exist')
-    cy.visit(`/${testCheckin.uuid}/video/view`) // overriding for now, also we set AutomatedIdVerificationResult to Match when creating the checkin
+    // The liveness component requires a WebSocket connection to AWS Rekognition
+    // which cannot run in Cypress, so we skip directly to the view page
+    cy.visit(`/${testCheckin.uuid}/video/view`)
     const videoViewPage = SubmissionPage.verifyOnPage(VideoViewPage)
     videoViewPage.submitAnywayButton().click()
 
