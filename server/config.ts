@@ -74,6 +74,6 @@ export default {
   sqs: {
     audit: auditConfig(),
   },
-  awsRegion: get('AWS_REGION', 'eu-west-2'),
+  awsRegion: get('AWS_REGION', 'eu-west-1'),
   environmentName: get('ENVIRONMENT_NAME', ''),
 }
