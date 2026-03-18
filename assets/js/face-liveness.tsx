@@ -65,7 +65,7 @@ let mountCount = 0
 
 function FaceLivenessApp({ attempt }: { attempt: number }) {
   const submissionId = getDataAttribute('submissionId')
-  const region = getDataAttribute('region') || 'eu-west-2'
+  const region = getDataAttribute('region') || 'eu-west-1'
   const initialSessionId = getDataAttribute('sessionId')
 
   const [sessionId, setSessionId] = useState<string | null>(attempt === 0 ? initialSessionId : null)
