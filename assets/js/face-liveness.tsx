@@ -147,6 +147,12 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
       config={{
         credentialProvider,
       }}
+      displayText={{
+        photosensitivityWarningHeadingText: 'Your custom heading',
+        photosensitivityWarningBodyText: 'Your custom body text',
+        photosensitivityWarningInfoText: 'Your custom info text',
+        photosensitivityWarningLabelText: 'Your custom label text',
+      }}
     />
   )
 }
