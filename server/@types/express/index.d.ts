@@ -38,6 +38,7 @@ export declare global {
 
     interface Locals {
       user: LoggedInUser
+      flags?: import('../../utils/flags').Flags
       formData?: {
         circumstances?: string | string[]
         policeContact?: string

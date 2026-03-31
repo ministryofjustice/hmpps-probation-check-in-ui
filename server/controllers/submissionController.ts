@@ -13,7 +13,7 @@ type SubmissionLocals = { checkin: Checkin }
 const { esupervisionService } = services()
 
 const getSubmissionId = (req: Request): string => req.params.submissionId
-const pageParams = (req: Request): Record<string, string | boolean> => {
+const pageParams = (req: Request, res: Response): Record<string, unknown> => {
   const cya = req.query.checkAnswers === 'true'
   const autoVerifyResult = req.session?.formData?.autoVerifyResult
 
@@ -21,6 +21,7 @@ const pageParams = (req: Request): Record<string, string | boolean> => {
     cya,
     autoVerifyResult,
     submissionId: getSubmissionId(req),
+    flags: res.locals.flags,
   }
 }
 
@@ -46,7 +47,7 @@ export const handleRedirect = (submissionPath: string): RequestHandler => {
 export const renderIndex: RequestHandler = async (req, res, next) => {
   try {
     req.session.formData = { checkinStartedAt: Date.now() }
-    res.render('pages/submission/index', pageParams(req))
+    res.render('pages/submission/index', pageParams(req, res))
   } catch (error) {
     next(error)
   }
@@ -56,7 +57,7 @@ export const renderVerify: RequestHandler = async (req, res, next) => {
   try {
     const errors = req.flash('error')
 
-    res.render('pages/submission/verify', { ...pageParams(req), errorMessage: errors[0] })
+    res.render('pages/submission/verify', { ...pageParams(req, res), errorMessage: errors[0] })
   } catch (error) {
     next(error)
   }
@@ -102,7 +103,7 @@ export const handleVerify: RequestHandler = async (req, res: Response<object, Su
 
 export const renderVideoInform: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/video/inform', pageParams(req))
+    res.render('pages/submission/video/inform', pageParams(req, res))
   } catch (error) {
     next(error)
   }
@@ -111,14 +112,35 @@ export const renderVideoInform: RequestHandler = async (req, res, next) => {
 export const renderVideoRecord: RequestHandler = async (req, res: Response<object, SubmissionLocals>, next) => {
   try {
     const { submissionId } = req.params
+    const useLiveness = res.locals.flags?.faceLiveness
 
-    const livenessSession = await esupervisionService.createLivenessSession(submissionId)
+    if (useLiveness) {
+      const livenessSession = await esupervisionService.createLivenessSession(submissionId)
 
-    res.render('pages/submission/video/record', {
-      ...pageParams(req),
-      sessionId: livenessSession.sessionId,
-      region: config.awsRegion,
-    })
+      res.render('pages/submission/video/record', {
+        ...pageParams(req, res),
+        sessionId: livenessSession.sessionId,
+        region: config.awsRegion,
+      })
+    } else {
+      const videoContentType = 'video/mp4'
+      const frameContentType = 'image/jpeg'
+
+      const uploadLocations = await esupervisionService.getCheckinUploadLocation(submissionId, {
+        video: videoContentType,
+        snapshots: [frameContentType, frameContentType],
+      })
+
+      if (uploadLocations.snapshots.length === 0 || uploadLocations.video === undefined) {
+        throw new Error(`Failed to get upload locations: ${JSON.stringify(uploadLocations)}`)
+      }
+
+      res.render('pages/submission/video/record-legacy', {
+        ...pageParams(req, res),
+        videoUploadUrl: uploadLocations.video.url,
+        frameUploadUrl: uploadLocations.snapshots.map(snapshot => snapshot.url),
+      })
+    }
   } catch (error) {
     next(error)
   }
@@ -127,15 +149,23 @@ export const renderVideoRecord: RequestHandler = async (req, res: Response<objec
 export const handleVideoVerify: RequestHandler = async (req, res, next) => {
   try {
     const submissionId = getSubmissionId(req)
-    const { sessionId } = req.query as { sessionId: string }
+    const useLiveness = res.locals.flags?.faceLiveness
     logger.info('handleVideoVerify', submissionId)
     res.setHeader('Content-Type', 'application/json')
     res.setHeader('Cache-Control', 'no-cache')
 
-    const result = await esupervisionService.verifyLiveness(submissionId, sessionId)
-    req.session.formData.autoVerifyResult = result.result
+    if (useLiveness) {
+      const { sessionId } = req.query as { sessionId: string }
+      const result = await esupervisionService.verifyLiveness(submissionId, sessionId)
+      req.session.formData.autoVerifyResult = result.result
 
-    res.json({ status: 'SUCCESS', result: result.result, isLive: result.isLive })
+      res.json({ status: 'SUCCESS', result: result.result, isLive: result.isLive })
+    } else {
+      const result = await esupervisionService.autoVerifyCheckinIdentity(submissionId, 1)
+      req.session.formData.autoVerifyResult = result.result
+
+      res.json({ status: 'SUCCESS', result: result.result })
+    }
   } catch (error) {
     res.json({ status: 'ERROR', message: error.message })
   }
@@ -163,7 +193,7 @@ export const getLivenessCredentials: RequestHandler = async (req, res, next) => 
 
 export const renderViewVideo: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/video/view', pageParams(req))
+    res.render('pages/submission/video/view', pageParams(req, res))
   } catch (error) {
     next(error)
   }
@@ -171,7 +201,7 @@ export const renderViewVideo: RequestHandler = async (req, res, next) => {
 
 export const renderQuestionsMentalHealth: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/questions/mental-health', pageParams(req))
+    res.render('pages/submission/questions/mental-health', pageParams(req, res))
   } catch (error) {
     next(error)
   }
@@ -179,7 +209,7 @@ export const renderQuestionsMentalHealth: RequestHandler = async (req, res, next
 
 export const renderAssistance: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/questions/assistance', pageParams(req))
+    res.render('pages/submission/questions/assistance', pageParams(req, res))
   } catch (error) {
     next(error)
   }
@@ -250,7 +280,7 @@ export const handleMentalHealth: RequestHandler = async (req, res, next) => {
 
 export const renderQuestionsCallback: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/questions/callback', pageParams(req))
+    res.render('pages/submission/questions/callback', pageParams(req, res))
   } catch (error) {
     next(error)
   }
@@ -258,7 +288,7 @@ export const renderQuestionsCallback: RequestHandler = async (req, res, next) =>
 
 export const renderCheckAnswers: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/check-answers', pageParams(req))
+    res.render('pages/submission/check-answers', pageParams(req, res))
   } catch (error) {
     next(error)
   }
@@ -337,7 +367,7 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
 export const renderConfirmation: RequestHandler = async (req, res, next) => {
   try {
     req.session = null
-    res.render('pages/submission/confirmation', pageParams(req))
+    res.render('pages/submission/confirmation', pageParams(req, res))
   } catch (error) {
     next(error)
   }

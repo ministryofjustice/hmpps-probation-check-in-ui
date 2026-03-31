@@ -152,6 +152,9 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
         photosensitivityWarningBodyText: 'Your custom body text',
         photosensitivityWarningInfoText: 'Your custom info text',
         photosensitivityWarningLabelText: 'Your custom label text',
+        startScreenBeginCheckText: "Let's do it",
+        hintCenterFaceText: 'Ï text',
+        hintCenterFaceInstructionText: 'Centre face instruction text',
       }}
     />
   )
