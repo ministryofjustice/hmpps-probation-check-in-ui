@@ -2,8 +2,8 @@
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-{% from "../../partials/errorSummary.njk" import errorSummary %}
-{% extends "../../partials/layout.njk" %}
+{% from "../../../partials/errorSummary.njk" import errorSummary %}
+{% extends "../../../partials/layout.njk" %}
 
 {% set pageTitle = "Check your answers before you complete your check in" %}
 
@@ -11,7 +11,7 @@
   {{
     govukBackLink({
       text: "Back",
-      href: "/" + submissionId + "/video/view"
+      href: "/" + submissionId + "/liveness/view"
     })
   }}
 {% endblock %}
@@ -221,16 +221,17 @@
         {% endif %}
       </dl>
 
-      <h2 class="govuk-heading-m">Video</h2>
+      <h2 class="govuk-heading-m">Face liveness check</h2>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">Video check</dt>
+          <dt class="govuk-summary-list__key">Liveness check</dt>
+
           <dd class="govuk-summary-list__value">
             {{ 'We have confirmed this is you' if autoVerifyResult == 'MATCH' else 'We cannot confirm this is you' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/{{ submissionId }}/video/view?checkAnswers=true"
+            <a class="govuk-link" href="/{{ submissionId }}/liveness/view?checkAnswers=true"
               >View<span class="govuk-visually-hidden"> video</span></a
             >
           </dd>

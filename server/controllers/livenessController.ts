@@ -11,7 +11,7 @@ const { esupervisionService } = services()
 
 export const renderLivenessInform: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/liveness/inform', pageParams(req, res))
+    res.render('pages/submission/liveness/inform', pageParams(req))
   } catch (error) {
     next(error)
   }
@@ -23,7 +23,7 @@ export const renderLivenessRecord: RequestHandler = async (req, res: Response<ob
     const livenessSession = await esupervisionService.createLivenessSession(submissionId)
 
     res.render('pages/submission/liveness/record', {
-      ...pageParams(req, res),
+      ...pageParams(req),
       sessionId: livenessSession.sessionId,
       region: config.awsRegion,
     })
@@ -49,9 +49,17 @@ export const handleLivenessVerify: RequestHandler = async (req, res, next) => {
   }
 }
 
+export const renderLivenessCheckAnswers: RequestHandler = async (req, res, next) => {
+  try {
+    res.render('pages/submission/liveness/check-answers', pageParams(req))
+  } catch (error) {
+    next(error)
+  }
+}
+
 export const renderLivenessView: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/liveness/view', pageParams(req, res))
+    res.render('pages/submission/liveness/view', pageParams(req))
   } catch (error) {
     next(error)
   }

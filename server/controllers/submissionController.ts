@@ -12,7 +12,7 @@ type SubmissionLocals = { checkin: Checkin }
 const { esupervisionService } = services()
 
 const getSubmissionId = (req: Request): string => req.params.submissionId
-export const pageParams = (req: Request, res: Response): Record<string, unknown> => {
+export const pageParams = (req: Request): Record<string, unknown> => {
   const cya = req.query.checkAnswers === 'true'
   const autoVerifyResult = req.session?.formData?.autoVerifyResult
 
@@ -20,7 +20,6 @@ export const pageParams = (req: Request, res: Response): Record<string, unknown>
     cya,
     autoVerifyResult,
     submissionId: getSubmissionId(req),
-    flags: res.locals.flags,
   }
 }
 
@@ -46,7 +45,7 @@ export const handleRedirect = (submissionPath: string): RequestHandler => {
 export const renderIndex: RequestHandler = async (req, res, next) => {
   try {
     req.session.formData = { checkinStartedAt: Date.now() }
-    res.render('pages/submission/index', pageParams(req, res))
+    res.render('pages/submission/index', pageParams(req))
   } catch (error) {
     next(error)
   }
@@ -56,7 +55,7 @@ export const renderVerify: RequestHandler = async (req, res, next) => {
   try {
     const errors = req.flash('error')
 
-    res.render('pages/submission/verify', { ...pageParams(req, res), errorMessage: errors[0] })
+    res.render('pages/submission/verify', { ...pageParams(req), errorMessage: errors[0] })
   } catch (error) {
     next(error)
   }
@@ -102,7 +101,7 @@ export const handleVerify: RequestHandler = async (req, res: Response<object, Su
 
 export const renderVideoInform: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/video/inform', pageParams(req, res))
+    res.render('pages/submission/video/inform', pageParams(req))
   } catch (error) {
     next(error)
   }
@@ -124,7 +123,7 @@ export const renderVideoRecord: RequestHandler = async (req, res: Response<objec
     }
 
     res.render('pages/submission/video/record', {
-      ...pageParams(req, res),
+      ...pageParams(req),
       videoUploadUrl: uploadLocations.video.url,
       frameUploadUrl: uploadLocations.snapshots.map(snapshot => snapshot.url),
     })
@@ -151,7 +150,7 @@ export const handleVideoVerify: RequestHandler = async (req, res, next) => {
 
 export const renderViewVideo: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/video/view', pageParams(req, res))
+    res.render('pages/submission/video/view', pageParams(req))
   } catch (error) {
     next(error)
   }
@@ -159,7 +158,7 @@ export const renderViewVideo: RequestHandler = async (req, res, next) => {
 
 export const renderQuestionsMentalHealth: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/questions/mental-health', pageParams(req, res))
+    res.render('pages/submission/questions/mental-health', pageParams(req))
   } catch (error) {
     next(error)
   }
@@ -167,7 +166,7 @@ export const renderQuestionsMentalHealth: RequestHandler = async (req, res, next
 
 export const renderAssistance: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/questions/assistance', pageParams(req, res))
+    res.render('pages/submission/questions/assistance', pageParams(req))
   } catch (error) {
     next(error)
   }
@@ -238,7 +237,7 @@ export const handleMentalHealth: RequestHandler = async (req, res, next) => {
 
 export const renderQuestionsCallback: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/questions/callback', pageParams(req, res))
+    res.render('pages/submission/questions/callback', pageParams(req))
   } catch (error) {
     next(error)
   }
@@ -246,7 +245,7 @@ export const renderQuestionsCallback: RequestHandler = async (req, res, next) =>
 
 export const renderCheckAnswers: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/check-answers', pageParams(req, res))
+    res.render('pages/submission/check-answers', pageParams(req))
   } catch (error) {
     next(error)
   }
@@ -325,7 +324,7 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
 export const renderConfirmation: RequestHandler = async (req, res, next) => {
   try {
     req.session = null
-    res.render('pages/submission/confirmation', pageParams(req, res))
+    res.render('pages/submission/confirmation', pageParams(req))
   } catch (error) {
     next(error)
   }

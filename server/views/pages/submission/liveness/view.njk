@@ -9,7 +9,7 @@
   {{
     govukBackLink({
       text: "Back",
-      href: "/" + submissionId + "/check-your-answers" if cya else "/" + submissionId + "/liveness/record"
+      href: "/" + submissionId + "/liveness/check-your-answers" if cya else "/" + submissionId + "/liveness/record"
     })
   }}
 {% endblock %}
@@ -25,7 +25,7 @@
             class="govuk-button"
             data-module="govuk-button"
             role="button"
-            href="/{{ submissionId }}/check-your-answers"
+            href="/{{ submissionId }}/liveness/check-your-answers"
             >Continue</a
           >
         </div>
@@ -49,7 +49,7 @@
             class="govuk-button govuk-button--secondary"
             role="button"
             data-module="govuk-button"
-            href="/{{ submissionId }}/check-your-answers"
+            href="/{{ submissionId }}/liveness/check-your-answers"
           >
             Submit anyway
           </a>
