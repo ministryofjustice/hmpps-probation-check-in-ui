@@ -1,6 +1,5 @@
 import { RequestHandler, Request, Response } from 'express'
 import logger from '../../logger'
-import config from '../config'
 import { services } from '../services'
 import MentalHealth from '../data/models/survey/mentalHealth'
 import SupportAspect from '../data/models/survey/supportAspect'
@@ -13,7 +12,7 @@ type SubmissionLocals = { checkin: Checkin }
 const { esupervisionService } = services()
 
 const getSubmissionId = (req: Request): string => req.params.submissionId
-const pageParams = (req: Request, res: Response): Record<string, unknown> => {
+export const pageParams = (req: Request, res: Response): Record<string, unknown> => {
   const cya = req.query.checkAnswers === 'true'
   const autoVerifyResult = req.session?.formData?.autoVerifyResult
 
@@ -112,35 +111,23 @@ export const renderVideoInform: RequestHandler = async (req, res, next) => {
 export const renderVideoRecord: RequestHandler = async (req, res: Response<object, SubmissionLocals>, next) => {
   try {
     const { submissionId } = req.params
-    const useLiveness = res.locals.flags?.faceLiveness
+    const videoContentType = 'video/mp4'
+    const frameContentType = 'image/jpeg'
 
-    if (useLiveness) {
-      const livenessSession = await esupervisionService.createLivenessSession(submissionId)
+    const uploadLocations = await esupervisionService.getCheckinUploadLocation(submissionId, {
+      video: videoContentType,
+      snapshots: [frameContentType, frameContentType],
+    })
 
-      res.render('pages/submission/video/record', {
-        ...pageParams(req, res),
-        sessionId: livenessSession.sessionId,
-        region: config.awsRegion,
-      })
-    } else {
-      const videoContentType = 'video/mp4'
-      const frameContentType = 'image/jpeg'
-
-      const uploadLocations = await esupervisionService.getCheckinUploadLocation(submissionId, {
-        video: videoContentType,
-        snapshots: [frameContentType, frameContentType],
-      })
-
-      if (uploadLocations.snapshots.length === 0 || uploadLocations.video === undefined) {
-        throw new Error(`Failed to get upload locations: ${JSON.stringify(uploadLocations)}`)
-      }
-
-      res.render('pages/submission/video/record-legacy', {
-        ...pageParams(req, res),
-        videoUploadUrl: uploadLocations.video.url,
-        frameUploadUrl: uploadLocations.snapshots.map(snapshot => snapshot.url),
-      })
+    if (uploadLocations.snapshots.length === 0 || uploadLocations.video === undefined) {
+      throw new Error(`Failed to get upload locations: ${JSON.stringify(uploadLocations)}`)
     }
+
+    res.render('pages/submission/video/record', {
+      ...pageParams(req, res),
+      videoUploadUrl: uploadLocations.video.url,
+      frameUploadUrl: uploadLocations.snapshots.map(snapshot => snapshot.url),
+    })
   } catch (error) {
     next(error)
   }
@@ -149,43 +136,14 @@ export const renderVideoRecord: RequestHandler = async (req, res: Response<objec
 export const handleVideoVerify: RequestHandler = async (req, res, next) => {
   try {
     const submissionId = getSubmissionId(req)
-    const useLiveness = res.locals.flags?.faceLiveness
     logger.info('handleVideoVerify', submissionId)
     res.setHeader('Content-Type', 'application/json')
     res.setHeader('Cache-Control', 'no-cache')
 
-    if (useLiveness) {
-      const { sessionId } = req.query as { sessionId: string }
-      const result = await esupervisionService.verifyLiveness(submissionId, sessionId)
-      req.session.formData.autoVerifyResult = result.result
+    const result = await esupervisionService.autoVerifyCheckinIdentity(submissionId, 1)
+    req.session.formData.autoVerifyResult = result.result
 
-      res.json({ status: 'SUCCESS', result: result.result, isLive: result.isLive })
-    } else {
-      const result = await esupervisionService.autoVerifyCheckinIdentity(submissionId, 1)
-      req.session.formData.autoVerifyResult = result.result
-
-      res.json({ status: 'SUCCESS', result: result.result })
-    }
-  } catch (error) {
-    res.json({ status: 'ERROR', message: error.message })
-  }
-}
-
-export const getLivenessSession: RequestHandler = async (req, res, next) => {
-  try {
-    const submissionId = getSubmissionId(req)
-    const livenessSession = await esupervisionService.createLivenessSession(submissionId)
-    res.json(livenessSession)
-  } catch (error) {
-    res.json({ status: 'ERROR', message: error.message })
-  }
-}
-
-export const getLivenessCredentials: RequestHandler = async (req, res, next) => {
-  try {
-    const submissionId = getSubmissionId(req)
-    const credentials = await esupervisionService.getLivenessCredentials(submissionId)
-    res.json(credentials)
+    res.json({ status: 'SUCCESS', result: result.result })
   } catch (error) {
     res.json({ status: 'ERROR', message: error.message })
   }

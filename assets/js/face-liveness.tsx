@@ -33,7 +33,7 @@ async function fetchNewSession(submissionId: string): Promise<string> {
 }
 
 async function fetchVerifyResult(submissionId: string, sessionId: string): Promise<VerifyResult> {
-  const res = await fetch(`/${submissionId}/video/verify?sessionId=${encodeURIComponent(sessionId)}`)
+  const res = await fetch(`/${submissionId}/liveness/verify?sessionId=${encodeURIComponent(sessionId)}`)
   if (!res.ok) throw new Error('Verification request failed')
   return res.json()
 }

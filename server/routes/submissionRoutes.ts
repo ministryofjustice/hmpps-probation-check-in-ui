@@ -8,8 +8,6 @@ import {
   handleVerify,
   handleSubmission,
   handleVideoVerify,
-  getLivenessSession,
-  getLivenessCredentials,
   renderAssistance,
   renderQuestionsMentalHealth,
   renderCheckAnswers,
@@ -23,6 +21,14 @@ import {
   handleAssistance,
   handleMentalHealth,
 } from '../controllers/submissionController'
+import {
+  renderLivenessInform,
+  renderLivenessRecord,
+  handleLivenessVerify,
+  renderLivenessView,
+  getLivenessSession,
+  getLivenessCredentials,
+} from '../controllers/livenessController'
 
 import {
   personalDetailsSchema,
@@ -33,6 +39,7 @@ import {
 } from '../schemas/submissionSchemas'
 
 import { Services } from '../services'
+import { defaultFlags } from '../utils/flags'
 import logger from '../../logger'
 
 export default function routes({ esupervisionService }: Services): Router {
@@ -96,13 +103,18 @@ export default function routes({ esupervisionService }: Services): Router {
     '/questions/callback',
     protectSubmission,
     validateFormData(callbackSchema),
-    handleRedirect('/video/inform'),
+    handleRedirect(defaultFlags.faceLiveness ? '/liveness/inform' : '/video/inform'),
   )
 
   get('/video/inform', protectSubmission, renderVideoInform)
   get('/video/record', protectSubmission, renderVideoRecord)
   get('/video/verify', protectSubmission, handleVideoVerify)
   get('/video/view', protectSubmission, renderViewVideo)
+
+  get('/liveness/inform', protectSubmission, renderLivenessInform)
+  get('/liveness/record', protectSubmission, renderLivenessRecord)
+  get('/liveness/verify', protectSubmission, handleLivenessVerify)
+  get('/liveness/view', protectSubmission, renderLivenessView)
   get('/liveness/session', protectSubmission, getLivenessSession)
   get('/liveness/credentials', protectSubmission, getLivenessCredentials)
 

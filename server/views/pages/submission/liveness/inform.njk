@@ -19,14 +19,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
-      <p>Next, we need to record a 5-second video of you on this device. You do not need to speak in the video. Anything you say will not be recorded.</p>
+      <p>Next, we need to complete a face liveness check to confirm your identity. You will be asked to follow some simple on-screen instructions.</p>
       <p>
-        We’ll use your video to confirm who you are. We’ll do this by comparing your video with the photo your probation
-        officer took when they signed you up. This video will only be used to confirm your identity.
+        We'll use this check to confirm who you are by comparing your face with the photo your probation
+        officer took when they signed you up. This will only be used to confirm your identity.
       </p>
-      <p>You’ll need to accept permissions to record a video on your device.</p>
-      <h2 class="govuk-heading-s">Before you record your video</h2>
-      <p>Before you record your video, make sure:</p>
+      <p>You'll need to accept permissions to use the camera on your device.</p>
+      <h2 class="govuk-heading-s">Before you start</h2>
+      <p>Before you start, make sure:</p>
       <ul class="govuk-list govuk-list--bullet">
         <li>you are in a well lit area</li>
         <li>you are in front of a plain background</li>
@@ -39,7 +39,7 @@
       {{
         govukButton({
         text: "Continue",
-        href: "/" + submissionId + "/video/record"
+        href: "/" + submissionId + "/liveness/record"
         })
       }}
     </div>

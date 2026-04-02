@@ -1,0 +1,38 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% extends "../../../partials/layout.njk" %}
+
+{% set pageTitle = "Record your video" %}
+
+{% block head %}
+  {{ super() }}
+  <link href="{{ '/assets/css/face-liveness.css' | assetMap }}" rel="stylesheet" />
+{% endblock %}
+
+{% block beforeContent %}
+  {{
+    govukBackLink({
+      text: "Back",
+      href: "/" + submissionId + "/liveness/inform"
+    })
+  }}
+{% endblock %}
+
+{% block content %}
+  <div
+    id="face-liveness-root"
+    data-session-id="{{ sessionId }}"
+    data-region="{{ region }}"
+    data-submission-id="{{ submissionId }}"
+  ></div>
+
+  {% include "../video/partials/loading.njk" %}
+  {% include "../video/partials/match.njk" %}
+  {% include "../video/partials/nomatch.njk" %}
+  {% include "../video/partials/error.njk" %}
+{% endblock %}
+
+{% block bodyEnd %}
+  {{ super() }}
+  <script type="module" src="{{ '/assets/js/face-liveness.js' | assetMap }}"></script>
+{% endblock %}

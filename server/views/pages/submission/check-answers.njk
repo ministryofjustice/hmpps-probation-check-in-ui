@@ -11,7 +11,7 @@
   {{
     govukBackLink({
       text: "Back",
-      href: "/" + submissionId + "/video/view"
+      href: "/" + submissionId + ("/liveness/view" if flags.faceLiveness else "/video/view")
     })
   }}
 {% endblock %}
@@ -226,11 +226,12 @@
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">{{ 'Liveness check' if flags.faceLiveness else 'Video check' }}</dt>
+
           <dd class="govuk-summary-list__value">
             {{ 'We have confirmed this is you' if autoVerifyResult == 'MATCH' else 'We cannot confirm this is you' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/{{ submissionId }}/video/view?checkAnswers=true"
+            <a class="govuk-link" href="/{{ submissionId }}/{{ 'liveness' if flags.faceLiveness else 'video' }}/view?checkAnswers=true"
               >View<span class="govuk-visually-hidden"> video</span></a
             >
           </dd>

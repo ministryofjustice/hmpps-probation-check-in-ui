@@ -83,7 +83,7 @@ describe('Start Check-in Journey', () => {
     informPage.continueButton().click()
     // The liveness component requires a WebSocket connection to AWS Rekognition
     // which cannot run in Cypress, so we skip directly to the view page
-    cy.visit(`/${testCheckin.uuid}/video/view`)
+    cy.visit(`/${testCheckin.uuid}/liveness/view`)
     const videoViewPage = SubmissionPage.verifyOnPage(VideoViewPage)
     videoViewPage.submitAnywayButton().click()
 
