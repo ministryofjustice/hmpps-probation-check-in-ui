@@ -7,7 +7,6 @@ import CallbackRequested from '../data/models/survey/callbackRequested'
 import Checkin from '../data/models/checkin'
 import { DeviceInfo } from '../data/models/survey/surveyResponse'
 import { extractAdditionalQuestions } from '../data/models/offenderQuestionsResponse'
-import { additionalAnswerSchema } from '../schemas/submissionSchemas'
 
 type SubmissionLocals = { checkin: Checkin }
 

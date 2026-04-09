@@ -112,10 +112,7 @@ export default class EsupervisionApiClient extends RestClient {
   }
 
   async getOffenderQuestions(crn: string): Promise<OffenderQuestionsResponse> {
-    return this.get<OffenderQuestionsResponse>(
-      { path: `/v2/questions/upcoming/${crn}/offender-questions` },
-      asSystem(),
-    )
+    return this.get<OffenderQuestionsResponse>({ path: `/v2/questions/upcoming/${crn}/offender-questions` }, asSystem())
   }
 
   async submitFeedback(feedback: Feedback): Promise<void> {
