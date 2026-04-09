@@ -84,3 +84,21 @@ export const getLivenessCredentials: RequestHandler = async (req, res, next) => 
     res.json({ status: 'ERROR', message: error.message })
   }
 }
+
+export const getSnapshotUploadUrl: RequestHandler = async (req, res, next) => {
+  try {
+    const { submissionId } = req.params
+    const uploadLocations = await esupervisionService.getCheckinUploadLocation(submissionId, {
+      video: 'video/mp4',
+      snapshots: ['image/jpeg'],
+    })
+
+    if (!uploadLocations.snapshots?.length) {
+      throw new Error('Failed to get snapshot upload location')
+    }
+
+    res.json({ url: uploadLocations.snapshots[0].url })
+  } catch (error) {
+    res.json({ status: 'ERROR', message: error.message })
+  }
+}

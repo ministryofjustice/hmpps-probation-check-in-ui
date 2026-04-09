@@ -1,0 +1,26 @@
+<div class="es-pane" id="errorScreen" hidden aria-hidden="true">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">We cannot confirm this is you because an error occurred</h1>
+      <p>We have checked and we cannot confirm this is you. You can try the check again or submit anyway.</p>
+      <p class="govuk-!-font-weight-bold">If you try again, make sure:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>you are in a well lit area</li>
+        <li>you are in front of a plain background</li>
+        <li>your face is in the frame</li>
+        <li>you are not wearing a hat or sunglasses</li>
+      </ul>
+      <div class="govuk-button-group">
+        <a class="govuk-button" role="button" data-liveness-retry>Try again</a>
+        <a
+          class="govuk-button govuk-button--secondary"
+          role="button"
+          data-module="govuk-button"
+          href="/{{ submissionId }}/check-your-answers"
+        >
+          Submit anyway
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -29,6 +29,7 @@ import {
   renderLivenessCheckAnswers,
   getLivenessSession,
   getLivenessCredentials,
+  getSnapshotUploadUrl,
 } from '../controllers/livenessController'
 
 import {
@@ -120,6 +121,7 @@ export default function routes({ esupervisionService }: Services): Router {
   router.post('/liveness/check-your-answers', protectSubmission, validateFormData(checkAnswersSchema), handleSubmission)
   get('/liveness/session', protectSubmission, getLivenessSession)
   get('/liveness/credentials', protectSubmission, getLivenessCredentials)
+  get('/liveness/upload-url', protectSubmission, getSnapshotUploadUrl)
 
   get('/check-your-answers', protectSubmission, renderCheckAnswers)
   router.post('/check-your-answers', protectSubmission, validateFormData(checkAnswersSchema), handleSubmission)

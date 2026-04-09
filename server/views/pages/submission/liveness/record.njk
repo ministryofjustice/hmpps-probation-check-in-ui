@@ -2,7 +2,7 @@
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% extends "../../../partials/layout.njk" %}
 
-{% set pageTitle = "Record your video" %}
+{% set pageTitle = "Verify your identity" %}
 
 {% block head %}
   {{ super() }}
@@ -19,6 +19,8 @@
 {% endblock %}
 
 {% block content %}
+  {% include "./partials/instructions.njk" %}
+
   <div
     id="face-liveness-root"
     data-session-id="{{ sessionId }}"
@@ -26,10 +28,20 @@
     data-submission-id="{{ submissionId }}"
   ></div>
 
-  {% include "../video/partials/loading.njk" %}
-  {% include "../video/partials/match.njk" %}
-  {% include "../video/partials/nomatch.njk" %}
-  {% include "../video/partials/error.njk" %}
+  {% include "./partials/loading.njk" %}
+  {% include "./partials/match.njk" %}
+  {% include "./partials/not-live-match.njk" %}
+  {% include "./partials/live-no-match.njk" %}
+  {% include "./partials/not-live-no-match.njk" %}
+  {% include "./partials/timeout.njk" %}
+  {% include "./partials/camera-error.njk" %}
+  {% include "./partials/error.njk" %}
+
+  {% include "./partials/fallback-recording.njk" %}
+  {% include "./partials/fallback-loading.njk" %}
+  {% include "./partials/fallback-match.njk" %}
+  {% include "./partials/fallback-nomatch.njk" %}
+  {% include "./partials/fallback-error.njk" %}
 {% endblock %}
 
 {% block bodyEnd %}
