@@ -9,6 +9,7 @@ import OffenderCheckinResponse from './models/offenderCheckinResponse'
 import AutomaticCheckinVerificationResult from './models/automaticCheckinVerificationResult'
 import { CheckinEventType } from './models/checkinEvent'
 import Feedback from './models/feedback'
+import { OffenderQuestionsResponse } from './models/offenderQuestionsResponse'
 
 /**
  * Specifies content types for possible upload locations for a checkin.
@@ -106,6 +107,13 @@ export default class EsupervisionApiClient extends RestClient {
         headers: { 'Content-Type': 'application/json' },
         data: JSON.stringify(personalDetails),
       },
+      asSystem(),
+    )
+  }
+
+  async getOffenderQuestions(crn: string): Promise<OffenderQuestionsResponse> {
+    return this.get<OffenderQuestionsResponse>(
+      { path: `/v2/questions/upcoming/${crn}/offender-questions` },
       asSystem(),
     )
   }

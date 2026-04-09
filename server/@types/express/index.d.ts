@@ -14,6 +14,8 @@ export declare module 'express-session' {
       mentalHealth?: string
       callback?: string
       autoVerifyResult?: string
+      additionalQuestions?: Array<{ question: string; hint: string; placeholder?: string }>
+      additionalAnswers?: Array<{ question: string; response: string }>
       [key: string]: unknown
     } | null
   }
