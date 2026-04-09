@@ -66,6 +66,10 @@ export const callbackSchema = z
   })
   .required()
 
+export const additionalAnswerSchema = z.object({
+  additionalAnswer: z.string().min(1, 'Enter your answer to the question'),
+})
+
 export const checkAnswersSchema = z
   .object({
     checkAnswers: z
