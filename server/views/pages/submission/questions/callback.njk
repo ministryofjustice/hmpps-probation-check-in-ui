@@ -13,7 +13,7 @@
   {{
     govukBackLink({
       text: "Back",
-      href: "/" + submissionId + "/check-your-answers" if cya else "/" + submissionId + "/questions/assistance"
+      href: "/" + submissionId + ("/liveness/check-your-answers" if flags.faceLiveness else "/check-your-answers") if cya else "/" + submissionId + "/questions/assistance"
     })
   }}
 {% endblock %}

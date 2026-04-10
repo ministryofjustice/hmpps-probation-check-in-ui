@@ -14,7 +14,7 @@
   {{
     govukBackLink({
       text: "Back",
-      href: "/" + submissionId + "/check-your-answers" if cya else "/" + submissionId + "/questions/mental-health"
+      href: "/" + submissionId + ("/liveness/check-your-answers" if flags.faceLiveness else "/check-your-answers") if cya else "/" + submissionId + "/questions/mental-health"
     })
   }}
 {% endblock %}

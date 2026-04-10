@@ -9,6 +9,15 @@ type SubmissionLocals = { checkin: Checkin }
 
 const { esupervisionService } = services()
 
+export const renderLivenessIndex: RequestHandler = async (req, res, next) => {
+  try {
+    req.session.formData = { checkinStartedAt: Date.now() }
+    res.render('pages/submission/liveness/index', pageParams(req))
+  } catch (error) {
+    next(error)
+  }
+}
+
 export const renderLivenessInform: RequestHandler = async (req, res, next) => {
   try {
     res.render('pages/submission/liveness/inform', pageParams(req))

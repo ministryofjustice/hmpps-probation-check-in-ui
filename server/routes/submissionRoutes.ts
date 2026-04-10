@@ -22,6 +22,7 @@ import {
   handleMentalHealth,
 } from '../controllers/submissionController'
 import {
+  renderLivenessIndex,
   renderLivenessInform,
   renderLivenessRecord,
   handleLivenessVerify,
@@ -90,7 +91,7 @@ export default function routes({ esupervisionService }: Services): Router {
 
   router.post('/start', handleStart)
 
-  get('/', renderIndex)
+  get('/', defaultFlags.faceLiveness ? renderLivenessIndex : renderIndex)
   get('/verify', renderVerify)
   router.post('/verify', validateFormData(personalDetailsSchema), handleVerify)
 
