@@ -51,6 +51,7 @@ export const handleLivenessVerify: RequestHandler = async (req, res, next) => {
 
     const result = await esupervisionService.verifyLiveness(submissionId, sessionId)
     req.session.formData.autoVerifyResult = result.result
+    req.session.formData.isLive = result.isLive
 
     res.json({ status: 'SUCCESS', result: result.result, isLive: result.isLive })
   } catch (error) {

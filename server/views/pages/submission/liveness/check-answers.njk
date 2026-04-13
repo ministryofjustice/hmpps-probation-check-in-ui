@@ -221,14 +221,28 @@
         {% endif %}
       </dl>
 
-      <h2 class="govuk-heading-m">Face liveness check</h2>
+      <h2 class="govuk-heading-m">Identity check</h2>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">Liveness check</dt>
+          <dt class="govuk-summary-list__key">Identity check</dt>
 
           <dd class="govuk-summary-list__value">
-            {{ 'We have confirmed this is you' if autoVerifyResult == 'MATCH' else 'We cannot confirm this is you' }}
+            {% if isLive == true and autoVerifyResult == 'MATCH' %}
+              We have confirmed this is you
+            {% elif isLive == true and autoVerifyResult == 'NO_MATCH' %}
+              We cannot confirm this is you
+            {% elif isLive == false and autoVerifyResult == 'MATCH' %}
+              We cannot confirm your identity
+            {% elif isLive == false and autoVerifyResult == 'NO_MATCH' %}
+              There's been a problem with your identity check
+            {% elif autoVerifyResult == 'MATCH' %}
+              We have confirmed this is you
+            {% elif autoVerifyResult == 'NO_MATCH' %}
+              We cannot confirm this is you
+            {% else %}
+              We cannot confirm this is you
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/{{ submissionId }}/liveness/view?checkAnswers=true"

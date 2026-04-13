@@ -15,10 +15,12 @@ const getSubmissionId = (req: Request): string => req.params.submissionId
 export const pageParams = (req: Request): Record<string, unknown> => {
   const cya = req.query.checkAnswers === 'true'
   const autoVerifyResult = req.session?.formData?.autoVerifyResult
+  const isLive = req.session?.formData?.isLive
 
   return {
     cya,
     autoVerifyResult,
+    isLive,
     submissionId: getSubmissionId(req),
   }
 }
