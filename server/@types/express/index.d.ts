@@ -12,7 +12,6 @@ export declare module 'express-session' {
       drugsUse?: string
       physicalHealth?: string
       mentalHealth?: string
-      callback?: string
       autoVerifyResult?: string
       additionalQuestions?: Array<{ question: string; hint: string; placeholder?: string }>
       additionalAnswers?: Array<{ question: string; response: string }>
@@ -48,7 +47,6 @@ export declare global {
         drugsUse?: string
         physicalHealth?: string
         mentalHealth?: string
-        callback?: string
         [key: string]: unknown
       } | null
     }

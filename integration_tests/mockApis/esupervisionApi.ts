@@ -10,7 +10,6 @@ import OffenderStatus from '../../server/data/models/offenderStatus'
 import CheckinInterval from '../../server/data/models/checkinInterval'
 import CheckinStatus from '../../server/data/models/checkinStatus'
 import AutomatedIdVerificationResult from '../../server/data/models/automatedIdVerificationResult'
-import CallbackRequested from '../../server/data/models/survey/callbackRequested'
 import MentalHealth from '../../server/data/models/survey/mentalHealth'
 import SupportAspect from '../../server/data/models/survey/supportAspect'
 
@@ -91,7 +90,6 @@ export const createMockCheckin = (offender: Offender, overrides: Partial<Checkin
       mentalHealth: faker.helpers.arrayElement(Object.values(MentalHealth)),
       mentalHealthComment: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       assistance: faker.helpers.arrayElements(Object.values(SupportAspect)),
-      callback: faker.helpers.arrayElement(Object.values(CallbackRequested)),
       mentalHealthSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       alcoholSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       drugsSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
@@ -99,7 +97,6 @@ export const createMockCheckin = (offender: Offender, overrides: Partial<Checkin
       housingSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       supportSystemSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       otherSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
-      callbackDetails: faker.datatype.boolean() ? faker.lorem.sentence() : null,
     }
   }
 
