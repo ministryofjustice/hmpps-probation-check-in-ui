@@ -3,7 +3,6 @@ import logger from '../../logger'
 import { services } from '../services'
 import MentalHealth from '../data/models/survey/mentalHealth'
 import SupportAspect from '../data/models/survey/supportAspect'
-import CallbackRequested from '../data/models/survey/callbackRequested'
 import Checkin from '../data/models/checkin'
 import { DeviceInfo } from '../data/models/survey/surveyResponse'
 import { extractAdditionalQuestions } from '../data/models/offenderQuestionsResponse'
@@ -206,13 +205,17 @@ export const handleAssistance: RequestHandler = async (req, res, next) => {
   }
 
   const basePath = `/${submissionId}`
-  let redirectUrl = `${basePath}/questions/callback`
 
   if (req.query.checkAnswers === 'true') {
-    redirectUrl = `${basePath}/check-your-answers`
+    return res.redirect(`${basePath}/check-your-answers`)
   }
 
-  res.redirect(redirectUrl)
+  const { additionalQuestions } = req.session.formData ?? {}
+  if (additionalQuestions?.length > 0) {
+    return res.redirect(`${basePath}/questions/additional/1`)
+  }
+
+  return res.redirect(`${basePath}/video/inform`)
 }
 
 export const handleMentalHealth: RequestHandler = async (req, res, next) => {
@@ -245,30 +248,6 @@ export const handleMentalHealth: RequestHandler = async (req, res, next) => {
   }
 
   res.redirect(redirectUrl)
-}
-
-export const renderQuestionsCallback: RequestHandler = async (req, res, next) => {
-  try {
-    res.render('pages/submission/questions/callback', pageParams(req))
-  } catch (error) {
-    next(error)
-  }
-}
-
-export const handleCallbackRedirect: RequestHandler = (req, res) => {
-  const { submissionId } = req.params
-  const basePath = `/${submissionId}`
-
-  if (req.query.checkAnswers === 'true') {
-    return res.redirect(`${basePath}/check-your-answers`)
-  }
-
-  const { additionalQuestions } = req.session.formData ?? {}
-  if (additionalQuestions?.length > 0) {
-    return res.redirect(`${basePath}/questions/additional/1`)
-  }
-
-  return res.redirect(`${basePath}/video/inform`)
 }
 
 export const renderAdditionalQuestion: RequestHandler = async (req, res, next) => {
@@ -350,8 +329,6 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
     housingSupport,
     supportSystemSupport,
     otherSupport,
-    callback,
-    callbackDetails,
     checkinStartedAt,
     additionalAnswers,
   } = res.locals.formData
@@ -391,8 +368,6 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
       housingSupport: housingSupport as string,
       supportSystemSupport: supportSystemSupport as string,
       otherSupport: otherSupport as string,
-      callback: callback as CallbackRequested,
-      callbackDetails: callbackDetails as string,
       customQuestions: (additionalAnswers as Array<{ question: string; response: string }>) ?? [],
       device,
       checkinStartedAt: checkinStartedAt as Date,
