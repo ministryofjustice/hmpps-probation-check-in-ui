@@ -5,7 +5,6 @@ import Offender from '../../../server/data/models/offender'
 import OffenderStatus from '../../../server/data/models/offenderStatus'
 import { createMockCheckin, createMockOffender } from '../../mockApis/esupervisionApi'
 import AssistancePage from '../../pages/submission/assistancePage'
-import CallbackPage from '../../pages/submission/callbackPage'
 import CheckAnswersPage from '../../pages/submission/checkAnswersPage'
 import CheckinIndexPage from '../../pages/submission/checkinIndexPage'
 import ConfirmationPage from '../../pages/submission/confirmationPage'
@@ -74,11 +73,6 @@ describe('Start Check-in Journey', () => {
     assistancePage.enterHousingReason('I need to find a new place to live.')
     assistancePage.continueButton().click()
 
-    cy.url().should('include', '/questions/callback')
-    const callbackPage = SubmissionPage.verifyOnPage(CallbackPage)
-    const details = 'I would like to discuss my upcoming appointment.'
-    callbackPage.selectYesAndProvideDetails(details)
-    callbackPage.continueButton().click()
     const informPage = SubmissionPage.verifyOnPage(VideoInformPage)
     informPage.continueButton().should('exist')
     informPage.continueButton().click()
@@ -97,14 +91,6 @@ describe('Start Check-in Journey', () => {
       'I am having trouble with my budgeting.',
     )
     checkAnswersPage.verifySummaryValue('Tell us why you need help with housing', 'I need to find a new place to live.')
-    checkAnswersPage.verifySummaryValue(
-      'Is there anything else you need to speak with your probation officer about?',
-      'Yes',
-    )
-    checkAnswersPage.verifySummaryValue(
-      'Tell us what you need to talk about',
-      'I would like to discuss my upcoming appointment.',
-    )
     checkAnswersPage.clickChangeLink('How have you been feeling since we last spoke?')
     mentalHealthPage.wellRadio().click()
     mentalHealthPage.continueButton().click()
