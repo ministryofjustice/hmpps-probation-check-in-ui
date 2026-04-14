@@ -17,7 +17,93 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% if submission.autoIdCheck == 'MATCH' or autoVerifyResult == 'MATCH' %}
+      {% if isLive == true and autoVerifyResult == 'MATCH' %}
+        <h1 class="govuk-heading-l">We have confirmed this is you</h1>
+        <p>We have confirmed this is you. You can now continue to check your answers.</p>
+        <div class="govuk-button-group">
+          <a
+            class="govuk-button"
+            data-module="govuk-button"
+            role="button"
+            href="/{{ submissionId }}/liveness/check-your-answers"
+            >Continue</a
+          >
+        </div>
+      {% elif isLive == true and autoVerifyResult == 'NO_MATCH' %}
+        <h1 class="govuk-heading-l">We cannot confirm this is you</h1>
+        <p>This is because your image does not match the photo we have on your file.</p>
+        <p class="govuk-!-font-weight-bold">You can try to verify your identity again</p>
+        <p>Make sure:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>your face is in the frame</li>
+          <li>you are in a well lit area</li>
+          <li>you are in front of a plain background</li>
+          <li>you are not wearing a hat or sunglasses</li>
+        </ul>
+        <div class="govuk-button-group">
+          <a class="govuk-button" role="button" href="/{{ submissionId }}/liveness/record"
+            >Try again</a
+          >
+          <a
+            class="govuk-button govuk-button--secondary"
+            role="button"
+            data-module="govuk-button"
+            href="/{{ submissionId }}/liveness/check-your-answers"
+          >
+            Submit anyway
+          </a>
+        </div>
+      {% elif isLive == false and autoVerifyResult == 'MATCH' %}
+        <h1 class="govuk-heading-l">We cannot confirm your identity</h1>
+        <p>We cannot confirm this is you, as you did not move quickly enough, or your face left the frame.</p>
+        <p class="govuk-!-font-weight-bold">If you try to verify your identity again</p>
+        <p>Make sure:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>your face is in the frame</li>
+          <li>you follow the instructions to move closer, keeping your face in the frame</li>
+          <li>you move at a steady pace</li>
+        </ul>
+        <div class="govuk-button-group">
+          <a class="govuk-button" role="button" href="/{{ submissionId }}/liveness/record"
+            >Try again</a
+          >
+          <a
+            class="govuk-button govuk-button--secondary"
+            role="button"
+            data-module="govuk-button"
+            href="/{{ submissionId }}/liveness/check-your-answers"
+          >
+            Submit anyway
+          </a>
+        </div>
+      {% elif isLive == false and autoVerifyResult == 'NO_MATCH' %}
+        <h1 class="govuk-heading-l">There's been a problem with your identity check</h1>
+        <p>We cannot confirm this is you. This is because:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>your image does not match the photo we have on your file</li>
+          <li>you did not move quickly enough, or your face left the frame</li>
+        </ul>
+        <p class="govuk-!-font-weight-bold">If you try to verify your identity again</p>
+        <p>Make sure:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>your face is in the frame</li>
+          <li>you follow the instructions to move closer, keeping your face in the frame</li>
+          <li>you move at a steady pace</li>
+        </ul>
+        <div class="govuk-button-group">
+          <a class="govuk-button" role="button" href="/{{ submissionId }}/liveness/record"
+            >Try again</a
+          >
+          <a
+            class="govuk-button govuk-button--secondary"
+            role="button"
+            data-module="govuk-button"
+            href="/{{ submissionId }}/liveness/check-your-answers"
+          >
+            Submit anyway
+          </a>
+        </div>
+      {% elif autoVerifyResult == 'MATCH' %}
         <h1 class="govuk-heading-l">We have confirmed this is you</h1>
         <p>We have confirmed this is you. You can now continue to check your answers.</p>
         <div class="govuk-button-group">
