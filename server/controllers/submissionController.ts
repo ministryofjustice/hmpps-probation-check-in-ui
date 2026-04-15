@@ -6,6 +6,7 @@ import SupportAspect from '../data/models/survey/supportAspect'
 import CallbackRequested from '../data/models/survey/callbackRequested'
 import Checkin from '../data/models/checkin'
 import { DeviceInfo } from '../data/models/survey/surveyResponse'
+import { defaultFlags } from '../utils/flags'
 
 type SubmissionLocals = { checkin: Checkin }
 
@@ -37,7 +38,7 @@ export const handleRedirect = (submissionPath: string): RequestHandler => {
     let redirectUrl = `${basePath}${submissionPath}`
 
     if (req.query.checkAnswers === 'true') {
-      redirectUrl = `${basePath}/check-your-answers`
+      redirectUrl = `${basePath}${defaultFlags.faceLiveness ? '/liveness/check-your-answers' : '/check-your-answers'}`
     }
 
     res.redirect(redirectUrl)
