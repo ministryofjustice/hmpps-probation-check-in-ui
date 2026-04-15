@@ -45,7 +45,7 @@ export default class EsupervisionApiClient extends RestClient {
       snapshots: snapshots.join(','),
     }
 
-    const locations = await this.post<CheckinUploadLocationResponse>(
+    return this.post<CheckinUploadLocationResponse>(
       {
         path: `/offender_checkins/${checkinId}/upload_location`,
         query,
@@ -53,8 +53,6 @@ export default class EsupervisionApiClient extends RestClient {
       },
       asSystem(),
     )
-
-    return locations
   }
 
   async submitCheckin(checkinId: string, submission: CheckinSubmission): Promise<Checkin> {

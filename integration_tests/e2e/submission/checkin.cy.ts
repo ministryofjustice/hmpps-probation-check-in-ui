@@ -4,6 +4,7 @@ import CheckinStatus from '../../../server/data/models/checkinStatus'
 import Offender from '../../../server/data/models/offender'
 import OffenderStatus from '../../../server/data/models/offenderStatus'
 import { createMockCheckin, createMockOffender } from '../../mockApis/esupervisionApi'
+import AdditionalQuestionPage from '../../pages/submission/additionalQuestionPage'
 import AssistancePage from '../../pages/submission/assistancePage'
 import CheckAnswersPage from '../../pages/submission/checkAnswersPage'
 import CheckinIndexPage from '../../pages/submission/checkinIndexPage'
@@ -29,9 +30,9 @@ describe('Start Check-in Journey', () => {
     cy.task('reset').then(() => {
       cy.task('stubAuthToken')
       cy.task('stubGetCheckin', testCheckin)
+      cy.task('stubAdditionalQuestions', testCheckin)
       cy.task('stubGetCheckinUploadLocation', testCheckin)
       cy.task('stubFakeS3Upload')
-
       cy.task('stubVerifyIdentity', testCheckin)
       cy.task('stubAutoVerifyCheckinIdentity', testCheckin)
       cy.task('stubSubmitCheckin', testCheckin)
@@ -72,6 +73,9 @@ describe('Start Check-in Journey', () => {
     assistancePage.selectHousing()
     assistancePage.enterHousingReason('I need to find a new place to live.')
     assistancePage.continueButton().click()
+    const additionalQuestionPage = new AdditionalQuestionPage('How was the pottery class?')
+    additionalQuestionPage.answerTextarea().type('It was great!')
+    additionalQuestionPage.continueButton().click()
 
     const informPage = SubmissionPage.verifyOnPage(VideoInformPage)
     informPage.continueButton().should('exist')
