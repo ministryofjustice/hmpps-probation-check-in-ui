@@ -109,13 +109,8 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
         credentialProvider,
       }}
       displayText={{
-        photosensitivityWarningHeadingText: 'Your custom heading',
-        photosensitivityWarningBodyText: 'Your custom body text',
-        photosensitivityWarningInfoText: 'Your custom info text',
-        photosensitivityWarningLabelText: 'Your custom label text',
         startScreenBeginCheckText: "Start identity check",
         hintCenterFaceText: 'Centre your face',
-        hintCenterFaceInstructionText: 'Centre face instruction text',
         recordingIndicatorText: 'Recording now',
       }}
     />
