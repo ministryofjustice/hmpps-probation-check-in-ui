@@ -1,3 +1,5 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
 <div class="es-pane" id="fallbackErrorScreen" hidden aria-hidden="true">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -11,7 +13,7 @@
         <li>you are not wearing a hat or sunglasses</li>
       </ul>
       <div class="govuk-button-group">
-        <a class="govuk-button" role="button" data-fallback-video>Try recording your video again</a>
+        {{ govukButton({ text: "Try recording your video again", element: "a", attributes: { "data-fallback-video": "" } }) }}
       </div>
     </div>
   </div>

@@ -21,13 +21,7 @@
         <h1 class="govuk-heading-l">We have confirmed this is you</h1>
         <p>We have confirmed this is you. You can now continue to check your answers.</p>
         <div class="govuk-button-group">
-          <a
-            class="govuk-button"
-            data-module="govuk-button"
-            role="button"
-            href="/{{ submissionId }}/liveness/check-your-answers"
-            >Continue</a
-          >
+          {{ govukButton({ text: "Continue", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
         </div>
       {% elif isLive == true and autoVerifyResult == 'NO_MATCH' %}
         <h1 class="govuk-heading-l">We cannot confirm this is you</h1>
@@ -41,17 +35,8 @@
           <li>you are not wearing a hat or sunglasses</li>
         </ul>
         <div class="govuk-button-group">
-          <a class="govuk-button" role="button" href="/{{ submissionId }}/liveness/record"
-            >Try again</a
-          >
-          <a
-            class="govuk-button govuk-button--secondary"
-            role="button"
-            data-module="govuk-button"
-            href="/{{ submissionId }}/liveness/check-your-answers"
-          >
-            Submit anyway
-          </a>
+          {{ govukButton({ text: "Try again", href: "/" + submissionId + "/liveness/record" }) }}
+          {{ govukButton({ text: "Submit anyway", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
         </div>
       {% elif isLive == false and autoVerifyResult == 'MATCH' %}
         <h1 class="govuk-heading-l">We cannot confirm your identity</h1>
@@ -64,17 +49,8 @@
           <li>you move at a steady pace</li>
         </ul>
         <div class="govuk-button-group">
-          <a class="govuk-button" role="button" href="/{{ submissionId }}/liveness/record"
-            >Try again</a
-          >
-          <a
-            class="govuk-button govuk-button--secondary"
-            role="button"
-            data-module="govuk-button"
-            href="/{{ submissionId }}/liveness/check-your-answers"
-          >
-            Submit anyway
-          </a>
+          {{ govukButton({ text: "Try again", href: "/" + submissionId + "/liveness/record" }) }}
+          {{ govukButton({ text: "Submit anyway", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
         </div>
       {% elif isLive == false and autoVerifyResult == 'NO_MATCH' %}
         <h1 class="govuk-heading-l">There's been a problem with your identity check</h1>
@@ -91,29 +67,14 @@
           <li>you move at a steady pace</li>
         </ul>
         <div class="govuk-button-group">
-          <a class="govuk-button" role="button" href="/{{ submissionId }}/liveness/record"
-            >Try again</a
-          >
-          <a
-            class="govuk-button govuk-button--secondary"
-            role="button"
-            data-module="govuk-button"
-            href="/{{ submissionId }}/liveness/check-your-answers"
-          >
-            Submit anyway
-          </a>
+          {{ govukButton({ text: "Try again", href: "/" + submissionId + "/liveness/record" }) }}
+          {{ govukButton({ text: "Submit anyway", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
         </div>
       {% elif autoVerifyResult == 'MATCH' %}
         <h1 class="govuk-heading-l">We have confirmed this is you</h1>
         <p>We have confirmed this is you. You can now continue to check your answers.</p>
         <div class="govuk-button-group">
-          <a
-            class="govuk-button"
-            data-module="govuk-button"
-            role="button"
-            href="/{{ submissionId }}/liveness/check-your-answers"
-            >Continue</a
-          >
+          {{ govukButton({ text: "Continue", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
         </div>
       {% else %}
         <h1 class="govuk-heading-l">We cannot confirm this is you</h1>
@@ -128,17 +89,8 @@
           <li>you are not wearing a hat or sunglasses</li>
         </ul>
         <div class="govuk-button-group">
-          <a class="govuk-button" role="button" href="/{{ submissionId }}/liveness/record"
-            >Try again</a
-          >
-          <a
-            class="govuk-button govuk-button--secondary"
-            role="button"
-            data-module="govuk-button"
-            href="/{{ submissionId }}/liveness/check-your-answers"
-          >
-            Submit anyway
-          </a>
+          {{ govukButton({ text: "Try again", href: "/" + submissionId + "/liveness/record" }) }}
+          {{ govukButton({ text: "Submit anyway", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
         </div>
       {% endif %}
     </div>

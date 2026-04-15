@@ -1,3 +1,5 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
 <div class="es-pane" id="fallbackNoMatchScreen" hidden aria-hidden="true">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -12,15 +14,8 @@
         <li>you are not wearing a hat or sunglasses</li>
       </ul>
       <div class="govuk-button-group">
-        <a class="govuk-button" role="button" data-fallback-video>Record video again</a>
-        <a
-          class="govuk-button govuk-button--secondary"
-          role="button"
-          data-module="govuk-button"
-          href="/{{ submissionId }}/liveness/check-your-answers"
-        >
-          Submit video anyway
-        </a>
+        {{ govukButton({ text: "Record video again", element: "a", attributes: { "data-fallback-video": "" } }) }}
+        {{ govukButton({ text: "Submit video anyway", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
       </div>
     </div>
   </div>

@@ -1,3 +1,5 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
 <div class="es-pane" id="notLiveMatchScreen" hidden aria-hidden="true">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -15,15 +17,8 @@
         will confirm this is you when they review your check in.
       </p>
       <div class="govuk-button-group">
-        <a class="govuk-button" role="button" data-liveness-retry>Verify identity again</a>
-        <a
-          class="govuk-button govuk-button--secondary"
-          role="button"
-          data-module="govuk-button"
-          href="/{{ submissionId }}/liveness/check-your-answers"
-        >
-          Continue to check your answers
-        </a>
+        {{ govukButton({ text: "Verify identity again", element: "a", attributes: { "data-liveness-retry": "" } }) }}
+        {{ govukButton({ text: "Continue to check your answers", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
       </div>
     </div>
   </div>
