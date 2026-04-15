@@ -200,7 +200,7 @@ export const handleAssistance: RequestHandler = async (req, res, next) => {
   let redirectUrl = `${basePath}/questions/callback`
 
   if (req.query.checkAnswers === 'true') {
-    redirectUrl = `${basePath}/check-your-answers`
+    redirectUrl = `${basePath}${defaultFlags.faceLiveness ? '/liveness/check-your-answers' : '/check-your-answers'}`
   }
 
   res.redirect(redirectUrl)
@@ -232,7 +232,7 @@ export const handleMentalHealth: RequestHandler = async (req, res, next) => {
   let redirectUrl = `${basePath}/questions/assistance`
 
   if (req.query.checkAnswers === 'true') {
-    redirectUrl = `${basePath}/check-your-answers`
+    redirectUrl = `${basePath}${defaultFlags.faceLiveness ? '/liveness/check-your-answers' : '/check-your-answers'}`
   }
 
   res.redirect(redirectUrl)
