@@ -23,7 +23,7 @@ export default function routes(): Router {
 
   get('/guidance', (req, res, next) => {
     const { submissionId } = req.query
-    const backLink = submissionId ? `/submission/${submissionId}` : undefined
+    const backLink = submissionId ? `/${submissionId}` : undefined
     res.render('pages/guidance', { backLink })
   })
 
