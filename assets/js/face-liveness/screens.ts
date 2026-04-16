@@ -9,11 +9,6 @@ export type Screen =
   | 'timeout'
   | 'cameraError'
   | 'error'
-  | 'fallbackRecording'
-  | 'fallbackLoading'
-  | 'fallbackMatch'
-  | 'fallbackNoMatch'
-  | 'fallbackError'
 
 const PARTIAL_IDS = [
   'loadingScreen',
@@ -24,11 +19,6 @@ const PARTIAL_IDS = [
   'timeoutScreen',
   'cameraErrorScreen',
   'errorScreen',
-  'fallbackRecordingScreen',
-  'fallbackLoadingScreen',
-  'fallbackMatchScreen',
-  'fallbackNoMatchScreen',
-  'fallbackErrorScreen',
 ]
 
 export const SCREEN_TO_PARTIAL: Record<string, string> = {
@@ -40,11 +30,6 @@ export const SCREEN_TO_PARTIAL: Record<string, string> = {
   timeout: 'timeoutScreen',
   cameraError: 'cameraErrorScreen',
   error: 'errorScreen',
-  fallbackRecording: 'fallbackRecordingScreen',
-  fallbackLoading: 'fallbackLoadingScreen',
-  fallbackMatch: 'fallbackMatchScreen',
-  fallbackNoMatch: 'fallbackNoMatchScreen',
-  fallbackError: 'fallbackErrorScreen',
 }
 
 export function showNunjucksPartial(id: string) {

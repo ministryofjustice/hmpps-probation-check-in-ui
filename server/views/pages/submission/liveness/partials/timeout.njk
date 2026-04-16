@@ -18,7 +18,7 @@
       </p>
       <div class="govuk-button-group">
         {{ govukButton({ text: "Verify identity again", element: "a", attributes: { "data-liveness-retry": "" } }) }}
-        {{ govukButton({ text: "Record a video instead", classes: "govuk-button--secondary", element: "a", attributes: { "data-fallback-video": "" } }) }}
+        {{ govukButton({ text: "Record a video instead", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/fallback-inform" }) }}
       </div>
     </div>
   </div>

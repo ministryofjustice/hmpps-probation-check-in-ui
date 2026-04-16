@@ -47,6 +47,7 @@ const buildConfig = {
     outDir: path.join(cwd, 'dist/assets'),
     entryPoints: glob.sync([
       path.join(cwd, 'assets/js/*.js'),
+      path.join(cwd, 'assets/js/*.ts'),
       path.join(cwd, 'assets/js/*.tsx'),
       path.join(cwd, 'assets/scss/*.scss'),
     ]),

@@ -25,6 +25,8 @@ import {
   renderLivenessIndex,
   renderLivenessInform,
   renderLivenessRecord,
+  renderFallbackInform,
+  renderFallbackRecord,
   handleLivenessVerify,
   renderLivenessView,
   renderLivenessCheckAnswers,
@@ -117,6 +119,8 @@ export default function routes({ esupervisionService }: Services): Router {
   get('/liveness/inform', protectSubmission, renderLivenessInform)
   get('/liveness/record', protectSubmission, renderLivenessRecord)
   get('/liveness/verify', protectSubmission, handleLivenessVerify)
+  get('/liveness/fallback-inform', protectSubmission, renderFallbackInform)
+  get('/liveness/fallback-record', protectSubmission, renderFallbackRecord)
   get('/liveness/view', protectSubmission, renderLivenessView)
   get('/liveness/check-your-answers', protectSubmission, renderLivenessCheckAnswers)
   router.post('/liveness/check-your-answers', protectSubmission, validateFormData(checkAnswersSchema), handleSubmission)

@@ -1,12 +1,11 @@
 import { fetchSnapshotUploadUrl, uploadSnapshot, fetchVideoVerifyResult } from './api'
-import type { Screen } from './screens'
 
 const COUNTDOWN_TIME = 3000
 const SCREENSHOT_TIME = 2000
 const RECORDING_TIME = 5000
 const LOADING_SCREEN_DELAY = 3000
 
-export default async function initFallbackVideo(submissionId: string, setScreen: (screen: Screen) => void) {
+export default async function initFallbackVideo(submissionId: string, setScreen: (screen: string) => void) {
   const video = document.getElementById('fallbackVideo') as HTMLVideoElement
   const canvas = document.getElementById('fallbackCanvas') as HTMLCanvasElement
   const startBtn = document.getElementById('fallbackStartBtn') as HTMLButtonElement
@@ -15,6 +14,17 @@ export default async function initFallbackVideo(submissionId: string, setScreen:
   const cameraError = document.getElementById('fallbackCameraError') as HTMLElement
 
   if (!video || !startBtn) return
+
+  // Reset state from any previous recording
+  statusTag.style.display = 'none'
+  statusTag.textContent = ''
+  statusTag.classList.remove('status--recording')
+  startBtn.disabled = true
+  startBtn.ariaDisabled = 'true'
+  videoContainer.hidden = false
+  videoContainer.ariaHidden = 'false'
+  cameraError.hidden = true
+  cameraError.ariaHidden = 'true'
 
   let screenshotBlob: Blob | null = null
 
@@ -51,7 +61,17 @@ export default async function initFallbackVideo(submissionId: string, setScreen:
     }, 'image/jpeg')
   }
 
-  async function handleRecordingComplete() {
+  function showReviewScreen() {
+    if (screenshotBlob) {
+      const reviewImage = document.getElementById('fallbackReviewImage') as HTMLImageElement
+      if (reviewImage) {
+        reviewImage.src = URL.createObjectURL(screenshotBlob)
+      }
+    }
+    setScreen('fallbackReview')
+  }
+
+  async function handleVerify() {
     setScreen('fallbackLoading')
     const startTime = Date.now()
 
@@ -75,6 +95,14 @@ export default async function initFallbackVideo(submissionId: string, setScreen:
       setScreen('fallbackError')
     }
   }
+
+  document.addEventListener('click', e => {
+    const target = e.target as HTMLElement
+    if (target.closest('[data-fallback-continue]')) {
+      e.preventDefault()
+      handleVerify()
+    }
+  })
 
   startBtn.addEventListener('click', () => {
     startBtn.disabled = true
@@ -120,7 +148,7 @@ export default async function initFallbackVideo(submissionId: string, setScreen:
         if (stream) {
           stream.getTracks().forEach(track => track.stop())
         }
-        handleRecordingComplete()
+        showReviewScreen()
       }, RECORDING_TIME)
     }, COUNTDOWN_TIME)
   })

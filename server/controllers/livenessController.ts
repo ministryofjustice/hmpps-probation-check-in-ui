@@ -26,6 +26,22 @@ export const renderLivenessInform: RequestHandler = async (req, res, next) => {
   }
 }
 
+export const renderFallbackInform: RequestHandler = async (req, res, next) => {
+  try {
+    res.render('pages/submission/liveness/fallback/inform', pageParams(req))
+  } catch (error) {
+    next(error)
+  }
+}
+
+export const renderFallbackRecord: RequestHandler = async (req, res, next) => {
+  try {
+    res.render('pages/submission/liveness/fallback/record', pageParams(req))
+  } catch (error) {
+    next(error)
+  }
+}
+
 export const renderLivenessRecord: RequestHandler = async (req, res: Response<object, SubmissionLocals>, next) => {
   try {
     const { submissionId } = req.params

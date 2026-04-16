@@ -5,7 +5,6 @@ import '@aws-amplify/ui-react-liveness/styles.css'
 
 import { fetchCredentials, fetchNewSession, fetchVerifyResult } from './face-liveness/api'
 import { type Screen, SCREEN_TO_PARTIAL, showNunjucksPartial, hideAllPartials, determineFailScreen } from './face-liveness/screens'
-import initFallbackVideo from './face-liveness/fallback-video'
 
 function getDataAttribute(name: string): string {
   const root = document.getElementById('face-liveness-root')
@@ -77,12 +76,6 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
     }
   }, [screen])
 
-  useEffect(() => {
-    if (screen === 'fallbackRecording') {
-      initFallbackVideo(submissionId, setScreen)
-    }
-  }, [screen, submissionId])
-
   if (screen === 'initialising') {
     return (
       <div className="es-loader">
@@ -131,6 +124,14 @@ if (container) {
 
   renderApp()
 
+  // Debug shortcut: press 'f' to skip to fallback inform page
+  document.addEventListener('keydown', e => {
+    if (e.key === 'f' && !e.ctrlKey && !e.metaKey && !(e.target as HTMLElement).closest('input, textarea')) {
+      const submissionId = getDataAttribute('submissionId')
+      window.location.href = `/${submissionId}/liveness/fallback-inform`
+    }
+  })
+
   // Wire up retry buttons in the Nunjucks partials
   document.addEventListener('click', e => {
     const target = e.target as HTMLElement
@@ -138,16 +139,6 @@ if (container) {
     if (target.closest('[data-liveness-retry]')) {
       e.preventDefault()
       renderApp()
-    }
-
-    if (target.closest('[data-fallback-video]')) {
-      e.preventDefault()
-      showNunjucksPartial('fallbackRecordingScreen')
-      const submissionId = getDataAttribute('submissionId')
-      initFallbackVideo(submissionId, (screen: Screen) => {
-        const partialId = SCREEN_TO_PARTIAL[screen]
-        if (partialId) showNunjucksPartial(partialId)
-      })
     }
   })
 }
