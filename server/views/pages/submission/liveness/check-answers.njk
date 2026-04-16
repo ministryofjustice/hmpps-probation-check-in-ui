@@ -245,13 +245,17 @@
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
-            {% if isLive == true or isLive == false %}
+            {% if (isLive == true and autoVerifyResult == 'MATCH') or (isLive == undefined and autoVerifyResult == 'MATCH') %}
+              <a class="govuk-link" href="/{{ submissionId }}/liveness/view?checkAnswers=true"
+                >View<span class="govuk-visually-hidden"> identity check</span></a
+              >
+            {% elif isLive == true or isLive == false %}
               <a class="govuk-link" href="/{{ submissionId }}/liveness/record?checkAnswers=true"
                 >Change<span class="govuk-visually-hidden"> identity check</span></a
               >
             {% else %}
-              <a class="govuk-link" href="/{{ submissionId }}/liveness/view?checkAnswers=true"
-                >View<span class="govuk-visually-hidden"> video</span></a
+              <a class="govuk-link" href="/{{ submissionId }}/liveness/fallback-record?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> identity check</span></a
               >
             {% endif %}
           </dd>
