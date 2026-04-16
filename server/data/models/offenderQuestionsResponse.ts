@@ -7,7 +7,6 @@ export interface AdditionalQuestion {
 interface OffenderQuestionSpec {
   hint: string
   placeholders: string[]
-  domain_msg_head: string
 }
 
 interface OffenderQuestion {
