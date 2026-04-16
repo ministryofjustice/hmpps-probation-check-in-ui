@@ -357,7 +357,7 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
   const submissionId = getSubmissionId(req)
   const submission = {
     survey: {
-      version: '2026-01-07@pre',
+      version: '2026-04-16@questions',
       mentalHealth: mentalHealth as MentalHealth,
       mentalHealthComment: mentalHealthComment as string,
       assistance: assistance as SupportAspect[],
