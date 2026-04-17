@@ -111,7 +111,9 @@ export const handleVerify: RequestHandler = async (req, res: Response<object, Su
 
 export const renderVideoInform: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/video/inform', pageParams(req))
+    const additionalQuestionsCount = req.session?.formData?.additionalAnswers?.length
+    const pageData = { ...pageParams(req), additionalQuestionsCount }
+    res.render('pages/submission/video/inform', pageData)
   } catch (error) {
     next(error)
   }
