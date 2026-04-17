@@ -6,7 +6,12 @@ generic-service:
 
   ingress:
     host: probation-check-in-dev.hmpps.service.justice.gov.uk
-    className: modsec-non-prod 
+    className: modsec-non-prod
+    modsecurity_snippet: |
+      SecRuleEngine On
+      SecAuditEngine RelevantOnly
+      SecRequestBodyAccess On
+      SecDefaultAction "phase:2,pass,log,tag:github_team=stg-pathfinders,tag:namespace={{ .Release.Namespace }}"
 
   env:
     INGRESS_URL: 'https://probation-check-in-dev.hmpps.service.justice.gov.uk'
