@@ -6,6 +6,7 @@ import OffenderCheckinResponse from '../data/models/offenderCheckinResponse'
 import AutomaticCheckinVerificationResult from '../data/models/automaticCheckinVerificationResult'
 import { CheckinEventType } from '../data/models/checkinEvent'
 import Feedback from '../data/models/feedback'
+import { OffenderQuestionsResponse } from '../data/models/offenderQuestionsResponse'
 
 export default class EsupervisionService {
   constructor(private readonly esupervisionApiClient: EsupervisionApiClient) {}
@@ -42,6 +43,10 @@ export default class EsupervisionService {
     },
   ): Promise<{ verified: boolean; error?: string }> {
     return this.esupervisionApiClient.verifyIdentity(checkinId, personalDetails)
+  }
+
+  getOffenderQuestions(crn: string): Promise<OffenderQuestionsResponse> {
+    return this.esupervisionApiClient.getOffenderQuestions(crn)
   }
 
   submitFeedback(feedback: Feedback): Promise<void> {

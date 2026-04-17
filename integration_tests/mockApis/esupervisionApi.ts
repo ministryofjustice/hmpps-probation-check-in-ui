@@ -10,7 +10,6 @@ import OffenderStatus from '../../server/data/models/offenderStatus'
 import CheckinInterval from '../../server/data/models/checkinInterval'
 import CheckinStatus from '../../server/data/models/checkinStatus'
 import AutomatedIdVerificationResult from '../../server/data/models/automatedIdVerificationResult'
-import CallbackRequested from '../../server/data/models/survey/callbackRequested'
 import MentalHealth from '../../server/data/models/survey/mentalHealth'
 import SupportAspect from '../../server/data/models/survey/supportAspect'
 
@@ -91,7 +90,6 @@ export const createMockCheckin = (offender: Offender, overrides: Partial<Checkin
       mentalHealth: faker.helpers.arrayElement(Object.values(MentalHealth)),
       mentalHealthComment: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       assistance: faker.helpers.arrayElements(Object.values(SupportAspect)),
-      callback: faker.helpers.arrayElement(Object.values(CallbackRequested)),
       mentalHealthSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       alcoholSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       drugsSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
@@ -99,7 +97,6 @@ export const createMockCheckin = (offender: Offender, overrides: Partial<Checkin
       housingSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       supportSystemSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       otherSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
-      callbackDetails: faker.datatype.boolean() ? faker.lorem.sentence() : null,
     }
   }
 
@@ -145,6 +142,156 @@ export default {
         status: 200,
         headers: { 'Content-Type': 'application/json;charset=UTF-8' },
         jsonBody: checkin,
+      },
+    })
+  },
+  stubAdditionalQuestions: (checkin: Checkin): SuperAgentRequest => {
+    return stubFor({
+      request: {
+        method: 'GET',
+        urlPathPattern: apiUrlPattern(`/questions/upcoming/${checkin.crn}/offender-questions`),
+      },
+      response: {
+        status: 200,
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        jsonBody: {
+          expectedCheckinDate: format(addDays(new Date(), 9), 'yyyy-MM-dd'),
+          questions: [
+            {
+              question: 'Iss there anything you need support with or want to let us know about?',
+              format: 'MULTIPLE_CHOICE',
+              spec: {
+                hint: "This could be anything you're worrying about, struggling with or just want to let us know.",
+                choices: [
+                  {
+                    id: 'MENTAL_HEALTH',
+                    label: 'Mental health',
+                    details_id: 'mentalHealthSupport',
+                    details_label: 'Tell us what you want us to know about mental health (optional)',
+                    domain_msg_head: 'What they want us to know about mental health',
+                  },
+                  {
+                    id: 'ALCOHOL',
+                    label: 'Alcohol',
+                    details_id: 'alcoholSupport',
+                    details_label: 'Tell us what you want us to know about alcohol (optional)',
+                    domain_msg_head: 'What they want us to know about alcohol',
+                  },
+                  {
+                    id: 'DRUGS',
+                    label: 'Drugs',
+                    details_id: 'drugsSupport',
+                    details_label: 'Tell us what you want us to know about drugs (optional)',
+                    domain_msg_head: 'What they want us to know about drugs',
+                  },
+                  {
+                    id: 'MONEY',
+                    label: 'Money',
+                    details_id: 'moneySupport',
+                    details_label: 'Tell us what you want us to know about money (optional)',
+                    domain_msg_head: 'What they want us to know about money',
+                  },
+                  {
+                    id: 'HOUSING',
+                    label: 'Housing',
+                    details_id: 'housingSupport',
+                    details_label: 'Tell us what you want us to know about housing (optional)',
+                    domain_msg_head: 'What they want us to know about housing',
+                  },
+                  {
+                    id: 'EMPLOYMENT_EDU',
+                    label: 'Employment and education',
+                    details_id: 'employmentEduSupport',
+                    details_label: 'Tell us what you want us to know about employment and education (optional)',
+                    domain_msg_head: 'What they want us to know about employment and education',
+                  },
+                  {
+                    id: 'SUPPORT_SYSTEM',
+                    label: 'Relationships (family, friends, partner)',
+                    details_id: 'supportSystemSupport',
+                    details_label: 'Tell us what you want us to know about your relationships (optional)',
+                    domain_msg_head: 'What they want us to know about their relationships',
+                  },
+                  {
+                    id: 'OTHER',
+                    label: 'Something else',
+                    details_id: 'otherSupport',
+                    details_label: 'Tell us what you want us to know about (optional)',
+                    domain_msg_head: 'What they want us to know about (something else)',
+                  },
+                ],
+                alternative: {
+                  id: 'NONE',
+                  label: 'No, I do not need any support',
+                  details_id: null,
+                  details_label: null,
+                  domain_msg_head: "They don't need support",
+                },
+                placeholders: [],
+                domain_msg_key: 'assistance',
+                domain_msg_head: 'Anything they need support with or to let us know',
+              },
+            },
+            {
+              question: 'How have you been feeling since we last spoke?',
+              format: 'SINGLE_CHOICE',
+              spec: {
+                hint: 'Think about things like if you have noticed a change in your mood and what may have caused this. ',
+                choices: [
+                  {
+                    id: 'VERY_WELL',
+                    label: 'Very well',
+                    details_id: 'mentalHealthComment',
+                    details_label: 'Tell us why you are very well (optional)',
+                    domain_msg_head: 'What they want us to know about how they have been feeling',
+                  },
+                  {
+                    id: 'WELL',
+                    label: 'Well',
+                    details_id: 'mentalHealthComment',
+                    details_label: 'Tell us why you are well (optional)',
+                    domain_msg_head: 'What they want us to know about how they have been feeling',
+                  },
+                  {
+                    id: 'OK',
+                    label: 'OK',
+                    details_id: 'mentalHealthComment',
+                    details_label: 'Tell us why you are OK (optional)',
+                    domain_msg_head: 'What they want us to know about how they have been feeling',
+                  },
+                  {
+                    id: 'NOT_GREAT',
+                    label: 'Not great',
+                    details_id: 'mentalHealthComment',
+                    details_label: 'Tell us why you are not great (optional)',
+                    domain_msg_head: 'What they want us to know about how they have been feeling',
+                  },
+                  {
+                    id: 'STRUGGLING',
+                    label: 'Struggling',
+                    details_id: 'mentalHealthComment',
+                    details_label: 'Tell us why you are struggling (optional)',
+                    domain_msg_head: 'What they want us to know about how they have been feeling',
+                  },
+                ],
+                message: {
+                  html: 'If you need to speak to someone urgently about how you are feeling, check the <a href="https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/help-for-suicidal-thoughts/" class="govuk-link" target="_blank">NHS website for help (opens in new tab)</a>.',
+                },
+                placeholders: [],
+                domain_msg_head: 'How they have been feeling',
+              },
+            },
+            {
+              question: 'How was the pottery class?',
+              format: 'TEXT',
+              spec: {
+                hint: 'Hint for the question',
+                placeholders: ['thing'],
+                domain_msg_head: 'Did they finish this thing?',
+              },
+            },
+          ],
+        },
       },
     })
   },

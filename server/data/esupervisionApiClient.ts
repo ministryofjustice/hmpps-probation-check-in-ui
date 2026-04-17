@@ -9,6 +9,7 @@ import OffenderCheckinResponse from './models/offenderCheckinResponse'
 import AutomaticCheckinVerificationResult from './models/automaticCheckinVerificationResult'
 import { CheckinEventType } from './models/checkinEvent'
 import Feedback from './models/feedback'
+import { OffenderQuestionsResponse } from './models/offenderQuestionsResponse'
 
 /**
  * Specifies content types for possible upload locations for a checkin.
@@ -44,7 +45,7 @@ export default class EsupervisionApiClient extends RestClient {
       snapshots: snapshots.join(','),
     }
 
-    const locations = await this.post<CheckinUploadLocationResponse>(
+    return this.post<CheckinUploadLocationResponse>(
       {
         path: `/offender_checkins/${checkinId}/upload_location`,
         query,
@@ -52,8 +53,6 @@ export default class EsupervisionApiClient extends RestClient {
       },
       asSystem(),
     )
-
-    return locations
   }
 
   async submitCheckin(checkinId: string, submission: CheckinSubmission): Promise<Checkin> {
@@ -106,6 +105,13 @@ export default class EsupervisionApiClient extends RestClient {
         headers: { 'Content-Type': 'application/json' },
         data: JSON.stringify(personalDetails),
       },
+      asSystem(),
+    )
+  }
+
+  async getOffenderQuestions(crn: string): Promise<OffenderQuestionsResponse> {
+    return this.get<OffenderQuestionsResponse>(
+      { path: `/questions/upcoming/${crn}/offender-questions?language=en-GB` },
       asSystem(),
     )
   }
