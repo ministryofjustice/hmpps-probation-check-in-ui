@@ -3,9 +3,9 @@ import logger from '../../logger'
 import { services } from '../services'
 import MentalHealth from '../data/models/survey/mentalHealth'
 import SupportAspect from '../data/models/survey/supportAspect'
-import CallbackRequested from '../data/models/survey/callbackRequested'
 import Checkin from '../data/models/checkin'
 import { DeviceInfo } from '../data/models/survey/surveyResponse'
+import { extractAdditionalQuestions } from '../data/models/offenderQuestionsResponse'
 import { defaultFlags } from '../utils/flags'
 
 type SubmissionLocals = { checkin: Checkin }
@@ -94,6 +94,16 @@ export const handleVerify: RequestHandler = async (req, res: Response<object, Su
     }
 
     req.session.submissionAuthorized = submissionId
+
+    try {
+      const questionsResponse = await esupervisionService.getOffenderQuestions(crn)
+      req.session.formData.additionalQuestions = extractAdditionalQuestions(questionsResponse)
+    } catch (err) {
+      logger.error(`Failed to fetch additional questions for submissionId ${submissionId}`, err)
+      req.session.formData.additionalQuestions = []
+    }
+    req.session.formData.additionalAnswers = []
+
     logger.info(`User is verified and check in authorised for submissionId ${submissionId}`)
     return res.redirect(`/${submissionId}/questions/mental-health`)
   } catch (error) {
@@ -197,13 +207,19 @@ export const handleAssistance: RequestHandler = async (req, res, next) => {
   }
 
   const basePath = `/${submissionId}`
-  let redirectUrl = `${basePath}/questions/callback`
 
   if (req.query.checkAnswers === 'true') {
-    redirectUrl = `${basePath}${defaultFlags.faceLiveness ? '/liveness/check-your-answers' : '/check-your-answers'}`
+    return res.redirect(
+      `${basePath}${defaultFlags.faceLiveness ? '/liveness/check-your-answers' : '/check-your-answers'}`,
+    )
   }
 
-  res.redirect(redirectUrl)
+  const { additionalQuestions } = req.session.formData ?? {}
+  if (additionalQuestions?.length > 0) {
+    return res.redirect(`${basePath}/questions/additional/1`)
+  }
+
+  return res.redirect(`${basePath}${defaultFlags.faceLiveness ? '/liveness/inform' : '/video/inform'}`)
 }
 
 export const handleMentalHealth: RequestHandler = async (req, res, next) => {
@@ -238,11 +254,63 @@ export const handleMentalHealth: RequestHandler = async (req, res, next) => {
   res.redirect(redirectUrl)
 }
 
-export const renderQuestionsCallback: RequestHandler = async (req, res, next) => {
+export const renderAdditionalQuestion: RequestHandler = async (req, res, next) => {
   try {
-    res.render('pages/submission/questions/callback', pageParams(req))
+    const questionIndex = parseInt(req.params.questionIndex, 10)
+    const { additionalQuestions, additionalAnswers } = req.session.formData ?? {}
+
+    if (!additionalQuestions?.length || questionIndex < 1 || questionIndex > additionalQuestions.length) {
+      return res.redirect(
+        `/${req.params.submissionId}${defaultFlags.faceLiveness ? '/liveness/inform' : '/video/inform'}`,
+      )
+    }
+
+    const question = additionalQuestions[questionIndex - 1]
+    const existingAnswer = additionalAnswers?.[questionIndex - 1]?.response ?? ''
+
+    return res.render('pages/submission/questions/additional', {
+      ...pageParams(req),
+      question,
+      questionIndex,
+      totalQuestions: additionalQuestions.length,
+      existingAnswer,
+    })
   } catch (error) {
-    next(error)
+    return next(error)
+  }
+}
+
+export const handleAdditionalQuestion: RequestHandler = async (req, res, next) => {
+  try {
+    const questionIndex = parseInt(req.params.questionIndex, 10)
+    const { submissionId } = req.params
+    const { additionalAnswer } = req.body
+    const { additionalQuestions } = req.session.formData ?? {}
+
+    if (!req.session.formData.additionalAnswers) {
+      req.session.formData.additionalAnswers = []
+    }
+
+    req.session.formData.additionalAnswers[questionIndex - 1] = {
+      question: additionalQuestions[questionIndex - 1].question,
+      response: additionalAnswer,
+    }
+
+    const basePath = `/${submissionId}`
+
+    if (req.query.checkAnswers === 'true') {
+      return res.redirect(
+        `${basePath}${defaultFlags.faceLiveness ? '/liveness/check-your-answers' : '/check-your-answers'}`,
+      )
+    }
+
+    if (questionIndex < additionalQuestions.length) {
+      return res.redirect(`${basePath}/questions/additional/${questionIndex + 1}`)
+    }
+
+    return res.redirect(`${basePath}${defaultFlags.faceLiveness ? '/liveness/inform' : '/video/inform'}`)
+  } catch (error) {
+    return next(error)
   }
 }
 
@@ -269,9 +337,8 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
     housingSupport,
     supportSystemSupport,
     otherSupport,
-    callback,
-    callbackDetails,
     checkinStartedAt,
+    additionalAnswers,
   } = res.locals.formData
 
   const mentalHealthComment =
@@ -298,7 +365,7 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
   const submissionId = getSubmissionId(req)
   const submission = {
     survey: {
-      version: '2026-01-07@pre',
+      version: '2026-04-16@questions',
       mentalHealth: mentalHealth as MentalHealth,
       mentalHealthComment: mentalHealthComment as string,
       assistance: assistance as SupportAspect[],
@@ -309,8 +376,7 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
       housingSupport: housingSupport as string,
       supportSystemSupport: supportSystemSupport as string,
       otherSupport: otherSupport as string,
-      callback: callback as CallbackRequested,
-      callbackDetails: callbackDetails as string,
+      customQuestions: (additionalAnswers as Array<{ question: string; response: string }>) ?? [],
       device,
       checkinStartedAt: checkinStartedAt as Date,
     },

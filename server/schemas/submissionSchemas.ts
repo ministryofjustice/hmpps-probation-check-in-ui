@@ -54,17 +54,9 @@ export const assistanceSchema = z.object({
   ),
 })
 
-export const callbackSchema = z
-  .object({
-    callback: z
-      .enum(['YES', 'NO'], {
-        error: issue => {
-          return issue.input === undefined ? 'Select yes if you need to speak to your probation officer' : issue.message
-        },
-      })
-      .describe('Select yes if you need to speak to your probation officer'),
-  })
-  .required()
+export const additionalAnswerSchema = z.object({
+  additionalAnswer: z.string().min(1, 'Enter your answer to the question'),
+})
 
 export const checkAnswersSchema = z
   .object({

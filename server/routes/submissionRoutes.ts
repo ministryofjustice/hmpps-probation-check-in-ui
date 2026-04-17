@@ -13,13 +13,14 @@ import {
   renderCheckAnswers,
   renderConfirmation,
   renderIndex,
-  renderQuestionsCallback,
   renderVerify,
   renderVideoInform,
   renderVideoRecord,
   renderViewVideo,
   handleAssistance,
   handleMentalHealth,
+  renderAdditionalQuestion,
+  handleAdditionalQuestion,
 } from '../controllers/submissionController'
 import {
   renderLivenessIndex,
@@ -39,8 +40,8 @@ import {
   personalDetailsSchema,
   mentalHealthSchema,
   assistanceSchema,
-  callbackSchema,
   checkAnswersSchema,
+  additionalAnswerSchema,
 } from '../schemas/submissionSchemas'
 
 import { Services } from '../services'
@@ -103,12 +104,12 @@ export default function routes({ esupervisionService }: Services): Router {
   get('/questions/assistance', protectSubmission, renderAssistance)
   router.post('/questions/assistance', protectSubmission, validateFormData(assistanceSchema), handleAssistance)
 
-  get('/questions/callback', protectSubmission, renderQuestionsCallback)
+  get('/questions/additional/:questionIndex', protectSubmission, renderAdditionalQuestion)
   router.post(
-    '/questions/callback',
+    '/questions/additional/:questionIndex',
     protectSubmission,
-    validateFormData(callbackSchema),
-    handleRedirect(defaultFlags.faceLiveness ? '/liveness/inform' : '/video/inform'),
+    validateFormData(additionalAnswerSchema),
+    handleAdditionalQuestion,
   )
 
   get('/video/inform', protectSubmission, renderVideoInform)

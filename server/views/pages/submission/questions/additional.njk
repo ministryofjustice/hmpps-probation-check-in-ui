@@ -1,0 +1,66 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "../../../partials/errorSummary.njk" import errorSummary %}
+{% extends "../../../partials/layout.njk" %}
+
+{% set pageTitle = question.question %}
+{% set mainClasses = "app-container govuk-body" %}
+
+{% block beforeContent %}
+  {%- if cya -%}
+    {{
+      govukBackLink({
+        text: "Back",
+        href: "/" + submissionId + "/check-your-answers"
+      })
+    }}
+  {%- elif questionIndex > 1 -%}
+    {{
+      govukBackLink({
+        text: "Back",
+        href: "/" + submissionId + "/questions/additional/" + (questionIndex - 1)
+      })
+    }}
+  {%- else -%}
+    {{
+      govukBackLink({
+        text: "Back",
+        href: "/" + submissionId + "/questions/assistance"
+      })
+    }}
+  {%- endif -%}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ errorSummary(validationErrors) }}
+
+      <form method="POST">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+        {{
+          govukTextarea({
+            name: "additionalAnswer",
+            id: "additionalAnswer",
+            value: existingAnswer,
+            errorMessage: validationErrors | findError("additionalAnswer"),
+            label: {
+              text: question.question,
+              isPageHeading: true,
+              classes: "govuk-label--l"
+            },
+            hint: {
+              text: question.hint
+            } if question.hint
+          })
+        }}
+        {{
+          govukButton({
+            text: "Continue"
+          })
+        }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -6,6 +6,7 @@ import OffenderCheckinResponse from '../data/models/offenderCheckinResponse'
 import AutomaticCheckinVerificationResult from '../data/models/automaticCheckinVerificationResult'
 import { CheckinEventType } from '../data/models/checkinEvent'
 import Feedback from '../data/models/feedback'
+import { OffenderQuestionsResponse } from '../data/models/offenderQuestionsResponse'
 import LivenessSession from '../data/models/livenessSession'
 import LivenessCredentials from '../data/models/livenessCredentials'
 import LivenessVerificationResult from '../data/models/livenessVerificationResult'
@@ -45,6 +46,10 @@ export default class EsupervisionService {
     },
   ): Promise<{ verified: boolean; error?: string }> {
     return this.esupervisionApiClient.verifyIdentity(checkinId, personalDetails)
+  }
+
+  getOffenderQuestions(crn: string): Promise<OffenderQuestionsResponse> {
+    return this.esupervisionApiClient.getOffenderQuestions(crn)
   }
 
   createLivenessSession(checkinId: string): Promise<LivenessSession> {

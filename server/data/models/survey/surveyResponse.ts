@@ -1,6 +1,5 @@
 import MentalHealth from './mentalHealth'
 import SupportAspect from './supportAspect'
-import CallbackRequested from './callbackRequested'
 
 export type SurveyVersion = string
 
@@ -46,9 +45,7 @@ export default class SurveyResponse implements Versioned {
 
   otherSupport: string
 
-  callback: CallbackRequested
-
-  callbackDetails: string
+  customQuestions?: Array<{ question: string; response: string }>
 
   device?: DeviceInfo
 }
