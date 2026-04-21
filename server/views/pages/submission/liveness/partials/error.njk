@@ -5,16 +5,19 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">We cannot confirm this is you because an error occurred</h1>
       <p>We have checked and we cannot confirm this is you. You can try the check again or submit anyway.</p>
-      <p class="govuk-!-font-weight-bold">If you try again, make sure:</p>
+      <p class="govuk-!-font-weight-bold">If you try to verify your identity again</p>
+      <p>Make sure:</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>you are in a well lit area</li>
-        <li>you are in front of a plain background</li>
         <li>your face is in the frame</li>
-        <li>you are not wearing a hat or sunglasses</li>
+        <li>you follow the instructions to move closer, keeping your face in the frame</li>
+        <li>you move at a steady pace</li>
       </ul>
+      <p>
+        If you are struggling to confirm your identity this way, you can record a video instead.
+      </p>
       <div class="govuk-button-group">
-        {{ govukButton({ text: "Try again", element: "a", attributes: { "data-liveness-retry": "" } }) }}
-        {{ govukButton({ text: "Submit anyway", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
+        {{ govukButton({ text: "Verify identity again", element: "a", attributes: { "data-liveness-retry": "" } }) }}
+        {{ govukButton({ text: "Record a video instead", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/fallback-inform" }) }}
       </div>
     </div>
   </div>
