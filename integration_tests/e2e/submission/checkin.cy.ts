@@ -93,10 +93,13 @@ describe('Start Check-in Journey', () => {
     const checkAnswersPage = SubmissionPage.verifyOnPage(CheckAnswersPage)
     checkAnswersPage.verifySummaryValue('How have you been feeling since we last spoke?', 'OK')
     checkAnswersPage.verifySummaryValue(
-      'Tell us why you need help with money',
+      'Tell us what you want us to know about money',
       'I am having trouble with my budgeting.',
     )
-    checkAnswersPage.verifySummaryValue('Tell us why you need help with housing', 'I need to find a new place to live.')
+    checkAnswersPage.verifySummaryValue(
+      'Tell us what you want us to know about housing',
+      'I need to find a new place to live.',
+    )
     checkAnswersPage.clickChangeLink('How have you been feeling since we last spoke?')
     mentalHealthPage.wellRadio().click()
     mentalHealthPage.continueButton().click()
