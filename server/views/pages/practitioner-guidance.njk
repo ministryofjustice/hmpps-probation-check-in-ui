@@ -3,7 +3,7 @@
 {%- from "moj/components/header/macro.njk" import mojHeader -%}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% set feedbackFormHref = "https://portal.consentkit.com/consent/form/b2e85747-2989-41f8-bcd4-e6633bbca324/start" %}
-{% set popFeedbackFormHref = "https://probation-check-in.hmpps.service.justice.gov.uk/feedback" %}
+{% set popFeedbackFormHref = "/feedback" %}
 {% set surveyHref = "https://forms.office.com/Pages/ResponsePage.aspx?id=KEeHxuZx_kGp4S6MNndq2DhwigW8cRJHpDuaX58OOzlURVNLUTVEMzlGWjJMN0U1UzE5TjRHTlhDOCQlQCN0PWcu" %}
 {% block header %}
   {{
@@ -65,7 +65,7 @@
               <li>access to a mobile phone or technology they can use the internet on</li>
               <li>no restrictions on device or internet use as part of their conditions</li>
               <li>no dependencies in their sentence plan that could be affected by using online check ins</li>
-          </ul> <p>You must only replace some face-to-face meetings. You cannot use online check ins to replace all face-to-face contact with a person.
+          </ul> <p>You must only replace <b>some</b> face-to-face meetings. You cannot use online check ins to replace all face-to-face contact with a person.
                        </p>
                        <p>All decisions to use an online check in to reduce contact must be made with the approval of a senior probation officer, and will have managerial oversight. </p>
 
