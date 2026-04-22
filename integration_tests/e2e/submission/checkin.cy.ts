@@ -72,6 +72,8 @@ describe('Start Check-in Journey', () => {
     assistancePage.enterMoneyReason('I am having trouble with my budgeting.')
     assistancePage.selectHousing()
     assistancePage.enterHousingReason('I need to find a new place to live.')
+    assistancePage.selectEmploymentEduSupport()
+    assistancePage.enterEmploymentEduReason('I need to get a job.')
     assistancePage.continueButton().click()
     const additionalQuestionPage = new AdditionalQuestionPage('How was the pottery class?')
     additionalQuestionPage.answerTextarea().type('It was great!')
@@ -91,10 +93,13 @@ describe('Start Check-in Journey', () => {
     const checkAnswersPage = SubmissionPage.verifyOnPage(CheckAnswersPage)
     checkAnswersPage.verifySummaryValue('How have you been feeling since we last spoke?', 'OK')
     checkAnswersPage.verifySummaryValue(
-      'Tell us why you need help with money',
+      'Tell us what you want us to know about money',
       'I am having trouble with my budgeting.',
     )
-    checkAnswersPage.verifySummaryValue('Tell us why you need help with housing', 'I need to find a new place to live.')
+    checkAnswersPage.verifySummaryValue(
+      'Tell us what you want us to know about housing',
+      'I need to find a new place to live.',
+    )
     checkAnswersPage.clickChangeLink('How have you been feeling since we last spoke?')
     mentalHealthPage.wellRadio().click()
     mentalHealthPage.continueButton().click()

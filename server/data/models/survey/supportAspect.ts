@@ -11,6 +11,8 @@ enum SupportAspect {
 
   SupportSystem = 'SUPPORT_SYSTEM',
 
+  EmploymentAndEducation = 'EMPLOYMENT_EDU',
+
   Other = 'OTHER',
 
   NoHelp = 'NO_HELP',

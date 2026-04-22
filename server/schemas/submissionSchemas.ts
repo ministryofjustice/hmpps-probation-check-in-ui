@@ -23,6 +23,7 @@ const validCircumstances = [
   'DRUGS',
   'MONEY',
   'HOUSING',
+  'EMPLOYMENT_EDU',
   'SUPPORT_SYSTEM',
   'OTHER',
   'NO_HELP',

@@ -195,6 +195,7 @@ export const handleAssistance: RequestHandler = async (req, res, next) => {
     DRUGS: 'drugsSupport',
     MONEY: 'moneySupport',
     HOUSING: 'housingSupport',
+    EMPLOYMENT_EDU: 'employmentEduSupport',
     SUPPORT_SYSTEM: 'supportSystemSupport',
     OTHER: 'otherSupport',
   }
@@ -329,6 +330,7 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
     drugsSupport,
     moneySupport,
     housingSupport,
+    employmentEduSupport,
     supportSystemSupport,
     otherSupport,
     checkinStartedAt,
@@ -368,6 +370,7 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
       drugsSupport: drugsSupport as string,
       moneySupport: moneySupport as string,
       housingSupport: housingSupport as string,
+      employmentEduSupport: employmentEduSupport as string,
       supportSystemSupport: supportSystemSupport as string,
       otherSupport: otherSupport as string,
       customQuestions: (additionalAnswers as Array<{ question: string; response: string }>) ?? [],

@@ -41,6 +41,8 @@ export default class SurveyResponse implements Versioned {
 
   housingSupport: string
 
+  employmentEduSupport: string
+
   supportSystemSupport: string
 
   otherSupport: string
