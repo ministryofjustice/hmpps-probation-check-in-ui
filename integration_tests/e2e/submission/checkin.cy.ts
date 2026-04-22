@@ -72,6 +72,8 @@ describe('Start Check-in Journey', () => {
     assistancePage.enterMoneyReason('I am having trouble with my budgeting.')
     assistancePage.selectHousing()
     assistancePage.enterHousingReason('I need to find a new place to live.')
+    assistancePage.selectEmploymentEduSupport()
+    assistancePage.enterEmploymentEduReason('I need to get a job.')
     assistancePage.continueButton().click()
     const additionalQuestionPage = new AdditionalQuestionPage('How was the pottery class?')
     additionalQuestionPage.answerTextarea().type('It was great!')

@@ -7,6 +7,7 @@ export type AssistanceOption =
   | 'DRUGS'
   | 'MONEY'
   | 'HOUSING'
+  | 'EMPLOYMENT_EDU'
   | 'SUPPORT_SYSTEM'
   | 'OTHER'
   | 'NO_HELP'
@@ -30,6 +31,8 @@ export default class AssistancePage extends SubmissionPage {
 
   selectSupportSystem = (): PageElement => this.getCheckbox('SUPPORT_SYSTEM').check()
 
+  selectEmploymentEduSupport = (): PageElement => this.getCheckbox('EMPLOYMENT_EDU')
+
   selectOther = (): PageElement => this.getCheckbox('OTHER').check()
 
   selectNoHelp = (): PageElement => this.getCheckbox('NO_HELP').check()
@@ -45,6 +48,8 @@ export default class AssistancePage extends SubmissionPage {
   enterHousingReason = (reason: string): PageElement => this.getConditionalTextarea('HOUSING').type(reason)
 
   enterSupportSystemReason = (reason: string): PageElement => this.getConditionalTextarea('SUPPORT_SYSTEM').type(reason)
+
+  enterEmploymentEduReason = (reason: string): PageElement => this.getConditionalTextarea('EMPLOYMENT_EDU').type(reason)
 
   enterOtherReason = (reason: string): PageElement => this.getConditionalTextarea('OTHER').type(reason)
 
