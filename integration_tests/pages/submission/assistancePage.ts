@@ -31,7 +31,7 @@ export default class AssistancePage extends SubmissionPage {
 
   selectSupportSystem = (): PageElement => this.getCheckbox('SUPPORT_SYSTEM').check()
 
-  selectEmploymentEduSupport = (): PageElement => this.getCheckbox('EMPLOYMENT_EDU')
+  selectEmploymentEduSupport = (): PageElement => this.getCheckbox('EMPLOYMENT_EDU').check()
 
   selectOther = (): PageElement => this.getCheckbox('OTHER').check()
 
