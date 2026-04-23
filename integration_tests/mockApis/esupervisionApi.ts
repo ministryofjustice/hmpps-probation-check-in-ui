@@ -197,7 +197,7 @@ export default {
     return stubFor({
       request: {
         method: 'GET',
-        urlPathPattern: apiUrlPattern(`/questions/upcoming/${checkin.crn}/offender-questions`),
+        urlPathPattern: apiUrlPattern(`/questions/checkin/${checkin.uuid}/offender-questions`),
       },
       response: {
         status: 200,

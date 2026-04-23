@@ -51,7 +51,9 @@ export const assistanceSchema = z.object({
       if (Array.isArray(val)) return val
       return []
     },
-    z.array(z.enum(validCircumstances)).min(1, "Select what you need help with or select 'No, I do not need help'"),
+    z
+      .array(z.enum(validCircumstances))
+      .min(1, "Select what you need help with or select 'No, I do not need any support'"),
   ),
 })
 

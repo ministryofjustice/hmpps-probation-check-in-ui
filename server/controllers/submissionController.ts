@@ -96,7 +96,7 @@ export const handleVerify: RequestHandler = async (req, res: Response<object, Su
     req.session.submissionAuthorized = submissionId
 
     try {
-      const questionsResponse = await esupervisionService.getOffenderQuestions(crn)
+      const questionsResponse = await esupervisionService.getOffenderQuestions(submissionId)
       req.session.formData.additionalQuestions = extractAdditionalQuestions(questionsResponse)
     } catch (err) {
       logger.error(`Failed to fetch additional questions for submissionId ${submissionId}`, err)

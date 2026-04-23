@@ -112,9 +112,9 @@ export default class EsupervisionApiClient extends RestClient {
     )
   }
 
-  async getOffenderQuestions(crn: string): Promise<OffenderQuestionsResponse> {
+  async getOffenderQuestions(checkinId: string): Promise<OffenderQuestionsResponse> {
     return this.get<OffenderQuestionsResponse>(
-      { path: `/questions/upcoming/${crn}/offender-questions?language=en-GB` },
+      { path: `/questions/upcoming/${checkinId}/offender-questions?language=en-GB` },
       asSystem(),
     )
   }

@@ -48,8 +48,8 @@ export default class EsupervisionService {
     return this.esupervisionApiClient.verifyIdentity(checkinId, personalDetails)
   }
 
-  getOffenderQuestions(crn: string): Promise<OffenderQuestionsResponse> {
-    return this.esupervisionApiClient.getOffenderQuestions(crn)
+  getOffenderQuestions(checkinId: string): Promise<OffenderQuestionsResponse> {
+    return this.esupervisionApiClient.getOffenderQuestions(checkinId)
   }
 
   createLivenessSession(checkinId: string): Promise<LivenessSession> {
