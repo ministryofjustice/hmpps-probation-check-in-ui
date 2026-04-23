@@ -1,0 +1,63 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% extends "../../../../partials/layout.njk" %}
+
+{% set pageTitle = "Record your video" %}
+
+{% block head %}
+  {{ super() }}
+  <link href="{{ '/assets/css/face-liveness.css' | assetMap }}" rel="stylesheet" />
+{% endblock %}
+
+{% block beforeContent %}
+  {{
+    govukBackLink({
+      text: "Back",
+      href: "/" + submissionId + "/liveness/fallback-inform"
+    })
+  }}
+{% endblock %}
+
+{% block content %}
+  <div id="fallbackRecordingScreen">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+        <p class="govuk-body">You do not need to do anything during the video. Anything you say will not be recorded.</p>
+        <div class="videoRecorder__container" id="fallbackVideoContainer">
+          <div class="videoRecorder__videoWrap">
+            <video id="fallbackVideo" class="videoRecorder__video" autoplay muted playsinline></video>
+            <span class="videoRecorder__frame"></span>
+            <canvas id="fallbackCanvas" hidden></canvas>
+            <div id="fallbackStatusTag" class="govuk-tag govuk-tag--red videoRecorder__tag"></div>
+          </div>
+        </div>
+        <div class="videoRecorder__error" id="fallbackCameraError" hidden>
+          <div class="govuk-inset-text es-inset-text--error">
+            <h2 class="govuk-heading-m es-heading--error">You need to accept permissions on your device</h2>
+            <p>
+              We are unable to access your camera to record a video. Check your browser settings and permissions. If
+              you are having trouble using this service, contact your probation officer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="fallbackStickyActionBar" class="sticky-action-bar">
+      <div class="sticky-action-bar__inner">
+        <button id="fallbackStartBtn" class="govuk-button" disabled aria-disabled="true">Start recording</button>
+      </div>
+    </div>
+  </div>
+
+  {% include "./partials/review.njk" %}
+  {% include "./partials/loading.njk" %}
+  {% include "./partials/match.njk" %}
+  {% include "./partials/nomatch.njk" %}
+  {% include "./partials/error.njk" %}
+{% endblock %}
+
+{% block bodyEnd %}
+  {{ super() }}
+  <script type="module" src="{{ '/assets/js/fallback-video.js' | assetMap }}"></script>
+{% endblock %}

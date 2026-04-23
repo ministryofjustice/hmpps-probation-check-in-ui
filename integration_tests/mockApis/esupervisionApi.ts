@@ -122,6 +122,53 @@ export default {
 
   // checkin flow
 
+  stubCreateLivenessSession: (checkin: Checkin): SuperAgentRequest => {
+    return stubFor({
+      request: {
+        method: 'POST',
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/liveness/session`),
+      },
+      response: {
+        status: 200,
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        jsonBody: { sessionId: 'mock-liveness-session-id' },
+      },
+    })
+  },
+
+  stubGetLivenessCredentials: (checkin: Checkin): SuperAgentRequest => {
+    return stubFor({
+      request: {
+        method: 'GET',
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/liveness/credentials`),
+      },
+      response: {
+        status: 200,
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        jsonBody: {
+          accessKeyId: 'mock-access-key',
+          secretAccessKey: 'mock-secret-key',
+          sessionToken: 'mock-session-token',
+          expiration: new Date(Date.now() + 3600000).toISOString(),
+        },
+      },
+    })
+  },
+
+  stubVerifyLiveness: (checkin: Checkin, result = AutomatedIdVerificationResult.Match): SuperAgentRequest => {
+    return stubFor({
+      request: {
+        method: 'POST',
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/liveness/verify`),
+      },
+      response: {
+        status: 200,
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        jsonBody: { isLive: true, livenessConfidence: 99.5, result },
+      },
+    })
+  },
+
   stubFakeS3Upload: (httpStatus = 200): SuperAgentRequest => {
     return stubFor({
       request: {

@@ -53,8 +53,6 @@ if (errorSummaryLinks.length) {
   })
 }
 
-const videoRecorder = document.querySelector('[data-module="videoRecorder"]')
-
 const IMAGE_CONTENT_TYPE = 'image/jpeg'
 const IMAGE_SESSION_KEY = 'esImageUpload'
 
@@ -67,6 +65,7 @@ let validationMessage = document.getElementById('photoUploadMessage')
 
 const registerButton = document.getElementById('registerButton')
 
+const videoRecorder = document.querySelector('[data-module="videoRecorder"]')
 if (videoRecorder) {
   new VideoRecorder(videoRecorder).initVideo()
 }

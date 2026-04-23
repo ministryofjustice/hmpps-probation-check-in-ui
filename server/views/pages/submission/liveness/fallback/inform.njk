@@ -1,0 +1,50 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% extends "../../../../partials/layout.njk" %}
+
+{% set pageTitle = "Confirm your identity" %}
+
+{% block beforeContent %}
+  {{
+    govukBackLink({
+      text: "Back",
+      href: "/" + submissionId + "/liveness/record"
+    })
+  }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+      <p>
+        Next, we need to record a 5-second video of you on this device. You do not need to speak in the video. Anything
+        you say will not be recorded. You will be able to review the video before you continue.
+      </p>
+      <p>
+        We will save an image of you taken from the video to compare with the photo your probation officer took when
+        they signed you up. This  will only be used to confirm your identity.
+      </p>
+      <p>You'll need to accept permissions to record a video on your device.</p>
+      <h2 class="govuk-heading-s">Before you record your video</h2>
+      <p>Before you record your video, make sure:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>you are in a well lit area</li>
+        <li>you are in front of a plain background</li>
+        <li>your face is in the frame</li>
+        <li>you are not wearing a hat or sunglasses</li>
+      </ul>
+      {{ govukInsetText({
+        text: "Remember this is a probation check in and should be treated the same as a face-to-face meeting. You should wear appropriate clothing."
+      }) }}
+      {{
+        govukButton({
+        text: "Continue",
+        href: "/" + submissionId + "/liveness/fallback-record"
+        })
+      }}
+    </div>
+  </div>
+{% endblock %}

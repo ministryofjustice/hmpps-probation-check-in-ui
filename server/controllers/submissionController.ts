@@ -6,19 +6,22 @@ import SupportAspect from '../data/models/survey/supportAspect'
 import Checkin from '../data/models/checkin'
 import { DeviceInfo } from '../data/models/survey/surveyResponse'
 import { extractAdditionalQuestions } from '../data/models/offenderQuestionsResponse'
+import { defaultFlags } from '../utils/flags'
 
 type SubmissionLocals = { checkin: Checkin }
 
 const { esupervisionService } = services()
 
 const getSubmissionId = (req: Request): string => req.params.submissionId
-const pageParams = (req: Request): Record<string, string | boolean> => {
+export const pageParams = (req: Request): Record<string, unknown> => {
   const cya = req.query.checkAnswers === 'true'
   const autoVerifyResult = req.session?.formData?.autoVerifyResult
+  const isLive = req.session?.formData?.isLive
 
   return {
     cya,
     autoVerifyResult,
+    isLive,
     submissionId: getSubmissionId(req),
   }
 }
@@ -35,7 +38,7 @@ export const handleRedirect = (submissionPath: string): RequestHandler => {
     let redirectUrl = `${basePath}${submissionPath}`
 
     if (req.query.checkAnswers === 'true') {
-      redirectUrl = `${basePath}/check-your-answers`
+      redirectUrl = `${basePath}${defaultFlags.faceLiveness ? '/liveness/check-your-answers' : '/check-your-answers'}`
     }
 
     res.redirect(redirectUrl)
@@ -150,7 +153,6 @@ export const handleVideoVerify: RequestHandler = async (req, res, next) => {
     logger.info('handleVideoVerify', submissionId)
     res.setHeader('Content-Type', 'application/json')
     res.setHeader('Cache-Control', 'no-cache')
-    res.setHeader('Connection', 'keep-alive')
 
     const result = await esupervisionService.autoVerifyCheckinIdentity(submissionId, 1)
     req.session.formData.autoVerifyResult = result.result
@@ -210,7 +212,9 @@ export const handleAssistance: RequestHandler = async (req, res, next) => {
   const basePath = `/${submissionId}`
 
   if (req.query.checkAnswers === 'true') {
-    return res.redirect(`${basePath}/check-your-answers`)
+    return res.redirect(
+      `${basePath}${defaultFlags.faceLiveness ? '/liveness/check-your-answers' : '/check-your-answers'}`,
+    )
   }
 
   const { additionalQuestions } = req.session.formData ?? {}
@@ -218,7 +222,7 @@ export const handleAssistance: RequestHandler = async (req, res, next) => {
     return res.redirect(`${basePath}/questions/additional/1`)
   }
 
-  return res.redirect(`${basePath}/video/inform`)
+  return res.redirect(`${basePath}${defaultFlags.faceLiveness ? '/liveness/inform' : '/video/inform'}`)
 }
 
 export const handleMentalHealth: RequestHandler = async (req, res, next) => {
@@ -247,7 +251,7 @@ export const handleMentalHealth: RequestHandler = async (req, res, next) => {
   let redirectUrl = `${basePath}/questions/assistance`
 
   if (req.query.checkAnswers === 'true') {
-    redirectUrl = `${basePath}/check-your-answers`
+    redirectUrl = `${basePath}${defaultFlags.faceLiveness ? '/liveness/check-your-answers' : '/check-your-answers'}`
   }
 
   res.redirect(redirectUrl)
@@ -259,7 +263,9 @@ export const renderAdditionalQuestion: RequestHandler = async (req, res, next) =
     const { additionalQuestions, additionalAnswers } = req.session.formData ?? {}
 
     if (!additionalQuestions?.length || questionIndex < 1 || questionIndex > additionalQuestions.length) {
-      return res.redirect(`/${req.params.submissionId}/video/inform`)
+      return res.redirect(
+        `/${req.params.submissionId}${defaultFlags.faceLiveness ? '/liveness/inform' : '/video/inform'}`,
+      )
     }
 
     const question = additionalQuestions[questionIndex - 1]
@@ -296,14 +302,16 @@ export const handleAdditionalQuestion: RequestHandler = async (req, res, next) =
     const basePath = `/${submissionId}`
 
     if (req.query.checkAnswers === 'true') {
-      return res.redirect(`${basePath}/check-your-answers`)
+      return res.redirect(
+        `${basePath}${defaultFlags.faceLiveness ? '/liveness/check-your-answers' : '/check-your-answers'}`,
+      )
     }
 
     if (questionIndex < additionalQuestions.length) {
       return res.redirect(`${basePath}/questions/additional/${questionIndex + 1}`)
     }
 
-    return res.redirect(`${basePath}/video/inform`)
+    return res.redirect(`${basePath}${defaultFlags.faceLiveness ? '/liveness/inform' : '/video/inform'}`)
   } catch (error) {
     return next(error)
   }

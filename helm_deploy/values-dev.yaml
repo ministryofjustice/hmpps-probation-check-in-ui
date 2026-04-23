@@ -6,7 +6,7 @@ generic-service:
 
   ingress:
     host: probation-check-in-dev.hmpps.service.justice.gov.uk
-    className: modsec-non-prod 
+    className: modsec-non-prod
 
   env:
     INGRESS_URL: 'https://probation-check-in-dev.hmpps.service.justice.gov.uk'
@@ -15,6 +15,7 @@ generic-service:
     ESUPERVISION_API_URL: 'https://esupervision-api-dev.hmpps.service.justice.gov.uk/v2'
     ENVIRONMENT_NAME: DEV
     AUDIT_ENABLED: 'false'
+    FEATURE_FACE_LIVENESS: 'false'
 
 generic-prometheus-alerts:
   alertSeverity: hmpps_esupervision_alerts_nonprod

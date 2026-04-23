@@ -1,0 +1,25 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+<div class="es-pane" id="liveNoMatchScreen" hidden aria-hidden="true">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">We cannot confirm this is you</h1>
+      <p>This is because your image does not match the photo we have on your file.</p>
+      <p class="govuk-!-font-weight-bold">You can try to verify your identity again</p>
+      <p>Make sure:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>your face is in the frame</li>
+        <li>you are in a well lit area</li>
+        <li>you are in front of a plain background</li>
+        <li>you are not wearing a hat or sunglasses</li>
+      </ul>
+      <p>
+        If you are struggling to confirm your identity, you can still submit your check in. Your probation officer
+        will confirm this is you when they review your check in.
+      </p>
+      <div class="govuk-button-group">
+        {{ govukButton({ text: "Verify identity again", element: "a", attributes: { "data-liveness-retry": "" } }) }}
+        {{ govukButton({ text: "Continue to check your answers", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
+      </div>
+    </div>
+  </div>
+</div>

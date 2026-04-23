@@ -22,6 +22,19 @@ import {
   renderAdditionalQuestion,
   handleAdditionalQuestion,
 } from '../controllers/submissionController'
+import {
+  renderLivenessIndex,
+  renderLivenessInform,
+  renderLivenessRecord,
+  renderFallbackInform,
+  renderFallbackRecord,
+  handleLivenessVerify,
+  renderLivenessView,
+  renderLivenessCheckAnswers,
+  getLivenessSession,
+  getLivenessCredentials,
+  getSnapshotUploadUrl,
+} from '../controllers/livenessController'
 
 import {
   personalDetailsSchema,
@@ -32,6 +45,7 @@ import {
 } from '../schemas/submissionSchemas'
 
 import { Services } from '../services'
+import { defaultFlags } from '../utils/flags'
 import logger from '../../logger'
 
 export default function routes({ esupervisionService }: Services): Router {
@@ -80,7 +94,7 @@ export default function routes({ esupervisionService }: Services): Router {
 
   router.post('/start', handleStart)
 
-  get('/', renderIndex)
+  get('/', defaultFlags.faceLiveness ? renderLivenessIndex : renderIndex)
   get('/verify', renderVerify)
   router.post('/verify', validateFormData(personalDetailsSchema), handleVerify)
 
@@ -102,6 +116,18 @@ export default function routes({ esupervisionService }: Services): Router {
   get('/video/record', protectSubmission, renderVideoRecord)
   get('/video/verify', protectSubmission, handleVideoVerify)
   get('/video/view', protectSubmission, renderViewVideo)
+
+  get('/liveness/inform', protectSubmission, renderLivenessInform)
+  get('/liveness/record', protectSubmission, renderLivenessRecord)
+  get('/liveness/verify', protectSubmission, handleLivenessVerify)
+  get('/liveness/fallback-inform', protectSubmission, renderFallbackInform)
+  get('/liveness/fallback-record', protectSubmission, renderFallbackRecord)
+  get('/liveness/view', protectSubmission, renderLivenessView)
+  get('/liveness/check-your-answers', protectSubmission, renderLivenessCheckAnswers)
+  router.post('/liveness/check-your-answers', protectSubmission, validateFormData(checkAnswersSchema), handleSubmission)
+  get('/liveness/session', protectSubmission, getLivenessSession)
+  get('/liveness/credentials', protectSubmission, getLivenessCredentials)
+  get('/liveness/upload-url', protectSubmission, getSnapshotUploadUrl)
 
   get('/check-your-answers', protectSubmission, renderCheckAnswers)
   router.post('/check-your-answers', protectSubmission, validateFormData(checkAnswersSchema), handleSubmission)
