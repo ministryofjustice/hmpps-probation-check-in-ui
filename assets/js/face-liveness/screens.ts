@@ -90,3 +90,23 @@ export function determineFailScreen(isLive: boolean | undefined, result: string 
   if (!isLive && result === 'NO_MATCH') return 'notLiveNoMatch'
   return 'error'
 }
+
+export function screenForLivenessError(state: string | undefined): Screen {
+  switch (state) {
+    case 'TIMEOUT':
+      return 'timeout'
+    case 'CONNECTION_TIMEOUT':
+      return 'connectionTimeout'
+    case 'CAMERA_ACCESS_ERROR':
+    case 'DEFAULT_CAMERA_NOT_FOUND_ERROR':
+      return 'cameraError'
+    case 'CAMERA_FRAMERATE_ERROR':
+      return 'cameraFramerate'
+    case 'MULTIPLE_FACES_ERROR':
+      return 'multipleFaces'
+    case 'MOBILE_LANDSCAPE_ERROR':
+      return 'landscape'
+    default:
+      return 'error'
+  }
+}

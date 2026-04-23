@@ -4,7 +4,7 @@ import { FaceLivenessDetectorCore } from '@aws-amplify/ui-react-liveness'
 import '@aws-amplify/ui-react-liveness/styles.css'
 
 import { fetchCredentials, fetchNewSession, fetchVerifyResult } from './face-liveness/api'
-import { type Screen, SCREEN_TO_PARTIAL, showNunjucksPartial, hideAllPartials, determineFailScreen } from './face-liveness/screens'
+import { type Screen, SCREEN_TO_PARTIAL, showNunjucksPartial, hideAllPartials, determineFailScreen, screenForLivenessError } from './face-liveness/screens'
 
 function getDataAttribute(name: string): string {
   const root = document.getElementById('face-liveness-root')
@@ -60,29 +60,7 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
   }, [submissionId, sessionId])
 
   const handleError = useCallback((livenessError?: { state?: string }) => {
-    switch (livenessError?.state) {
-      case 'TIMEOUT':
-        setScreen('timeout')
-        break
-      case 'CONNECTION_TIMEOUT':
-        setScreen('connectionTimeout')
-        break
-      case 'CAMERA_ACCESS_ERROR':
-      case 'DEFAULT_CAMERA_NOT_FOUND_ERROR':
-        setScreen('cameraError')
-        break
-      case 'CAMERA_FRAMERATE_ERROR':
-        setScreen('cameraFramerate')
-        break
-      case 'MULTIPLE_FACES_ERROR':
-        setScreen('multipleFaces')
-        break
-      case 'MOBILE_LANDSCAPE_ERROR':
-        setScreen('landscape')
-        break
-      default:
-        setScreen('error')
-    }
+    setScreen(screenForLivenessError(livenessError?.state))
   }, [])
 
   useEffect(() => {

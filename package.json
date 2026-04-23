@@ -41,7 +41,7 @@
       "server/**/*.{ts,js,jsx,mjs}"
     ],
     "testMatch": [
-      "<rootDir>/(server|job)/**/?(*.)(cy|test).{ts,js,jsx,mjs}"
+      "<rootDir>/(server|job|assets)/**/?(*.)(cy|test).{ts,tsx,js,jsx,mjs}"
     ],
     "testEnvironment": "node",
     "reporters": [
