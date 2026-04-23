@@ -113,7 +113,7 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
       region={region}
       onAnalysisComplete={handleAnalysisComplete}
       onError={handleError}
-      onUserCancel={() => handleError()}
+      onUserCancel={() => setScreen('cancelled')}
       config={{
         credentialProvider,
       }}

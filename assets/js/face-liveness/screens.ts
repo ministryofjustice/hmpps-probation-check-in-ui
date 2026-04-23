@@ -12,6 +12,7 @@ export type Screen =
   | 'cameraFramerate'
   | 'multipleFaces'
   | 'landscape'
+  | 'cancelled'
   | 'error'
 
 const PARTIAL_IDS = [
@@ -26,6 +27,7 @@ const PARTIAL_IDS = [
   'cameraFramerateScreen',
   'multipleFacesScreen',
   'landscapeScreen',
+  'cancelledScreen',
   'errorScreen',
 ]
 
@@ -41,6 +43,7 @@ export const SCREEN_TO_PARTIAL: Record<string, string> = {
   cameraFramerate: 'cameraFramerateScreen',
   multipleFaces: 'multipleFacesScreen',
   landscape: 'landscapeScreen',
+  cancelled: 'cancelledScreen',
   error: 'errorScreen',
 }
 
