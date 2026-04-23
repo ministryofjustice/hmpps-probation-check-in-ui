@@ -15,7 +15,7 @@ generic-service:
     ESUPERVISION_API_URL: 'https://esupervision-api-preprod.hmpps.service.justice.gov.uk/v2'
     ENVIRONMENT_NAME: PRE-PRODUCTION
     AUDIT_ENABLED: "false"
-    FEATURE_FACE_LIVENESS: 'true'
+    FEATURE_FACE_LIVENESS: 'false'
 
 generic-prometheus-alerts:
   alertSeverity: hmpps_esupervision_alerts_nonprod
