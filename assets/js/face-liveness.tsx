@@ -4,7 +4,7 @@ import { FaceLivenessDetectorCore } from '@aws-amplify/ui-react-liveness'
 import '@aws-amplify/ui-react-liveness/styles.css'
 
 import { fetchCredentials, fetchNewSession, fetchVerifyResult } from './face-liveness/api'
-import { type Screen, SCREEN_TO_PARTIAL, showNunjucksPartial, hideAllPartials, determineFailScreen } from './face-liveness/screens'
+import { type Screen, SCREEN_TO_PARTIAL, showNunjucksPartial, hideAllPartials, determineFailScreen, screenForLivenessError } from './face-liveness/screens'
 
 function getDataAttribute(name: string): string {
   const root = document.getElementById('face-liveness-root')
@@ -60,13 +60,7 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
   }, [submissionId, sessionId])
 
   const handleError = useCallback((livenessError?: { state?: string }) => {
-    if (livenessError?.state === 'TIMEOUT') {
-      setScreen('timeout')
-    } else if (livenessError?.state === 'CAMERA_ACCESS_ERROR') {
-      setScreen('cameraError')
-    } else {
-      setScreen('error')
-    }
+    setScreen(screenForLivenessError(livenessError?.state))
   }, [])
 
   useEffect(() => {
@@ -97,7 +91,7 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
       region={region}
       onAnalysisComplete={handleAnalysisComplete}
       onError={handleError}
-      onUserCancel={() => handleError()}
+      onUserCancel={() => setScreen('cancelled')}
       config={{
         credentialProvider,
       }}

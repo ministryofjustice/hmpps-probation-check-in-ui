@@ -7,7 +7,12 @@ export type Screen =
   | 'liveNoMatch'
   | 'notLiveNoMatch'
   | 'timeout'
+  | 'connectionTimeout'
   | 'cameraError'
+  | 'cameraFramerate'
+  | 'multipleFaces'
+  | 'landscape'
+  | 'cancelled'
   | 'error'
 
 const PARTIAL_IDS = [
@@ -17,7 +22,12 @@ const PARTIAL_IDS = [
   'liveNoMatchScreen',
   'notLiveNoMatchScreen',
   'timeoutScreen',
+  'connectionTimeoutScreen',
   'cameraErrorScreen',
+  'cameraFramerateScreen',
+  'multipleFacesScreen',
+  'landscapeScreen',
+  'cancelledScreen',
   'errorScreen',
 ]
 
@@ -28,7 +38,12 @@ export const SCREEN_TO_PARTIAL: Record<string, string> = {
   liveNoMatch: 'liveNoMatchScreen',
   notLiveNoMatch: 'notLiveNoMatchScreen',
   timeout: 'timeoutScreen',
+  connectionTimeout: 'connectionTimeoutScreen',
   cameraError: 'cameraErrorScreen',
+  cameraFramerate: 'cameraFramerateScreen',
+  multipleFaces: 'multipleFacesScreen',
+  landscape: 'landscapeScreen',
+  cancelled: 'cancelledScreen',
   error: 'errorScreen',
 }
 
@@ -74,4 +89,24 @@ export function determineFailScreen(isLive: boolean | undefined, result: string 
   if (isLive && result === 'NO_MATCH') return 'liveNoMatch'
   if (!isLive && result === 'NO_MATCH') return 'notLiveNoMatch'
   return 'error'
+}
+
+export function screenForLivenessError(state: string | undefined): Screen {
+  switch (state) {
+    case 'TIMEOUT':
+      return 'timeout'
+    case 'CONNECTION_TIMEOUT':
+      return 'connectionTimeout'
+    case 'CAMERA_ACCESS_ERROR':
+    case 'DEFAULT_CAMERA_NOT_FOUND_ERROR':
+      return 'cameraError'
+    case 'CAMERA_FRAMERATE_ERROR':
+      return 'cameraFramerate'
+    case 'MULTIPLE_FACES_ERROR':
+      return 'multipleFaces'
+    case 'MOBILE_LANDSCAPE_ERROR':
+      return 'landscape'
+    default:
+      return 'error'
+  }
 }
