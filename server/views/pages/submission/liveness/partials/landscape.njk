@@ -1,0 +1,24 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+<div class="es-pane" id="landscapeScreen" hidden aria-hidden="true">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">There's been a problem with your identity check</h1>
+      <p>
+        We cannot confirm this is you. This is because your device is in landscape mode.
+      </p>
+      <p class="govuk-!-font-weight-bold">If you try to verify your identity again</p>
+      <p>Make sure:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>you rotate your device so it is upright (portrait mode)</li>
+        <li>your device is not set to lock the screen in landscape mode</li>
+      </ul>
+      <p>
+        If you are struggling to confirm your identity this way, you can record a video instead.
+      </p>
+      <div class="govuk-button-group">
+        {{ govukButton({ text: "Verify identity again", element: "a", attributes: { "data-liveness-retry": "" } }) }}
+        {{ govukButton({ text: "Record a video instead", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/fallback-inform" }) }}
+      </div>
+    </div>
+  </div>
+</div>

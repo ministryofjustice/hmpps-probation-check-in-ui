@@ -60,12 +60,28 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
   }, [submissionId, sessionId])
 
   const handleError = useCallback((livenessError?: { state?: string }) => {
-    if (livenessError?.state === 'TIMEOUT') {
-      setScreen('timeout')
-    } else if (livenessError?.state === 'CAMERA_ACCESS_ERROR') {
-      setScreen('cameraError')
-    } else {
-      setScreen('error')
+    switch (livenessError?.state) {
+      case 'TIMEOUT':
+        setScreen('timeout')
+        break
+      case 'CONNECTION_TIMEOUT':
+        setScreen('connectionTimeout')
+        break
+      case 'CAMERA_ACCESS_ERROR':
+      case 'DEFAULT_CAMERA_NOT_FOUND_ERROR':
+        setScreen('cameraError')
+        break
+      case 'CAMERA_FRAMERATE_ERROR':
+        setScreen('cameraFramerate')
+        break
+      case 'MULTIPLE_FACES_ERROR':
+        setScreen('multipleFaces')
+        break
+      case 'MOBILE_LANDSCAPE_ERROR':
+        setScreen('landscape')
+        break
+      default:
+        setScreen('error')
     }
   }, [])
 

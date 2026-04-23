@@ -7,7 +7,11 @@ export type Screen =
   | 'liveNoMatch'
   | 'notLiveNoMatch'
   | 'timeout'
+  | 'connectionTimeout'
   | 'cameraError'
+  | 'cameraFramerate'
+  | 'multipleFaces'
+  | 'landscape'
   | 'error'
 
 const PARTIAL_IDS = [
@@ -17,7 +21,11 @@ const PARTIAL_IDS = [
   'liveNoMatchScreen',
   'notLiveNoMatchScreen',
   'timeoutScreen',
+  'connectionTimeoutScreen',
   'cameraErrorScreen',
+  'cameraFramerateScreen',
+  'multipleFacesScreen',
+  'landscapeScreen',
   'errorScreen',
 ]
 
@@ -28,7 +36,11 @@ export const SCREEN_TO_PARTIAL: Record<string, string> = {
   liveNoMatch: 'liveNoMatchScreen',
   notLiveNoMatch: 'notLiveNoMatchScreen',
   timeout: 'timeoutScreen',
+  connectionTimeout: 'connectionTimeoutScreen',
   cameraError: 'cameraErrorScreen',
+  cameraFramerate: 'cameraFramerateScreen',
+  multipleFaces: 'multipleFacesScreen',
+  landscape: 'landscapeScreen',
   error: 'errorScreen',
 }
 
