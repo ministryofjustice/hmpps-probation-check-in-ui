@@ -15,7 +15,7 @@ generic-service:
     ESUPERVISION_API_URL: 'https://esupervision-api-dev.hmpps.service.justice.gov.uk/v2'
     ENVIRONMENT_NAME: DEV
     AUDIT_ENABLED: 'false'
-    FEATURE_FACE_LIVENESS: 'true'
+    FEATURE_FACE_LIVENESS: 'false'
 
 generic-prometheus-alerts:
   alertSeverity: hmpps_esupervision_alerts_nonprod
