@@ -124,14 +124,6 @@ if (container) {
 
   renderApp()
 
-  // Debug shortcut: press 'f' to skip to fallback inform page
-  document.addEventListener('keydown', e => {
-    if (e.key === 'f' && !e.ctrlKey && !e.metaKey && !(e.target as HTMLElement).closest('input, textarea')) {
-      const submissionId = getDataAttribute('submissionId')
-      window.location.href = `/${submissionId}/liveness/fallback-inform`
-    }
-  })
-
   // Wire up retry buttons in the Nunjucks partials
   document.addEventListener('click', e => {
     const target = e.target as HTMLElement
