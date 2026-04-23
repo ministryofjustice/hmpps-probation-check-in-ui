@@ -95,6 +95,7 @@ export const createMockCheckin = (offender: Offender, overrides: Partial<Checkin
       drugsSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       moneySupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       housingSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
+      employmentEduSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       supportSystemSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
       otherSupport: faker.datatype.boolean() ? faker.lorem.sentence() : null,
     }
