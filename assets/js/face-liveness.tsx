@@ -86,21 +86,24 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
   }
 
   return (
-    <FaceLivenessDetectorCore
-      sessionId={sessionId}
-      region={region}
-      onAnalysisComplete={handleAnalysisComplete}
-      onError={handleError}
-      onUserCancel={() => setScreen('cancelled')}
-      config={{
-        credentialProvider,
-      }}
-      displayText={{
-        startScreenBeginCheckText: "Start identity check",
-        hintCenterFaceText: 'Centre your face',
-        recordingIndicatorText: 'Recording now',
-      }}
-    />
+    <div className="liveness-detector">
+      <FaceLivenessDetectorCore
+        sessionId={sessionId}
+        region={region}
+        onAnalysisComplete={handleAnalysisComplete}
+        onError={handleError}
+        onUserCancel={() => setScreen('cancelled')}
+        config={{
+          credentialProvider,
+        }}
+        displayText={{
+          startScreenBeginCheckText: "Start identity check",
+          hintCenterFaceText: 'Centre your face',
+          recordingIndicatorText: 'Recording now',
+          cancelLivenessCheckText: 'Cancel',
+        }}
+      />
+    </div>
   )
 }
 

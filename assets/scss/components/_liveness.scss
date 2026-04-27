@@ -3,6 +3,94 @@
   justify-content: flex-start !important;
 }
 
+// Replace the cancel button's X icon with the word "Cancel" styled as a GDS secondary button
+.liveness-detector .amplify-liveness-cancel-button {
+  font-family: "GDS Transport", arial, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.1875;
+  display: inline-block;
+  padding: 8px 10px 7px;
+  border: 2px solid transparent;
+  border-radius: 0;
+  color: #0b0c0c;
+  background-color: #f3f2f1;
+  box-shadow: 0 2px 0 #929191;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+
+  @media (min-width: 40.0625em) {
+    font-size: 1.1875rem;
+    line-height: 1;
+  }
+
+  svg,
+  [data-testid="close-icon"] {
+    display: none;
+  }
+
+  &::after {
+    content: "Cancel";
+  }
+
+  &:hover {
+    background-color: #dbdad9;
+    color: #0b0c0c;
+  }
+
+  &:active {
+    top: 2px;
+  }
+
+  &:focus-visible {
+    border-color: #fd0;
+    outline: 3px solid transparent;
+    color: #0b0c0c;
+    background-color: #fd0;
+    box-shadow: 0 2px 0 #0b0c0c;
+  }
+}
+
+// Match the "Recording now" label to GDS body text
+.liveness-detector .amplify-liveness-recording-icon .amplify-text {
+  font-family: "GDS Transport", arial, sans-serif;
+  font-weight: 400 !important;
+  font-size: 1rem;
+  line-height: 1.1875;
+
+  @media (min-width: 40.0625em) {
+    font-size: 1.1875rem;
+    line-height: 1.31579;
+  }
+}
+
+// Match the closeness/progress bar fill to the GDS blue used by the hint toast
+.liveness-detector .amplify-liveness-match-indicator__bar::after,
+.liveness-detector .amplify-liveness-match-indicator__pin::after {
+  background: #1d70b8;
+}
+
+// Hide the red dot icon next to the "Recording now" text
+.liveness-detector .amplify-liveness-recording-icon [data-testid="rec-icon"] {
+  display: none;
+}
+
+// Style the in-check hint toast ("Move closer", "Move farther", etc.) to match GDS
+.liveness-detector .amplify-liveness-toast,
+.liveness-detector .amplify-liveness-toast--primary {
+  font-family: "GDS Transport", arial, sans-serif;
+  font-weight: 400;
+  background-color: #1d70b8;
+}
+
+.liveness-detector .amplify-liveness-toast__message,
+.liveness-detector .amplify-liveness-toast--primary .amplify-liveness-toast__message {
+  font-family: "GDS Transport", arial, sans-serif;
+  color: #fff;
+}
+
 .liveness-detector .amplify-button--primary {
   font-family: "GDS Transport", arial, sans-serif;
   font-weight: 400;
