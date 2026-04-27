@@ -20,6 +20,7 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
 
   const [sessionId, setSessionId] = useState<string | null>(attempt === 0 ? initialSessionId : null)
   const [screen, setScreen] = useState<Screen>(attempt === 0 ? 'liveness' : 'initialising')
+  const [hasStarted, setHasStarted] = useState(false)
 
   // For retries, fetch a new session on mount
   useEffect(() => {
@@ -85,8 +86,18 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
     return null
   }
 
+  // Track when the user clicks Amplify's "Start identity check" button so we can reveal the cancel
+  // button only after the start screen is dismissed (avoids a brief flash on initial mount).
+  const handleWrapperClick = (e: React.MouseEvent) => {
+    if (hasStarted) return
+    const target = e.target as HTMLElement
+    if (target.closest('.amplify-button--primary')) {
+      setHasStarted(true)
+    }
+  }
+
   return (
-    <div className="liveness-detector">
+    <div className={`liveness-detector${hasStarted ? ' liveness-detector--started' : ''}`} onClick={handleWrapperClick}>
       <FaceLivenessDetectorCore
         sessionId={sessionId}
         region={region}
@@ -99,8 +110,8 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
         displayText={{
           startScreenBeginCheckText: "Start identity check",
           hintCenterFaceText: 'Centre your face',
-          recordingIndicatorText: 'Recording now',
-          cancelLivenessCheckText: 'Cancel',
+          recordingIndicatorText: 'Recording',
+          cancelLivenessCheckText: 'Cancel identity check',
         }}
       />
     </div>
