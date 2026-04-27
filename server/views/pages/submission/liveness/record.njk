@@ -1,0 +1,50 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% extends "../../../partials/layout.njk" %}
+
+{% set pageTitle = "Verify your identity" %}
+
+{% block head %}
+  {{ super() }}
+  <link href="{{ '/assets/css/face-liveness.css' | assetMap }}" rel="stylesheet" />
+{% endblock %}
+
+{% block beforeContent %}
+  {{
+    govukBackLink({
+      text: "Back",
+      href: "/" + submissionId + "/liveness/inform"
+    })
+  }}
+{% endblock %}
+
+{% block content %}
+  {% include "./partials/instructions.njk" %}
+
+  <div
+    id="face-liveness-root"
+    data-session-id="{{ sessionId }}"
+    data-region="{{ region }}"
+    data-submission-id="{{ submissionId }}"
+  ></div>
+
+  {% include "./partials/loading.njk" %}
+  {% include "./partials/match.njk" %}
+  {% include "./partials/not-live-match.njk" %}
+  {% include "./partials/live-no-match.njk" %}
+  {% include "./partials/not-live-no-match.njk" %}
+  {% include "./partials/timeout.njk" %}
+  {% include "./partials/connection-timeout.njk" %}
+  {% include "./partials/camera-error.njk" %}
+  {% include "./partials/camera-framerate.njk" %}
+  {% include "./partials/multiple-faces.njk" %}
+  {% include "./partials/landscape.njk" %}
+  {% include "./partials/cancelled.njk" %}
+  {% include "./partials/error.njk" %}
+
+{% endblock %}
+
+{% block bodyEnd %}
+  {{ super() }}
+  <script type="module" src="{{ '/assets/js/face-liveness.js' | assetMap }}"></script>
+{% endblock %}

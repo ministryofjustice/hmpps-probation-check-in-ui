@@ -111,12 +111,12 @@
 
         {% if formData['mentalHealthSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us why you need help with mental health</dt>
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about mental health</dt>
             <dd class="govuk-summary-list__value">{{ formData['mentalHealthSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
                 >Change<span class="govuk-visually-hidden">
-                  answer for tell us why you need help with mental health</span
+                  answer for tell us what you want us to know about mental health</span
                 ></a
               >
             </dd>
@@ -125,44 +125,56 @@
 
         {% if formData['alcoholSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us why you need help with alcohol</dt>
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about alcohol</dt>
             <dd class="govuk-summary-list__value">{{ formData['alcoholSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> answer for tell us why you need help with alcohol</span></a
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about alcohol</span></a
               >
             </dd>
           </div>
         {% endif %}
         {% if formData['drugsSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us why you need help with drugs</dt>
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about drugs</dt>
             <dd class="govuk-summary-list__value">{{ formData['drugsSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> answer for tell us why you need help with drugs</span></a
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about drugs</span></a
               >
             </dd>
           </div>
         {% endif %}
         {% if formData['moneySupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us why you need help with money</dt>
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about money</dt>
             <dd class="govuk-summary-list__value">{{ formData['moneySupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> answer for tell us why you need help with money</span></a
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about money</span></a
               >
             </dd>
           </div>
         {% endif %}
         {% if formData['housingSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us why you need help with housing</dt>
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about housing</dt>
             <dd class="govuk-summary-list__value">{{ formData['housingSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> answer for tell us why you need help with housing</span></a
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about housing</span></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+
+          {% if formData['employmentEduSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about employment and education</dt>
+            <dd class="govuk-summary-list__value">{{ formData['employmentEduSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about housing</span></a
               >
             </dd>
           </div>
@@ -170,12 +182,12 @@
 
         {% if formData['supportSystemSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us why you need help with support system</dt>
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about your relationships</dt>
             <dd class="govuk-summary-list__value">{{ formData['supportSystemSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
                 >Change<span class="govuk-visually-hidden">
-                  answer for tell us why you need help with your support system</span
+                  answer for tell us what you want us to know about your relationships</span
                 ></a
               >
             </dd>
@@ -184,7 +196,7 @@
 
         {% if formData['otherSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us why you need help with (other)</dt>
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about (other)</dt>
             <dd class="govuk-summary-list__value">{{ formData['otherSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"

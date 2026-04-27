@@ -1,0 +1,24 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+<div class="es-pane" id="notLiveMatchScreen" hidden aria-hidden="true">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">We cannot confirm your identity</h1>
+      <p>We cannot confirm this is you, as you did not move quickly enough, or your face left the frame.</p>
+      <p class="govuk-!-font-weight-bold">If you try to verify your identity again</p>
+      <p>Make sure:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>your face is in the frame</li>
+        <li>you follow the instructions to move closer, keeping your face in the frame</li>
+        <li>you move at a steady pace</li>
+      </ul>
+      <p>
+        If you are struggling to confirm your identity, you can still submit your check in. Your probation officer
+        will confirm this is you when they review your check in.
+      </p>
+      <div class="govuk-button-group">
+        {{ govukButton({ text: "Verify identity again", element: "a", attributes: { "data-liveness-retry": "" } }) }}
+        {{ govukButton({ text: "Continue to check your answers", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
+      </div>
+    </div>
+  </div>
+</div>

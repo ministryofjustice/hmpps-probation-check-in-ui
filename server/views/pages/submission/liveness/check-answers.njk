@@ -1,0 +1,300 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "../../../partials/errorSummary.njk" import errorSummary %}
+{% extends "../../../partials/layout.njk" %}
+
+{% set pageTitle = "Check your answers before you complete your check in" %}
+
+{% block beforeContent %}
+  {{
+    govukBackLink({
+      text: "Back",
+      href: "/" + submissionId + "/liveness/view"
+    })
+  }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ errorSummary(validationErrors) }}
+
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+
+      <h2 class="govuk-heading-m">About you</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">How have you been feeling since we last spoke?</dt>
+          <dd class="govuk-summary-list__value">{{ formData['mentalHealth'] | userFriendlyString }}</dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true"
+              >Change<span class="govuk-visually-hidden"> answer for how are you feeling</span></a
+            >
+          </dd>
+        </div>
+
+        {% if formData['mentalHealth'] == 'VERY_WELL' and formData['mentalHealthVeryWell'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us why you are very well</dt>
+            <dd class="govuk-summary-list__value">{{ formData['mentalHealthVeryWell'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true">
+                Change<span class="govuk-visually-hidden"> answer for tell us why you are very well</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if formData['mentalHealth'] == 'WELL' and formData['mentalHealthWell'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us why you are well</dt>
+            <dd class="govuk-summary-list__value">{{ formData['mentalHealthWell'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true">
+                Change<span class="govuk-visually-hidden"> answer for tell us why you are well</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if formData['mentalHealth'] == 'OK' and formData['mentalHealthOk'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us why you are OK</dt>
+            <dd class="govuk-summary-list__value">{{ formData['mentalHealthOk'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true">
+                Change<span class="govuk-visually-hidden"> answer for tell us why you are OK</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if formData['mentalHealth'] == 'NOT_GREAT' and formData['mentalHealthNotGreat'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us why you are not great</dt>
+            <dd class="govuk-summary-list__value">{{ formData['mentalHealthNotGreat'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true">
+                Change<span class="govuk-visually-hidden"> answer for tell us why you are not great</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if formData['mentalHealth'] == 'STRUGGLING' and formData['mentalHealthStruggling'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us why you are struggling</dt>
+            <dd class="govuk-summary-list__value">{{ formData['mentalHealthStruggling'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true">
+                Change<span class="govuk-visually-hidden"> answer for tell us why you are struggling</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Is there anything you need support with or want to let us know about?</dt>
+          <dd class="govuk-summary-list__value">
+            {% for a in formData['assistance'] | split(",") %}
+              {{ a | userFriendlyString }}{% if not loop.last %},{% endif %}
+            {% endfor %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+              >Change<span class="govuk-visually-hidden"> answer for is there anything you need support with or want to let us know about</span></a
+            >
+          </dd>
+        </div>
+
+        {% if formData['mentalHealthSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about mental health</dt>
+            <dd class="govuk-summary-list__value">{{ formData['mentalHealthSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden">
+                  answer for tell us what you want us to know about mental health</span
+                ></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if formData['alcoholSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about alcohol</dt>
+            <dd class="govuk-summary-list__value">{{ formData['alcoholSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about alcohol</span></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+        {% if formData['drugsSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about drugs</dt>
+            <dd class="govuk-summary-list__value">{{ formData['drugsSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about drugs</span></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+        {% if formData['moneySupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about money</dt>
+            <dd class="govuk-summary-list__value">{{ formData['moneySupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about money</span></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+        {% if formData['housingSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about housing</dt>
+            <dd class="govuk-summary-list__value">{{ formData['housingSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about housing</span></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if formData['employmentEduSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about employment and education</dt>
+            <dd class="govuk-summary-list__value">{{ formData['employmentEduSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about employment and education</span></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if formData['supportSystemSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about your relationships</dt>
+            <dd class="govuk-summary-list__value">{{ formData['supportSystemSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden">
+                  answer for tell us what you want us to know about your relationships</span
+                ></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if formData['otherSupport'] %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Tell us what you want us to know about (other)</dt>
+            <dd class="govuk-summary-list__value">{{ formData['otherSupport'] }}</dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about (other)</span></a
+              >
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if formData['additionalAnswers'] and formData['additionalAnswers'].length %}
+          {% for item in formData['additionalAnswers'] %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">{{ item.question }}</dt>
+              <dd class="govuk-summary-list__value">{{ item.response }}</dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/{{ submissionId }}/questions/additional/{{ loop.index }}?checkAnswers=true"
+                  >Change<span class="govuk-visually-hidden"> answer for {{ item.question | lower }}</span></a
+                >
+              </dd>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </dl>
+
+      <h2 class="govuk-heading-m">Identity check</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Identity check</dt>
+
+          <dd class="govuk-summary-list__value">
+            {% if isLive == true and autoVerifyResult == 'MATCH' %}
+              We have confirmed this is you
+            {% elif isLive == true and autoVerifyResult == 'NO_MATCH' %}
+              We cannot confirm this is you
+            {% elif isLive == false and autoVerifyResult == 'MATCH' %}
+              We cannot confirm your identity
+            {% elif isLive == false and autoVerifyResult == 'NO_MATCH' %}
+              There's been a problem with your identity check
+            {% elif autoVerifyResult == 'MATCH' %}
+              We have confirmed this is you
+            {% elif autoVerifyResult == 'NO_MATCH' %}
+              We cannot confirm this is you
+            {% else %}
+              We cannot confirm this is you
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            {% if (isLive == true and autoVerifyResult == 'MATCH') or (isLive == undefined and autoVerifyResult == 'MATCH') %}
+              <a class="govuk-link" href="/{{ submissionId }}/liveness/view?checkAnswers=true"
+                >View<span class="govuk-visually-hidden"> identity check</span></a
+              >
+            {% elif isLive == true or isLive == false %}
+              <a class="govuk-link" href="/{{ submissionId }}/liveness/record?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> identity check</span></a
+              >
+            {% else %}
+              <a class="govuk-link" href="/{{ submissionId }}/liveness/fallback-record?checkAnswers=true"
+                >Change<span class="govuk-visually-hidden"> identity check</span></a
+              >
+            {% endif %}
+          </dd>
+        </div>
+      </dl>
+
+      <form method="POST">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+        <input type="hidden" id="device-data" name="deviceData" />
+
+        {{
+          govukCheckboxes({
+            name: "checkAnswers",
+            errorMessage: validationErrors | findError("checkAnswers"),
+            fieldset: {
+              legend: {
+                classes: "govuk-fieldset__legend--m",
+                text: "Complete your check in"
+              }
+            },
+            items: [
+              {
+                value: "CONFIRM",
+                text: "I confirm that, to the best of my knowledge, the details I have provided are correct. I understand that this information will be shared with my probation officer."
+              }
+            ]
+          })
+        }}
+
+        {{
+          govukButton({
+            text: "Complete check in"
+          })
+        }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block bodyEnd %}
+  {{ super() }} <script type="module" src="{{ '/assets/js/detect-device.js' | assetMap }}"></script>
+{% endblock %}

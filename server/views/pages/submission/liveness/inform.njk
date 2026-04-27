@@ -1,0 +1,49 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% extends "../../../partials/layout.njk" %}
+
+{% set pageTitle = "Confirm your identity" %}
+
+{% block beforeContent %}
+  {{
+    govukBackLink({
+      text: "Back",
+      href: "/" + submissionId + ("/questions/additional/" + formData['additionalQuestions'].length if formData['additionalQuestions'] and formData['additionalQuestions'].length else "/questions/assistance")
+    })
+  }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+      <p>
+        Next you need to verify your identity by moving your face into a frame on your screen using your camera.
+        Follow the instructions to move your face closer, keeping it in the frame.</p>
+      <p>
+        We’ll compare an image from this with the photo your probation officer took when they signed you up. This will
+        only be used to confirm your identity.
+      </p>
+      <p>You’ll need to accept permissions to access your camera on your device.</p>
+      <h2 class="govuk-heading-s">Before you verify your identity</h2>
+      <p>Before you verify your identity, make sure:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>your face is in the frame</li>
+        <li>you are in a well lit area</li>
+        <li>you are in front of a plain background</li>
+        <li>you are not wearing a hat or sunglasses</li>
+      </ul>
+      {{ govukInsetText({
+        text: "Remember this is a probation check in and should be treated the same as a face-to-face meeting. You should wear appropriate clothing."
+      }) }}
+      {{
+        govukButton({
+        text: "Continue",
+        href: "/" + submissionId + "/liveness/record"
+        })
+      }}
+    </div>
+  </div>
+{% endblock %}

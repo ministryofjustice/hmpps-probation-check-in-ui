@@ -14,7 +14,7 @@
   {{
     govukBackLink({
       text: "Back",
-      href: "/" + submissionId + "/check-your-answers" if cya else "/" + submissionId + "/questions/mental-health"
+      href: "/" + submissionId + ("/liveness/check-your-answers" if flags.faceLiveness else "/check-your-answers") if cya else "/" + submissionId + "/questions/mental-health"
     })
   }}
 {% endblock %}
@@ -99,6 +99,20 @@
         }}
       {% endset -%}
 
+      {% set employmentEduSupport %}
+        {{
+          govukTextarea({
+            name: "employmentEduSupport",
+            id: "employmentEduSupport",
+            errorMessage: validationErrors | findError("employmentEduSupport"),
+            value: formData["employmentEduSupport"],
+            label: {
+              text: "Tell us what you want us to know about employment and education (optional)"
+            }
+          })
+        }}
+      {% endset -%}
+
 
       {% set supportSystemSupport %}
         {{
@@ -108,7 +122,7 @@
             errorMessage: validationErrors | findError("supportSystemSupport"),
             value: formData["supportSystemSupport"],
             label: {
-              text: "Tell us what you want us to know about your support system (optional)"
+              text: "Tell us what you want us to know about your relationships (optional)"
             }
           })
         }}
@@ -186,8 +200,16 @@
                 }
               },
               {
+                value: "EMPLOYMENT_EDU",
+                text: "Employment and education",
+                checked: checked("assistance", "EMPLOYMENT_EDU"),
+                conditional: {
+                  html: employmentEduSupport
+                }
+              },
+              {
                 value: "SUPPORT_SYSTEM",
-                text: "Support system (family, relationships, friends)",
+                text: "Relationships (family, friends, partner)",
                 checked: checked("assistance", "SUPPORT_SYSTEM"),
                 conditional: {
                   html: supportSystemSupport
@@ -207,7 +229,7 @@
               {
                 value: "NO_HELP",
                 checked: checked("assistance", "NO_HELP"),
-                text: "No, I do not need help",
+                text: "No, I do not need any support",
                 behaviour: "exclusive"
               }
             ]

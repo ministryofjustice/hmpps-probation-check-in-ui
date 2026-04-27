@@ -10,6 +10,9 @@ import AutomaticCheckinVerificationResult from './models/automaticCheckinVerific
 import { CheckinEventType } from './models/checkinEvent'
 import Feedback from './models/feedback'
 import { OffenderQuestionsResponse } from './models/offenderQuestionsResponse'
+import LivenessSession from './models/livenessSession'
+import LivenessCredentials from './models/livenessCredentials'
+import LivenessVerificationResult from './models/livenessVerificationResult'
 
 /**
  * Specifies content types for possible upload locations for a checkin.
@@ -109,9 +112,39 @@ export default class EsupervisionApiClient extends RestClient {
     )
   }
 
-  async getOffenderQuestions(crn: string): Promise<OffenderQuestionsResponse> {
+  async getOffenderQuestions(checkinId: string): Promise<OffenderQuestionsResponse> {
     return this.get<OffenderQuestionsResponse>(
-      { path: `/questions/upcoming/${crn}/offender-questions?language=en-GB` },
+      { path: `/questions/checkin/${checkinId}/offender-questions?language=en-GB` },
+      asSystem(),
+    )
+  }
+
+  async createLivenessSession(checkinId: string): Promise<LivenessSession> {
+    return this.post<LivenessSession>(
+      {
+        path: `/offender_checkins/${checkinId}/liveness/session`,
+        headers: { 'Content-Type': 'application/json' },
+      },
+      asSystem(),
+    )
+  }
+
+  async getLivenessCredentials(checkinId: string): Promise<LivenessCredentials> {
+    return this.get<LivenessCredentials>(
+      {
+        path: `/offender_checkins/${checkinId}/liveness/credentials`,
+      },
+      asSystem(),
+    )
+  }
+
+  async verifyLiveness(checkinId: string, sessionId: string): Promise<LivenessVerificationResult> {
+    return this.post<LivenessVerificationResult>(
+      {
+        path: `/offender_checkins/${checkinId}/liveness/verify`,
+        headers: { 'Content-Type': 'application/json' },
+        data: JSON.stringify({ sessionId }),
+      },
       asSystem(),
     )
   }

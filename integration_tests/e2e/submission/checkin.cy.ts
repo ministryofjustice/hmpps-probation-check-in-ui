@@ -13,7 +13,6 @@ import MentalHealthPage from '../../pages/submission/mentalHealthPage'
 import PersonalDetailsPage from '../../pages/submission/personalDetailsPage'
 import SubmissionPage from '../../pages/submission/submissionPage'
 import VideoInformPage from '../../pages/submission/video/informPage'
-import VideoRecordPage from '../../pages/submission/video/recordPage'
 import VideoViewPage from '../../pages/submission/video/viewPage'
 
 // TODO: Re-enable once flaky CI failure is fixed
@@ -33,8 +32,11 @@ describe('Start Check-in Journey', () => {
       cy.task('stubAdditionalQuestions', testCheckin)
       cy.task('stubGetCheckinUploadLocation', testCheckin)
       cy.task('stubFakeS3Upload')
+      cy.task('stubCreateLivenessSession', testCheckin)
+      cy.task('stubGetLivenessCredentials', testCheckin)
+      cy.task('stubVerifyLiveness', testCheckin)
+
       cy.task('stubVerifyIdentity', testCheckin)
-      cy.task('stubAutoVerifyCheckinIdentity', testCheckin)
       cy.task('stubSubmitCheckin', testCheckin)
     })
   })
@@ -72,6 +74,8 @@ describe('Start Check-in Journey', () => {
     assistancePage.enterMoneyReason('I am having trouble with my budgeting.')
     assistancePage.selectHousing()
     assistancePage.enterHousingReason('I need to find a new place to live.')
+    assistancePage.selectEmploymentEduSupport()
+    assistancePage.enterEmploymentEduReason('I need to get a job.')
     assistancePage.continueButton().click()
     const additionalQuestionPage = new AdditionalQuestionPage('How was the pottery class?')
     additionalQuestionPage.answerTextarea().type('It was great!')
@@ -80,10 +84,9 @@ describe('Start Check-in Journey', () => {
     const informPage = SubmissionPage.verifyOnPage(VideoInformPage)
     informPage.continueButton().should('exist')
     informPage.continueButton().click()
-    const recordPage = SubmissionPage.verifyOnPage(VideoRecordPage)
-    recordPage.videoElement().should('exist')
-    recordPage.startRecordingButton().should('exist')
-    cy.visit(`/${testCheckin.uuid}/video/view`) // overriding for now, also we set AutomatedIdVerificationResult to Match when creating the checkin
+    // The liveness component requires a WebSocket connection to AWS Rekognition
+    // which cannot run in Cypress, so we skip directly to the view page
+    cy.visit(`/${testCheckin.uuid}/liveness/view`)
     const videoViewPage = SubmissionPage.verifyOnPage(VideoViewPage)
     videoViewPage.submitAnywayButton().click()
 
@@ -91,10 +94,13 @@ describe('Start Check-in Journey', () => {
     const checkAnswersPage = SubmissionPage.verifyOnPage(CheckAnswersPage)
     checkAnswersPage.verifySummaryValue('How have you been feeling since we last spoke?', 'OK')
     checkAnswersPage.verifySummaryValue(
-      'Tell us why you need help with money',
+      'Tell us what you want us to know about money',
       'I am having trouble with my budgeting.',
     )
-    checkAnswersPage.verifySummaryValue('Tell us why you need help with housing', 'I need to find a new place to live.')
+    checkAnswersPage.verifySummaryValue(
+      'Tell us what you want us to know about housing',
+      'I need to find a new place to live.',
+    )
     checkAnswersPage.clickChangeLink('How have you been feeling since we last spoke?')
     mentalHealthPage.wellRadio().click()
     mentalHealthPage.continueButton().click()

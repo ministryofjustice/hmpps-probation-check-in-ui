@@ -7,6 +7,9 @@ import AutomaticCheckinVerificationResult from '../data/models/automaticCheckinV
 import { CheckinEventType } from '../data/models/checkinEvent'
 import Feedback from '../data/models/feedback'
 import { OffenderQuestionsResponse } from '../data/models/offenderQuestionsResponse'
+import LivenessSession from '../data/models/livenessSession'
+import LivenessCredentials from '../data/models/livenessCredentials'
+import LivenessVerificationResult from '../data/models/livenessVerificationResult'
 
 export default class EsupervisionService {
   constructor(private readonly esupervisionApiClient: EsupervisionApiClient) {}
@@ -45,8 +48,20 @@ export default class EsupervisionService {
     return this.esupervisionApiClient.verifyIdentity(checkinId, personalDetails)
   }
 
-  getOffenderQuestions(crn: string): Promise<OffenderQuestionsResponse> {
-    return this.esupervisionApiClient.getOffenderQuestions(crn)
+  getOffenderQuestions(checkinId: string): Promise<OffenderQuestionsResponse> {
+    return this.esupervisionApiClient.getOffenderQuestions(checkinId)
+  }
+
+  createLivenessSession(checkinId: string): Promise<LivenessSession> {
+    return this.esupervisionApiClient.createLivenessSession(checkinId)
+  }
+
+  getLivenessCredentials(checkinId: string): Promise<LivenessCredentials> {
+    return this.esupervisionApiClient.getLivenessCredentials(checkinId)
+  }
+
+  verifyLiveness(checkinId: string, sessionId: string): Promise<LivenessVerificationResult> {
+    return this.esupervisionApiClient.verifyLiveness(checkinId, sessionId)
   }
 
   submitFeedback(feedback: Feedback): Promise<void> {

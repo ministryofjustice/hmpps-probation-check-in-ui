@@ -11,7 +11,7 @@ export default class VideoViewPage extends SubmissionPage {
 
   continueButton = (): PageElement => cy.contains('a.govuk-button', 'Continue')
 
-  recordAgainButton = (): PageElement => cy.contains('a.govuk-button', 'Record video again')
+  tryAgainButton = (): PageElement => cy.contains('a.govuk-button', 'Try again')
 
-  submitAnywayButton = (): PageElement => cy.contains('a.govuk-button--secondary', 'Submit video anyway')
+  submitAnywayButton = (): PageElement => cy.contains('a.govuk-button--secondary', 'Submit anyway')
 }
