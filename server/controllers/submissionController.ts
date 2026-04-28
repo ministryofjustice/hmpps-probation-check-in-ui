@@ -95,6 +95,12 @@ export const handleVerify: RequestHandler = async (req, res: Response<object, Su
 
     req.session.submissionAuthorized = submissionId
 
+    // Clear any liveness/match results from a prior abandoned attempt so the
+    // check-answers screen reflects only this attempt. Mirrors the API-side
+    // reset in CheckinV2Service.validateIdentity().
+    delete req.session.formData.autoVerifyResult
+    delete req.session.formData.isLive
+
     try {
       const questionsResponse = await esupervisionService.getOffenderQuestions(submissionId)
       req.session.formData.additionalQuestions = extractAdditionalQuestions(questionsResponse)
@@ -156,6 +162,11 @@ export const handleVideoVerify: RequestHandler = async (req, res, next) => {
 
     const result = await esupervisionService.autoVerifyCheckinIdentity(submissionId, 1)
     req.session.formData.autoVerifyResult = result.result
+    // Clear isLive — fallback video means the offender is not relying on liveness, so any
+    // isLive=false from a prior failed liveness attempt would otherwise mislead the
+    // check-answers screen into showing "We cannot confirm your identity". Mirrors the
+    // API-side reset in CheckinV2Service.verifyFace().
+    delete req.session.formData.isLive
 
     res.json({ status: 'SUCCESS', result: result.result })
   } catch (error) {
