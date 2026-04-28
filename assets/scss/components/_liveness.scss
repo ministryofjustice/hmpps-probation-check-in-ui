@@ -38,13 +38,15 @@
   width: 100%;
 }
 
-// Suppress the cancel button until the user has clicked "Start identity check".
-// face-liveness.tsx adds the `--started` modifier on click; without this gate, the cancel button
-// can briefly flash during Amplify's initial mount before the start screen renders.
+// Suppress the cancel button until Amplify has left the start screen AND the user has
+// clicked "Start identity check". The `--started` modifier (added in face-liveness.tsx on
+// click) is one gate; the `:has()` gate on the start-screen header is the other, and it
+// catches a flash during Amplify's initial mount where the state machine briefly renders
+// the cancel container before settling into the start view.
 .liveness-detector .amplify-liveness-cancel-container {
   display: none;
 }
-.liveness-detector--started .amplify-liveness-cancel-container {
+.liveness-detector--started:not(:has(.amplify-liveness-start-screen-header)) .amplify-liveness-cancel-container {
   display: block;
 }
 
@@ -89,9 +91,16 @@
     top: 2px;
   }
 
+  // Override Amplify's `.amplify-button:focus` rule, which sets a dark `box-shadow` ring.
+  // We keep the GDS bottom shadow on mouse focus and switch to the yellow state only on
+  // keyboard focus (`:focus-visible` doesn't trigger on mouse in most browsers).
+  &:focus {
+    outline: 3px solid transparent;
+    box-shadow: 0 2px 0 #929191;
+  }
+
   &:focus-visible {
     border-color: #fd0;
-    outline: 3px solid transparent;
     color: #0b0c0c;
     background-color: #fd0;
     box-shadow: 0 2px 0 #0b0c0c;
