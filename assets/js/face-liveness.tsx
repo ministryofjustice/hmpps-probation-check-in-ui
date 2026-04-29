@@ -125,7 +125,10 @@ if (container) {
 
   function renderApp() {
     const attempt = mountCount++
-    root.render(<FaceLivenessApp attempt={attempt} />)
+    // `key` forces a fresh component instance on retry so internal state
+    // (hasStarted, screen, sessionId) resets — otherwise React preserves it
+    // and the cancel button can flash before the new start screen renders.
+    root.render(<FaceLivenessApp key={attempt} attempt={attempt} />)
     container!.style.display = 'block'
     hideAllPartials()
   }
