@@ -1,0 +1,31 @@
+{% extends "../../../partials/layout.njk" %}
+
+{% set pageTitle = "Verify your identity" %}
+
+{% block content %}
+  {% if outcomeType == "timeout" %}
+    {% include "./partials/timeout.njk" %}
+  {% elif outcomeType == "connection-timeout" %}
+    {% include "./partials/connection-timeout.njk" %}
+  {% elif outcomeType == "cancelled" %}
+    {% include "./partials/cancelled.njk" %}
+  {% elif outcomeType == "error" %}
+    {% include "./partials/error.njk" %}
+  {% elif outcomeType == "camera-error" %}
+    {% include "./partials/camera-error.njk" %}
+  {% elif outcomeType == "camera-framerate" %}
+    {% include "./partials/camera-framerate.njk" %}
+  {% elif outcomeType == "multiple-faces" %}
+    {% include "./partials/multiple-faces.njk" %}
+  {% elif outcomeType == "landscape" %}
+    {% include "./partials/landscape.njk" %}
+  {% elif outcomeType == "match" %}
+    {% include "./partials/match.njk" %}
+  {% elif outcomeType == "not-live-match" %}
+    {% include "./partials/not-live-match.njk" %}
+  {% elif outcomeType == "live-no-match" %}
+    {% include "./partials/live-no-match.njk" %}
+  {% elif outcomeType == "not-live-no-match" %}
+    {% include "./partials/not-live-no-match.njk" %}
+  {% endif %}
+{% endblock %}

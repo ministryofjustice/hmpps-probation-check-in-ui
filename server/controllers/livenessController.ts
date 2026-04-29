@@ -26,8 +26,15 @@ export const renderLivenessInform: RequestHandler = async (req, res, next) => {
   }
 }
 
+const isFallbackAllowed = (req: Parameters<RequestHandler>[0]): boolean =>
+  Boolean(req.session.formData?.livenessFallbackAllowed)
+
 export const renderFallbackInform: RequestHandler = async (req, res, next) => {
   try {
+    if (!isFallbackAllowed(req)) {
+      res.redirect(`/${req.params.submissionId}/liveness/inform`)
+      return
+    }
     res.render('pages/submission/liveness/fallback/inform', pageParams(req))
   } catch (error) {
     next(error)
@@ -36,6 +43,10 @@ export const renderFallbackInform: RequestHandler = async (req, res, next) => {
 
 export const renderFallbackRecord: RequestHandler = async (req, res, next) => {
   try {
+    if (!isFallbackAllowed(req)) {
+      res.redirect(`/${req.params.submissionId}/liveness/inform`)
+      return
+    }
     res.render('pages/submission/liveness/fallback/record', pageParams(req))
   } catch (error) {
     next(error)
@@ -52,6 +63,39 @@ export const renderLivenessRecord: RequestHandler = async (req, res: Response<ob
       sessionId: livenessSession.sessionId,
       region: config.awsRegion,
     })
+  } catch (error) {
+    next(error)
+  }
+}
+
+const LIVENESS_OUTCOME_TYPES = new Set([
+  'timeout',
+  'connection-timeout',
+  'cancelled',
+  'error',
+  'camera-error',
+  'camera-framerate',
+  'multiple-faces',
+  'landscape',
+  'match',
+  'not-live-match',
+  'live-no-match',
+  'not-live-no-match',
+])
+
+export const renderLivenessOutcome: RequestHandler = async (req, res, next) => {
+  try {
+    const { type } = req.params
+    if (!LIVENESS_OUTCOME_TYPES.has(type)) {
+      res.status(404).render('pages/submission/not-found')
+      return
+    }
+    // Reaching any non-match outcome means the user has tried liveness and hit an issue,
+    // so they're allowed to switch to the video fallback.
+    if (type !== 'match' && req.session.formData) {
+      req.session.formData.livenessFallbackAllowed = true
+    }
+    res.render('pages/submission/liveness/outcome', { ...pageParams(req), outcomeType: type })
   } catch (error) {
     next(error)
   }

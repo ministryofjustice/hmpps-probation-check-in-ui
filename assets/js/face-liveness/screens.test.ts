@@ -1,16 +1,16 @@
-import { screenForLivenessError, determineFailScreen } from './screens'
+import { outcomeForLivenessError, determineFailOutcome } from './screens'
 
-describe('screenForLivenessError', () => {
+describe('outcomeForLivenessError', () => {
   it.each([
     ['TIMEOUT', 'timeout'],
-    ['CONNECTION_TIMEOUT', 'connectionTimeout'],
-    ['CAMERA_ACCESS_ERROR', 'cameraError'],
-    ['DEFAULT_CAMERA_NOT_FOUND_ERROR', 'cameraError'],
-    ['CAMERA_FRAMERATE_ERROR', 'cameraFramerate'],
-    ['MULTIPLE_FACES_ERROR', 'multipleFaces'],
+    ['CONNECTION_TIMEOUT', 'connection-timeout'],
+    ['CAMERA_ACCESS_ERROR', 'camera-error'],
+    ['DEFAULT_CAMERA_NOT_FOUND_ERROR', 'camera-error'],
+    ['CAMERA_FRAMERATE_ERROR', 'camera-framerate'],
+    ['MULTIPLE_FACES_ERROR', 'multiple-faces'],
     ['MOBILE_LANDSCAPE_ERROR', 'landscape'],
-  ])('maps %s to the %s screen', (state, expected) => {
-    expect(screenForLivenessError(state)).toBe(expected)
+  ])('maps %s to the %s outcome', (state, expected) => {
+    expect(outcomeForLivenessError(state)).toBe(expected)
   })
 
   it.each([
@@ -20,23 +20,23 @@ describe('screenForLivenessError', () => {
     ['FACE_DISTANCE_ERROR'],
     ['SOMETHING_UNEXPECTED'],
     [''],
-  ])('falls back to the generic error screen for unhandled state %s', state => {
-    expect(screenForLivenessError(state)).toBe('error')
+  ])('falls back to the generic error outcome for unhandled state %s', state => {
+    expect(outcomeForLivenessError(state)).toBe('error')
   })
 
-  it('falls back to the generic error screen when state is undefined', () => {
-    expect(screenForLivenessError(undefined)).toBe('error')
+  it('falls back to the generic error outcome when state is undefined', () => {
+    expect(outcomeForLivenessError(undefined)).toBe('error')
   })
 })
 
-describe('determineFailScreen', () => {
+describe('determineFailOutcome', () => {
   it.each<[boolean | undefined, string | undefined, string]>([
     [true, 'MATCH', 'match'],
-    [false, 'MATCH', 'notLiveMatch'],
-    [true, 'NO_MATCH', 'liveNoMatch'],
-    [false, 'NO_MATCH', 'notLiveNoMatch'],
+    [false, 'MATCH', 'not-live-match'],
+    [true, 'NO_MATCH', 'live-no-match'],
+    [false, 'NO_MATCH', 'not-live-no-match'],
   ])('maps isLive=%s result=%s to %s', (isLive, result, expected) => {
-    expect(determineFailScreen(isLive, result)).toBe(expected)
+    expect(determineFailOutcome(isLive, result)).toBe(expected)
   })
 
   it.each<[boolean | undefined, string | undefined]>([
@@ -44,6 +44,6 @@ describe('determineFailScreen', () => {
     [true, 'UNKNOWN'],
     [undefined, undefined],
   ])('falls back to error for isLive=%s result=%s', (isLive, result) => {
-    expect(determineFailScreen(isLive, result)).toBe('error')
+    expect(determineFailOutcome(isLive, result)).toBe('error')
   })
 })

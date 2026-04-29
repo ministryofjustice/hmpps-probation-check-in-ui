@@ -156,6 +156,9 @@ export const handleVideoVerify: RequestHandler = async (req, res, next) => {
 
     const result = await esupervisionService.autoVerifyCheckinIdentity(submissionId, 1)
     req.session.formData.autoVerifyResult = result.result
+    // Completing a fallback recording (success or no-match) keeps the fallback path open
+    // so the user can retry it from the check-answers page.
+    req.session.formData.livenessFallbackAllowed = true
 
     res.json({ status: 'SUCCESS', result: result.result })
   } catch (error) {
