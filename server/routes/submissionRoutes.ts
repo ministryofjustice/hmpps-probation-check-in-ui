@@ -118,6 +118,17 @@ export default function routes({ esupervisionService }: Services): Router {
   get('/video/verify', protectSubmission, handleVideoVerify)
   get('/video/view', protectSubmission, renderViewVideo)
 
+  // Dev-only shortcut: bookmark /:submissionId/liveness/dev-skip to bypass identity verification
+  // and security questions, jumping straight to the liveness start screen.
+  if (process.env.NODE_ENV !== 'production') {
+    get('/liveness/dev-skip', (req, res) => {
+      const { submissionId } = req.params
+      logger.info(`DEV: skipping identity verification for submissionId ${submissionId}`)
+      req.session.submissionAuthorized = submissionId
+      req.session.save(() => res.redirect(`/${submissionId}/liveness/record`))
+    })
+  }
+
   get('/liveness/inform', protectSubmission, renderLivenessInform)
   get('/liveness/record', protectSubmission, renderLivenessRecord)
   get('/liveness/outcome/:type', protectSubmission, renderLivenessOutcome)
