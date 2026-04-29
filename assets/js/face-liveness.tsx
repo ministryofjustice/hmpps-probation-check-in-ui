@@ -43,6 +43,7 @@ function FaceLivenessApp() {
   }, [submissionId, sessionId])
 
   const handleError = useCallback((livenessError?: { state?: string }) => {
+    showLoading()
     navigateToOutcome(submissionId, outcomeForLivenessError(livenessError?.state))
   }, [submissionId])
 

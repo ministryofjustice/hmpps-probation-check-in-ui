@@ -1,3 +1,4 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Verify your identity</h1>
@@ -9,5 +10,11 @@
         service, contact your probation officer.
       </p>
     </div>
+    {{ govukButton({
+      text: "Start identity check",
+      href: "/" + submissionId + "/liveness/record",
+      attributes: { id: "camera-error-start" }
+    }) }}
   </div>
 </div>
+<script type="module" src="{{ '/assets/js/liveness-camera-error.js' | assetMap }}"></script>
