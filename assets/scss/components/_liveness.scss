@@ -56,6 +56,11 @@
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.1875;
+  // GDS applies these via the `govuk-typography-common` mixin — without them text on
+  // macOS/iOS renders heavier than the surrounding GDS buttons.
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
   display: inline-block;
   padding: 8px 10px 7px;
   border: 2px solid transparent;
@@ -67,6 +72,9 @@
   text-decoration: none;
   cursor: pointer;
   -webkit-appearance: none;
+  // Amplify's `.amplify-button` applies `transition: all <duration>`, which fades the
+  // hover/focus colour change. GDS buttons swap instantly.
+  transition: none;
 
   @media (min-width: 40.0625em) {
     font-size: 1.1875rem;
