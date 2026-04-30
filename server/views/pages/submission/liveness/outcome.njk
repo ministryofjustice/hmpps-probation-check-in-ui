@@ -1,6 +1,16 @@
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% extends "../../../partials/layout.njk" %}
 
 {% set pageTitle = "Verify your identity" %}
+
+{% block beforeContent %}
+  {{
+    govukBackLink({
+      text: "Back",
+      href: "/" + submissionId + "/liveness/inform"
+    })
+  }}
+{% endblock %}
 
 {% block content %}
   {% if outcomeType == "timeout" %}
