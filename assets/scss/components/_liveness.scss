@@ -1,6 +1,164 @@
+// Reserve space below the camera module for the absolutely-positioned cancel button so it doesn't run into the footer.
+.liveness-detector {
+  padding-bottom: 4rem;
+}
+
 // Left-align the start button's parent flex container (Amplify sets justify-content: center inline)
 .liveness-detector .amplify-flex:has(> .amplify-button--primary) {
   justify-content: flex-start !important;
+}
+
+// Position the cancel button below the video box rather than overlaying its top-right corner.
+// The container is absolutely positioned inside the camera-module overlay (which fills the box);
+// `top: 100%` drops it to just below the box, and the camera module has no overflow:hidden.
+.liveness-detector .amplify-liveness-cancel-container {
+  top: 100%;
+  right: auto;
+  left: 0;
+  margin-top: 22px;
+
+  @media (min-width: 40.0625em) {
+    margin-top: 32px;
+  }
+}
+
+// On mobile, Amplify makes the camera module fullscreen (position: fixed) so the cancel button
+// would otherwise sit below the viewport. Stretch the container across the screen width with
+// side margins, and make the button fill its container so it reads as a full-width CTA.
+.amplify-liveness-camera-module--mobile .amplify-liveness-cancel-container {
+  top: auto;
+  right: 1rem;
+  left: 1rem;
+  bottom: 2rem;
+  margin-top: 0;
+  transform: none;
+}
+
+.amplify-liveness-camera-module--mobile .amplify-liveness-cancel-button {
+  width: 100%;
+}
+
+// Suppress the cancel button until Amplify has left the start screen AND the user has
+// clicked "Start identity check". The `--started` modifier (added in face-liveness.tsx on
+// click) is one gate; the `:has()` gate on the start-screen header is the other, and it
+// catches a flash during Amplify's initial mount where the state machine briefly renders
+// the cancel container before settling into the start view.
+.liveness-detector .amplify-liveness-cancel-container {
+  display: none;
+}
+.liveness-detector--started:not(:has(.amplify-liveness-start-screen-header)) .amplify-liveness-cancel-container {
+  display: block;
+}
+
+// Replace the cancel button's X icon with the word "Cancel" styled as a GDS secondary button
+.liveness-detector .amplify-liveness-cancel-button {
+  font-family: "GDS Transport", arial, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.1875;
+  // GDS applies these via the `govuk-typography-common` mixin — without them text on
+  // macOS/iOS renders heavier than the surrounding GDS buttons.
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 8px 10px 7px;
+  border: 2px solid transparent;
+  border-radius: 0;
+  color: #0b0c0c;
+  background-color: #f3f2f1;
+  box-shadow: 0 2px 0 #929191;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  // Amplify's `.amplify-button` applies `transition: all <duration>`, which fades the
+  // hover/focus colour change. GDS buttons swap instantly.
+  transition: none;
+
+  @media (min-width: 40.0625em) {
+    font-size: 1.1875rem;
+    line-height: 1;
+  }
+
+  svg,
+  [data-testid="close-icon"] {
+    display: none;
+  }
+
+  &::after {
+    content: "Cancel identity check";
+  }
+
+  &:hover {
+    background-color: #dbdad9;
+    color: #0b0c0c;
+  }
+
+  &:active {
+    top: 2px;
+  }
+
+  // Override Amplify's `.amplify-button:focus` rule, which sets a dark `box-shadow` ring.
+  // We keep the GDS bottom shadow on mouse focus and switch to the yellow state only on
+  // keyboard focus (`:focus-visible` doesn't trigger on mouse in most browsers).
+  &:focus {
+    outline: 3px solid transparent;
+    box-shadow: 0 2px 0 #929191;
+  }
+
+  &:focus-visible {
+    border-color: #fd0;
+    color: #0b0c0c;
+    background-color: #fd0;
+    box-shadow: 0 2px 0 #0b0c0c;
+  }
+}
+
+// Match the "Recording now" label to a small GDS body size
+.liveness-detector .amplify-liveness-recording-icon .amplify-text {
+  font-family: "GDS Transport", arial, sans-serif;
+  font-weight: 400 !important;
+  font-size: 0.875rem;
+  line-height: 1.14286;
+
+  @media (min-width: 40.0625em) {
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+}
+
+// Match the closeness/progress bar fill to the GDS blue used by the hint toast
+.liveness-detector .amplify-liveness-match-indicator__bar::after,
+.liveness-detector .amplify-liveness-match-indicator__pin::after {
+  background: #1d70b8;
+}
+
+// Place the red dot to the left of the "Recording" text instead of stacked above it
+.liveness-detector .amplify-liveness-recording-icon {
+  flex-direction: row;
+  align-items: center;
+}
+
+// Style the in-check hint toast ("Move closer", "Move farther", etc.) to match GDS
+.liveness-detector .amplify-liveness-toast,
+.liveness-detector .amplify-liveness-toast--primary {
+  font-family: "GDS Transport", arial, sans-serif;
+  font-weight: 400;
+  background-color: #1d70b8;
+}
+
+.liveness-detector .amplify-liveness-toast__message,
+.liveness-detector .amplify-liveness-toast--primary .amplify-liveness-toast__message {
+  font-family: "GDS Transport", arial, sans-serif;
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1.4;
+
+  @media (min-width: 40.0625em) {
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
 }
 
 .liveness-detector .amplify-button--primary {

@@ -35,3 +35,22 @@
 .govuk-table__cell--numeric {
   font-variant: unset;
 }
+
+// GOV.UK Frontend only styles `.govuk-button[disabled]` (the attribute on real <button>s),
+// not the `.govuk-button--disabled` class used to disable link-style buttons. Mirror the
+// `[disabled]` styles, and explicitly remove the underline that the global `a` link styling
+// adds when the anchor has no `href`.
+.govuk-button--disabled {
+  opacity: 0.5;
+  text-decoration: none;
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: gds.$govuk-button-background-colour;
+    cursor: not-allowed;
+  }
+
+  &:active {
+    top: 0;
+  }
+}

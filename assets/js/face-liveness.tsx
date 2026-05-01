@@ -1,39 +1,25 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { FaceLivenessDetectorCore } from '@aws-amplify/ui-react-liveness'
 import '@aws-amplify/ui-react-liveness/styles.css'
 
-import { fetchCredentials, fetchNewSession, fetchVerifyResult } from './face-liveness/api'
-import { type Screen, SCREEN_TO_PARTIAL, showNunjucksPartial, hideAllPartials, determineFailScreen, screenForLivenessError } from './face-liveness/screens'
+import { fetchCredentials, fetchVerifyResult } from './face-liveness/api'
+import { determineFailOutcome, navigateToOutcome, outcomeForLivenessError, showLoading } from './face-liveness/screens'
 
 function getDataAttribute(name: string): string {
   const root = document.getElementById('face-liveness-root')
   return root?.dataset[name] || ''
 }
 
-let mountCount = 0
-
-function FaceLivenessApp({ attempt }: { attempt: number }) {
+function FaceLivenessApp() {
   const submissionId = getDataAttribute('submissionId')
   const region = getDataAttribute('region') || 'eu-west-1'
-  const initialSessionId = getDataAttribute('sessionId')
+  const sessionId = getDataAttribute('sessionId')
 
-  const [sessionId, setSessionId] = useState<string | null>(attempt === 0 ? initialSessionId : null)
-  const [screen, setScreen] = useState<Screen>(attempt === 0 ? 'liveness' : 'initialising')
-
-  // For retries, fetch a new session on mount
-  useEffect(() => {
-    if (attempt > 0) {
-      fetchNewSession(submissionId)
-        .then(newId => {
-          setSessionId(newId)
-          setScreen('liveness')
-        })
-        .catch(() => {
-          setScreen('error')
-        })
-    }
-  }, [attempt, submissionId])
+  const [hasStarted, setHasStarted] = useState(false)
+  // Once cancelled, ignore any late-firing analysis-complete/error callbacks so they don't
+  // overwrite the cancelled-outcome navigation with a generic error page.
+  const cancelledRef = useRef(false)
 
   const credentialProvider = useCallback(async () => {
     const creds = await fetchCredentials(submissionId)
@@ -46,85 +32,71 @@ function FaceLivenessApp({ attempt }: { attempt: number }) {
   }, [submissionId])
 
   const handleAnalysisComplete = useCallback(async () => {
-    setScreen('loading')
+    if (cancelledRef.current) return
+    showLoading()
     try {
-      const result = await fetchVerifyResult(submissionId, sessionId!)
+      const result = await fetchVerifyResult(submissionId, sessionId)
+      if (cancelledRef.current) return
       if (result.status === 'SUCCESS') {
-        setScreen(determineFailScreen(result.isLive, result.result))
+        navigateToOutcome(submissionId, determineFailOutcome(result.isLive, result.result))
       } else {
-        setScreen('error')
+        navigateToOutcome(submissionId, 'error')
       }
     } catch {
-      setScreen('error')
+      if (cancelledRef.current) return
+      navigateToOutcome(submissionId, 'error')
     }
   }, [submissionId, sessionId])
 
   const handleError = useCallback((livenessError?: { state?: string }) => {
-    setScreen(screenForLivenessError(livenessError?.state))
-  }, [])
+    console.error('Face liveness error:', livenessError) // eslint-disable-line no-console
+    if (cancelledRef.current) return
+    showLoading()
+    navigateToOutcome(submissionId, outcomeForLivenessError(livenessError?.state))
+  }, [submissionId])
 
-  useEffect(() => {
-    const partialId = SCREEN_TO_PARTIAL[screen]
-    if (partialId) {
-      showNunjucksPartial(partialId)
+  const handleUserCancel = useCallback(() => {
+    cancelledRef.current = true
+    navigateToOutcome(submissionId, 'cancelled')
+  }, [submissionId])
+
+  // Track when the user clicks Amplify's "Start identity check" button so we can reveal the cancel
+  // button only after the start screen is dismissed (avoids a brief flash on initial mount).
+  const handleWrapperClick = (e: React.MouseEvent) => {
+    if (hasStarted) return
+    const target = e.target as HTMLElement
+    if (target.closest('.amplify-button--primary')) {
+      setHasStarted(true)
     }
-  }, [screen])
-
-  if (screen === 'initialising') {
-    return (
-      <div className="es-loader">
-        <div className="es-loader__spinner" aria-live="polite" role="status"></div>
-        <div className="es-loader__content">
-          <h1 className="govuk-heading-m">Preparing liveness check</h1>
-        </div>
-      </div>
-    )
   }
 
-  if (screen !== 'liveness' || !sessionId) {
-    return null
-  }
+  if (!sessionId) return null
 
   return (
-    <FaceLivenessDetectorCore
-      sessionId={sessionId}
-      region={region}
-      onAnalysisComplete={handleAnalysisComplete}
-      onError={handleError}
-      onUserCancel={() => setScreen('cancelled')}
-      config={{
-        credentialProvider,
-      }}
-      displayText={{
-        startScreenBeginCheckText: "Start identity check",
-        hintCenterFaceText: 'Centre your face',
-        recordingIndicatorText: 'Recording now',
-      }}
-    />
+    <div className={`liveness-detector${hasStarted ? ' liveness-detector--started' : ''}`} onClick={handleWrapperClick}>
+      <FaceLivenessDetectorCore
+        sessionId={sessionId}
+        region={region}
+        onAnalysisComplete={handleAnalysisComplete}
+        onError={handleError}
+        onUserCancel={handleUserCancel}
+        config={{
+          credentialProvider,
+        }}
+        displayText={{
+          startScreenBeginCheckText: 'Start identity check',
+          hintCenterFaceText: 'Centre your face',
+          recordingIndicatorText: 'Recording',
+          cancelLivenessCheckText: 'Cancel identity check',
+        }}
+      />
+    </div>
   )
 }
 
-// Mount the React app
 const container = document.getElementById('face-liveness-root')
 if (container) {
   const root = createRoot(container)
-
-  function renderApp() {
-    const attempt = mountCount++
-    root.render(<FaceLivenessApp attempt={attempt} />)
-    container!.style.display = 'block'
-    hideAllPartials()
-  }
-
-  renderApp()
-
-  // Wire up retry buttons in the Nunjucks partials
-  document.addEventListener('click', e => {
-    const target = e.target as HTMLElement
-
-    if (target.closest('[data-liveness-retry]')) {
-      e.preventDefault()
-      renderApp()
-    }
-  })
+  root.render(<FaceLivenessApp />)
+  container.style.display = 'block'
 }

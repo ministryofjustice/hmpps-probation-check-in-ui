@@ -26,6 +26,7 @@ import {
   renderLivenessIndex,
   renderLivenessInform,
   renderLivenessRecord,
+  renderLivenessOutcome,
   renderFallbackInform,
   renderFallbackRecord,
   handleLivenessVerify,
@@ -130,6 +131,7 @@ export default function routes({ esupervisionService }: Services): Router {
 
   get('/liveness/inform', protectSubmission, renderLivenessInform)
   get('/liveness/record', protectSubmission, renderLivenessRecord)
+  get('/liveness/outcome/:type', protectSubmission, renderLivenessOutcome)
   get('/liveness/verify', protectSubmission, handleLivenessVerify)
   get('/liveness/fallback-inform', protectSubmission, renderFallbackInform)
   get('/liveness/fallback-record', protectSubmission, renderFallbackRecord)

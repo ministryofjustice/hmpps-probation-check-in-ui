@@ -13,6 +13,7 @@ export declare module 'express-session' {
       physicalHealth?: string
       mentalHealth?: string
       autoVerifyResult?: string
+      livenessFallbackAllowed?: boolean
       additionalQuestions?: Array<{ question: string; hint: string; placeholder?: string }>
       additionalAnswers?: Array<{ question: string; response: string }>
       [key: string]: unknown
