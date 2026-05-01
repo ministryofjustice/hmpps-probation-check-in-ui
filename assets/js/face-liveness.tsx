@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { FaceLivenessDetectorCore } from '@aws-amplify/ui-react-liveness'
 import '@aws-amplify/ui-react-liveness/styles.css'
@@ -17,6 +17,9 @@ function FaceLivenessApp() {
   const sessionId = getDataAttribute('sessionId')
 
   const [hasStarted, setHasStarted] = useState(false)
+  // Once cancelled, ignore any late-firing analysis-complete/error callbacks so they don't
+  // overwrite the cancelled-outcome navigation with a generic error page.
+  const cancelledRef = useRef(false)
 
   const credentialProvider = useCallback(async () => {
     const creds = await fetchCredentials(submissionId)
@@ -29,25 +32,31 @@ function FaceLivenessApp() {
   }, [submissionId])
 
   const handleAnalysisComplete = useCallback(async () => {
+    if (cancelledRef.current) return
     showLoading()
     try {
       const result = await fetchVerifyResult(submissionId, sessionId)
+      if (cancelledRef.current) return
       if (result.status === 'SUCCESS') {
         navigateToOutcome(submissionId, determineFailOutcome(result.isLive, result.result))
       } else {
         navigateToOutcome(submissionId, 'error')
       }
     } catch {
+      if (cancelledRef.current) return
       navigateToOutcome(submissionId, 'error')
     }
   }, [submissionId, sessionId])
 
   const handleError = useCallback((livenessError?: { state?: string }) => {
+    console.error('Face liveness error:', livenessError) // eslint-disable-line no-console
+    if (cancelledRef.current) return
     showLoading()
     navigateToOutcome(submissionId, outcomeForLivenessError(livenessError?.state))
   }, [submissionId])
 
   const handleUserCancel = useCallback(() => {
+    cancelledRef.current = true
     navigateToOutcome(submissionId, 'cancelled')
   }, [submissionId])
 
