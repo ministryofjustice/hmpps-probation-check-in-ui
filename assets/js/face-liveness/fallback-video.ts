@@ -1,4 +1,4 @@
-import { fetchSnapshotUploadUrl, uploadSnapshot, fetchVideoVerifyResult } from './api'
+import { fetchSnapshotUploadLocation, uploadSnapshot, fetchVideoVerifyResult } from './api'
 
 const COUNTDOWN_TIME = 3000
 const SCREENSHOT_TIME = 2000
@@ -76,9 +76,9 @@ export default async function initFallbackVideo(submissionId: string, setScreen:
     const startTime = Date.now()
 
     try {
-      const uploadUrl = await fetchSnapshotUploadUrl(submissionId)
       if (!screenshotBlob) throw new Error('No screenshot captured')
-      await uploadSnapshot(uploadUrl, screenshotBlob)
+      const uploadLocation = await fetchSnapshotUploadLocation(submissionId, screenshotBlob)
+      await uploadSnapshot(uploadLocation, screenshotBlob)
       const result = await fetchVideoVerifyResult(submissionId)
 
       const elapsed = Date.now() - startTime

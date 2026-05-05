@@ -114,16 +114,26 @@ export const getLivenessCredentials: RequestHandler = async (req, res, next) => 
 export const getSnapshotUploadUrl: RequestHandler = async (req, res, next) => {
   try {
     const { submissionId } = req.params
-    const uploadLocations = await esupervisionService.getCheckinUploadLocation(submissionId, {
-      video: 'video/mp4',
-      snapshots: ['image/jpeg'],
-    })
+    // Optional sha256 lets the API bind the URL to the snapshot's bytes.
+    // GET requests will arrive with no body (back-compat for older client builds);
+    // POST requests carry { sha256 } in the JSON body.
+    const sha256 =
+      typeof (req.body as { sha256?: unknown })?.sha256 === 'string'
+        ? (req.body as { sha256: string }).sha256
+        : undefined
+
+    const uploadLocations = await esupervisionService.getCheckinUploadLocation(
+      submissionId,
+      { video: 'video/mp4', snapshots: ['image/jpeg'] },
+      sha256 ? { snapshots: [{ sha256 }] } : undefined,
+    )
 
     if (!uploadLocations.snapshots?.length) {
       throw new Error('Failed to get snapshot upload location')
     }
 
-    res.json({ url: uploadLocations.snapshots[0].url })
+    const snapshot = uploadLocations.snapshots[0]
+    res.json({ url: snapshot.url, requiredHeaders: snapshot.requiredHeaders ?? null })
   } catch (error) {
     res.json({ status: 'ERROR', message: error.message })
   }

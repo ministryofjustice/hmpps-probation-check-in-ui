@@ -5,6 +5,17 @@ export interface VerifyResult {
   message?: string
 }
 
+export interface SnapshotUploadLocation {
+  url: string
+  requiredHeaders?: Record<string, string> | null
+}
+
+const sha256Base64 = async (blob: Blob): Promise<string> => {
+  const buffer = await blob.arrayBuffer()
+  const digest = await crypto.subtle.digest('SHA-256', buffer)
+  return btoa(String.fromCharCode(...new Uint8Array(digest)))
+}
+
 export async function fetchCredentials(submissionId: string) {
   const res = await fetch(`/${submissionId}/liveness/credentials`)
   if (!res.ok) throw new Error('Failed to fetch credentials')
@@ -24,19 +35,27 @@ export async function fetchVerifyResult(submissionId: string, sessionId: string)
   return res.json()
 }
 
-export async function fetchSnapshotUploadUrl(submissionId: string): Promise<string> {
-  const res = await fetch(`/${submissionId}/liveness/upload-url`)
+export async function fetchSnapshotUploadLocation(submissionId: string, blob: Blob): Promise<SnapshotUploadLocation> {
+  const sha256 = await sha256Base64(blob)
+  const res = await fetch(`/${submissionId}/liveness/upload-url`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ sha256 }),
+  })
   if (!res.ok) throw new Error('Failed to get upload URL')
   const data = await res.json()
   if (data.status === 'ERROR') throw new Error(data.message)
-  return data.url
+  return { url: data.url, requiredHeaders: data.requiredHeaders ?? null }
 }
 
-export async function uploadSnapshot(url: string, blob: Blob): Promise<void> {
-  const res = await fetch(url, {
+export async function uploadSnapshot(location: SnapshotUploadLocation, blob: Blob): Promise<void> {
+  const res = await fetch(location.url, {
     method: 'PUT',
     body: blob,
-    headers: { 'Content-Type': blob.type },
+    headers: {
+      'Content-Type': blob.type,
+      ...(location.requiredHeaders || {}),
+    },
   })
   if (!res.ok) throw new Error('Snapshot upload failed')
 }
