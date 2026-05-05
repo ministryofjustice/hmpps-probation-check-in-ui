@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { FaceLivenessDetectorCore } from '@aws-amplify/ui-react-liveness'
 import '@aws-amplify/ui-react-liveness/styles.css'
 
-import { fetchCredentials, fetchVerifyResult } from './face-liveness/api'
+import { fetchCredentials, fetchVerifyResult, reportClientFailure } from './face-liveness/api'
 import { determineFailOutcome, navigateToOutcome, outcomeForLivenessError, showLoading } from './face-liveness/screens'
 
 function getDataAttribute(name: string): string {
@@ -52,6 +52,8 @@ function FaceLivenessApp() {
     console.error('Face liveness error:', livenessError) // eslint-disable-line no-console
     if (cancelledRef.current) return
     showLoading()
+    // Fire-and-forget so the navigation isn't delayed by the network round-trip.
+    reportClientFailure(submissionId, livenessError?.state)
     navigateToOutcome(submissionId, outcomeForLivenessError(livenessError?.state))
   }, [submissionId])
 

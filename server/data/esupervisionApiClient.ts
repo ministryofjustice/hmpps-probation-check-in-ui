@@ -149,6 +149,17 @@ export default class EsupervisionApiClient extends RestClient {
     )
   }
 
+  async reportLivenessClientFailure(checkinId: string, state: string | undefined): Promise<void> {
+    return this.post<void>(
+      {
+        path: `/offender_checkins/${checkinId}/liveness/client-failure`,
+        headers: { 'Content-Type': 'application/json' },
+        data: JSON.stringify({ state: state ?? null }),
+      },
+      asSystem(),
+    )
+  }
+
   async submitFeedback(feedback: Feedback): Promise<void> {
     return this.post<void>(
       {

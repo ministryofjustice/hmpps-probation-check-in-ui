@@ -119,6 +119,20 @@ export const handleLivenessVerify: RequestHandler = async (req, res, next) => {
   }
 }
 
+export const handleLivenessClientFailure: RequestHandler = async (req, res, next) => {
+  try {
+    const { submissionId } = req.params
+    const state = typeof req.body?.state === 'string' ? req.body.state : undefined
+    logger.info('handleLivenessClientFailure', submissionId, state)
+    await esupervisionService.reportLivenessClientFailure(submissionId, state)
+    res.status(204).end()
+  } catch (error) {
+    // Recording the failure is best-effort — never block the user's navigation.
+    logger.warn('Failed to record client-side liveness failure', error)
+    res.status(204).end()
+  }
+}
+
 export const renderLivenessCheckAnswers: RequestHandler = async (req, res, next) => {
   try {
     res.render('pages/submission/liveness/check-answers', pageParams(req))
