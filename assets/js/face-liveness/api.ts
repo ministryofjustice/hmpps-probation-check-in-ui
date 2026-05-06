@@ -24,12 +24,16 @@ export async function fetchVerifyResult(submissionId: string, sessionId: string)
   return res.json()
 }
 
-export async function reportClientFailure(submissionId: string, state: string | undefined): Promise<void> {
+export async function reportClientFailure(
+  submissionId: string,
+  state: string | undefined,
+  csrfToken: string,
+): Promise<void> {
   // Best-effort: never throw — we always want the user to navigate to the outcome page.
   try {
     await fetch(`/${submissionId}/liveness/client-failure`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'x-csrf-token': csrfToken },
       body: JSON.stringify({ state: state ?? null }),
       keepalive: true,
     })
