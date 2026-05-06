@@ -24,6 +24,24 @@ export async function fetchVerifyResult(submissionId: string, sessionId: string)
   return res.json()
 }
 
+export async function reportClientFailure(
+  submissionId: string,
+  state: string | undefined,
+  csrfToken: string,
+): Promise<void> {
+  // Best-effort: never throw — we always want the user to navigate to the outcome page.
+  try {
+    await fetch(`/${submissionId}/liveness/client-failure`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-csrf-token': csrfToken },
+      body: JSON.stringify({ state: state ?? null }),
+      keepalive: true,
+    })
+  } catch {
+    /* swallow — logging the failure must not block navigation */
+  }
+}
+
 export async function fetchSnapshotUploadUrl(submissionId: string): Promise<string> {
   const res = await fetch(`/${submissionId}/liveness/upload-url`)
   if (!res.ok) throw new Error('Failed to get upload URL')

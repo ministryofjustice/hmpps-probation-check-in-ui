@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { FaceLivenessDetectorCore } from '@aws-amplify/ui-react-liveness'
 import '@aws-amplify/ui-react-liveness/styles.css'
 
-import { fetchCredentials, fetchVerifyResult } from './face-liveness/api'
+import { fetchCredentials, fetchVerifyResult, reportClientFailure } from './face-liveness/api'
 import { determineFailOutcome, navigateToOutcome, outcomeForLivenessError, showLoading } from './face-liveness/screens'
 
 function getDataAttribute(name: string): string {
@@ -15,6 +15,7 @@ function FaceLivenessApp() {
   const submissionId = getDataAttribute('submissionId')
   const region = getDataAttribute('region') || 'eu-west-1'
   const sessionId = getDataAttribute('sessionId')
+  const csrfToken = getDataAttribute('csrfToken')
 
   const [hasStarted, setHasStarted] = useState(false)
   // Once cancelled, ignore any late-firing analysis-complete/error callbacks so they don't
@@ -52,8 +53,10 @@ function FaceLivenessApp() {
     console.error('Face liveness error:', livenessError) // eslint-disable-line no-console
     if (cancelledRef.current) return
     showLoading()
+    // Fire-and-forget so the navigation isn't delayed by the network round-trip.
+    reportClientFailure(submissionId, livenessError?.state, csrfToken)
     navigateToOutcome(submissionId, outcomeForLivenessError(livenessError?.state))
-  }, [submissionId])
+  }, [submissionId, csrfToken])
 
   const handleUserCancel = useCallback(() => {
     cancelledRef.current = true

@@ -119,6 +119,26 @@ export const handleLivenessVerify: RequestHandler = async (req, res, next) => {
   }
 }
 
+// Cap the Amplify state we forward to the API so a misbehaving client can't write
+// arbitrarily large strings into the audit row. Realistic values are short identifiers
+// like MULTIPLE_FACES_ERROR (well under 100 chars).
+const MAX_STATE_LENGTH = 100
+
+export const handleLivenessClientFailure: RequestHandler = async (req, res, next) => {
+  try {
+    const { submissionId } = req.params
+    const rawState = typeof req.body?.state === 'string' ? req.body.state : undefined
+    const state = rawState ? rawState.slice(0, MAX_STATE_LENGTH) : undefined
+    logger.info('handleLivenessClientFailure', submissionId, state)
+    await esupervisionService.reportLivenessClientFailure(submissionId, state)
+    res.status(204).end()
+  } catch (error) {
+    // Recording the failure is best-effort — never block the user's navigation.
+    logger.warn('Failed to record client-side liveness failure', error)
+    res.status(204).end()
+  }
+}
+
 export const renderLivenessCheckAnswers: RequestHandler = async (req, res, next) => {
   try {
     res.render('pages/submission/liveness/check-answers', pageParams(req))
