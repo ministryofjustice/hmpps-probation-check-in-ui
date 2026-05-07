@@ -12,6 +12,7 @@ const { esupervisionService } = services()
 export const renderLivenessIndex: RequestHandler = async (req, res, next) => {
   try {
     req.session.formData = { checkinStartedAt: Date.now() }
+    delete req.session.livenessFallbackAllowed
     res.render('pages/submission/liveness/index', pageParams(req))
   } catch (error) {
     next(error)
@@ -26,8 +27,7 @@ export const renderLivenessInform: RequestHandler = async (req, res, next) => {
   }
 }
 
-const isFallbackAllowed = (req: Parameters<RequestHandler>[0]): boolean =>
-  Boolean(req.session.formData?.livenessFallbackAllowed)
+const isFallbackAllowed = (req: Parameters<RequestHandler>[0]): boolean => Boolean(req.session.livenessFallbackAllowed)
 
 export const renderFallbackInform: RequestHandler = async (req, res, next) => {
   try {
@@ -92,8 +92,8 @@ export const renderLivenessOutcome: RequestHandler = async (req, res, next) => {
     }
     // Reaching any non-match outcome means the user has tried liveness and hit an issue,
     // so they're allowed to switch to the video fallback.
-    if (type !== 'match' && req.session.formData) {
-      req.session.formData.livenessFallbackAllowed = true
+    if (type !== 'match') {
+      req.session.livenessFallbackAllowed = true
     }
     res.render('pages/submission/liveness/outcome', { ...pageParams(req), outcomeType: type })
   } catch (error) {
