@@ -31,9 +31,10 @@ const validCircumstances = [
 
 const MentalHealthEnum = z
   .enum(['VERY_WELL', 'WELL', 'OK', 'NOT_GREAT', 'STRUGGLING'], {
-    error: issue => (issue.input === undefined ? 'Select how you are feeling' : issue.message),
+    error: issue =>
+      issue.input === undefined ? 'Select how you have been feeling since we last spoke' : issue.message,
   })
-  .describe('Select how you are feeling')
+  .describe('Select how you have been feeling since we last spoke')
 
 export const mentalHealthSchema = z.object({
   mentalHealth: MentalHealthEnum,
