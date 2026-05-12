@@ -31,7 +31,7 @@
           <dd class="govuk-summary-list__value">{{ formData['mentalHealth'] | userFriendlyString }}</dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true"
-              >Change<span class="govuk-visually-hidden"> answer for how are you feeling</span></a
+              >Change<span class="govuk-visually-hidden"> answer for how have you been feeling since we last spoke</span></a
             >
           </dd>
         </div>
@@ -174,7 +174,7 @@
             <dd class="govuk-summary-list__value">{{ formData['employmentEduSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about housing</span></a
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about employment and education</span></a
               >
             </dd>
           </div>
@@ -196,11 +196,11 @@
 
         {% if formData['otherSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us what you want us to know about (other)</dt>
+            <dt class="govuk-summary-list__key">Tell us what you want us to know (something else)</dt>
             <dd class="govuk-summary-list__value">{{ formData['otherSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> answer for tell us why you need help </span></a
+                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know </span></a
               >
             </dd>
           </div>
