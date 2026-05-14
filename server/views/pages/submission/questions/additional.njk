@@ -11,21 +11,21 @@
   {%- if cya -%}
     {{
       govukBackLink({
-        text: "Back",
+        text: t('common.buttons.back'),
         href: "/" + submissionId + "/check-your-answers"
       })
     }}
   {%- elif questionIndex > 1 -%}
     {{
       govukBackLink({
-        text: "Back",
+        text: t('common.buttons.back'),
         href: "/" + submissionId + "/questions/additional/" + (questionIndex - 1)
       })
     }}
   {%- else -%}
     {{
       govukBackLink({
-        text: "Back",
+        text: t('common.buttons.back'),
         href: "/" + submissionId + "/questions/assistance"
       })
     }}
@@ -57,7 +57,7 @@
         }}
         {{
           govukButton({
-            text: "Continue"
+            text: t('common.buttons.continue')
           })
         }}
       </form>

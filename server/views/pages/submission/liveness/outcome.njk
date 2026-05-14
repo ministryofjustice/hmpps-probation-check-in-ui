@@ -1,12 +1,12 @@
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% extends "../../../partials/layout.njk" %}
 
-{% set pageTitle = "Verify your identity" %}
+{% set pageTitle = t('submission.liveness.outcome.title') %}
 
 {% block beforeContent %}
   {{
     govukBackLink({
-      text: "Back",
+      text: t('common.buttons.back'),
       href: "/" + submissionId + "/liveness/inform"
     })
   }}

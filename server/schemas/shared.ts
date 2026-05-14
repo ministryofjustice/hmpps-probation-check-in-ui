@@ -1,13 +1,13 @@
 import { z } from 'zod'
 import { isExists, isFuture, isPast, isToday } from 'date-fns'
-import { sentenceCase } from '../utils/utils'
+import { i18nMessage } from '../utils/i18nValidation'
 
 type Who = 'your' | 'their'
 
 type DateSchemaOptions<P extends string> = {
   prefix?: P
   who?: Who
-  label?: string
+  labelKey: string
   groupPath?: string
   rules?: {
     mustBeInPast?: boolean
@@ -16,28 +16,29 @@ type DateSchemaOptions<P extends string> = {
   }
 }
 
-export function dateValidationMessage(label: string, missing: Array<string>) {
-  const readable = missing.map(m => (m === 'day' || m === 'month' || m === 'year' ? m : m))
+const PART_KEY = {
+  day: 'submission.errors.date.parts.day',
+  month: 'submission.errors.date.parts.month',
+  year: 'submission.errors.date.parts.year',
+  year4digits: 'submission.errors.date.parts.year4digits',
+} as const
 
-  // Build a list of missing parts
-  const withArticles = readable.map(p => (p === '4 numbers for the year' ? p : `a ${p}`))
-  if (withArticles.length === 1 && withArticles[0] === '4 numbers for the year') return 'Year must include 4 numbers'
-  if (withArticles.length === 1) return `${label} must include ${withArticles[0]}`
-  if (withArticles.length === 2) return `${label} must include ${withArticles[0]} and ${withArticles[1]}`
-  return `${label} must include ${withArticles.slice(0, -1).join(', ')} and ${withArticles.slice(-1)}`
-}
+const WHO_KEY = {
+  your: 'submission.errors.date.who.your',
+  their: 'submission.errors.date.who.their',
+} as const
 
-export function createDateSchema({
+export default function createDateSchema({
   prefix,
   who = 'your',
-  label = 'date',
+  labelKey,
   groupPath = prefix,
   rules,
 }: DateSchemaOptions<string>) {
   const dayKey = prefix ? `${prefix}Day` : 'day'
   const monthKey = prefix ? `${prefix}Month` : 'month'
   const yearKey = prefix ? `${prefix}Year` : 'year'
-  const sentenceCaseLabel = sentenceCase(label)
+
   return z
     .object({
       [dayKey]: z.string().trim(),
@@ -55,7 +56,10 @@ export function createDateSchema({
       if (allEmpty) {
         ctx.addIssue({
           code: 'custom',
-          message: `Enter ${who} ${label.toLowerCase()}`,
+          message: i18nMessage('submission.errors.date.allMissing', {
+            whoKey: WHO_KEY[who],
+            labelKey,
+          }),
           path: [groupPath],
         })
         return
@@ -70,34 +74,34 @@ export function createDateSchema({
       if (nonNumeric.length) {
         if (nonNumeric.length === 1) {
           const which = nonNumeric[0]
-          let msg = 'Year must only contain numbers'
-          if (which === dayKey) msg = 'Day must only contain numbers'
-          else if (which === monthKey) msg = 'Month must only contain numbers'
+          let key = 'submission.errors.date.yearMustBeNumber'
+          if (which === dayKey) key = 'submission.errors.date.dayMustBeNumber'
+          else if (which === monthKey) key = 'submission.errors.date.monthMustBeNumber'
           ctx.addIssue({
             code: 'custom',
-            message: msg,
+            message: i18nMessage(key),
             path: [which],
           })
         } else {
           ctx.addIssue({
             code: 'custom',
-            message: `${sentenceCaseLabel} must only contain numbers`,
+            message: i18nMessage('submission.errors.date.allMustBeNumbers', { labelKey }),
             path: ['dob'],
           })
         }
         return
       }
 
-      const missingParts: Array<string> = []
+      const missingParts: Array<keyof typeof PART_KEY> = []
       if (!dayRaw) missingParts.push('day')
       if (!monthRaw) missingParts.push('month')
       if (!yearRaw) {
         missingParts.push('year')
       } else if (yearRaw.length !== 4) {
-        missingParts.push('4 numbers for the year')
+        missingParts.push('year4digits')
       }
 
-      function getPathForMissingParts(mp: string[]): string[] {
+      function getPathForMissingParts(mp: typeof missingParts): string[] {
         if (mp.length === 1) {
           switch (mp[0]) {
             case 'day':
@@ -112,11 +116,23 @@ export function createDateSchema({
       }
 
       if (missingParts.length > 0) {
-        ctx.addIssue({
-          code: 'custom',
-          message: dateValidationMessage(sentenceCaseLabel, missingParts),
-          path: getPathForMissingParts(missingParts),
-        })
+        const onlyYear4Digits = missingParts.length === 1 && missingParts[0] === 'year4digits'
+        if (onlyYear4Digits) {
+          ctx.addIssue({
+            code: 'custom',
+            message: i18nMessage('submission.errors.date.yearMustBe4'),
+            path: [yearKey],
+          })
+        } else {
+          ctx.addIssue({
+            code: 'custom',
+            message: i18nMessage('submission.errors.date.missingParts', {
+              labelKey,
+              partKeys: missingParts.map(p => PART_KEY[p]),
+            }),
+            path: getPathForMissingParts(missingParts),
+          })
+        }
         return
       }
 
@@ -132,13 +148,10 @@ export function createDateSchema({
       let path: string[] | null = null
 
       if (dayInvalid && !monthInvalid) {
-        // Highlight day error if day is invalid but month is OK
         path = [dayKey]
       } else if (!dayInvalid && monthInvalid) {
-        // Highlight month error if month is invalid but day is OK
         path = [monthKey]
       } else if (dayInvalid && monthInvalid) {
-        // Both day and month are invalid, highlight date group
         path = [groupPath]
       } else if (yearInvalid || !isExists(year, monthIndex, day)) {
         path = [groupPath]
@@ -147,7 +160,7 @@ export function createDateSchema({
       if (path) {
         ctx.addIssue({
           code: 'custom',
-          message: `${sentenceCaseLabel} must be a real date`,
+          message: i18nMessage('submission.errors.date.mustBeReal', { labelKey }),
           path,
         })
         return
@@ -156,34 +169,31 @@ export function createDateSchema({
       const candidate = new Date(year, monthIndex, day)
 
       if (rules?.mustBeInFuture && rules?.allowToday) {
-        // Future-date check, allowing today
         if (isFuture(candidate) || isToday(candidate)) {
-          return // Valid future date or today
+          return
         }
         ctx.addIssue({
           code: 'custom',
-          message: `${sentenceCaseLabel} must be today or in the future`,
+          message: i18nMessage('submission.errors.date.mustBeFutureOrToday', { labelKey }),
           path: [groupPath],
         })
       }
 
       if (rules?.mustBeInFuture) {
-        // Future-date check, not allowing today
         if (!isFuture(candidate)) {
           ctx.addIssue({
             code: 'custom',
-            message: `${sentenceCaseLabel} must be in the future`,
+            message: i18nMessage('submission.errors.date.mustBeFuture', { labelKey }),
             path: [groupPath],
           })
         }
       }
 
       if (rules?.mustBeInPast) {
-        // Past-date check
         if (!isPast(candidate)) {
           ctx.addIssue({
             code: 'custom',
-            message: `${sentenceCaseLabel} must be in the past`,
+            message: i18nMessage('submission.errors.date.mustBePast', { labelKey }),
             path: [groupPath],
           })
         }

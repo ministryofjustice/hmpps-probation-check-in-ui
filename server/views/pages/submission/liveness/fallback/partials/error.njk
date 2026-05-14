@@ -2,17 +2,17 @@
 <div class="es-pane" id="fallbackErrorScreen" hidden aria-hidden="true">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">We cannot confirm this is you because an error occurred</h1>
-      <p>We have checked and we cannot confirm this is you. You can try recording again.</p>
-      <p class="govuk-!-font-weight-bold">In your video, make sure:</p>
+      <h1 class="govuk-heading-l">{{ t('submission.liveness.fallback.partials.error.heading') }}</h1>
+      <p>{{ t('submission.liveness.fallback.partials.error.intro') }}</p>
+      <p class="govuk-!-font-weight-bold">{{ t('submission.liveness.fallback.partials.error.rulesIntro') }}</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>you are in a well lit area</li>
-        <li>you are in front of a plain background</li>
-        <li>your face is in the frame</li>
-        <li>you are not wearing a hat or sunglasses</li>
+        <li>{{ t('submission.liveness.fallback.partials.error.rules.litArea') }}</li>
+        <li>{{ t('submission.liveness.fallback.partials.error.rules.plainBackground') }}</li>
+        <li>{{ t('submission.liveness.fallback.partials.error.rules.faceInFrame') }}</li>
+        <li>{{ t('submission.liveness.fallback.partials.error.rules.noHatSunglasses') }}</li>
       </ul>
       <div class="govuk-button-group">
-        {{ govukButton({ text: "Try recording your video again", element: "a", attributes: { "data-fallback-video": "" } }) }}
+        {{ govukButton({ text: t('submission.liveness.fallback.partials.error.tryAgain'), element: "a", attributes: { "data-fallback-video": "" } }) }}
       </div>
     </div>
   </div>

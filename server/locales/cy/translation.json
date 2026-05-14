@@ -1,0 +1,1340 @@
+{
+  "common": {
+    "and": "",
+    "serviceName": "",
+    "serviceNamePractitioner": "",
+    "languageToggle": {
+      "label": ""
+    },
+    "pageTitle": {
+      "errorPrefix": ""
+    },
+    "phaseBanner": {
+      "tag": "",
+      "html": ""
+    },
+    "footer": {
+      "guidance": "",
+      "cookies": "",
+      "privacy": "",
+      "accessibility": ""
+    },
+    "buttons": {
+      "continue": "",
+      "back": "",
+      "submit": "",
+      "tryAgain": "",
+      "cancel": "",
+      "saveAndContinue": ""
+    },
+    "breadcrumb": {
+      "home": ""
+    },
+    "errorSummary": {
+      "title": "",
+      "pageTitlePrefix": ""
+    },
+    "pagination": {
+      "ariaLabel": "",
+      "previous": "",
+      "next": "",
+      "pageHidden": ""
+    },
+    "dateInput": {
+      "day": "",
+      "month": "",
+      "year": ""
+    }
+  },
+  "submission": {
+    "index": {
+      "heading": "",
+      "intro": "",
+      "beforeStart": {
+        "heading": "",
+        "intro": "",
+        "items": {
+          "internet": "",
+          "camera": "",
+          "details": ""
+        },
+        "uk": ""
+      },
+      "whatToDo": {
+        "heading": "",
+        "intro": "",
+        "items": {
+          "questions": "",
+          "camera": "",
+          "video": ""
+        },
+        "videoUse": "",
+        "shareAnswers": ""
+      },
+      "help": {
+        "heading": "",
+        "intro": "",
+        "guidance": ""
+      },
+      "start": ""
+    },
+    "verify": {
+      "title": "",
+      "heading": "",
+      "intro": "",
+      "firstName": "",
+      "lastName": "",
+      "dob": {
+        "label": "",
+        "legend": "",
+        "hint": ""
+      },
+      "errors": {
+        "firstNameRequired": "",
+        "lastNameRequired": ""
+      }
+    },
+    "noMatchFound": {
+      "title": "",
+      "intro": "",
+      "table": {
+        "caption": "",
+        "firstName": "",
+        "lastName": "",
+        "dateOfBirth": "",
+        "notProvided": ""
+      },
+      "help": {
+        "heading": "",
+        "intro": ""
+      }
+    },
+    "notFound": {
+      "title": "",
+      "heading": "",
+      "checkAddressTyped": "",
+      "checkAddressPasted": "",
+      "linkOutOfDate": "",
+      "contactOfficer": ""
+    },
+    "expired": {
+      "title": "",
+      "intro": ""
+    },
+    "timeout": {
+      "title": "",
+      "intro": "",
+      "restart": ""
+    },
+    "confirmation": {
+      "title": "",
+      "panel": "",
+      "sent": "",
+      "whatNext": {
+        "heading": "",
+        "intro": "",
+        "reminder": ""
+      },
+      "feedback": {
+        "heading": "",
+        "intro": "",
+        "button": ""
+      }
+    },
+    "questions": {
+      "mentalHealth": {
+        "title": "",
+        "legend": "",
+        "hint": "",
+        "options": {
+          "veryWell": "",
+          "well": "",
+          "ok": "",
+          "notGreat": "",
+          "struggling": ""
+        },
+        "veryWellLabel": "",
+        "wellLabel": "",
+        "okLabel": "",
+        "notGreatLabel": "",
+        "strugglingLabel": "",
+        "insetHtml": "",
+        "errors": {
+          "required": ""
+        }
+      },
+      "assistance": {
+        "title": "",
+        "legend": "",
+        "hint": "",
+        "options": {
+          "mentalHealth": "",
+          "alcohol": "",
+          "drugs": "",
+          "money": "",
+          "housing": "",
+          "employmentEdu": "",
+          "supportSystem": "",
+          "other": "",
+          "noHelp": ""
+        },
+        "divider": "",
+        "labels": {
+          "mentalHealth": "",
+          "alcohol": "",
+          "drugs": "",
+          "money": "",
+          "housing": "",
+          "employmentEdu": "",
+          "supportSystem": "",
+          "other": ""
+        },
+        "errors": {
+          "required": ""
+        }
+      },
+      "callback": {
+        "title": "",
+        "legend": "",
+        "hint": "",
+        "options": {
+          "yes": "",
+          "no": ""
+        },
+        "detailsLabel": "",
+        "inset": ""
+      },
+      "additional": {
+        "errors": {
+          "required": ""
+        }
+      }
+    },
+    "checkAnswers": {
+      "title": "",
+      "aboutYou": "",
+      "video": "",
+      "identityCheck": "",
+      "rows": {
+        "mentalHealth": "",
+        "mentalHealthVeryWell": "",
+        "mentalHealthWell": "",
+        "mentalHealthOk": "",
+        "mentalHealthNotGreat": "",
+        "mentalHealthStruggling": "",
+        "assistance": "",
+        "mentalHealthSupport": "",
+        "alcoholSupport": "",
+        "drugsSupport": "",
+        "moneySupport": "",
+        "housingSupport": "",
+        "employmentEduSupport": "",
+        "supportSystemSupport": "",
+        "otherSupport": "",
+        "videoCheck": "",
+        "identityCheck": ""
+      },
+      "change": "",
+      "view": "",
+      "hidden": {
+        "mentalHealth": "",
+        "mentalHealthVeryWell": "",
+        "mentalHealthWell": "",
+        "mentalHealthOk": "",
+        "mentalHealthNotGreat": "",
+        "mentalHealthStruggling": "",
+        "assistance": "",
+        "mentalHealthSupport": "",
+        "alcoholSupport": "",
+        "drugsSupport": "",
+        "moneySupport": "",
+        "housingSupport": "",
+        "employmentEduSupport": "",
+        "supportSystemSupport": "",
+        "otherSupport": "",
+        "otherSupportLegacy": "",
+        "additionalPrefix": "",
+        "video": "",
+        "identity": ""
+      },
+      "videoResult": {
+        "match": "",
+        "noMatch": ""
+      },
+      "identityResult": {
+        "match": "",
+        "noMatch": "",
+        "notLiveMatch": "",
+        "notLiveNoMatch": ""
+      },
+      "complete": {
+        "legend": "",
+        "confirm": "",
+        "button": ""
+      },
+      "errors": {
+        "required": ""
+      }
+    },
+    "video": {
+      "inform": {
+        "title": "",
+        "intro": "",
+        "comparison": "",
+        "permissions": "",
+        "rulesHeading": "",
+        "rulesIntro": "",
+        "rules": {
+          "litArea": "",
+          "plainBackground": "",
+          "faceInFrame": "",
+          "noHatSunglasses": ""
+        },
+        "inset": ""
+      },
+      "record": {
+        "title": "",
+        "intro": "",
+        "permissionsHeading": "",
+        "permissionsBody": "",
+        "startButton": "",
+        "browserUnsupported": ""
+      },
+      "view": {
+        "title": "",
+        "match": {
+          "heading": "",
+          "intro": "",
+          "continue": ""
+        },
+        "noMatch": {
+          "heading": "",
+          "intro": "",
+          "rulesIntro": "",
+          "rules": {
+            "litArea": "",
+            "plainBackground": "",
+            "faceInFrame": "",
+            "noHatSunglasses": ""
+          },
+          "recordAgain": "",
+          "submitAnyway": ""
+        },
+        "browserUnsupported": ""
+      },
+      "partials": {
+        "loading": "",
+        "match": {
+          "heading": "",
+          "intro": "",
+          "continue": "",
+          "browserUnsupported": ""
+        },
+        "nomatch": {
+          "heading": "",
+          "intro": "",
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "litArea": "",
+            "plainBackground": "",
+            "faceInFrame": "",
+            "noHatSunglasses": ""
+          },
+          "recordAgain": "",
+          "submitAnyway": "",
+          "browserUnsupported": ""
+        },
+        "error": {
+          "heading": "",
+          "intro": "",
+          "rulesIntro": "",
+          "rules": {
+            "litArea": "",
+            "plainBackground": "",
+            "faceInFrame": "",
+            "noHatSunglasses": ""
+          },
+          "tryAgain": ""
+        }
+      }
+    },
+    "liveness": {
+      "index": {
+        "heading": "",
+        "intro": "",
+        "beforeStart": {
+          "heading": "",
+          "intro": "",
+          "items": {
+            "internet": "",
+            "camera": "",
+            "details": ""
+          },
+          "uk": ""
+        },
+        "whatToDo": {
+          "heading": "",
+          "intro": "",
+          "items": {
+            "questions": "",
+            "camera": "",
+            "verify": ""
+          },
+          "comparison": "",
+          "shareAnswers": ""
+        },
+        "help": {
+          "heading": "",
+          "intro": "",
+          "guidance": ""
+        },
+        "start": ""
+      },
+      "inform": {
+        "title": "",
+        "intro": "",
+        "comparison": "",
+        "permissions": "",
+        "rulesHeading": "",
+        "rulesIntro": "",
+        "rules": {
+          "faceInFrame": "",
+          "litArea": "",
+          "plainBackground": "",
+          "noHatSunglasses": ""
+        },
+        "inset": ""
+      },
+      "record": {
+        "title": ""
+      },
+      "outcome": {
+        "title": ""
+      },
+      "view": {
+        "title": "",
+        "match": {
+          "heading": "",
+          "intro": "",
+          "continue": ""
+        },
+        "liveNoMatch": {
+          "heading": "",
+          "intro": "",
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "faceInFrame": "",
+            "litArea": "",
+            "plainBackground": "",
+            "noHatSunglasses": ""
+          },
+          "tryAgain": "",
+          "submitAnyway": ""
+        },
+        "notLiveMatch": {
+          "heading": "",
+          "intro": "",
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "faceInFrame": "",
+            "followInstructions": "",
+            "steadyPace": ""
+          },
+          "tryAgain": "",
+          "submitAnyway": ""
+        },
+        "notLiveNoMatch": {
+          "heading": "",
+          "intro": "",
+          "reasons": {
+            "noMatch": "",
+            "notLive": ""
+          },
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "faceInFrame": "",
+            "followInstructions": "",
+            "steadyPace": ""
+          },
+          "tryAgain": "",
+          "submitAnyway": ""
+        },
+        "fallbackMatch": {
+          "heading": "",
+          "intro": "",
+          "continue": ""
+        },
+        "fallback": {
+          "heading": "",
+          "intro": "",
+          "rulesHeading": "",
+          "rules": {
+            "litArea": "",
+            "plainBackground": "",
+            "faceInFrame": "",
+            "noHatSunglasses": ""
+          },
+          "tryAgain": "",
+          "submitAnyway": ""
+        }
+      },
+      "partials": {
+        "instructions": {
+          "heading": "",
+          "intro": "",
+          "items": {
+            "placeFace": "",
+            "pressStart": "",
+            "followInstructions": ""
+          }
+        },
+        "loading": "",
+        "match": {
+          "heading": "",
+          "intro": "",
+          "continue": ""
+        },
+        "cameraError": {
+          "heading": "",
+          "subHeading": "",
+          "body": "",
+          "start": ""
+        },
+        "cameraFramerate": {
+          "heading": "",
+          "intro": "",
+          "advice": "",
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "faceInFrame": "",
+            "followInstructions": "",
+            "steadyPace": ""
+          },
+          "fallbackHint": "",
+          "verifyAgain": "",
+          "recordInstead": ""
+        },
+        "cancelled": {
+          "heading": "",
+          "intro": "",
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "faceInFrame": "",
+            "followInstructions": "",
+            "steadyPace": ""
+          },
+          "fallbackHint": "",
+          "verifyAgain": "",
+          "recordInstead": ""
+        },
+        "connectionTimeout": {
+          "heading": "",
+          "intro": "",
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "faceInFrame": "",
+            "followInstructions": "",
+            "steadyPace": ""
+          },
+          "fallbackHint": "",
+          "verifyAgain": "",
+          "recordInstead": ""
+        },
+        "error": {
+          "heading": "",
+          "intro": "",
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "faceInFrame": "",
+            "followInstructions": "",
+            "steadyPace": ""
+          },
+          "fallbackHint": "",
+          "verifyAgain": "",
+          "recordInstead": ""
+        },
+        "landscape": {
+          "heading": "",
+          "intro": "",
+          "advice": "",
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "faceInFrame": "",
+            "followInstructions": "",
+            "steadyPace": ""
+          },
+          "fallbackHint": "",
+          "verifyAgain": "",
+          "recordInstead": ""
+        },
+        "liveNoMatch": {
+          "heading": "",
+          "intro": "",
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "faceInFrame": "",
+            "litArea": "",
+            "plainBackground": "",
+            "noHatSunglasses": ""
+          },
+          "submitHint": "",
+          "verifyAgain": "",
+          "continueToAnswers": ""
+        },
+        "multipleFaces": {
+          "heading": "",
+          "intro": "",
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "faceInFrame": "",
+            "followInstructions": "",
+            "steadyPace": ""
+          },
+          "fallbackHint": "",
+          "verifyAgain": "",
+          "recordInstead": ""
+        },
+        "notLiveMatch": {
+          "heading": "",
+          "intro": "",
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "faceInFrame": "",
+            "followInstructions": "",
+            "steadyPace": ""
+          },
+          "submitHint": "",
+          "verifyAgain": "",
+          "continueToAnswers": ""
+        },
+        "notLiveNoMatch": {
+          "heading": "",
+          "intro": "",
+          "reasons": {
+            "noMatch": "",
+            "notLive": ""
+          },
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "faceInFrame": "",
+            "followInstructions": "",
+            "steadyPace": ""
+          },
+          "submitHint": "",
+          "verifyAgain": "",
+          "continueToAnswers": ""
+        },
+        "timeout": {
+          "heading": "",
+          "intro": "",
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "faceInFrame": "",
+            "followInstructions": "",
+            "steadyPace": ""
+          },
+          "fallbackHint": "",
+          "verifyAgain": "",
+          "recordInstead": ""
+        }
+      },
+      "fallback": {
+        "inform": {
+          "title": "",
+          "intro": "",
+          "comparison": "",
+          "permissions": "",
+          "rulesHeading": "",
+          "rulesIntro": "",
+          "rules": {
+            "litArea": "",
+            "plainBackground": "",
+            "faceInFrame": "",
+            "noHatSunglasses": ""
+          },
+          "inset": ""
+        },
+        "record": {
+          "title": "",
+          "intro": "",
+          "permissionsHeading": "",
+          "permissionsBody": "",
+          "startButton": ""
+        },
+        "partials": {
+          "loading": "",
+          "review": {
+            "heading": "",
+            "rulesIntro": "",
+            "rules": {
+              "litArea": "",
+              "plainBackground": "",
+              "faceInFrame": "",
+              "noHatSunglasses": ""
+            },
+            "imageAlt": "",
+            "ifMeetsRules": "",
+            "continue": "",
+            "recordAgain": ""
+          },
+          "match": {
+            "heading": "",
+            "intro": "",
+            "continue": ""
+          },
+          "nomatch": {
+            "heading": "",
+            "intro": "",
+            "rulesHeading": "",
+            "rulesIntro": "",
+            "rules": {
+              "litArea": "",
+              "plainBackground": "",
+              "faceInFrame": "",
+              "noHatSunglasses": ""
+            },
+            "recordAgain": "",
+            "submitAnyway": ""
+          },
+          "error": {
+            "heading": "",
+            "intro": "",
+            "rulesIntro": "",
+            "rules": {
+              "litArea": "",
+              "plainBackground": "",
+              "faceInFrame": "",
+              "noHatSunglasses": ""
+            },
+            "tryAgain": ""
+          }
+        }
+      }
+    },
+    "errors": {
+      "date": {
+        "who": {
+          "your": "",
+          "their": ""
+        },
+        "parts": {
+          "day": "",
+          "month": "",
+          "year": "",
+          "year4digits": ""
+        },
+        "allMissing": "",
+        "missingParts": "",
+        "yearMustBe4": "",
+        "dayMustBeNumber": "",
+        "monthMustBeNumber": "",
+        "yearMustBeNumber": "",
+        "allMustBeNumbers": "",
+        "mustBeReal": "",
+        "mustBeFuture": "",
+        "mustBeFutureOrToday": "",
+        "mustBePast": ""
+      }
+    }
+  },
+  "public": {
+    "index": {
+      "title": "",
+      "intro": "",
+      "howToAccess": {
+        "heading": "",
+        "body": "",
+        "inset": ""
+      },
+      "needHelp": {
+        "heading": "",
+        "body": ""
+      }
+    },
+    "privacy": {
+      "title": "",
+      "heading": "",
+      "purpose": {
+        "heading": "",
+        "intro": "",
+        "items": {
+          "personalData": "",
+          "access": "",
+          "complain": ""
+        },
+        "hmpps": "",
+        "collect": ""
+      },
+      "definitions": {
+        "heading": "",
+        "controller": "",
+        "personalData": "",
+        "moj": ""
+      },
+      "types": {
+        "heading": "",
+        "intro": "",
+        "includes": "",
+        "items": {
+          "nameAddress": "",
+          "phone": "",
+          "dob": "",
+          "photoVideo": "",
+          "feelings": "",
+          "location": "",
+          "feedback": ""
+        }
+      },
+      "purposeProcessing": {
+        "heading": "",
+        "legalBasis": "",
+        "decisions": "",
+        "lawfulDuty": "",
+        "laws": {
+          "prisonAct": "",
+          "prisonRules": "",
+          "offenderAct": "",
+          "childrensAct": ""
+        }
+      },
+      "use": {
+        "heading": "",
+        "body": ""
+      },
+      "sharing": {
+        "heading": "",
+        "intro": "",
+        "items": {
+          "nhs": "",
+          "socialServices": "",
+          "employment": "",
+          "counsellors": "",
+          "drugAlcohol": "",
+          "mentalHealth": "",
+          "housing": "",
+          "specialist": ""
+        },
+        "tellBefore": ""
+      },
+      "askingForData": {
+        "heading": "",
+        "intro": "",
+        "items": {
+          "refuse": "",
+          "discuss": "",
+          "protect": ""
+        },
+        "possession": "",
+        "weWill": "",
+        "promises": {
+          "shareOnlyIfNeeded": "",
+          "notKeepTooLong": "",
+          "notForSale": "",
+          "considerRequest": ""
+        },
+        "survey": "",
+        "moreInfo": ""
+      },
+      "retention": {
+        "heading": "",
+        "policy": "",
+        "details": "",
+        "items": {
+          "agreements": "",
+          "instructions": "",
+          "checkAccurate": "",
+          "complaint": ""
+        },
+        "moreInfo": ""
+      },
+      "access": {
+        "heading": "",
+        "body": "",
+        "sar": {
+          "heading": "",
+          "body": "",
+          "contact": ""
+        }
+      },
+      "contact": {
+        "heading": "",
+        "onBehalf": "",
+        "address": "",
+        "dpo": ""
+      },
+      "complaints": {
+        "heading": "",
+        "body": "",
+        "address": ""
+      }
+    },
+    "accessibility": {
+      "title": "Welsh",
+      "applies": "",
+      "runBy": "",
+      "items": {
+        "colours": "",
+        "zoom": "",
+        "keyboard": "",
+        "screenReader": ""
+      },
+      "simple": "",
+      "abilityNet": "",
+      "howAccessible": {
+        "heading": "",
+        "intro": "",
+        "items": {
+          "video": "",
+          "speechToText": "",
+          "backLinks": "",
+          "hiddenText": "",
+          "headings": ""
+        }
+      },
+      "feedback": {
+        "heading": "",
+        "body": "",
+        "respond": ""
+      },
+      "enforcement": {
+        "heading": "",
+        "body": ""
+      },
+      "technical": {
+        "heading": "",
+        "body": ""
+      },
+      "compliance": {
+        "heading": "",
+        "tested": "",
+        "publish": "",
+        "notCompliant": "",
+        "notTested": ""
+      },
+      "outsideScope": {
+        "heading": "",
+        "body": ""
+      },
+      "preparation": {
+        "heading": "",
+        "body": ""
+      }
+    },
+    "cookies": {
+      "title": "",
+      "heading": "",
+      "lastReviewed": "",
+      "intro": "",
+      "usedTo": "",
+      "items": {
+        "loggedIn": "",
+        "measure": ""
+      },
+      "thirdParty": "",
+      "session": {
+        "heading": "",
+        "intro": ""
+      },
+      "table": {
+        "caption": "",
+        "head": {
+          "type": "",
+          "purpose": "",
+          "expires": ""
+        },
+        "rows": {
+          "session": {
+            "name": "",
+            "purpose": ""
+          },
+          "featureFlags": {
+            "name": "",
+            "purpose": ""
+          },
+          "lang": {
+            "name": "",
+            "purpose": "",
+            "expires": ""
+          }
+        }
+      },
+      "analytics": {
+        "heading": "",
+        "body": "",
+        "privacyLink": ""
+      }
+    },
+    "guidance": {
+      "title": "",
+      "intro": "",
+      "choosing": {
+        "heading": "",
+        "talk": "",
+        "stop": "",
+        "accessible": ""
+      },
+      "signup": {
+        "heading": "",
+        "intro": "",
+        "items": {
+          "name": "",
+          "phone": "",
+          "photo": "",
+          "startDate": "",
+          "frequency": ""
+        },
+        "confirm": "",
+        "photoMatch": {
+          "heading": "",
+          "body": ""
+        }
+      },
+      "completing": {
+        "heading": "",
+        "getLink": {
+          "heading": "",
+          "firstCheckIn": "",
+          "messageDate": ""
+        },
+        "whatAsked": {
+          "heading": "",
+          "intro": "",
+          "items": {
+            "name": "",
+            "questions": "",
+            "identity": ""
+          },
+          "treat": "",
+          "outsideUk": ""
+        },
+        "verify": {
+          "heading": "",
+          "compare": "",
+          "permissions": ""
+        },
+        "cannotConfirm": {
+          "heading": "",
+          "continue": "",
+          "review": ""
+        }
+      },
+      "questions": {
+        "heading": "",
+        "intro": "",
+        "items": {
+          "feeling": "",
+          "support": ""
+        },
+        "extra": "",
+        "confirmation": {
+          "heading": "",
+          "body": ""
+        },
+        "askedSupport": {
+          "heading": "",
+          "body": ""
+        },
+        "failed": {
+          "heading": "",
+          "body": "",
+          "difficulty": ""
+        }
+      },
+      "struggling": {
+        "heading": "",
+        "intro": "",
+        "items": {
+          "notWorking": "",
+          "difficult": "",
+          "contactChanged": "",
+          "lostPhone": "",
+          "forget": "",
+          "faceToFace": ""
+        },
+        "noBreach": ""
+      },
+      "info": {
+        "heading": "",
+        "body": "",
+        "privacyLink": "",
+        "sar": {
+          "heading": "",
+          "body": "",
+          "email": ""
+        }
+      },
+      "feedback": {
+        "heading": "",
+        "form": "",
+        "share": "",
+        "other": ""
+      }
+    },
+    "practitionerGuidance": {
+      "title": "",
+      "headerServiceLabel": "",
+      "intro": "",
+      "meaning": {
+        "heading": "",
+        "body": ""
+      },
+      "howUse": {
+        "heading": "",
+        "intro": "",
+        "items": {
+          "replace": "",
+          "addition": ""
+        },
+        "notAll": ""
+      },
+      "notEligible": {
+        "heading": "",
+        "body": ""
+      },
+      "replace": {
+        "heading": "",
+        "monthly": "",
+        "judgement": "",
+        "suitable": "",
+        "items": {
+          "stable": "",
+          "time": "",
+          "relationship": "",
+          "agreed": "",
+          "digital": "",
+          "phone": "",
+          "noRestrictions": "",
+          "noDependencies": ""
+        },
+        "someOnly": "",
+        "approval": ""
+      },
+      "excluded": {
+        "heading": "",
+        "intro": "",
+        "items": {
+          "suspended": "",
+          "highRisk": "",
+          "mappa": "",
+          "nsd": "",
+          "youth": "",
+          "child": "",
+          "domesticAbuse": "",
+          "sexual": ""
+        }
+      },
+      "addition": {
+        "heading": "",
+        "extra": "",
+        "suitable": "",
+        "items": {
+          "additional": "",
+          "agree": "",
+          "digital": "",
+          "phone": "",
+          "noRestrictions": "",
+          "noDependencies": ""
+        }
+      },
+      "tailored": {
+        "heading": "",
+        "intro": "",
+        "items": {
+          "feeling": "",
+          "support": ""
+        },
+        "additional": "",
+        "examples": {
+          "heading": "",
+          "detail": "",
+          "list": ""
+        }
+      },
+      "writing": {
+        "heading": "",
+        "consider": {
+          "heading": "",
+          "different": "",
+          "reluctant": ""
+        },
+        "shouldDo": {
+          "heading": "",
+          "think": "",
+          "youShould": "",
+          "items": {
+            "appropriate": "",
+            "context": "",
+            "single": "",
+            "simple": "",
+            "check": ""
+          }
+        }
+      },
+      "data": {
+        "heading": "",
+        "use": "",
+        "speak": "",
+        "privacyLink": "",
+        "sar": {
+          "heading": "",
+          "body": "",
+          "email": ""
+        }
+      },
+      "stop": {
+        "heading": "",
+        "body": "",
+        "wantStop": {
+          "heading": "",
+          "body": ""
+        }
+      },
+      "timeOff": {
+        "heading": "",
+        "intro": "",
+        "notifications": "",
+        "items": {
+          "find": "",
+          "review": "",
+          "followUp": ""
+        },
+        "feedback": ""
+      },
+      "contactChange": {
+        "heading": "",
+        "body": ""
+      },
+      "concerns": {
+        "heading": "",
+        "body": "",
+        "wantStop": {
+          "heading": "",
+          "body": ""
+        },
+        "failed": {
+          "heading": "",
+          "intro": "",
+          "items": {
+            "contactChanged": "",
+            "lostAccess": "",
+            "notDelivered": "",
+            "wrong": ""
+          }
+        },
+        "whatToDo": {
+          "heading": "",
+          "intro": "",
+          "items": {
+            "contact": "",
+            "stop": "",
+            "raise": "",
+            "speak": ""
+          },
+          "notLinked": "",
+          "options": {
+            "warning": "",
+            "stopAfterSecond": ""
+          }
+        }
+      },
+      "contact": {
+        "heading": "",
+        "mailbox": {
+          "heading": "",
+          "intro": "",
+          "items": {
+            "notWorking": "",
+            "notAsExpected": "",
+            "struggling": "",
+            "delete": "",
+            "sar": ""
+          }
+        }
+      },
+      "givingFeedback": {
+        "heading": "",
+        "thoughts": {
+          "heading": "",
+          "body": ""
+        },
+        "monthly": {
+          "heading": "",
+          "meetings": "",
+          "form": ""
+        },
+        "caseload": {
+          "heading": "",
+          "form": "",
+          "access": "",
+          "items": {
+            "completing": "",
+            "link": ""
+          },
+          "complete": "",
+          "other": "",
+          "update": ""
+        },
+        "whatWeDo": {
+          "heading": "",
+          "body": ""
+        }
+      }
+    },
+    "notFound": {
+      "heading": "",
+      "typed": "",
+      "pasted": "",
+      "linkOrButton": ""
+    },
+    "authError": {
+      "heading": "",
+      "body": ""
+    },
+    "outsideUk": {
+      "title": "",
+      "body": ""
+    },
+    "feedback": {
+      "provide": {
+        "heading": "",
+        "optional": "",
+        "anonymous": "",
+        "howEasy": {
+          "legend": "",
+          "veryEasy": "",
+          "easy": "",
+          "neitherEasyOrDifficult": "",
+          "difficult": "",
+          "veryDifficult": ""
+        },
+        "gettingSupport": {
+          "legend": "",
+          "yes": "",
+          "no": ""
+        },
+        "improvements": {
+          "legend": ""
+        },
+        "submit": ""
+      },
+      "thankyou": {
+        "heading": "",
+        "body": ""
+      }
+    }
+  }
+}

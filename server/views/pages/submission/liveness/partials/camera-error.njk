@@ -1,17 +1,15 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">Verify your identity</h1>
+    <h1 class="govuk-heading-l">{{ t('submission.liveness.partials.cameraError.heading') }}</h1>
     <div class="govuk-inset-text es-inset-text--error">
-      <h2 class="govuk-heading-m es-heading--error">You need to accept permissions on your device</h2>
+      <h2 class="govuk-heading-m es-heading--error">{{ t('submission.liveness.partials.cameraError.subHeading') }}</h2>
       <p>
-        We are unable to access your camera to verify your identity. Check your
-        browser settings and permissions. If you are having trouble using this
-        service, contact your probation officer.
+        {{ t('submission.liveness.partials.cameraError.body') }}
       </p>
     </div>
     {{ govukButton({
-      text: "Start identity check",
+      text: t('submission.liveness.partials.cameraError.start'),
       href: "/" + submissionId + "/liveness/record",
       attributes: { id: "camera-error-start" }
     }) }}

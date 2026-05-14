@@ -3,17 +3,18 @@
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
+{% set pageTitle = t('public.feedback.provide.heading') %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Give feedback about online check ins</h1>
+      <h1 class="govuk-heading-l">{{ t('public.feedback.provide.heading') }}</h1>
 
       <p>
-        You can answer these questions if you want to give feedback on using online check ins to help us improve it.
-        This is completely optional.
+        {{ t('public.feedback.provide.optional') }}
       </p>
 
-      <p>Your feedback is anonymous.</p>
+      <p>{{ t('public.feedback.provide.anonymous') }}</p>
 
       <form method="POST" action="/feedback" id="feedbackForm">
         <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
@@ -23,30 +24,30 @@
               name: "howEasy",
               fieldset: {
                 legend: {
-                  text: "How easy was it to use online check ins? (optional)",
+                  text: t('public.feedback.provide.howEasy.legend'),
                   classes: "govuk-fieldset__legend--m"
                 }
               },
               items: [
               {
                 value: "veryEasy",
-                text: "Very easy"
+                text: t('public.feedback.provide.howEasy.veryEasy')
               },
               {
                 value: "easy",
-                text: "Easy"
+                text: t('public.feedback.provide.howEasy.easy')
               },
               {
                 value: "neitherEasyOrDifficult",
-                text: "Neither easy or difficult"
+                text: t('public.feedback.provide.howEasy.neitherEasyOrDifficult')
               },
               {
                 value: "difficult",
-                text: "Difficult"
+                text: t('public.feedback.provide.howEasy.difficult')
               },
               {
                 value: "veryDifficult",
-                text: "Very difficult"
+                text: t('public.feedback.provide.howEasy.veryDifficult')
               }
             ]
           })
@@ -57,18 +58,18 @@
               name: "gettingSupport",
               fieldset: {
                 legend: {
-                  text: "Are you getting the support you need from probation? (optional)",
+                  text: t('public.feedback.provide.gettingSupport.legend'),
                   classes: "govuk-fieldset__legend--m"
                 }
               },
               items: [
               {
                 value: "yes",
-                text: "Yes"
+                text: t('public.feedback.provide.gettingSupport.yes')
               },
               {
                 value: "no",
-                text: "No"
+                text: t('public.feedback.provide.gettingSupport.no')
               }
             ]
           })
@@ -79,7 +80,7 @@
             name: "improvements",
             fieldset: {
               legend: {
-                text: "What part of online check ins could we improve? (optional)",
+                text: t('public.feedback.provide.improvements.legend'),
                 classes: "govuk-fieldset__legend--m"
               }
             },
@@ -88,9 +89,9 @@
         }}
 
         {{ govukButton({
-          text: "Submit feedback",
+          text: t('public.feedback.provide.submit'),
           preventDoubleClick: true
-        }) 
+        })
         }}
       </form>
     </div>

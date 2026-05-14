@@ -3,8 +3,8 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Authorisation error</h1>
-      <p>You are not authorised to use this application.</p>
+      <h1 class="govuk-heading-l">{{ t('public.authError.heading') }}</h1>
+      <p>{{ t('public.authError.body') }}</p>
     </div>
   </div>
 {% endblock %}

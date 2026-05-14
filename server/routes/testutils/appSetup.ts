@@ -8,6 +8,7 @@ import errorHandler from '../../errorHandler'
 import type { Services } from '../../services'
 import AuditService from '../../services/auditService'
 import setUpWebSession from '../../middleware/setUpWebSession'
+import setUpLocalisation from '../../middleware/setUpLocalisation'
 
 jest.mock('../../services/auditService')
 
@@ -18,6 +19,7 @@ function appSetup(services: Services, production: boolean): Express {
 
   app.set('view engine', 'njk')
 
+  app.use(setUpLocalisation())
   nunjucksSetup(app)
   app.use(setUpWebSession())
   app.use((req, res, next) => {

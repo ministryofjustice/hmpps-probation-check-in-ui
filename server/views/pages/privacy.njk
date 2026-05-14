@@ -1,155 +1,149 @@
 {% extends "../partials/layout.njk" %}
-{% set pageTitle = "Probation Service Privacy Notice" %}
+{% set pageTitle = t('public.privacy.title') %}
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-      <h1 class="govuk-heading-xl">Probation Service Privacy Notice</h1>
+      <h1 class="govuk-heading-xl">{{ t('public.privacy.heading') }}</h1>
     </div>
       <div class="govuk-grid-column-two-thirds">
-      <h2 class="govuk-heading-l">Purpose</h2>
-      <p class="govuk-body">This privacy notice explains the standards that you can expect from the Probation Service</p>
+      <h2 class="govuk-heading-l">{{ t('public.privacy.purpose.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.privacy.purpose.intro') }}</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>when we request, use or hold personal information (‘personal data’) about you</li>
-        <li>how you can get access to a copy of your personal data</li>
-        <li>how you can complain if you think we have done something wrong </li>
+        <li>{{ t('public.privacy.purpose.items.personalData') }}</li>
+        <li>{{ t('public.privacy.purpose.items.access') }}</li>
+        <li>{{ t('public.privacy.purpose.items.complain') }}</li>
       </ul>
-      <p class="govuk-body">The Probation Service is one part of Her Majesty’s Prison and Probation Service (HMPPS) which is part of the Ministry of Justice (MoJ).
+      <p class="govuk-body">{{ t('public.privacy.purpose.hmpps') }}
       </p>
       <p class="govuk-body">
-        We need to collect your personal information to carry out functions such as delivering sentences given by the courts, in custody and the community, and rehabilitating people in our care through education and employment.  
+        {{ t('public.privacy.purpose.collect') }}
       </p>
 
-      <h2 class="govuk-heading-l">Definitions</h2>
-      <p class="govuk-body">The data controller is the decision maker where personal data is being processed. They decide why personal data is being processed and how it will be processed. </p>
+      <h2 class="govuk-heading-l">{{ t('public.privacy.definitions.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.privacy.definitions.controller') }}</p>
       <p class="govuk-body">
-        Personal data or personal information is any information that can be used to identify a natural person, either directly or indirectly.  
+        {{ t('public.privacy.definitions.personalData') }}
       </p>
       <p class="govuk-body">
-        The MoJ is the data controller for the personal information we hold in HMPPS.  
+        {{ t('public.privacy.definitions.moj') }}
       </p>
 
-      <h2 class="govuk-heading-l">Types of personal data we process</h2>
+      <h2 class="govuk-heading-l">{{ t('public.privacy.types.heading') }}</h2>
       <p class="govuk-body">
-        We only process personal data that is relevant for the check in service we are providing to you. 
+        {{ t('public.privacy.types.intro') }}
       </p>
-      <p class="govuk-body">This includes:
+      <p class="govuk-body">{{ t('public.privacy.types.includes') }}
         <ul class="govuk-list govuk-list--bullet">
-        <li>your name and address</li>
-        <li>telephone number</li>
-        <li>date of birth</li>
-        <li>photo and video</li>
-        <li>information you give us about how you are feeling</li>
-        <li>your location</li>
-        <li>your feedback about the service</li>
+        <li>{{ t('public.privacy.types.items.nameAddress') }}</li>
+        <li>{{ t('public.privacy.types.items.phone') }}</li>
+        <li>{{ t('public.privacy.types.items.dob') }}</li>
+        <li>{{ t('public.privacy.types.items.photoVideo') }}</li>
+        <li>{{ t('public.privacy.types.items.feelings') }}</li>
+        <li>{{ t('public.privacy.types.items.location') }}</li>
+        <li>{{ t('public.privacy.types.items.feedback') }}</li>
       </ul>
 
-      <h3 class="govuk-heading-m">Purpose of processing and the lawful basis for the process</h3>
-      <p class="govuk-body">The legal basis for processing your personal information is that it is necessary for the performance of a task carried out in the public interest or the exercise of official authority vested in us.</p>
+      <h3 class="govuk-heading-m">{{ t('public.privacy.purposeProcessing.heading') }}</h3>
+      <p class="govuk-body">{{ t('public.privacy.purposeProcessing.legalBasis') }}</p>
       <p class="govuk-body">
-        Your personal information that we collect is used to help us make decisions about you and your progress. 
+        {{ t('public.privacy.purposeProcessing.decisions') }}
       </p>
       <p class="govuk-body">
-        We also have a lawful duty to prevent crime, execute criminal penalties and safeguarding against the prevention of threats to public security, and the collection and use of your personal information is also necessary to enable us to comply with our obligations under:
+        {{ t('public.privacy.purposeProcessing.lawfulDuty') }}
         <ul class="govuk-list govuk-list--bullet">
-          <li>Prison Act 1952 </li> 
-          <li>Prison Rules 1999 </li>
-          <li>Offender Management Act 2007</li>
-          <li>Children's Act 2004</li>
+          <li>{{ t('public.privacy.purposeProcessing.laws.prisonAct') }}</li>
+          <li>{{ t('public.privacy.purposeProcessing.laws.prisonRules') }}</li>
+          <li>{{ t('public.privacy.purposeProcessing.laws.offenderAct') }}</li>
+          <li>{{ t('public.privacy.purposeProcessing.laws.childrensAct') }}</li>
         </ul>
       </p>
 
-      <h2 class="govuk-heading-l">How we will use your information</h2>
-      <p class="govuk-body">We’ll use the information you give us as part of your check in to update your probation officer about how you are doing, and if you need any help. This is stored in our system securely.</p>
+      <h2 class="govuk-heading-l">{{ t('public.privacy.use.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.privacy.use.body') }}</p>
 
-      <h2 class="govuk-heading-l">Who the information may be shared with</h2>
+      <h2 class="govuk-heading-l">{{ t('public.privacy.sharing.heading') }}</h2>
       <p class="govuk-body">
-        From time to time, we may involve other organisations who can help you further. We may need to pass some information to: 
+        {{ t('public.privacy.sharing.intro') }}
         <ul class="govuk-list govuk-list--bullet">
-          <li>National Health Service (NHS)  </li> 
-          <li>social services </li>
-          <li>employment service or agencies </li>
-          <li>counsellors </li>
-          <li>drug and alcohol support groups</li>
-          <li>mental health support groups</li>
-          <li>housing providers</li>
-          <li>other specialist groups</li>
+          <li>{{ t('public.privacy.sharing.items.nhs') }}</li>
+          <li>{{ t('public.privacy.sharing.items.socialServices') }}</li>
+          <li>{{ t('public.privacy.sharing.items.employment') }}</li>
+          <li>{{ t('public.privacy.sharing.items.counsellors') }}</li>
+          <li>{{ t('public.privacy.sharing.items.drugAlcohol') }}</li>
+          <li>{{ t('public.privacy.sharing.items.mentalHealth') }}</li>
+          <li>{{ t('public.privacy.sharing.items.housing') }}</li>
+          <li>{{ t('public.privacy.sharing.items.specialist') }}</li>
         </ul>
       </p>
       <p class="govuk-body">
-        We will normally tell you before passing your personal information onto others; however, in some cases (such as safeguarding cases) we may not need to tell you, but this will follow data protection laws. 
+        {{ t('public.privacy.sharing.tellBefore') }}
       </p>
 
-      <h2 class="govuk-heading-l">When we ask you for personal data</h2>
+      <h2 class="govuk-heading-l">{{ t('public.privacy.askingForData.heading') }}</h2>
       <p class="govuk-body">
-        We promise to tell you why we need your personal data and will only ask for what we need. You can: 
+        {{ t('public.privacy.askingForData.intro') }}
         <ul class="govuk-list govuk-list--bullet">
-          <li>refuse to agree to share information at any time, where it is legal to do so </li> 
-          <li>discuss with your probation officer if you have any questions or concerns </li>
-          <li>protect your information and make sure no unauthorised person has access to it </li>
+          <li>{{ t('public.privacy.askingForData.items.refuse') }}</li>
+          <li>{{ t('public.privacy.askingForData.items.discuss') }}</li>
+          <li>{{ t('public.privacy.askingForData.items.protect') }}</li>
         </ul>
       </p>
-      <p class="govuk-body">If you have personal information in your possession and are worried about keeping it safe, please speak to your probation officer. </p>
+      <p class="govuk-body">{{ t('public.privacy.askingForData.possession') }}</p>
 
 
 
       <p class="govuk-body">
-        We will:  
+        {{ t('public.privacy.askingForData.weWill') }}
         <ul class="govuk-list govuk-list--bullet">
-          <li>only share your personal information with other organisations if we need to and it’s relevant </li>
-          <li>make sure we don’t keep your personal information longer than we need to </li>
-          <li>not make your personal information available for sale to others </li>
-          <li>consider your request to correct, stop collecting or delete your personal information if relevant and legal </li>
+          <li>{{ t('public.privacy.askingForData.promises.shareOnlyIfNeeded') }}</li>
+          <li>{{ t('public.privacy.askingForData.promises.notKeepTooLong') }}</li>
+          <li>{{ t('public.privacy.askingForData.promises.notForSale') }}</li>
+          <li>{{ t('public.privacy.askingForData.promises.considerRequest') }}</li>
         </ul>
       </p>
       <p class="govuk-body">
-        Occasionally we may use your contact information to ask you if you would like to complete a survey, or take part in research about online check ins. We use this information to see where and how we could improve our services to you. 
+        {{ t('public.privacy.askingForData.survey') }}
       </p>
 
 
       <p class="govuk-body">
-        If you want more information on how we use and store your data, read the <a class="govuk-link" href="/privacy-notice">Probation Service Privacy Notice</a> and the <a           target="_blank"
-          rel="nofollow" href="https://www.gov.uk/government/publications/records-information-management-policy-psi-042018-pi-022018?_ga=2.111056325.1998926715.1755701905-1493322833.1755701905" class="govuk-link">HMPPS Records, Information Management and Retention Policy</a>. 
+        {{ t('public.privacy.askingForData.moreInfo') | safe }}
       </p>
 
-      <h2 class="govuk-heading-l">How long we keep your information</h2>
-      <p class="govuk-body">We have a detailed policy for how long we need to keep your personal information. You can speak to your probation officer about this or check the <a           target="_blank"
-          rel="nofollow" href="https://www.gov.uk/government/publications/records-information-management-policy-psi-042018-pi-022018?_ga=2.111056325.1998926715.1755701905-1493322833.1755701905" class="govuk-link">HMPPS Records, information management and management retention policy</a>.</p>
+      <h2 class="govuk-heading-l">{{ t('public.privacy.retention.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.privacy.retention.policy') | safe }}</p>
 
       <p class="govuk-body">
-        You can get more details about: 
+        {{ t('public.privacy.retention.details') }}
         <ul class="govuk-list govuk-list--bullet">
-          <li>agreements we have with other organisations for sharing information </li>
-          <li>our instructions to staff on how to collect and manage your personal information </li>
-          <li>how we check that the information we hold is accurate and up to date  </li>
-          <li>how to make a complaint  </li>
+          <li>{{ t('public.privacy.retention.items.agreements') }}</li>
+          <li>{{ t('public.privacy.retention.items.instructions') }}</li>
+          <li>{{ t('public.privacy.retention.items.checkAccurate') }}</li>
+          <li>{{ t('public.privacy.retention.items.complaint') }}</li>
         </ul>
       </p>
-      <p class="govuk-body">For more information, speak to your probation officer.</p>
+      <p class="govuk-body">{{ t('public.privacy.retention.moreInfo') }}</p>
 
 
-      <h2 class="govuk-heading-l">Access to your personal information </h2>
-      <p class="govuk-body">You can find out if we hold any personal information about you by speaking to your probation officer. They will be able to give you some routine information, which doesn’t fall under a subject access request (SAR)</p>
+      <h2 class="govuk-heading-l">{{ t('public.privacy.access.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.privacy.access.body') }}</p>
 
-      <h3 class="govuk-heading-m">Subject access requests (SAR)</h3>
-      <p class="govuk-body">If you would like a copy of all the information we hold about you, your probation officer can email the team and ask to see it. This is called a Subject Access Request and means that you can see what information we hold about you. You can ask your probation officer and they’ll submit this on your behalf.  </p>
-      <p class="govuk-body">You can also contact data.access1@justice.gov.uk to ask for a copy of the information.</p>
+      <h3 class="govuk-heading-m">{{ t('public.privacy.access.sar.heading') }}</h3>
+      <p class="govuk-body">{{ t('public.privacy.access.sar.body') }}</p>
+      <p class="govuk-body">{{ t('public.privacy.access.sar.contact') }}</p>
 
-      <h2 class="govuk-heading-l">Contact details and Data Protection Officer </h2>
-      <p class="govuk-body">On behalf of the MoJ Data Protection Officer.</p>
+      <h2 class="govuk-heading-l">{{ t('public.privacy.contact.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.privacy.contact.onBehalf') }}</p>
       <p class="govuk-body">
-        102 Petty France<br/> London<br/> SW1H 9AJ
+        {{ t('public.privacy.contact.address') | safe }}
       </p>
-      <p class="govuk-body">You can also contact the Ministry of Justice Data Protection Officer at <a href="mailto:address: DPO@justice.gov.uk"           target="_blank"
-          rel="nofollow" class="govuk-link">DPO@justice.gov.uk</a>  if you have any questions or concerns about how we process your information. 
+      <p class="govuk-body">{{ t('public.privacy.contact.dpo') | safe }}
 
 
-      <h2 class="govuk-heading-l">Complaints</h2>
-      <p class="govuk-body">When we ask you for information, we will keep to the law. If you consider that your personal information has been handled incorrectly, you can contact the Information Commissioner for independent advice about data protection. You can contact the Information Commissioner at: </p>
+      <h2 class="govuk-heading-l">{{ t('public.privacy.complaints.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.privacy.complaints.body') }}</p>
       <p class="govuk-body">
-        Information Commissioner's Office<br/> Wycliffe House<br/> Water Lane<br/> Wilmslow<br/> Cheshire<br/> SK9 5AF<br/> Tel:
-        0303 123 1113
-        <a target="_blank"
-          rel="nofollow" href="http://www.ico.org.uk">http://www.ico.org.uk</a>
+        {{ t('public.privacy.complaints.address') | safe }}
       </p>
       </div>
   </div>

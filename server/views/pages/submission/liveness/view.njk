@@ -2,13 +2,13 @@
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% extends "../../../partials/layout.njk" %}
 
-{% set pageTitle = "View your video" %}
+{% set pageTitle = t('submission.liveness.view.title') %}
 {% set showPane = true %}
 
 {% block beforeContent %}
   {{
     govukBackLink({
-      text: "Back",
+      text: t('common.buttons.back'),
       href: "/" + submissionId + "/liveness/check-your-answers" if cya else "/" + submissionId + "/liveness/record"
     })
   }}
@@ -18,79 +18,79 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% if isLive == true and autoVerifyResult == 'MATCH' %}
-        <h1 class="govuk-heading-l">We have confirmed this is you</h1>
-        <p>We have confirmed this is you. You can now continue to check your answers.</p>
+        <h1 class="govuk-heading-l">{{ t('submission.liveness.view.match.heading') }}</h1>
+        <p>{{ t('submission.liveness.view.match.intro') }}</p>
         <div class="govuk-button-group">
-          {{ govukButton({ text: "Continue", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
+          {{ govukButton({ text: t('submission.liveness.view.match.continue'), href: "/" + submissionId + "/liveness/check-your-answers" }) }}
         </div>
       {% elif isLive == true and autoVerifyResult == 'NO_MATCH' %}
-        <h1 class="govuk-heading-l">We cannot confirm this is you</h1>
-        <p>This is because your image does not match the photo we have on your file.</p>
-        <p class="govuk-!-font-weight-bold">You can try to verify your identity again</p>
-        <p>Make sure:</p>
+        <h1 class="govuk-heading-l">{{ t('submission.liveness.view.liveNoMatch.heading') }}</h1>
+        <p>{{ t('submission.liveness.view.liveNoMatch.intro') }}</p>
+        <p class="govuk-!-font-weight-bold">{{ t('submission.liveness.view.liveNoMatch.rulesHeading') }}</p>
+        <p>{{ t('submission.liveness.view.liveNoMatch.rulesIntro') }}</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>your face is in the frame</li>
-          <li>you are in a well lit area</li>
-          <li>you are in front of a plain background</li>
-          <li>you are not wearing a hat or sunglasses</li>
+          <li>{{ t('submission.liveness.view.liveNoMatch.rules.faceInFrame') }}</li>
+          <li>{{ t('submission.liveness.view.liveNoMatch.rules.litArea') }}</li>
+          <li>{{ t('submission.liveness.view.liveNoMatch.rules.plainBackground') }}</li>
+          <li>{{ t('submission.liveness.view.liveNoMatch.rules.noHatSunglasses') }}</li>
         </ul>
         <div class="govuk-button-group">
-          {{ govukButton({ text: "Try again", href: "/" + submissionId + "/liveness/record" }) }}
-          {{ govukButton({ text: "Submit anyway", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
+          {{ govukButton({ text: t('submission.liveness.view.liveNoMatch.tryAgain'), href: "/" + submissionId + "/liveness/record" }) }}
+          {{ govukButton({ text: t('submission.liveness.view.liveNoMatch.submitAnyway'), classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
         </div>
       {% elif isLive == false and autoVerifyResult == 'MATCH' %}
-        <h1 class="govuk-heading-l">We cannot confirm your identity</h1>
-        <p>We cannot confirm this is you, as you did not move quickly enough, or your face left the frame.</p>
-        <p class="govuk-!-font-weight-bold">If you try to verify your identity again</p>
-        <p>Make sure:</p>
+        <h1 class="govuk-heading-l">{{ t('submission.liveness.view.notLiveMatch.heading') }}</h1>
+        <p>{{ t('submission.liveness.view.notLiveMatch.intro') }}</p>
+        <p class="govuk-!-font-weight-bold">{{ t('submission.liveness.view.notLiveMatch.rulesHeading') }}</p>
+        <p>{{ t('submission.liveness.view.notLiveMatch.rulesIntro') }}</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>your face is in the frame</li>
-          <li>you follow the instructions to move closer, keeping your face in the frame</li>
-          <li>you move at a steady pace</li>
+          <li>{{ t('submission.liveness.view.notLiveMatch.rules.faceInFrame') }}</li>
+          <li>{{ t('submission.liveness.view.notLiveMatch.rules.followInstructions') }}</li>
+          <li>{{ t('submission.liveness.view.notLiveMatch.rules.steadyPace') }}</li>
         </ul>
         <div class="govuk-button-group">
-          {{ govukButton({ text: "Try again", href: "/" + submissionId + "/liveness/record" }) }}
-          {{ govukButton({ text: "Submit anyway", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
+          {{ govukButton({ text: t('submission.liveness.view.notLiveMatch.tryAgain'), href: "/" + submissionId + "/liveness/record" }) }}
+          {{ govukButton({ text: t('submission.liveness.view.notLiveMatch.submitAnyway'), classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
         </div>
       {% elif isLive == false and autoVerifyResult == 'NO_MATCH' %}
-        <h1 class="govuk-heading-l">There's been a problem with your identity check</h1>
-        <p>We cannot confirm this is you. This is because:</p>
+        <h1 class="govuk-heading-l">{{ t('submission.liveness.view.notLiveNoMatch.heading') }}</h1>
+        <p>{{ t('submission.liveness.view.notLiveNoMatch.intro') }}</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>your image does not match the photo we have on your file</li>
-          <li>you did not move quickly enough, or your face left the frame</li>
+          <li>{{ t('submission.liveness.view.notLiveNoMatch.reasons.noMatch') }}</li>
+          <li>{{ t('submission.liveness.view.notLiveNoMatch.reasons.notLive') }}</li>
         </ul>
-        <p class="govuk-!-font-weight-bold">If you try to verify your identity again</p>
-        <p>Make sure:</p>
+        <p class="govuk-!-font-weight-bold">{{ t('submission.liveness.view.notLiveNoMatch.rulesHeading') }}</p>
+        <p>{{ t('submission.liveness.view.notLiveNoMatch.rulesIntro') }}</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>your face is in the frame</li>
-          <li>you follow the instructions to move closer, keeping your face in the frame</li>
-          <li>you move at a steady pace</li>
+          <li>{{ t('submission.liveness.view.notLiveNoMatch.rules.faceInFrame') }}</li>
+          <li>{{ t('submission.liveness.view.notLiveNoMatch.rules.followInstructions') }}</li>
+          <li>{{ t('submission.liveness.view.notLiveNoMatch.rules.steadyPace') }}</li>
         </ul>
         <div class="govuk-button-group">
-          {{ govukButton({ text: "Try again", href: "/" + submissionId + "/liveness/record" }) }}
-          {{ govukButton({ text: "Submit anyway", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
+          {{ govukButton({ text: t('submission.liveness.view.notLiveNoMatch.tryAgain'), href: "/" + submissionId + "/liveness/record" }) }}
+          {{ govukButton({ text: t('submission.liveness.view.notLiveNoMatch.submitAnyway'), classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
         </div>
       {% elif autoVerifyResult == 'MATCH' %}
-        <h1 class="govuk-heading-l">We have confirmed this is you</h1>
-        <p>We have confirmed this is you. You can now continue to check your answers.</p>
+        <h1 class="govuk-heading-l">{{ t('submission.liveness.view.fallbackMatch.heading') }}</h1>
+        <p>{{ t('submission.liveness.view.fallbackMatch.intro') }}</p>
         <div class="govuk-button-group">
-          {{ govukButton({ text: "Continue", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
+          {{ govukButton({ text: t('submission.liveness.view.fallbackMatch.continue'), href: "/" + submissionId + "/liveness/check-your-answers" }) }}
         </div>
       {% else %}
-        <h1 class="govuk-heading-l">We cannot confirm this is you</h1>
+        <h1 class="govuk-heading-l">{{ t('submission.liveness.view.fallback.heading') }}</h1>
         <p>
-          We have checked and we cannot confirm this is you. You can try again or submit anyway.
+          {{ t('submission.liveness.view.fallback.intro') }}
         </p>
-        <p class="govuk-!-font-weight-bold">Before you try again, make sure:</p>
+        <p class="govuk-!-font-weight-bold">{{ t('submission.liveness.view.fallback.rulesHeading') }}</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>you are in a well lit area</li>
-          <li>you are in front of a plain background</li>
-          <li>your face is in the frame</li>
-          <li>you are not wearing a hat or sunglasses</li>
+          <li>{{ t('submission.liveness.view.fallback.rules.litArea') }}</li>
+          <li>{{ t('submission.liveness.view.fallback.rules.plainBackground') }}</li>
+          <li>{{ t('submission.liveness.view.fallback.rules.faceInFrame') }}</li>
+          <li>{{ t('submission.liveness.view.fallback.rules.noHatSunglasses') }}</li>
         </ul>
         <div class="govuk-button-group">
-          {{ govukButton({ text: "Try again", href: "/" + submissionId + "/liveness/record" }) }}
-          {{ govukButton({ text: "Submit anyway", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
+          {{ govukButton({ text: t('submission.liveness.view.fallback.tryAgain'), href: "/" + submissionId + "/liveness/record" }) }}
+          {{ govukButton({ text: t('submission.liveness.view.fallback.submitAnyway'), classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
         </div>
       {% endif %}
     </div>

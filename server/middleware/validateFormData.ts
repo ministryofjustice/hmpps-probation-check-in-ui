@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { z } from 'zod'
+import { resolveValidationMessage } from '../utils/i18nValidation'
 
 export type validationErrors = { text: string; href: string }[]
 
@@ -13,7 +14,7 @@ export default function validateFormData(schema: z.ZodTypeAny) {
     } else {
       const errorMessages = validationResult.error.issues.map(err => {
         return {
-          text: err.message,
+          text: resolveValidationMessage(err.message, req.t),
           href: `#${err.path.join('.')}`,
         }
       })

@@ -2,12 +2,12 @@
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% extends "../../../partials/layout.njk" %}
 
-{% set pageTitle = "Record your video" %}
+{% set pageTitle = t('submission.video.record.title') %}
 
 {% block beforeContent %}
   {{
     govukBackLink({
-      text: "Back",
+      text: t('common.buttons.back'),
       href: "/" + submissionId + "/video/inform"
     })
   }}
@@ -19,7 +19,7 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
-          <p class="govuk-body">You do not need to do anything during the video. Anything you say will not be recorded.</p>
+          <p class="govuk-body">{{ t('submission.video.record.intro') }}</p>
           <div
             class="videoRecorder__container"
             id="videoContainer"
@@ -39,10 +39,9 @@
           </div>
           <div class="videoRecorder__error" id="errorMessage" hidden>
             <div class="govuk-inset-text es-inset-text--error">
-              <h2 class="govuk-heading-m es-heading--error">You need to accept permissions on your device</h2>
+              <h2 class="govuk-heading-m es-heading--error">{{ t('submission.video.record.permissionsHeading') }}</h2>
               <p>
-                We are unable to access your camera to record a video. Check your browser settings and permissions. If
-                you are having trouble using this service, contact your probation officer.
+                {{ t('submission.video.record.permissionsBody') }}
               </p>
             </div>
           </div>
@@ -50,7 +49,7 @@
       </div>
       <div id="stickyActionBar" class="sticky-action-bar">
         <div class="sticky-action-bar__inner">
-        <button id="startBtn" class="govuk-button" disabled aria-disabled="true">Start recording</button>
+        <button id="startBtn" class="govuk-button" disabled aria-disabled="true">{{ t('submission.video.record.startButton') }}</button>
         </div>
       </div>
       <div id="stickyActionSpacer" aria-hidden="true"></div>

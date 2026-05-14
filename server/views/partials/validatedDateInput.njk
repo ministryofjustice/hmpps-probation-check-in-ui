@@ -57,7 +57,7 @@
       items: [
         {
           id: dayLabel,
-          label: 'Day',
+          label: t('common.dateInput.day'),
           name: dayLabel,
           classes: 'govuk-input--width-2' + (' govuk-input--error' if dayError or additionalDayError or additionalDateError),
           value: day,
@@ -68,7 +68,7 @@
         },
         {
           id: monthLabel,
-          label: 'Month',
+          label: t('common.dateInput.month'),
           name: monthLabel,
           classes: 'govuk-input--width-2' + (' govuk-input--error' if monthError or additionalMonthError or additionalDateError),
           value: month,
@@ -79,7 +79,7 @@
         },
         {
           id: yearLabel,
-          label: 'Year',
+          label: t('common.dateInput.year'),
           name: yearLabel,
           classes: 'govuk-input--width-4' + (' govuk-input--error' if yearError or additionalYearError or additionalDateError),
           value: year,

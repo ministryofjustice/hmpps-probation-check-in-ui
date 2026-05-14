@@ -5,10 +5,10 @@
   {% if errorList | length %}
     {{
       govukErrorSummary({
-        titleText: errorTitle if errorTitle else "There is a problem",
+        titleText: errorTitle if errorTitle else t('common.errorSummary.title'),
         errorList: errorList
       })
     }}
-    {% set pageTitle = "Error: " + pageTitle %}
+    {% set pageTitle = t('common.errorSummary.pageTitlePrefix') + pageTitle %}
   {% endif %}
 {% endmacro %}

@@ -6,13 +6,13 @@
 {% from "../../../partials/errorSummary.njk" import errorSummary %}
 {% extends "../../../partials/layout.njk" %}
 
-{% set title = "Would you like us to contact you about anything before your next appointment?" %}
+{% set title = t('submission.questions.callback.title') %}
 {% set pageTitle = title %}
 
 {% block beforeContent %}
   {{
     govukBackLink({
-      text: "Back",
+      text: t('common.buttons.back'),
       href: "/" + submissionId + ("/liveness/check-your-answers" if flags.faceLiveness else "/check-your-answers") if cya else "/" + submissionId + "/questions/assistance"
     })
   }}
@@ -32,7 +32,7 @@
             errorMessage: validationErrors | findError("callbackDetails"),
             value: formData["callbackDetails"],
             label: {
-              text: "Tell us what you need to talk about, for example, something you're struggling with or need more information about (optional)"
+              text: t('submission.questions.callback.detailsLabel')
             }
           })
         }}
@@ -47,7 +47,7 @@
               errorMessage: validationErrors | findError("callback"),
               value: formData["callback"],
               hint: {
-                text: "This could be something you've already asked for help with or something new."
+                text: t('submission.questions.callback.hint')
               },
               fieldset: {
                 legend: {
@@ -59,26 +59,26 @@
               items: [
               {
                 value: "YES",
-                text: "Yes",
+                text: t('submission.questions.callback.options.yes'),
                 conditional: {
                                   html: callbackDetails
                                 }
               },
               {
                 value: "NO",
-                text: "No"
+                text: t('submission.questions.callback.options.no')
               }
             ]
           })
         }}
         {{
           govukInsetText({
-            text: 'If this is urgent, you should contact your probation officer yourself. If there is an emergency, call 999.'
+            text: t('submission.questions.callback.inset')
           })
         }}
         {{
           govukButton({
-            text: "Continue"
+            text: t('common.buttons.continue')
           })
         }}
       </form>
