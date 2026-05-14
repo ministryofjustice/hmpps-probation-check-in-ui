@@ -10,6 +10,10 @@
   {% set month = opts.month %}
   {% set year = opts.year %}
 
+  {% set dayText = opts.dayText if opts.dayText else "Day" %}
+  {% set monthText = opts.monthText if opts.monthText else "Month" %}
+  {% set yearText = opts.yearText if opts.yearText else "Year" %}
+
   {% set dayLabel = prefix + "Day" if prefix  else "day" %}
   {% set monthLabel = prefix + "Month" if prefix  else "month" %}
   {% set yearLabel = prefix + "Year" if prefix  else "year" %}
@@ -57,7 +61,7 @@
       items: [
         {
           id: dayLabel,
-          label: t('common.dateInput.day'),
+          label: dayText,
           name: dayLabel,
           classes: 'govuk-input--width-2' + (' govuk-input--error' if dayError or additionalDayError or additionalDateError),
           value: day,
@@ -68,7 +72,7 @@
         },
         {
           id: monthLabel,
-          label: t('common.dateInput.month'),
+          label: monthText,
           name: monthLabel,
           classes: 'govuk-input--width-2' + (' govuk-input--error' if monthError or additionalMonthError or additionalDateError),
           value: month,
@@ -79,7 +83,7 @@
         },
         {
           id: yearLabel,
-          label: t('common.dateInput.year'),
+          label: yearText,
           name: yearLabel,
           classes: 'govuk-input--width-4' + (' govuk-input--error' if yearError or additionalYearError or additionalDateError),
           value: year,

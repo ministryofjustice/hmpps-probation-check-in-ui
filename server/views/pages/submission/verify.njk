@@ -29,7 +29,7 @@
   {% endif %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {{ errorSummary(validationErrors) }}
+      {{ errorSummary(validationErrors, t('common.errorSummary.title')) }}
 
       <h1 class="govuk-heading-l">{{ t('submission.verify.heading') }}</h1>
       <p>{{ t('submission.verify.intro') }}</p>
@@ -75,6 +75,9 @@
               classes: "govuk-fieldset__legend--m"
             },
             hintText: t('submission.verify.dob.hint'),
+            dayText: t('common.dateInput.day'),
+            monthText: t('common.dateInput.month'),
+            yearText: t('common.dateInput.year'),
             validationErrors: validationErrors,
             day: formData["day"],
             month: formData["month"],

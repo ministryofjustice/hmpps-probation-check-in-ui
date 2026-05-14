@@ -41,9 +41,9 @@
       "pageHidden": ""
     },
     "dateInput": {
-      "day": "",
-      "month": "",
-      "year": ""
+      "day": "Diwrnod",
+      "month": "Mis",
+      "year": "Blwyddyn"
     }
   },
   "submission": {

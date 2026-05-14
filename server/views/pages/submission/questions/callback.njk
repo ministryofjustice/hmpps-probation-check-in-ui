@@ -21,7 +21,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {{ errorSummary(validationErrors) }}
+      {{ errorSummary(validationErrors, t('common.errorSummary.title')) }}
 
 
       {% set callbackDetails %}
