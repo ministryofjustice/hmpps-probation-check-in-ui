@@ -15,7 +15,7 @@
     },
     "footer": {
       "guidance": "",
-      "cookies": "",
+      "cookies": "Cwcis",
       "privacy": "Preifatrwydd",
       "accessibility": "Datganiad hygyrchedd"
     },
@@ -173,8 +173,8 @@
           "drugs": "Cyffuriau",
           "money": "Arian",
           "housing": "Tai",
-          "employmentEdu": "",
-          "supportSystem": "System gymorth (teulu, perthnasoedd, ffrindiau)",
+          "employmentEdu": "Cyflogaeth ac addysg",
+          "supportSystem": "Perthnasoedd (teulu, ffrindiau, partner)",
           "other": "Arall",
           "noHelp": "Na, nid oes angen help arnaf"
         },
@@ -185,8 +185,8 @@
           "drugs": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am gyffuriau (dewisol)",
           "money": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am arian (dewisol)",
           "housing": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am dai (dewisol)",
-          "employmentEdu": "",
-          "supportSystem": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am eich system gymorth (dewisol)",
+          "employmentEdu": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am eich Cyflogaeth ac addysg (dewisol)",
+          "supportSystem": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am eich perthnasoedd (dewisol)",
           "other": "Dywedwch wrthym beth rydych chi angen help gydag ef (dewisol)"
         },
         "errors": {
@@ -379,9 +379,9 @@
           "items": {
             "questions": "ateb set o gwestiynau yn ymwneud â sut ydych chi ac os oes angen unrhyw help arnoch",
             "camera": "rhoi caniatâd i gyrchu camera eich dyfais",
-            "verify": ""
+            "verify": "dilysu pwy ydych chi drwy symud eich wyneb i ffrâm ar eich sgrin gan ddefnyddio eich camera, a dilyn y cyfarwyddiadau ar y sgrin"
           },
-          "comparison": "",
+          "comparison": "Byddwn yn cymharu’r llun a ddefnyddiwyd i ddilysu pwy ydych chi â'r llun a dynnodd eich swyddog prawf pan wnaeth eich cofrestru. Ni fydd hyn yn defnyddio eich meicroffon na’ch lleoliad",
           "shareAnswers": "Bydd yr atebion i'ch cwestiynau yn cael eu hanfon at eich swyddog prawf i'w hadolygu."
         },
         "help": {
@@ -393,11 +393,11 @@
       },
       "inform": {
         "title": "Cadarnhau pwy ydych chi",
-        "intro": "",
-        "comparison": "",
-        "permissions": "",
-        "rulesHeading": "",
-        "rulesIntro": "",
+        "intro": "Nesaf, mae angen i chi ddilysu pwy ydych chi drwy symud eich wyneb i ffrâm ar eich sgrin gan ddefnyddio eich camera. Dilynwch y cyfarwyddiadau i symud eich wyneb yn agosach, gan ei gadw yn y ffrâm.",
+        "comparison": "Byddwn yn cymharu’r llun a ddefnyddiwyd i ddilysu pwy ydych chi â'r llun a dynnodd eich swyddog prawf pan wnaeth eich cofrestru. Dim ond i gadarnhau pwy ydych chi y bydd hwn yn cael ei ddefnyddio.",
+        "permissions": "Bydd angen i chi dderbyn hawliau i gael mynediad at gamera eich dyfais.",
+        "rulesHeading": "Cyn i chi ddilysu pwy ydych chi",
+        "rulesIntro": "Cyn i chi ddilysu pwy ydych chi, chi gwnewch yn siŵr:",
         "rules": {
           "faceInFrame": "bod eich wyneb yn y ffrâm",
           "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
@@ -407,10 +407,10 @@
         "inset": "Cofiwch mai cofrestriad prawf yw hwn a dylid ei drin yr un fath â chyfarfod wyneb yn wyneb. Dylech wisgo dillad priodol."
       },
       "record": {
-        "title": ""
+        "title": "Dilysu pwy ydych chi"
       },
       "outcome": {
-        "title": ""
+        "title": "Dilysu pwy ydych chi"
       },
       "view": {
         "title": "Gwiriwch eich fideo",
@@ -421,47 +421,47 @@
         },
         "liveNoMatch": {
           "heading": "Ni allwn gadarnhau mai chi yw hwn",
-          "intro": "",
-          "rulesHeading": "",
-          "rulesIntro": "",
+          "intro": "Y rheswm am hyn yw nad yw eich llun yn cyfateb i’r llun sydd gennym ar eich ffeil. ",
+          "rulesHeading": "Gallwch roi cynnig arall ar ddilysu pwy ydych chi ",
+          "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
             "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
             "plainBackground": "eich bod o flaen cefndir plaen",
             "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
           },
-          "tryAgain": "",
-          "submitAnyway": ""
+          "tryAgain": "Dilysu pwy ydych chi eto",
+          "submitAnyway": "Parhau i wirio eich atebion"
         },
         "notLiveMatch": {
-          "heading": "",
-          "intro": "",
-          "rulesHeading": "",
-          "rulesIntro": "",
+          "heading": "Ni allwn gadarnhau pwy ydych chi",
+          "intro": "Ni allwn gadarnhau mai chi yw hwn, gan na wnaethoch symud yn ddigon cyflym, neu fod eich wyneb wedi gadael y ffrâm.",
+          "rulesHeading": "Os ydych am roi cynnig arall ar ddilysu pwy ydych chi",
+          "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "followInstructions": "",
-            "steadyPace": ""
+            "followInstructions": "eich bod yn dilyn y cyfarwyddiadau i symud yn nes, gan gadw eich wyneb yn y ffrâm",
+            "steadyPace": "eich bod yn symud yn araf deg"
           },
-          "tryAgain": "",
-          "submitAnyway": ""
+          "tryAgain": "Dilysu pwy ydych chi eto",
+          "submitAnyway": "Parhau i wirio eich atebion"
         },
         "notLiveNoMatch": {
-          "heading": "",
-          "intro": "",
+          "heading": "Mae problem gyda’ch gwiriad adnabod",
+          "intro": "Ni allwn gadarnhau mai chi sydd yno. Y rheswm am hyn yw",
           "reasons": {
-            "noMatch": "",
-            "notLive": ""
+            "noMatch": "nid yw eich llun yn cyfateb i’r llun sydd gennym ar eich ffeil",
+            "notLive": "doeddech chi ddim wedi symud yn ddigon cyflym, neu roedd eich wyneb wedi gadael y ffrâm"
           },
-          "rulesHeading": "",
-          "rulesIntro": "",
+          "rulesHeading": "Os ydych am roi cynnig arall ar ddilysu pwy ydych chi",
+          "rulesIntro": "Gwnewch yn siŵr:",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "followInstructions": "",
-            "steadyPace": ""
+            "followInstructions": "eich bod yn dilyn y cyfarwyddiadau i symud yn nes, gan gadw eich wyneb yn y ffrâm",
+            "steadyPace": "eich bod yn symud yn araf deg"
           },
-          "tryAgain": "",
-          "submitAnyway": ""
+          "tryAgain": "Dilysu pwy ydych chi eto",
+          "submitAnyway": "Parhau i wirio eich atebion"
         },
         "fallbackMatch": {
           "heading": "Rydym wedi cadarnhau mai chi yw hwn",
@@ -478,18 +478,18 @@
             "faceInFrame": "bod eich wyneb yn y ffrâm",
             "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
           },
-          "tryAgain": "",
-          "submitAnyway": ""
+          "tryAgain": "Dilysu pwy ydych chi eto",
+          "submitAnyway": "Parhau i wirio eich atebion"
         }
       },
       "partials": {
         "instructions": {
-          "heading": "",
-          "intro": "",
+          "heading": "Dilysu pwy ydych chi",
+          "intro": "I ddilysu pwy ydych chi, bydd angen i chi wneud y canlynol:",
           "items": {
-            "placeFace": "",
-            "pressStart": "",
-            "followInstructions": ""
+            "placeFace": "rhoi eich wyneb yn y ffrâm",
+            "pressStart": "pwyso’r botwm cychwyn",
+            "followInstructions": "dilyn y cyfarwyddiadau i symud eich wyneb yn nes, gan ei gadw yn y ffrâm"
           }
         },
         "loading": "Yn gwirio mai chi yw hwn",
@@ -499,164 +499,164 @@
           "continue": "Parhau"
         },
         "cameraError": {
-          "heading": "",
+          "heading": "Dilysu pwy ydych chi",
           "subHeading": "Mae angen i chi dderbyn caniatâd ar eich dyfais",
-          "body": "",
-          "start": ""
+          "body": "Nid oes modd i ni fynd at eich camera i ddilysu pwy ydych chi. Gwiriwch osodiadau a hawliau eich porwr. Os ydych chi'n cael trafferth defnyddio'r gwasanaeth hwn, cysylltwch â'ch swyddog prawf.  ",
+          "start": "Dechrau’r gwiriad adnabod"
         },
         "cameraFramerate": {
-          "heading": "",
-          "intro": "",
-          "advice": "",
-          "rulesHeading": "",
-          "rulesIntro": "",
+          "heading": "Mae problem gyda’ch gwiriad adnabod",
+          "intro": "Y rheswm am hyn yw bod eich camera’n gweithio’n araf pan fyddwn yn ceisio dilysu pwy ydych chi. ",
+          "advice": "Gallech roi cynnig ar gau unrhyw apiau a allai fod yn arafu eich camera, ac yna rhoi cynnig ar ddilysu pwy ydych chi eto. ",
+          "rulesHeading": "Os ydych am roi cynnig arall ar ddilysu pwy ydych chi",
+          "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "followInstructions": "",
-            "steadyPace": ""
+            "followInstructions": "eich bod yn dilyn y cyfarwyddiadau i symud yn nes, gan gadw eich wyneb yn y ffrâm",
+            "steadyPace": "eich bod yn symud yn araf deg"
           },
-          "fallbackHint": "",
-          "verifyAgain": "",
-          "recordInstead": ""
+          "fallbackHint": "Os ydych chi’n cael trafferth cadarnhau pwy ydych chi fel hyn, gallwch recordio fideo yn lle hynny.",
+          "verifyAgain": "Cadarnhau pwy ydych chi eto",
+          "recordInstead": "Recordio fideo yn lle hynny"
         },
         "cancelled": {
-          "heading": "",
-          "intro": "",
-          "rulesHeading": "",
-          "rulesIntro": "",
+          "heading": "Doedd dim modd cwblhau eich gwiriad adnabod",
+          "intro": "Mae hyn oherwydd eich bod wedi canslo’r gwiriad cyn iddo gael ei orffen. Gallwch roi cynnig arall ar ddilysu pwy ydych chi. ",
+          "rulesHeading": "Os ydych am roi cynnig arall ar ddilysu pwy ydych chi",
+          "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "followInstructions": "",
-            "steadyPace": ""
+            "followInstructions": "eich bod yn dilyn y cyfarwyddiadau i symud yn nes, gan gadw eich wyneb yn y ffrâm",
+            "steadyPace": "eich bod yn symud yn araf deg"
           },
-          "fallbackHint": "",
-          "verifyAgain": "",
-          "recordInstead": ""
+          "fallbackHint": "Os ydych chi’n cael trafferth cadarnhau pwy ydych chi fel hyn, gallwch recordio fideo yn lle hynny.",
+          "verifyAgain": "Cadarnhau pwy ydych chi eto",
+          "recordInstead": "Recordio fideo yn lle hynny"
         },
         "connectionTimeout": {
-          "heading": "",
-          "intro": "",
-          "rulesHeading": "",
-          "rulesIntro": "",
+          "heading": "Gwiriwch eich cysylltiad â’r rhyngrwyd",
+          "intro": "Efallai nad yw eich cysylltiad â’r rhyngrwyd yn gweithio’n iawn. Gallwch roi cynnig arall ar ddilysu pwy ydych chi.",
+          "rulesHeading": "Os ydych am roi cynnig arall ar ddilysu pwy ydych chi",
+          "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "followInstructions": "",
-            "steadyPace": ""
+            "followInstructions": "eich bod yn dilyn y cyfarwyddiadau i symud yn nes, gan gadw eich wyneb yn y ffrâm",
+            "steadyPace": "eich bod yn symud yn araf deg"
           },
-          "fallbackHint": "",
-          "verifyAgain": "",
-          "recordInstead": ""
+          "fallbackHint": "Os ydych chi’n cael trafferth cadarnhau pwy ydych chi fel hyn, gallwch recordio fideo yn lle hynny.",
+          "verifyAgain": "Cadarnhau pwy ydych chi eto",
+          "recordInstead": "Recordio fideo yn lle hynny"
         },
         "error": {
           "heading": "",
           "intro": "",
-          "rulesHeading": "",
-          "rulesIntro": "",
+          "rulesHeading": "Os ydych am roi cynnig arall ar ddilysu pwy ydych chi",
+          "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "followInstructions": "",
-            "steadyPace": ""
+            "followInstructions": "eich bod yn dilyn y cyfarwyddiadau i symud yn nes, gan gadw eich wyneb yn y ffrâm",
+            "steadyPace": "eich bod yn symud yn araf deg"
           },
-          "fallbackHint": "",
-          "verifyAgain": "",
-          "recordInstead": ""
+          "fallbackHint": "Os ydych chi’n cael trafferth cadarnhau pwy ydych chi fel hyn, gallwch recordio fideo yn lle hynny.",
+          "verifyAgain": "Cadarnhau pwy ydych chi eto",
+          "recordInstead": "Recordio fideo yn lle hynny"
         },
         "landscape": {
-          "heading": "",
-          "intro": "",
-          "advice": "",
-          "rulesHeading": "",
-          "rulesIntro": "",
+          "heading": "Mae problem gyda’ch gwiriad adnabod ",
+          "intro": "Y rheswm am hyn yw bod eich dyfais yn y gosodiad tirlun pan fyddwn yn ceisio dilysu pwy ydych chi.",
+          "advice": "Gallech newid gosodiad eich dyfais i bortread a cheisio dilysu pwy ydych chi eto.",
+          "rulesHeading": "Os ydych am roi cynnig arall ar ddilysu pwy ydych chi",
+          "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "followInstructions": "",
-            "steadyPace": ""
+            "followInstructions": "eich bod yn dilyn y cyfarwyddiadau i symud yn nes, gan gadw eich wyneb yn y ffrâm",
+            "steadyPace": "eich bod yn symud yn araf deg"
           },
-          "fallbackHint": "",
-          "verifyAgain": "",
-          "recordInstead": ""
+          "fallbackHint": "Os ydych chi’n cael trafferth cadarnhau pwy ydych chi fel hyn, gallwch recordio fideo yn lle hynny.",
+          "verifyAgain": "Cadarnhau pwy ydych chi eto",
+          "recordInstead": "Recordio fideo yn lle hynny"
         },
         "liveNoMatch": {
           "heading": "Ni allwn gadarnhau mai chi yw hwn",
-          "intro": "",
-          "rulesHeading": "",
-          "rulesIntro": "",
+          "intro": "Y rheswm am hyn yw nad yw eich llun yn cyfateb i’r llun sydd gennym ar eich ffeil. ",
+          "rulesHeading": "Gallwch roi cynnig arall ar ddilysu pwy ydych chi ",
+          "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
             "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
             "plainBackground": "eich bod o flaen cefndir plaen",
             "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
           },
-          "submitHint": "",
-          "verifyAgain": "",
-          "continueToAnswers": ""
+          "submitHint": "Os ydych chi’n cael trafferth dilysu pwy ydych chi, gallwch barhau i gyflwyno eich manylion mewngofnodi. Bydd eich swyddog prawf yn cadarnhau mai chi yw hwn pan fydd yn adolygu eich manylion mewngofnodi. ",
+          "verifyAgain": "Dilysu pwy ydych chi eto",
+          "continueToAnswers": "Parhau i wirio eich atebion"
         },
         "multipleFaces": {
-          "heading": "",
-          "intro": "",
-          "rulesHeading": "",
-          "rulesIntro": "",
+          "heading": "Mae problem gyda’ch gwiriad adnabod",
+          "intro": "Y rheswm am hyn yw bod wynebau eraill yn y ffrâm pan rydym yn ceisio dilysu pwy ydych chi.",
+          "rulesHeading": "Os ydych am roi cynnig arall ar ddilysu pwy ydych chi",
+          "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "followInstructions": "",
-            "steadyPace": ""
+            "followInstructions": "eich bod yn dilyn y cyfarwyddiadau i symud yn nes, gan gadw eich wyneb yn y ffrâm",
+            "steadyPace": "eich bod yn symud yn araf deg"
           },
-          "fallbackHint": "",
-          "verifyAgain": "",
-          "recordInstead": ""
+          "fallbackHint": "Os ydych chi’n cael trafferth cadarnhau pwy ydych chi fel hyn, gallwch recordio fideo yn lle hynny.",
+          "verifyAgain": "Cadarnhau pwy ydych chi eto",
+          "recordInstead": "Recordio fideo yn lle hynny"
         },
         "notLiveMatch": {
-          "heading": "",
-          "intro": "",
-          "rulesHeading": "",
-          "rulesIntro": "",
+          "heading": "Ni allwn gadarnhau pwy ydych chi",
+          "intro": "Ni allwn gadarnhau mai chi yw hwn, gan na wnaethoch symud yn ddigon cyflym, neu fod eich wyneb wedi gadael y ffrâm.",
+          "rulesHeading": "Os ydych am roi cynnig arall ar ddilysu pwy ydych chi",
+          "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "followInstructions": "",
-            "steadyPace": ""
+            "followInstructions": "eich bod yn dilyn y cyfarwyddiadau i symud yn nes, gan gadw eich wyneb yn y ffrâm",
+            "steadyPace": "eich bod yn symud yn araf deg"
           },
-          "submitHint": "",
-          "verifyAgain": "",
-          "continueToAnswers": ""
+          "submitHint": "Os ydych chi’n cael trafferth dilysu pwy ydych chi, gallwch barhau i gyflwyno eich manylion mewngofnodi. Bydd eich swyddog prawf yn cadarnhau mai chi yw hwn pan fydd yn adolygu eich manylion mewngofnodi. ",
+          "verifyAgain": "Dilysu pwy ydych chi eto",
+          "continueToAnswers": "Parhau i wirio eich atebion"
         },
         "notLiveNoMatch": {
-          "heading": "",
-          "intro": "",
+          "heading": "Mae problem gyda’ch gwiriad adnabod",
+          "intro": "Ni allwn gadarnhau mai chi sydd yno. Y rheswm am hyn yw",
           "reasons": {
-            "noMatch": "",
-            "notLive": ""
+            "noMatch": "nid yw eich llun yn cyfateb i’r llun sydd gennym ar eich ffeil",
+            "notLive": "doeddech chi ddim wedi symud yn ddigon cyflym, neu roedd eich wyneb wedi gadael y ffrâm"
           },
-          "rulesHeading": "",
-          "rulesIntro": "",
+          "rulesHeading": "Os ydych am roi cynnig arall ar ddilysu pwy ydych chi",
+          "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "followInstructions": "",
-            "steadyPace": ""
+            "followInstructions": "eich bod yn dilyn y cyfarwyddiadau i symud yn nes, gan gadw eich wyneb yn y ffrâm",
+            "steadyPace": "eich bod yn symud yn araf deg"
           },
-          "submitHint": "",
-          "verifyAgain": "",
-          "continueToAnswers": ""
+          "submitHint": "Os ydych chi’n cael trafferth dilysu pwy ydych chi, gallwch barhau i gyflwyno eich manylion mewngofnodi. Bydd eich swyddog prawf yn cadarnhau mai chi yw hwn pan fydd yn adolygu eich manylion mewngofnodi. ",
+          "verifyAgain": "Dilysu pwy ydych chi eto",
+          "continueToAnswers": "Parhau i wirio eich atebion"
         },
         "timeout": {
-          "heading": "",
-          "intro": "",
-          "rulesHeading": "",
-          "rulesIntro": "",
+          "heading": "Mae problem gyda’ch gwiriad adnabod",
+          "intro": "Ni allwn gadarnhau mai chi sydd yno. Mae hyn oherwydd eich bod wedi rhedeg allan o amser i symud eich wyneb yn ystod eich gwiriad adnabod.",
+          "rulesHeading": "Os ydych am roi cynnig arall ar ddilysu pwy ydych chi",
+          "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "followInstructions": "",
-            "steadyPace": ""
+            "followInstructions": "eich bod yn dilyn y cyfarwyddiadau i symud yn nes, gan gadw eich wyneb yn y ffrâm",
+            "steadyPace": "eich bod yn symud yn araf deg"
           },
-          "fallbackHint": "",
-          "verifyAgain": "",
-          "recordInstead": ""
+          "fallbackHint": "Os ydych chi’n cael trafferth cadarnhau pwy ydych chi fel hyn, gallwch recordio fideo yn lle hynny.",
+          "verifyAgain": "Cadarnhau pwy ydych chi eto",
+          "recordInstead": "Recordio fideo yn lle hynny"
         }
       },
       "fallback": {
         "inform": {
           "title": "Cadarnhau pwy ydych chi",
           "intro": "Nesaf, mae angen i ni recordio fideo 5 eiliad ohonoch chi ar y ddyfais hon. Ni fydd angen i chi siarad yn y fideo.",
-          "comparison": "",
+          "comparison": "Bydd llun ohonoch wedi ei gymryd o’r fideo yn cael e gadw i’w gymharu â'r llun a dynnodd eich swyddog prawf pan wnaeth eich cofrestru. Dim ond i gadarnhau pwy ydych chi y bydd hwn yn cael ei ddefnyddio.",
           "permissions": "Bydd angen i chi dderbyn caniatâd i recordio fideo ar eich dyfais.",
           "rulesHeading": "Cyn i chi recordio'ch fideo",
           "rulesIntro": "Cyn i chi recordio'ch fideo, gwnewch yn siŵr:",
