@@ -30,7 +30,7 @@ export default class EsupervisionApiClient extends RestClient {
   async getCheckin(checkinId: string): Promise<OffenderCheckinResponse> {
     const checkin = await this.get<Checkin>(
       {
-        path: `/offender_checkins/${checkinId}`,
+        path: `/v2/offender_checkins/${checkinId}`,
       },
       asSystem(),
     )
@@ -50,7 +50,7 @@ export default class EsupervisionApiClient extends RestClient {
 
     return this.post<CheckinUploadLocationResponse>(
       {
-        path: `/offender_checkins/${checkinId}/upload_location`,
+        path: `/v2/offender_checkins/${checkinId}/upload_location`,
         query,
         headers: { 'Content-Type': 'application/json' },
       },
@@ -61,7 +61,7 @@ export default class EsupervisionApiClient extends RestClient {
   async submitCheckin(checkinId: string, submission: CheckinSubmission): Promise<Checkin> {
     return this.post<Checkin>(
       {
-        path: `/offender_checkins/${checkinId}/submit`,
+        path: `/v2/offender_checkins/${checkinId}/submit`,
         headers: { 'Content-Type': 'application/json' },
         data: JSON.stringify(submission),
       },
@@ -75,7 +75,7 @@ export default class EsupervisionApiClient extends RestClient {
   ): Promise<AutomaticCheckinVerificationResult> {
     return this.post<AutomaticCheckinVerificationResult>(
       {
-        path: `/offender_checkins/${checkinId}/video-verify`,
+        path: `/v2/offender_checkins/${checkinId}/video-verify`,
         headers: { 'Content-Type': 'application/json' },
         query: { numSnapshots },
       },
@@ -86,7 +86,7 @@ export default class EsupervisionApiClient extends RestClient {
   async logCheckinEvent(checkinId: string, eventType: CheckinEventType, comment?: string): Promise<{ event: string }> {
     return this.post<{ event: string }>(
       {
-        path: `/offender_checkins/${checkinId}/log-event`,
+        path: `/v2/offender_checkins/${checkinId}/log-event`,
         headers: { 'Content-Type': 'application/json' },
         data: JSON.stringify({ eventType, comment }),
       },
@@ -104,7 +104,7 @@ export default class EsupervisionApiClient extends RestClient {
   ): Promise<{ verified: boolean; error?: string }> {
     return this.post<{ verified: boolean; error?: string }>(
       {
-        path: `/offender_checkins/${checkinId}/identity-verify`,
+        path: `/v2/offender_checkins/${checkinId}/identity-verify`,
         headers: { 'Content-Type': 'application/json' },
         data: JSON.stringify(personalDetails),
       },
@@ -114,7 +114,7 @@ export default class EsupervisionApiClient extends RestClient {
 
   async getOffenderQuestions(checkinId: string): Promise<OffenderQuestionsResponse> {
     return this.get<OffenderQuestionsResponse>(
-      { path: `/questions/checkin/${checkinId}/offender-questions?language=en-GB` },
+      { path: `/v2/questions/checkin/${checkinId}/offender-questions?language=en-GB` },
       asSystem(),
     )
   }
@@ -122,7 +122,7 @@ export default class EsupervisionApiClient extends RestClient {
   async createLivenessSession(checkinId: string): Promise<LivenessSession> {
     return this.post<LivenessSession>(
       {
-        path: `/offender_checkins/${checkinId}/liveness/session`,
+        path: `/v2/offender_checkins/${checkinId}/liveness/session`,
         headers: { 'Content-Type': 'application/json' },
       },
       asSystem(),
@@ -132,7 +132,7 @@ export default class EsupervisionApiClient extends RestClient {
   async getLivenessCredentials(checkinId: string): Promise<LivenessCredentials> {
     return this.get<LivenessCredentials>(
       {
-        path: `/offender_checkins/${checkinId}/liveness/credentials`,
+        path: `/v2/offender_checkins/${checkinId}/liveness/credentials`,
       },
       asSystem(),
     )
@@ -141,7 +141,7 @@ export default class EsupervisionApiClient extends RestClient {
   async verifyLiveness(checkinId: string, sessionId: string): Promise<LivenessVerificationResult> {
     return this.post<LivenessVerificationResult>(
       {
-        path: `/offender_checkins/${checkinId}/liveness/verify`,
+        path: `/v2/offender_checkins/${checkinId}/liveness/verify`,
         headers: { 'Content-Type': 'application/json' },
         data: JSON.stringify({ sessionId }),
       },
@@ -152,7 +152,7 @@ export default class EsupervisionApiClient extends RestClient {
   async reportLivenessClientFailure(checkinId: string, state: string | undefined): Promise<void> {
     return this.post<void>(
       {
-        path: `/offender_checkins/${checkinId}/liveness/client-failure`,
+        path: `/v2/offender_checkins/${checkinId}/liveness/client-failure`,
         headers: { 'Content-Type': 'application/json' },
         data: JSON.stringify({ state: state ?? null }),
       },
@@ -163,7 +163,7 @@ export default class EsupervisionApiClient extends RestClient {
   async submitFeedback(feedback: Feedback): Promise<void> {
     return this.post<void>(
       {
-        path: '/feedback',
+        path: '/v2/feedback',
         headers: { 'Content-Type': 'application/json' },
         data: JSON.stringify(feedback),
       },
