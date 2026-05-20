@@ -2,7 +2,7 @@ import { RequestHandler } from 'express'
 
 const protectSubmission: RequestHandler = (req, res, next) => {
   const { submissionAuthorized } = req.session
-  if (!submissionAuthorized) {
+  if (submissionAuthorized !== req.params.submissionId) {
     const { submissionId } = req.params
     return res.render('pages/submission/timeout', { submissionId })
   }

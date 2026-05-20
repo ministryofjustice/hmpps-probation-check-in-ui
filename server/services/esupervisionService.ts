@@ -65,6 +65,10 @@ export default class EsupervisionService {
     return this.esupervisionApiClient.verifyLiveness(checkinId, sessionId)
   }
 
+  reportLivenessClientFailure(checkinId: string, state: string | undefined): Promise<void> {
+    return this.esupervisionApiClient.reportLivenessClientFailure(checkinId, state)
+  }
+
   submitFeedback(feedback: Feedback): Promise<void> {
     return this.esupervisionApiClient.submitFeedback(feedback)
   }

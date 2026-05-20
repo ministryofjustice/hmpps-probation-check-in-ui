@@ -1,24 +1,21 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
-
-<div class="es-pane" id="errorScreen" hidden aria-hidden="true">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">We cannot confirm this is you because an error occurred</h1>
-      <p>We cannot confirm this is you due to an error. You can try to verify your identity again or record a video instead.</p>
-      <p class="govuk-!-font-weight-bold">If you try to verify your identity again</p>
-      <p>Make sure:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>your face is in the frame</li>
-        <li>you follow the instructions to move closer, keeping your face in the frame</li>
-        <li>you move at a steady pace</li>
-      </ul>
-      <p>
-        If you are struggling to confirm your identity this way, you can record a video instead.
-      </p>
-      <div class="govuk-button-group">
-        {{ govukButton({ text: "Verify identity again", element: "a", attributes: { "data-liveness-retry": "" } }) }}
-        {{ govukButton({ text: "Record a video instead", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/fallback-inform" }) }}
-      </div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">We cannot confirm this is you because an error occurred</h1>
+    <p>We cannot confirm this is you due to an error. You can try to verify your identity again or record a video instead.</p>
+    <p class="govuk-!-font-weight-bold">If you try to verify your identity again</p>
+    <p>Make sure:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>your face is in the frame</li>
+      <li>you follow the instructions to move closer, keeping your face in the frame</li>
+      <li>you move at a steady pace</li>
+    </ul>
+    <p>
+      If you are struggling to confirm your identity this way, you can record a video instead.
+    </p>
+    <div class="govuk-button-group">
+      {{ govukButton({ text: "Verify identity again", href: "/" + submissionId + "/liveness/record" }) }}
+      {{ govukButton({ text: "Record a video instead", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/fallback-inform" }) }}
     </div>
   </div>
 </div>

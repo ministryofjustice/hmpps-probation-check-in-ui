@@ -4,6 +4,7 @@ export declare module 'express-session' {
     returnTo: string
     nowInMinutes: number
     submissionAuthorized?: string
+    livenessFallbackAllowed?: boolean
     formData?: {
       circumstances?: string | string[]
       policeContact?: string
@@ -13,6 +14,8 @@ export declare module 'express-session' {
       physicalHealth?: string
       mentalHealth?: string
       autoVerifyResult?: string
+      isLive?: boolean
+      checkinStartedAt?: number
       additionalQuestions?: Array<{ question: string; hint: string; placeholder?: string }>
       additionalAnswers?: Array<{ question: string; response: string }>
       [key: string]: unknown

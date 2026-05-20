@@ -7,7 +7,9 @@ export default function storeFormDataInSession(): RequestHandler {
     }
     res.locals.formData = {}
 
-    if (req.body) {
+    // Skip JSON POSTs — their bodies aren't form input, and writing them here
+    // marks the session modified, racing with concurrent requests on shared keys.
+    if (req.body && req.is('application/x-www-form-urlencoded')) {
       Object.keys(req.body).forEach(i => {
         if (i.indexOf('_') === 0) {
           return

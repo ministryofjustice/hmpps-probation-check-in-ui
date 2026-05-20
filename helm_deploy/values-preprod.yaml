@@ -7,12 +7,17 @@ generic-service:
   ingress:
     host: probation-check-in-preprod.hmpps.service.justice.gov.uk
     className: modsec-non-prod
+    modsecurity_snippet: |
+      SecRuleEngine On
+      SecAuditEngine RelevantOnly
+      SecRequestBodyAccess On
+      SecDefaultAction "phase:2,pass,log,tag:github_team=stg-pathfinders,tag:namespace={{ .Release.Namespace }}"
 
   env:
     INGRESS_URL: "https://probation-check-in-preprod.hmpps.service.justice.gov.uk"
     HMPPS_AUTH_URL: "https://sign-in-preprod.hmpps.service.justice.gov.uk/auth"
     TOKEN_VERIFICATION_API_URL: "https://token-verification-api-preprod.prison.service.justice.gov.uk"
-    ESUPERVISION_API_URL: 'https://esupervision-api-preprod.hmpps.service.justice.gov.uk/v2'
+    ESUPERVISION_API_URL: 'https://esupervision-api-preprod.hmpps.service.justice.gov.uk'
     ENVIRONMENT_NAME: PRE-PRODUCTION
     AUDIT_ENABLED: "false"
     FEATURE_FACE_LIVENESS: 'true'
