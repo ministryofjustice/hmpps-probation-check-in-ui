@@ -735,14 +735,14 @@
           "day": "",
           "month": "",
           "year": "",
-          "year4digits": ""
+          "year4digits": "4 rhif ar gyfer y flwyddyn"
         },
         "allMissing": "",
         "missingParts": "",
-        "yearMustBe4": "",
-        "dayMustBeNumber": "",
-        "monthMustBeNumber": "",
-        "yearMustBeNumber": "",
+        "yearMustBe4": "Rhaid i'r flwyddyn gynnwys 4 rhif",
+        "dayMustBeNumber": "Dim ond rhifau y dylai'r diwrnod eu cynnwys",
+        "monthMustBeNumber": "Dim ond rhifau y dylai'r mis eu cynnwys",
+        "yearMustBeNumber": "Dim ond rhifau y dylai'r flwyddyn eu cynnwys",
         "allMustBeNumbers": "",
         "mustBeReal": "",
         "mustBeFuture": "",
@@ -766,8 +766,8 @@
       }
     },
     "privacy": {
-      "title": "",
-      "heading": "",
+      "title": "Hysbysiad Preifatrwydd y Gwasanaeth Prawf",
+      "heading": "Hysbysiad Preifatrwydd y Gwasanaeth Prawf",
       "purpose": {
         "heading": "Diben",
         "intro": "Mae'r hysbysiad preifatrwydd hwn yn egluro'r safonau y gallwch eu disgwyl gan y Gwasanaeth Prawf",
@@ -883,7 +883,7 @@
       }
     },
     "accessibility": {
-      "title": "",
+      "title": "Datganiad hygyrchedd ar gyfer Cofrestru gyda'ch swyddog prawf",
       "applies": "Mae'r datganiad hygyrchedd hwn yn berthnasol i wasanaeth Cofrestru gyda'ch swyddog prawf.",
       "runBy": "Mae'r wefan hon yn cael ei rhedeg gan y Weinyddiaeth Gyfiawnder (MoJ). Rydym am i gymaint o bobl â phosibl allu defnyddio'r wefan hon. Er enghraifft, mae hynny'n golygu y dylech allu:",
       "items": {
@@ -979,7 +979,7 @@
       }
     },
     "guidance": {
-      "title": "",
+      "title": "Ynglŷn â'r gwasanaeth Cofrestru gyda'ch swyddog prawf",
       "intro": "Bydd y gwasanaeth hwn yn eich galluogi i gofrestru gyda'ch swyddog prawf ar-lein. Gellir defnyddio hyn rhwng eich apwyntiadau wyneb yn wyneb, neu i gymryd lle rhai o'ch apwyntiadau wyneb yn wyneb.",
       "choosing": {
         "heading": "Dewis a yw cofrestriadau ar-lein yn iawn i chi",
@@ -1278,7 +1278,7 @@
         },
         "caseload": {
           "heading": "Adborth gan bobl ar eich rhestr achosion",
-          "form": "Bydd gennym ffurflen adborth i chi ei rhannu gyda'r bobl ar eich rhestr achosion sy'n defnyddio cofrestriadau ar-lein. Mae hyn i ddeall eu profiadau.",
+          "form": "Bydd gennym <a class=\"govuk-link\" href=\"{{popFeedbackFormHref}}\">ffurflen adborth i chi ei rhannu gyda'r bobl ar eich rhestr achosion sy'n defnyddio cofrestriadau ar-lein</a>. Mae hyn i ddeall eu profiadau.",
           "access": "Byddant yn gallu cyrchu hyn:",
           "items": {
             "completing": "wrth gwblhau eu cofrestriad",
