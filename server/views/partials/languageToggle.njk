@@ -1,0 +1,15 @@
+<nav class="hmpps-language-toggle" aria-label="{{ t('common.languageToggle.label') }}">
+  <ul class="hmpps-language-toggle__list">
+    {% if lang == 'cy' %}
+      <li class="hmpps-language-toggle__item">
+        <a class="govuk-link govuk-link--no-visited-state" href="{{ languageUrls.en }}" hreflang="en" lang="en" rel="alternate">English</a>
+      </li>
+      <li class="hmpps-language-toggle__item hmpps-language-toggle__item--active" aria-current="true">Cymraeg</li>
+    {% else %}
+      <li class="hmpps-language-toggle__item hmpps-language-toggle__item--active" aria-current="true">English</li>
+      <li class="hmpps-language-toggle__item">
+        <a class="govuk-link govuk-link--no-visited-state" href="{{ languageUrls.cy }}" hreflang="cy" lang="cy" rel="alternate">Cymraeg</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>

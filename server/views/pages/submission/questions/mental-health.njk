@@ -6,13 +6,13 @@
 {% from "../../../partials/errorSummary.njk" import errorSummary %}
 {% extends "../../../partials/layout.njk" %}
 
-{% set pageTitle = "How have you been feeling since we last spoke?" %}
+{% set pageTitle = t('submission.questions.mentalHealth.title') %}
 {% set mainClasses = "app-container govuk-body" %}
 
 {% block beforeContent %}
   {{
     govukBackLink({
-      text: "Back",
+      text: t('common.buttons.back'),
       href: "/" + submissionId + ("/liveness/check-your-answers" if flags.faceLiveness else "/check-your-answers") if cya else "/" + submissionId + "/verify"
     })
   }}
@@ -21,12 +21,12 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {{ errorSummary(validationErrors) }}
+      {{ errorSummary(validationErrors, t('common.errorSummary.title')) }}
       {% set veryWellHtml %}
         {{ govukTextarea({
           name: "mentalHealthVeryWell",
           id: "mentalHealthVeryWell",
-          label: { text: "Tell us why you are very well (optional)" },
+          label: { text: t('submission.questions.mentalHealth.veryWellLabel') },
           value: formData["mentalHealthVeryWell"],
           errorMessage: validationErrors | findError("mentalHealthVeryWell")
         }) }}
@@ -36,7 +36,7 @@
         {{ govukTextarea({
           name: "mentalHealthWell",
           id: "mentalHealthWell",
-          label: { text: "Tell us why you are well (optional)" },
+          label: { text: t('submission.questions.mentalHealth.wellLabel') },
           value: formData["mentalHealthWell"],
           errorMessage: validationErrors | findError("mentalHealthWell")
         }) }}
@@ -46,7 +46,7 @@
         {{ govukTextarea({
           name: "mentalHealthOk",
           id: "mentalHealthOk",
-          label: { text: "Tell us why you are OK (optional)" },
+          label: { text: t('submission.questions.mentalHealth.okLabel') },
           value: formData["mentalHealthOk"],
           errorMessage: validationErrors | findError("mentalHealthOk")
         }) }}
@@ -56,7 +56,7 @@
         {{ govukTextarea({
           name: "mentalHealthNotGreat",
           id: "mentalHealthNotGreat",
-          label: { text: "Tell us why you are not great (optional)" },
+          label: { text: t('submission.questions.mentalHealth.notGreatLabel') },
           value: formData["mentalHealthNotGreat"],
           errorMessage: validationErrors | findError("mentalHealthNotGreat")
         }) }}
@@ -66,7 +66,7 @@
         {{ govukTextarea({
           name: "mentalHealthStruggling",
           id: "mentalHealthStruggling",
-          label: { text: "Tell us why you are struggling (optional)" },
+          label: { text: t('submission.questions.mentalHealth.strugglingLabel') },
           value: formData["mentalHealthStruggling"],
           errorMessage: validationErrors | findError("mentalHealthStruggling")
         }) }}
@@ -80,11 +80,11 @@
           errorMessage: validationErrors | findError("mentalHealth"),
           value: formData["mentalHealth"],
           hint: {
-            text: "Think about things like if you have noticed a change in your mood and what may have caused this. "
+            text: t('submission.questions.mentalHealth.hint')
           },
           fieldset: {
             legend: {
-              text: "How have you been feeling since we last spoke?",
+              text: t('submission.questions.mentalHealth.legend'),
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -92,35 +92,35 @@
           items: [
               {
                 value: "VERY_WELL",
-                text: "Very well",
+                text: t('submission.questions.mentalHealth.options.veryWell'),
                 conditional: {
                   html: veryWellHtml
                 }
               },
               {
                 value: "WELL",
-                text: "Well",
+                text: t('submission.questions.mentalHealth.options.well'),
                 conditional: {
                   html: wellHtml
                 }
               },
               {
                 value: "OK",
-                text: "OK",
+                text: t('submission.questions.mentalHealth.options.ok'),
                 conditional: {
                   html: okHtml
                 }
               },
               {
                 value: "NOT_GREAT",
-                text: "Not great",
+                text: t('submission.questions.mentalHealth.options.notGreat'),
                 conditional: {
                   html: notGreatHtml
                 }
               },
               {
                 value: "STRUGGLING",
-                text: "Struggling",
+                text: t('submission.questions.mentalHealth.options.struggling'),
                 conditional: {
                   html: strugglingHtml
                 }
@@ -130,12 +130,12 @@
         }}
         {{
           govukInsetText({
-            html: 'If you need to speak to someone urgently about how you are feeling, check the <a href="https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/help-for-suicidal-thoughts/" class="govuk-link" target="_blank">NHS website for help (opens in new tab)</a>.'
+            html: t('submission.questions.mentalHealth.insetHtml')
           })
         }}
         {{
           govukButton({
-            text: "Continue"
+            text: t('common.buttons.continue')
           })
         }}
       </form>

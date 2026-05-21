@@ -42,9 +42,9 @@
 
   span {
     display: block;
-    background: gds.govuk-colour('light-grey');
+    background: gds.govuk-colour('black', $variant: 'tint-95');
     padding: 1rem;
-    color: gds.$govuk-text-colour;
+    color: gds.govuk-functional-colour(text);
     @include gds.govuk-font($size: 19);
   }
 

@@ -2,7 +2,7 @@
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% extends "../../../../partials/layout.njk" %}
 
-{% set pageTitle = "Record your video" %}
+{% set pageTitle = t('submission.liveness.fallback.record.title') %}
 
 {% block head %}
   {{ super() }}
@@ -12,7 +12,7 @@
 {% block beforeContent %}
   {{
     govukBackLink({
-      text: "Back",
+      text: t('common.buttons.back'),
       href: "/" + submissionId + "/liveness/fallback-inform"
     })
   }}
@@ -23,7 +23,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
-        <p class="govuk-body">You do not need to do anything during the video. Anything you say will not be recorded.</p>
+        <p class="govuk-body">{{ t('submission.liveness.fallback.record.intro') }}</p>
         <div class="videoRecorder__container" id="fallbackVideoContainer">
           <div class="videoRecorder__videoWrap">
             <video id="fallbackVideo" class="videoRecorder__video" autoplay muted playsinline></video>
@@ -34,10 +34,9 @@
         </div>
         <div class="videoRecorder__error" id="fallbackCameraError" hidden>
           <div class="govuk-inset-text es-inset-text--error">
-            <h2 class="govuk-heading-m es-heading--error">You need to accept permissions on your device</h2>
+            <h2 class="govuk-heading-m es-heading--error">{{ t('submission.liveness.fallback.record.permissionsHeading') }}</h2>
             <p>
-              We are unable to access your camera to record a video. Check your browser settings and permissions. If
-              you are having trouble using this service, contact your probation officer.
+              {{ t('submission.liveness.fallback.record.permissionsBody') }}
             </p>
           </div>
         </div>
@@ -45,7 +44,7 @@
     </div>
     <div id="fallbackStickyActionBar" class="sticky-action-bar">
       <div class="sticky-action-bar__inner">
-        <button id="fallbackStartBtn" class="govuk-button" disabled aria-disabled="true">Start recording</button>
+        <button id="fallbackStartBtn" class="govuk-button" disabled aria-disabled="true">{{ t('submission.liveness.fallback.record.startButton') }}</button>
       </div>
     </div>
   </div>

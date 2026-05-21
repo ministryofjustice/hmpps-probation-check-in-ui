@@ -12,6 +12,7 @@ import setUpStaticResources from './middleware/setUpStaticResources'
 import setUpWebRequestParsing from './middleware/setupRequestParsing'
 // import setUpWebSecurity from './middleware/setUpWebSecurity'
 import setUpWebSession from './middleware/setUpWebSession'
+import setUpLocalisation from './middleware/setUpLocalisation'
 import populateValidationErrors from './middleware/populateValidationErrors'
 import storeFormDataInSession from './middleware/storeFormDataInSession'
 import routes from './routes'
@@ -39,6 +40,7 @@ export default function createApp(services: Services): express.Application {
   app.use(setUpStaticResources())
 
   app.use(cookieParser(`esCookieSecret${process.env.COOKIE_SECRET}`))
+  app.use(setUpLocalisation())
   app.use(featureFlags())
 
   nunjucksSetup(app)

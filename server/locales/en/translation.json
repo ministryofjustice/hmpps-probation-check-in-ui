@@ -1,0 +1,1340 @@
+{
+  "common": {
+    "and": "and",
+    "serviceName": "Check in with your probation officer",
+    "serviceNamePractitioner": "Manage probation check ins",
+    "languageToggle": {
+      "label": "Change the language"
+    },
+    "pageTitle": {
+      "errorPrefix": "Error - "
+    },
+    "phaseBanner": {
+      "tag": "Private Beta",
+      "html": "This is a new service – your <a class=\"govuk-link govuk-link--no-visited-state\" target=\"_blank\" rel=\"nofollow\" href=\"/feedback\">feedback (opens in a new tab)</a> will help us to improve it."
+    },
+    "footer": {
+      "guidance": "Online check in guidance",
+      "cookies": "Cookies",
+      "privacy": "Privacy",
+      "accessibility": "Accessibility statement"
+    },
+    "buttons": {
+      "continue": "Continue",
+      "back": "Back",
+      "submit": "Submit",
+      "tryAgain": "Try again",
+      "cancel": "Cancel",
+      "saveAndContinue": "Save and continue"
+    },
+    "breadcrumb": {
+      "home": "Home"
+    },
+    "errorSummary": {
+      "title": "There is a problem",
+      "pageTitlePrefix": "Error: "
+    },
+    "pagination": {
+      "ariaLabel": "Pagination",
+      "previous": "Previous",
+      "next": "Next",
+      "pageHidden": "page"
+    },
+    "dateInput": {
+      "day": "Day",
+      "month": "Month",
+      "year": "Year"
+    }
+  },
+  "submission": {
+    "index": {
+      "heading": "Check in with your probation officer",
+      "intro": "You can use this service to check in with your probation officer as part of your probation. Your probation officer will have signed you up for this service during a face-to-face appointment.",
+      "beforeStart": {
+        "heading": "Before you start",
+        "intro": "You will need:",
+        "items": {
+          "internet": "access to the internet",
+          "camera": "a device with a camera",
+          "details": "your name and date of birth"
+        },
+        "uk": "You will not be able to use this service to check in if you are outside of the UK."
+      },
+      "whatToDo": {
+        "heading": "What you need to do",
+        "intro": "As part of this service you will need to:",
+        "items": {
+          "questions": "answer a set of questions relating to how you are and if you need any help",
+          "camera": "give permission to access your device’s camera",
+          "video": "record a short video of yourself so we can check it’s you using the service"
+        },
+        "videoUse": "We will use your video to confirm who you are. We will do this by comparing it with the photo your probation officer took when they signed you up.",
+        "shareAnswers": "The answers to your questions will be sent to your probation officer to review."
+      },
+      "help": {
+        "heading": "If you need help",
+        "intro": "If you have difficulty using this service, or you do not have access to everything you need, you should contact your probation officer and let them know.",
+        "guidance": "You can <a href=\"/guidance?submissionId={{submissionId}}\" class=\"govuk-link\">learn more about online check ins in our guidance</a>."
+      },
+      "start": "Start now"
+    },
+    "verify": {
+      "title": "Personal details",
+      "heading": "Personal details",
+      "intro": "We will use your personal details to make sure you are signed up to use this service.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "dob": {
+        "label": "date of birth",
+        "legend": "Date of birth",
+        "hint": "For example, 27 3 2007"
+      },
+      "errors": {
+        "firstNameRequired": "Enter your first name",
+        "lastNameRequired": "Enter your last name"
+      }
+    },
+    "noMatchFound": {
+      "title": "No match found",
+      "intro": "We were unable to verify your identity on our system. Check your information for any errors and try again.",
+      "table": {
+        "caption": "Details that were used to verify your identity",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "dateOfBirth": "Date of birth",
+        "notProvided": "Not provided"
+      },
+      "help": {
+        "heading": "Need help?",
+        "intro": "If your information is correct and you are still unable to verify your identity, you must contact your probation officer."
+      }
+    },
+    "notFound": {
+      "title": "Page not found",
+      "heading": "Page not found",
+      "checkAddressTyped": "If you typed the web address, check it is correct.",
+      "checkAddressPasted": "If you pasted the web address, check you copied the entire address.",
+      "linkOutOfDate": "If you clicked on a link to get here, the link may be out of date.",
+      "contactOfficer": "If you need help, contact your probation officer."
+    },
+    "expired": {
+      "title": "Your check in link has expired",
+      "intro": "Contact your probation officer to request a new link."
+    },
+    "timeout": {
+      "title": "Your check in has been reset",
+      "intro": "For your security, your answers have been deleted.",
+      "restart": "Restart check in"
+    },
+    "confirmation": {
+      "title": "Check in completed",
+      "panel": "Check in completed",
+      "sent": "We have sent you a confirmation message.",
+      "whatNext": {
+        "heading": "What happens next?",
+        "intro": "Your video and answers have been shared with your probation officer. They will contact you if there are any concerns with the information you’ve entered, or if you requested contact.",
+        "reminder": "We will remind you when it is time for your next check in."
+      },
+      "feedback": {
+        "heading": "Have your say about online check ins",
+        "intro": "Help us to improve check ins by answering a few questions about your experience.",
+        "button": "Give feedback"
+      }
+    },
+    "questions": {
+      "mentalHealth": {
+        "title": "How have you been feeling since we last spoke?",
+        "legend": "How have you been feeling since we last spoke?",
+        "hint": "Think about things like if you have noticed a change in your mood and what may have caused this. ",
+        "options": {
+          "veryWell": "Very well",
+          "well": "Well",
+          "ok": "OK",
+          "notGreat": "Not great",
+          "struggling": "Struggling"
+        },
+        "veryWellLabel": "Tell us why you are very well (optional)",
+        "wellLabel": "Tell us why you are well (optional)",
+        "okLabel": "Tell us why you are OK (optional)",
+        "notGreatLabel": "Tell us why you are not great (optional)",
+        "strugglingLabel": "Tell us why you are struggling (optional)",
+        "insetHtml": "If you need to speak to someone urgently about how you are feeling, check the <a href=\"https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/help-for-suicidal-thoughts/\" class=\"govuk-link\" target=\"_blank\">NHS website for help (opens in new tab)</a>.",
+        "errors": {
+          "required": "Select how you have been feeling since we last spoke"
+        }
+      },
+      "assistance": {
+        "title": "Is there anything you need support with or want to let us know about?",
+        "legend": "Is there anything you need support with or want to let us know about?",
+        "hint": "This could be anything you're worrying about, struggling with or just want to let us know.",
+        "options": {
+          "mentalHealth": "Mental health",
+          "alcohol": "Alcohol",
+          "drugs": "Drugs",
+          "money": "Money",
+          "housing": "Housing",
+          "employmentEdu": "Employment and education",
+          "supportSystem": "Relationships (family, friends, partner)",
+          "other": "Something else",
+          "noHelp": "No, I do not need any support"
+        },
+        "divider": "or",
+        "labels": {
+          "mentalHealth": "Tell us what you want us to know about mental health (optional)",
+          "alcohol": "Tell us what you want us to know about alcohol (optional)",
+          "drugs": "Tell us what you want us to know about drugs (optional)",
+          "money": "Tell us what you want us to know about money (optional)",
+          "housing": "Tell us what you want us to know about housing (optional)",
+          "employmentEdu": "Tell us what you want us to know about employment and education (optional)",
+          "supportSystem": "Tell us what you want us to know about your relationships (optional)",
+          "other": "Tell us what you want us to know about (optional)"
+        },
+        "errors": {
+          "required": "Select what you need help with or select 'No, I do not need any support'"
+        }
+      },
+      "callback": {
+        "title": "Would you like us to contact you about anything before your next appointment?",
+        "legend": "Would you like us to contact you about anything before your next appointment?",
+        "hint": "This could be something you've already asked for help with or something new.",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        },
+        "detailsLabel": "Tell us what you need to talk about, for example, something you're struggling with or need more information about (optional)",
+        "inset": "If this is urgent, you should contact your probation officer yourself. If there is an emergency, call 999."
+      },
+      "additional": {
+        "errors": {
+          "required": "Enter your answer to the question"
+        }
+      }
+    },
+    "checkAnswers": {
+      "title": "Check your answers before you complete your check in",
+      "aboutYou": "About you",
+      "video": "Video",
+      "identityCheck": "Identity check",
+      "rows": {
+        "mentalHealth": "How have you been feeling since we last spoke?",
+        "mentalHealthVeryWell": "Tell us why you are very well",
+        "mentalHealthWell": "Tell us why you are well",
+        "mentalHealthOk": "Tell us why you are OK",
+        "mentalHealthNotGreat": "Tell us why you are not great",
+        "mentalHealthStruggling": "Tell us why you are struggling",
+        "assistance": "Is there anything you need support with or want to let us know about?",
+        "mentalHealthSupport": "Tell us what you want us to know about mental health",
+        "alcoholSupport": "Tell us what you want us to know about alcohol",
+        "drugsSupport": "Tell us what you want us to know about drugs",
+        "moneySupport": "Tell us what you want us to know about money",
+        "housingSupport": "Tell us what you want us to know about housing",
+        "employmentEduSupport": "Tell us what you want us to know about employment and education",
+        "supportSystemSupport": "Tell us what you want us to know about your relationships",
+        "otherSupport": "Tell us what you want us to know about (other)",
+        "videoCheck": "Video check",
+        "identityCheck": "Identity check"
+      },
+      "change": "Change",
+      "view": "View",
+      "hidden": {
+        "mentalHealth": " answer for how are you feeling",
+        "mentalHealthVeryWell": " answer for tell us why you are very well",
+        "mentalHealthWell": " answer for tell us why you are well",
+        "mentalHealthOk": " answer for tell us why you are OK",
+        "mentalHealthNotGreat": " answer for tell us why you are not great",
+        "mentalHealthStruggling": " answer for tell us why you are struggling",
+        "assistance": " answer for is there anything you need support with or want to let us know about",
+        "mentalHealthSupport": " answer for tell us what you want us to know about mental health",
+        "alcoholSupport": " answer for tell us what you want us to know about alcohol",
+        "drugsSupport": " answer for tell us what you want us to know about drugs",
+        "moneySupport": " answer for tell us what you want us to know about money",
+        "housingSupport": " answer for tell us what you want us to know about housing",
+        "employmentEduSupport": " answer for tell us what you want us to know about employment and education",
+        "supportSystemSupport": " answer for tell us what you want us to know about your relationships",
+        "otherSupport": " answer for tell us what you want us to know about (other)",
+        "otherSupportLegacy": " answer for tell us why you need help ",
+        "additionalPrefix": " answer for ",
+        "video": " video",
+        "identity": " identity check"
+      },
+      "videoResult": {
+        "match": "We have confirmed this is you",
+        "noMatch": "We cannot confirm this is you"
+      },
+      "identityResult": {
+        "match": "We have confirmed this is you",
+        "noMatch": "We cannot confirm this is you",
+        "notLiveMatch": "We cannot confirm your identity",
+        "notLiveNoMatch": "There's been a problem with your identity check"
+      },
+      "complete": {
+        "legend": "Complete your check in",
+        "confirm": "I confirm that, to the best of my knowledge, the details I have provided are correct. I understand that this information will be shared with my probation officer.",
+        "button": "Complete check in"
+      },
+      "errors": {
+        "required": "Confirm your details are correct"
+      }
+    },
+    "video": {
+      "inform": {
+        "title": "Confirm your identity",
+        "intro": "Next, we need to record a 5-second video of you on this device. You do not need to speak in the video. Anything you say will not be recorded.",
+        "comparison": "We’ll use your video to confirm who you are. We’ll do this by comparing your video with the photo your probation officer took when they signed you up. This video will only be used to confirm your identity.",
+        "permissions": "You’ll need to accept permissions to record a video on your device.",
+        "rulesHeading": "Before you record your video",
+        "rulesIntro": "Before you record your video, make sure:",
+        "rules": {
+          "litArea": "you are in a well lit area",
+          "plainBackground": "you are in front of a plain background",
+          "faceInFrame": "your face is in the frame",
+          "noHatSunglasses": "you are not wearing a hat or sunglasses"
+        },
+        "inset": "Remember this is a probation check in and should be treated the same as a face-to-face meeting. You should wear appropriate clothing when taking the video."
+      },
+      "record": {
+        "title": "Record your video",
+        "intro": "You do not need to do anything during the video. Anything you say will not be recorded.",
+        "permissionsHeading": "You need to accept permissions on your device",
+        "permissionsBody": "We are unable to access your camera to record a video. Check your browser settings and permissions. If you are having trouble using this service, contact your probation officer.",
+        "startButton": "Start recording",
+        "browserUnsupported": "Your browser does not support video"
+      },
+      "view": {
+        "title": "View your video",
+        "match": {
+          "heading": "We have confirmed this is you",
+          "intro": "We have confirmed this is you. You can now continue to check your answers.",
+          "continue": "Continue"
+        },
+        "noMatch": {
+          "heading": "We cannot confirm this is you",
+          "intro": "We have checked and we cannot confirm this is you. You can try recording again or submit your video anyway.",
+          "rulesIntro": "In your video, make sure:",
+          "rules": {
+            "litArea": "you are in a well lit area",
+            "plainBackground": "you are in front of a plain background",
+            "faceInFrame": "your face is in the frame",
+            "noHatSunglasses": "you are not wearing a hat or sunglasses"
+          },
+          "recordAgain": "Record video again",
+          "submitAnyway": "Submit video anyway"
+        },
+        "browserUnsupported": "Your browser does not support video"
+      },
+      "partials": {
+        "loading": "Checking this is you",
+        "match": {
+          "heading": "We have confirmed this is you",
+          "intro": "We have confirmed this is you. You can now continue to check your answers.",
+          "continue": "Continue",
+          "browserUnsupported": "Your browser does not support video"
+        },
+        "nomatch": {
+          "heading": "We cannot confirm this is you",
+          "intro": "We have checked and we cannot confirm this is you. You can try recording again or submit your video anyway.",
+          "rulesHeading": "If you record your video again",
+          "rulesIntro": "In your video, make sure:",
+          "rules": {
+            "litArea": "you are in a well lit area",
+            "plainBackground": "you are in front of a plain background",
+            "faceInFrame": "your face is in the frame",
+            "noHatSunglasses": "you are not wearing a hat or sunglasses"
+          },
+          "recordAgain": "Record video again",
+          "submitAnyway": "Submit video anyway",
+          "browserUnsupported": "Your browser does not support video"
+        },
+        "error": {
+          "heading": "We cannot confirm this is you because an error occured",
+          "intro": "We have checked and we cannot confirm this is you. You can try recording again.",
+          "rulesIntro": "In your video, make sure:",
+          "rules": {
+            "litArea": "you are in a well lit area",
+            "plainBackground": "you are in front of a plain background",
+            "faceInFrame": "your face is in the frame",
+            "noHatSunglasses": "you are not wearing a hat or sunglasses"
+          },
+          "tryAgain": "Try recording your video again"
+        }
+      }
+    },
+    "liveness": {
+      "index": {
+        "heading": "Check in with your probation officer",
+        "intro": "You can use this service to check in with your probation officer as part of your probation. Your probation officer will have signed you up for this service during a face-to-face appointment.",
+        "beforeStart": {
+          "heading": "Before you start",
+          "intro": "You will need:",
+          "items": {
+            "internet": "access to the internet",
+            "camera": "a device with a camera",
+            "details": "your name and date of birth"
+          },
+          "uk": "You will not be able to use this service to check in if you are outside of the UK."
+        },
+        "whatToDo": {
+          "heading": "What you need to do",
+          "intro": "As part of this service you will need to:",
+          "items": {
+            "questions": "answer a set of questions relating to how you are and if you need any help",
+            "camera": "give permission to access your device’s camera",
+            "verify": "verify your identity by moving your face into a frame on your screen using your camera, and following instructions on the screen"
+          },
+          "comparison": "We will compare an image from you verifying your identity with the photo your probation officer took when they signed you up. This will not use your microphone or location.",
+          "shareAnswers": "The answers to your questions will be sent to your probation officer to review."
+        },
+        "help": {
+          "heading": "If you need help",
+          "intro": "If you have difficulty using this service, or you do not have access to everything you need, you should contact your probation officer and let them know.",
+          "guidance": "You can <a href=\"/guidance?submissionId={{submissionId}}\" class=\"govuk-link\">learn more about online check ins in our guidance</a>."
+        },
+        "start": "Start now"
+      },
+      "inform": {
+        "title": "Confirm your identity",
+        "intro": "Next you need to verify your identity by moving your face into a frame on your screen using your camera. Follow the instructions to move your face closer, keeping it in the frame.",
+        "comparison": "We’ll compare an image from this with the photo your probation officer took when they signed you up. This will only be used to confirm your identity.",
+        "permissions": "You’ll need to accept permissions to access your camera on your device.",
+        "rulesHeading": "Before you verify your identity",
+        "rulesIntro": "Before you verify your identity, make sure:",
+        "rules": {
+          "faceInFrame": "your face is in the frame",
+          "litArea": "you are in a well lit area",
+          "plainBackground": "you are in front of a plain background",
+          "noHatSunglasses": "you are not wearing a hat or sunglasses"
+        },
+        "inset": "Remember this is a probation check in and should be treated the same as a face-to-face meeting. You should wear appropriate clothing."
+      },
+      "record": {
+        "title": "Verify your identity"
+      },
+      "outcome": {
+        "title": "Verify your identity"
+      },
+      "view": {
+        "title": "View your video",
+        "match": {
+          "heading": "We have confirmed this is you",
+          "intro": "We have confirmed this is you. You can now continue to check your answers.",
+          "continue": "Continue"
+        },
+        "liveNoMatch": {
+          "heading": "We cannot confirm this is you",
+          "intro": "This is because your image does not match the photo we have on your file.",
+          "rulesHeading": "You can try to verify your identity again",
+          "rulesIntro": "Make sure:",
+          "rules": {
+            "faceInFrame": "your face is in the frame",
+            "litArea": "you are in a well lit area",
+            "plainBackground": "you are in front of a plain background",
+            "noHatSunglasses": "you are not wearing a hat or sunglasses"
+          },
+          "tryAgain": "Try again",
+          "submitAnyway": "Submit anyway"
+        },
+        "notLiveMatch": {
+          "heading": "We cannot confirm your identity",
+          "intro": "We cannot confirm this is you, as you did not move quickly enough, or your face left the frame.",
+          "rulesHeading": "If you try to verify your identity again",
+          "rulesIntro": "Make sure:",
+          "rules": {
+            "faceInFrame": "your face is in the frame",
+            "followInstructions": "you follow the instructions to move closer, keeping your face in the frame",
+            "steadyPace": "you move at a steady pace"
+          },
+          "tryAgain": "Try again",
+          "submitAnyway": "Submit anyway"
+        },
+        "notLiveNoMatch": {
+          "heading": "There's been a problem with your identity check",
+          "intro": "We cannot confirm this is you. This is because:",
+          "reasons": {
+            "noMatch": "your image does not match the photo we have on your file",
+            "notLive": "you did not move quickly enough, or your face left the frame"
+          },
+          "rulesHeading": "If you try to verify your identity again",
+          "rulesIntro": "Make sure:",
+          "rules": {
+            "faceInFrame": "your face is in the frame",
+            "followInstructions": "you follow the instructions to move closer, keeping your face in the frame",
+            "steadyPace": "you move at a steady pace"
+          },
+          "tryAgain": "Try again",
+          "submitAnyway": "Submit anyway"
+        },
+        "fallbackMatch": {
+          "heading": "We have confirmed this is you",
+          "intro": "We have confirmed this is you. You can now continue to check your answers.",
+          "continue": "Continue"
+        },
+        "fallback": {
+          "heading": "We cannot confirm this is you",
+          "intro": "We have checked and we cannot confirm this is you. You can try again or submit anyway.",
+          "rulesHeading": "Before you try again, make sure:",
+          "rules": {
+            "litArea": "you are in a well lit area",
+            "plainBackground": "you are in front of a plain background",
+            "faceInFrame": "your face is in the frame",
+            "noHatSunglasses": "you are not wearing a hat or sunglasses"
+          },
+          "tryAgain": "Try again",
+          "submitAnyway": "Submit anyway"
+        }
+      },
+      "partials": {
+        "instructions": {
+          "heading": "Verify your identity",
+          "intro": "To verify your identity you will need to:",
+          "items": {
+            "placeFace": "place your face in the frame",
+            "pressStart": "press the start button",
+            "followInstructions": "follow the instructions to move your face closer, keeping it in the frame"
+          }
+        },
+        "loading": "Checking this is you",
+        "match": {
+          "heading": "We have confirmed this is you",
+          "intro": "We have confirmed this is you. You can now continue to check your answers.",
+          "continue": "Continue"
+        },
+        "cameraError": {
+          "heading": "Verify your identity",
+          "subHeading": "You need to accept permissions on your device",
+          "body": "We are unable to access your camera to verify your identity. Check your browser settings and permissions. If you are having trouble using this service, contact your probation officer.",
+          "start": "Start identity check"
+        },
+        "cameraFramerate": {
+          "heading": "There's been a problem with your identity check",
+          "intro": "This is because your camera is working slowly when we’re trying to verify your identity.",
+          "advice": "You could try closing any apps that may be slowing down your camera and trying to verify your identity again.",
+          "rulesHeading": "If you try to verify your identity again",
+          "rulesIntro": "Make sure:",
+          "rules": {
+            "faceInFrame": "your face is in the frame",
+            "followInstructions": "you follow the instructions to move closer, keeping your face in the frame",
+            "steadyPace": "you move at a steady pace"
+          },
+          "fallbackHint": "If you are struggling to confirm your identity this way, you can record a video instead.",
+          "verifyAgain": "Verify identity again",
+          "recordInstead": "Record a video instead"
+        },
+        "cancelled": {
+          "heading": "We could not complete your identity check",
+          "intro": "This is because you cancelled the check before it was finished. You can try to verify your identity again.",
+          "rulesHeading": "If you try to verify your identity again",
+          "rulesIntro": "Make sure:",
+          "rules": {
+            "faceInFrame": "your face is in the frame",
+            "followInstructions": "you follow the instructions to move closer, keeping your face in the frame",
+            "steadyPace": "you move at a steady pace"
+          },
+          "fallbackHint": "If you are struggling to confirm your identity this way, you can record a video instead.",
+          "verifyAgain": "Verify identity again",
+          "recordInstead": "Record a video instead"
+        },
+        "connectionTimeout": {
+          "heading": "Check your internet connection",
+          "intro": "Your internet connection might not be working properly. You can try to verify your identity again.",
+          "rulesHeading": "If you try to verify your identity again",
+          "rulesIntro": "Make sure:",
+          "rules": {
+            "faceInFrame": "your face is in the frame",
+            "followInstructions": "you follow the instructions to move closer, keeping your face in the frame",
+            "steadyPace": "you move at a steady pace"
+          },
+          "fallbackHint": "If you are struggling to confirm your identity this way, you can record a video instead.",
+          "verifyAgain": "Verify identity again",
+          "recordInstead": "Record a video instead"
+        },
+        "error": {
+          "heading": "We cannot confirm this is you because an error occurred",
+          "intro": "We cannot confirm this is you due to an error. You can try to verify your identity again or record a video instead.",
+          "rulesHeading": "If you try to verify your identity again",
+          "rulesIntro": "Make sure:",
+          "rules": {
+            "faceInFrame": "your face is in the frame",
+            "followInstructions": "you follow the instructions to move closer, keeping your face in the frame",
+            "steadyPace": "you move at a steady pace"
+          },
+          "fallbackHint": "If you are struggling to confirm your identity this way, you can record a video instead.",
+          "verifyAgain": "Verify identity again",
+          "recordInstead": "Record a video instead"
+        },
+        "landscape": {
+          "heading": "There's been a problem with your identity check",
+          "intro": "This is because your device is in landscape when we’re trying to verify your identity.",
+          "advice": "You could turn your device to portrait and try to verify your identity again.",
+          "rulesHeading": "If you try to verify your identity again",
+          "rulesIntro": "Make sure:",
+          "rules": {
+            "faceInFrame": "your face is in the frame",
+            "followInstructions": "you follow the instructions to move closer, keeping your face in the frame",
+            "steadyPace": "you move at a steady pace"
+          },
+          "fallbackHint": "If you are struggling to confirm your identity this way, you can record a video instead.",
+          "verifyAgain": "Verify identity again",
+          "recordInstead": "Record a video instead"
+        },
+        "liveNoMatch": {
+          "heading": "We cannot confirm this is you",
+          "intro": "This is because your image does not match the photo we have on your file.",
+          "rulesHeading": "You can try to verify your identity again",
+          "rulesIntro": "Make sure:",
+          "rules": {
+            "faceInFrame": "your face is in the frame",
+            "litArea": "you are in a well lit area",
+            "plainBackground": "you are in front of a plain background",
+            "noHatSunglasses": "you are not wearing a hat or sunglasses"
+          },
+          "submitHint": "If you are struggling to confirm your identity, you can still submit your check in. Your probation officer will confirm this is you when they review your check in.",
+          "verifyAgain": "Verify identity again",
+          "continueToAnswers": "Continue to check your answers"
+        },
+        "multipleFaces": {
+          "heading": "There's been a problem with your identity check",
+          "intro": "This is because there are other faces in the frame when we’re trying to verify your identity.",
+          "rulesHeading": "If you try to verify your identity again",
+          "rulesIntro": "Make sure:",
+          "rules": {
+            "faceInFrame": "your face is in the frame",
+            "followInstructions": "you follow the instructions to move closer, keeping your face in the frame",
+            "steadyPace": "you move at a steady pace"
+          },
+          "fallbackHint": "If you are struggling to confirm your identity this way, you can record a video instead.",
+          "verifyAgain": "Verify identity again",
+          "recordInstead": "Record a video instead"
+        },
+        "notLiveMatch": {
+          "heading": "We cannot confirm your identity",
+          "intro": "We cannot confirm this is you, as you did not move quickly enough, or your face left the frame.",
+          "rulesHeading": "If you try to verify your identity again",
+          "rulesIntro": "Make sure:",
+          "rules": {
+            "faceInFrame": "your face is in the frame",
+            "followInstructions": "you follow the instructions to move closer, keeping your face in the frame",
+            "steadyPace": "you move at a steady pace"
+          },
+          "submitHint": "If you are struggling to confirm your identity, you can still submit your check in. Your probation officer will confirm this is you when they review your check in.",
+          "verifyAgain": "Verify identity again",
+          "continueToAnswers": "Continue to check your answers"
+        },
+        "notLiveNoMatch": {
+          "heading": "There's been a problem with your identity check",
+          "intro": "We cannot confirm this is you. This is because:",
+          "reasons": {
+            "noMatch": "your image does not match the photo we have on your file",
+            "notLive": "you did not move quickly enough, or your face left the frame"
+          },
+          "rulesHeading": "If you try to verify your identity again",
+          "rulesIntro": "Make sure:",
+          "rules": {
+            "faceInFrame": "your face is in the frame",
+            "followInstructions": "you follow the instructions to move closer, keeping your face in the frame",
+            "steadyPace": "you move at a steady pace"
+          },
+          "submitHint": "If you are struggling to confirm your identity, you can still submit your check in. Your probation officer will confirm this is you when they review your check in.",
+          "verifyAgain": "Verify identity again",
+          "continueToAnswers": "Continue to check your answers"
+        },
+        "timeout": {
+          "heading": "There's been a problem with your identity check",
+          "intro": "We cannot confirm this is you. This is because you ran out of time to move your face during your identity check.",
+          "rulesHeading": "If you try to verify your identity again",
+          "rulesIntro": "Make sure:",
+          "rules": {
+            "faceInFrame": "your face is in the frame",
+            "followInstructions": "you follow the instructions to move closer, keeping your face in the frame",
+            "steadyPace": "you move at a steady pace"
+          },
+          "fallbackHint": "If you are struggling to confirm your identity this way, you can record a video instead.",
+          "verifyAgain": "Verify identity again",
+          "recordInstead": "Record a video instead"
+        }
+      },
+      "fallback": {
+        "inform": {
+          "title": "Confirm your identity",
+          "intro": "Next, we need to record a 5-second video of you on this device. You do not need to speak in the video. Anything you say will not be recorded. You will be able to review the video before you continue.",
+          "comparison": "We will save an image of you taken from the video to compare with the photo your probation officer took when they signed you up. This  will only be used to confirm your identity.",
+          "permissions": "You'll need to accept permissions to record a video on your device.",
+          "rulesHeading": "Before you record your video",
+          "rulesIntro": "Before you record your video, make sure:",
+          "rules": {
+            "litArea": "you are in a well lit area",
+            "plainBackground": "you are in front of a plain background",
+            "faceInFrame": "your face is in the frame",
+            "noHatSunglasses": "you are not wearing a hat or sunglasses"
+          },
+          "inset": "Remember this is a probation check in and should be treated the same as a face-to-face meeting. You should wear appropriate clothing."
+        },
+        "record": {
+          "title": "Record your video",
+          "intro": "You do not need to do anything during the video. Anything you say will not be recorded.",
+          "permissionsHeading": "You need to accept permissions on your device",
+          "permissionsBody": "We are unable to access your camera to record a video. Check your browser settings and permissions. If you are having trouble using this service, contact your probation officer.",
+          "startButton": "Start recording"
+        },
+        "partials": {
+          "loading": "Checking this is you",
+          "review": {
+            "heading": "Review your video",
+            "rulesIntro": "In your video, make sure:",
+            "rules": {
+              "litArea": "you are in a well lit area",
+              "plainBackground": "you are in front of a plain background",
+              "faceInFrame": "your face is in the frame",
+              "noHatSunglasses": "you are not wearing a hat or sunglasses"
+            },
+            "imageAlt": "Screenshot from your video",
+            "ifMeetsRules": "If your video meets the rules, you can continue and we will verify your identity.",
+            "continue": "Continue",
+            "recordAgain": "Record video again"
+          },
+          "match": {
+            "heading": "We have confirmed this is you",
+            "intro": "We have confirmed this is you. You can now continue to check your answers.",
+            "continue": "Continue"
+          },
+          "nomatch": {
+            "heading": "We cannot confirm this is you",
+            "intro": "We have checked and we cannot confirm this is you. You can try recording again or submit your video anyway.",
+            "rulesHeading": "If you record your video again",
+            "rulesIntro": "In your video, make sure:",
+            "rules": {
+              "litArea": "you are in a well lit area",
+              "plainBackground": "you are in front of a plain background",
+              "faceInFrame": "your face is in the frame",
+              "noHatSunglasses": "you are not wearing a hat or sunglasses"
+            },
+            "recordAgain": "Record video again",
+            "submitAnyway": "Submit video anyway"
+          },
+          "error": {
+            "heading": "We cannot confirm this is you because an error occurred",
+            "intro": "We have checked and we cannot confirm this is you. You can try recording again.",
+            "rulesIntro": "In your video, make sure:",
+            "rules": {
+              "litArea": "you are in a well lit area",
+              "plainBackground": "you are in front of a plain background",
+              "faceInFrame": "your face is in the frame",
+              "noHatSunglasses": "you are not wearing a hat or sunglasses"
+            },
+            "tryAgain": "Try recording your video again"
+          }
+        }
+      }
+    },
+    "errors": {
+      "date": {
+        "who": {
+          "your": "your",
+          "their": "their"
+        },
+        "parts": {
+          "day": "a day",
+          "month": "a month",
+          "year": "a year",
+          "year4digits": "4 numbers for the year"
+        },
+        "allMissing": "Enter {{who}} {{label}}",
+        "missingParts": "{{labelSentence}} must include {{parts}}",
+        "yearMustBe4": "Year must include 4 numbers",
+        "dayMustBeNumber": "Day must only contain numbers",
+        "monthMustBeNumber": "Month must only contain numbers",
+        "yearMustBeNumber": "Year must only contain numbers",
+        "allMustBeNumbers": "{{labelSentence}} must only contain numbers",
+        "mustBeReal": "{{labelSentence}} must be a real date",
+        "mustBeFuture": "{{labelSentence}} must be in the future",
+        "mustBeFutureOrToday": "{{labelSentence}} must be today or in the future",
+        "mustBePast": "{{labelSentence}} must be in the past"
+      }
+    }
+  },
+  "public": {
+    "index": {
+      "title": "Probation Check-in Service",
+      "intro": "This service allows you to check in with your probation officer remotely.",
+      "howToAccess": {
+        "heading": "How to access this service",
+        "body": "To use this service, you need a unique link provided by your probation officer. If you have not received a link, please contact your probation officer.",
+        "inset": "If you have received a link to check in, please use that link to access the service."
+      },
+      "needHelp": {
+        "heading": "Need help?",
+        "body": "If you are having difficulty accessing this service, contact your probation officer for assistance."
+      }
+    },
+    "privacy": {
+      "title": "Probation Service Privacy Notice",
+      "heading": "Probation Service Privacy Notice",
+      "purpose": {
+        "heading": "Purpose",
+        "intro": "This privacy notice explains the standards that you can expect from the Probation Service",
+        "items": {
+          "personalData": "when we request, use or hold personal information (‘personal data’) about you",
+          "access": "how you can get access to a copy of your personal data",
+          "complain": "how you can complain if you think we have done something wrong"
+        },
+        "hmpps": "The Probation Service is one part of Her Majesty’s Prison and Probation Service (HMPPS) which is part of the Ministry of Justice (MoJ).",
+        "collect": "We need to collect your personal information to carry out functions such as delivering sentences given by the courts, in custody and the community, and rehabilitating people in our care through education and employment."
+      },
+      "definitions": {
+        "heading": "Definitions",
+        "controller": "The data controller is the decision maker where personal data is being processed. They decide why personal data is being processed and how it will be processed.",
+        "personalData": "Personal data or personal information is any information that can be used to identify a natural person, either directly or indirectly.",
+        "moj": "The MoJ is the data controller for the personal information we hold in HMPPS."
+      },
+      "types": {
+        "heading": "Types of personal data we process",
+        "intro": "We only process personal data that is relevant for the check in service we are providing to you.",
+        "includes": "This includes:",
+        "items": {
+          "nameAddress": "your name and address",
+          "phone": "telephone number",
+          "dob": "date of birth",
+          "photoVideo": "photo and video",
+          "feelings": "information you give us about how you are feeling",
+          "location": "your location",
+          "feedback": "your feedback about the service"
+        }
+      },
+      "purposeProcessing": {
+        "heading": "Purpose of processing and the lawful basis for the process",
+        "legalBasis": "The legal basis for processing your personal information is that it is necessary for the performance of a task carried out in the public interest or the exercise of official authority vested in us.",
+        "decisions": "Your personal information that we collect is used to help us make decisions about you and your progress.",
+        "lawfulDuty": "We also have a lawful duty to prevent crime, execute criminal penalties and safeguarding against the prevention of threats to public security, and the collection and use of your personal information is also necessary to enable us to comply with our obligations under:",
+        "laws": {
+          "prisonAct": "Prison Act 1952",
+          "prisonRules": "Prison Rules 1999",
+          "offenderAct": "Offender Management Act 2007",
+          "childrensAct": "Children's Act 2004"
+        }
+      },
+      "use": {
+        "heading": "How we will use your information",
+        "body": "We’ll use the information you give us as part of your check in to update your probation officer about how you are doing, and if you need any help. This is stored in our system securely."
+      },
+      "sharing": {
+        "heading": "Who the information may be shared with",
+        "intro": "From time to time, we may involve other organisations who can help you further. We may need to pass some information to:",
+        "items": {
+          "nhs": "National Health Service (NHS)",
+          "socialServices": "social services",
+          "employment": "employment service or agencies",
+          "counsellors": "counsellors",
+          "drugAlcohol": "drug and alcohol support groups",
+          "mentalHealth": "mental health support groups",
+          "housing": "housing providers",
+          "specialist": "other specialist groups"
+        },
+        "tellBefore": "We will normally tell you before passing your personal information onto others; however, in some cases (such as safeguarding cases) we may not need to tell you, but this will follow data protection laws."
+      },
+      "askingForData": {
+        "heading": "When we ask you for personal data",
+        "intro": "We promise to tell you why we need your personal data and will only ask for what we need. You can:",
+        "items": {
+          "refuse": "refuse to agree to share information at any time, where it is legal to do so",
+          "discuss": "discuss with your probation officer if you have any questions or concerns",
+          "protect": "protect your information and make sure no unauthorised person has access to it"
+        },
+        "possession": "If you have personal information in your possession and are worried about keeping it safe, please speak to your probation officer.",
+        "weWill": "We will:",
+        "promises": {
+          "shareOnlyIfNeeded": "only share your personal information with other organisations if we need to and it’s relevant",
+          "notKeepTooLong": "make sure we don’t keep your personal information longer than we need to",
+          "notForSale": "not make your personal information available for sale to others",
+          "considerRequest": "consider your request to correct, stop collecting or delete your personal information if relevant and legal"
+        },
+        "survey": "Occasionally we may use your contact information to ask you if you would like to complete a survey, or take part in research about online check ins. We use this information to see where and how we could improve our services to you.",
+        "moreInfo": "If you want more information on how we use and store your data, read the <a class=\"govuk-link\" href=\"/privacy-notice\">Probation Service Privacy Notice</a> and the <a target=\"_blank\" rel=\"nofollow\" href=\"https://www.gov.uk/government/publications/records-information-management-policy-psi-042018-pi-022018?_ga=2.111056325.1998926715.1755701905-1493322833.1755701905\" class=\"govuk-link\">HMPPS Records, Information Management and Retention Policy</a>."
+      },
+      "retention": {
+        "heading": "How long we keep your information",
+        "policy": "We have a detailed policy for how long we need to keep your personal information. You can speak to your probation officer about this or check the <a target=\"_blank\" rel=\"nofollow\" href=\"https://www.gov.uk/government/publications/records-information-management-policy-psi-042018-pi-022018?_ga=2.111056325.1998926715.1755701905-1493322833.1755701905\" class=\"govuk-link\">HMPPS Records, information management and management retention policy</a>.",
+        "details": "You can get more details about:",
+        "items": {
+          "agreements": "agreements we have with other organisations for sharing information",
+          "instructions": "our instructions to staff on how to collect and manage your personal information",
+          "checkAccurate": "how we check that the information we hold is accurate and up to date",
+          "complaint": "how to make a complaint"
+        },
+        "moreInfo": "For more information, speak to your probation officer."
+      },
+      "access": {
+        "heading": "Access to your personal information",
+        "body": "You can find out if we hold any personal information about you by speaking to your probation officer. They will be able to give you some routine information, which doesn’t fall under a subject access request (SAR)",
+        "sar": {
+          "heading": "Subject access requests (SAR)",
+          "body": "If you would like a copy of all the information we hold about you, your probation officer can email the team and ask to see it. This is called a Subject Access Request and means that you can see what information we hold about you. You can ask your probation officer and they’ll submit this on your behalf.",
+          "contact": "You can also contact data.access1@justice.gov.uk to ask for a copy of the information."
+        }
+      },
+      "contact": {
+        "heading": "Contact details and Data Protection Officer",
+        "onBehalf": "On behalf of the MoJ Data Protection Officer.",
+        "address": "102 Petty France<br/> London<br/> SW1H 9AJ",
+        "dpo": "You can also contact the Ministry of Justice Data Protection Officer at <a href=\"mailto:address: DPO@justice.gov.uk\" target=\"_blank\" rel=\"nofollow\" class=\"govuk-link\">DPO@justice.gov.uk</a> if you have any questions or concerns about how we process your information."
+      },
+      "complaints": {
+        "heading": "Complaints",
+        "body": "When we ask you for information, we will keep to the law. If you consider that your personal information has been handled incorrectly, you can contact the Information Commissioner for independent advice about data protection. You can contact the Information Commissioner at:",
+        "address": "Information Commissioner's Office<br/> Wycliffe House<br/> Water Lane<br/> Wilmslow<br/> Cheshire<br/> SK9 5AF<br/> Tel: 0303 123 1113 <a target=\"_blank\" rel=\"nofollow\" href=\"http://www.ico.org.uk\">http://www.ico.org.uk</a>"
+      }
+    },
+    "accessibility": {
+      "title": "Accessibility statement for Check in with your probation officer",
+      "applies": "This accessibility statement applies to the Check in with your probation officer service.",
+      "runBy": "This website is run by Ministry of Justice (MOJ) We want as many people as possible to be able to use this website. For example, that means you should be able to:",
+      "items": {
+        "colours": "change colours, contrast levels and fonts using browser or device settings",
+        "zoom": "zoom in up to 400% without the text spilling off the screen",
+        "keyboard": "navigate most of the website using a keyboard or speech recognition software",
+        "screenReader": "listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)"
+      },
+      "simple": "We’ve also made the website text as simple as possible to understand.",
+      "abilityNet": "<a rel=\"external\" href=\"https://mcmw.abilitynet.org.uk/\">AbilityNet</a> has advice on making your device easier to use if you have a disability.",
+      "howAccessible": {
+        "heading": "How accessible this website is",
+        "intro": "We know some parts of this website are not fully accessible:",
+        "items": {
+          "video": "the video feature can cause challenges for people with low or no vision",
+          "speechToText": "some users using speech to text might have difficulties navigating some fields",
+          "backLinks": "some back links do not navigate to the expected change, possibly causing users to get lost in the service",
+          "hiddenText": "some visually hidden text and labels need to be updated as they contain unique IDs making them harder to understand",
+          "headings": "some pages have heading structures which could be confusing"
+        }
+      },
+      "feedback": {
+        "heading": "Feedback and contact information",
+        "body": "If you find any problems not listed on this page or think we’re not meeting accessibility requirements, contact the service team at: <a href=\"mailto:{{supportEmailAddress}}\" class=\"govuk-link\">{{supportEmailAddress}}</a>",
+        "respond": "We’ll consider your request and get back to you in 5 working days."
+      },
+      "enforcement": {
+        "heading": "Enforcement procedure",
+        "body": "The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’). If you’re not happy with how we respond to your complaint, <a href=\"https://www.equalityadvisoryservice.com/\" class=\"govuk-link\">contact the Equality Advisory and Support Service (EASS)</a>."
+      },
+      "technical": {
+        "heading": "Technical information about this website’s accessibility",
+        "body": "The Ministry of Justice (MOJ) is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018."
+      },
+      "compliance": {
+        "heading": "Compliance status",
+        "tested": "This service will be tested by 30 May 2026.",
+        "publish": "We will publish a full accessibility statement by 30 June 2026.",
+        "notCompliant": "This service is not compliant with the <a href=\"https://www.w3.org/TR/WCAG21/\" class=\"govuk-link\">Web Content Accessibility Guidelines version 2.1</a> AA standard. The non-compliances are listed below.",
+        "notTested": "This service has not yet been tested."
+      },
+      "outsideScope": {
+        "heading": "Content that’s not within the scope of the accessibility regulations",
+        "body": "We have no content outside the scope of accessibility regulations."
+      },
+      "preparation": {
+        "heading": "Preparation of this accessibility statement",
+        "body": "This statement was prepared on 15 April 2026."
+      }
+    },
+    "cookies": {
+      "title": "Cookies policy for Check in with your probation officer",
+      "heading": "Cookies policy for Check in with your probation officer",
+      "lastReviewed": "Last reviewed: 5 December 2025",
+      "intro": "The Check in with your probation officer service stores small pieces of data (known as 'cookies') on your computer in order to operate, and to collect information about how you use online check ins.",
+      "usedTo": "Cookies are used to:",
+      "items": {
+        "loggedIn": "keep you logged in",
+        "measure": "measure how you use the sites, so they can be updated and improved based on your needs"
+      },
+      "thirdParty": "Third-party cookies are not used to identify you personally.",
+      "session": {
+        "heading": "Session cookies",
+        "intro": "The Check in with your probation officer service may store a cookie when you log in to open a session. The cookies used are classed as essential cookies. This means they are necessary to provide this online service, where they are used to transmit, carry out or facilitate the transmission of communications over a network."
+      },
+      "table": {
+        "caption": "Types of session cookies used within service",
+        "head": {
+          "type": "Type of cookie",
+          "purpose": "What it's used for",
+          "expires": "Expires"
+        },
+        "rows": {
+          "session": {
+            "name": "hmpps-esupervision-ui.session",
+            "purpose": "This is used to manage user authentication and session data. This is essential to make online check ins work."
+          },
+          "featureFlags": {
+            "name": "es-feature-flags",
+            "purpose": "This is a functional cookie that controls what functions are available to you."
+          },
+          "lang": {
+            "name": "lang",
+            "purpose": "Remembers your preferred language (English or Welsh)",
+            "expires": "1 year"
+          }
+        }
+      },
+      "analytics": {
+        "heading": "Analytics cookies",
+        "body": "We do not use any analytics, tracking or marketing cookies in online check ins.",
+        "privacyLink": "You can <a class=\"govuk-link\" href=\"/privacy-notice\">check our privacy policy to learn more about how your data is used</a>."
+      }
+    },
+    "guidance": {
+      "title": "About the Check in with your probation officer service",
+      "intro": "This service will allow you to check in with your probation officer online. This could be used in between your in-person appointments, or to replace some of your in-person appointments.",
+      "choosing": {
+        "heading": "Choosing if online check ins are right for you",
+        "talk": "Your probation officer will talk with you about how online check ins work, and you can decide together if you’d like to use them or if they’re something that’s suitable for you.",
+        "stop": "You can stop online check ins at any time by talking to your probation officer.",
+        "accessible": "We are working to make these online check ins as accessible as possible. We will continue this work to fix any accessibility issues that come up."
+      },
+      "signup": {
+        "heading": "How you’ll be signed up to use online check ins",
+        "intro": "If you choose to use online check ins, you’ll be signed up by your probation officer. They may do this in your in-person appointment. To sign up, they will need to enter:",
+        "items": {
+          "name": "your name and date of birth",
+          "phone": "your phone number or email address",
+          "photo": "a photograph of your face we can use to match your identity",
+          "startDate": "the date you will start using online check ins",
+          "frequency": "how often you will use online check ins"
+        },
+        "confirm": "Once you’ve been signed up, you’ll get a message to your preferred contact method to confirm you have signed up and telling you when you’ll get a link to complete your first check in online.",
+        "photoMatch": {
+          "heading": "How we use your photo to match with your submissions",
+          "body": "We take a photo of you during sign up to match with a video you’ll take during your check in. This is to make sure it’s you completing a check in, just like some banking apps ask for a photo or video to check you’re the right person. Your probation officer may take this or ask you to take it and send it to them."
+        }
+      },
+      "completing": {
+        "heading": "How you will complete a check in",
+        "getLink": {
+          "heading": "Getting the link to use online check ins",
+          "firstCheckIn": "When your probation officer signs you up to use online check ins, they will set a date for your first check in.",
+          "messageDate": "On this date, you’ll get a message either by text or email, whichever one you chose. This will have a link to check in, and you’ll have 3 days to complete it."
+        },
+        "whatAsked": {
+          "heading": "What you'll be asked to do",
+          "intro": "During your check in you’ll be asked:",
+          "items": {
+            "name": "your name and date of birth",
+            "questions": "up to 5 questions about how you are and if you need support with anything",
+            "identity": "verify your identity"
+          },
+          "treat": "You should treat your online check in like any other probation appointment and make sure you’re fully and appropriately dressed.",
+          "outsideUk": "You will not be able to use this service to check in if you are outside of the UK."
+        },
+        "verify": {
+          "heading": "How we verify your identity",
+          "compare": "An image of you verifying your identity will be compared to the photo of you taken when you signed up. This is to confirm it is you completing the check in. You’ll also need to verify your identity by moving your face into a frame on your screen using your camera. Follow the instructions to move your face closer, keeping it in the frame.",
+          "permissions": "You’ll need to accept permissions to access your camera on your device."
+        },
+        "cannotConfirm": {
+          "heading": "If we cannot confirm your identity",
+          "continue": "If we cannot confirm your identity, you can still choose to continue and submit your check in anyway. A failed identity check can be caused by lots of things, such as if you’ve changed how you look, if you are not in a well lit area or if you’ve not moved quickly enough in front of the camera.",
+          "review": "Your probation officer will compare your identity check to your photo when they review your check in. If they have any questions, they will contact you."
+        }
+      },
+      "questions": {
+        "heading": "Questions in your online check in",
+        "intro": "During your online check in, you’ll be asked some questions. There are 2 questions that everyone is asked at every check in:",
+        "items": {
+          "feeling": "How have you been feeling since we last spoke?",
+          "support": "Is there anything you need support with or want to let us know about?"
+        },
+        "extra": "Your probation officer can then choose up to 3 extra questions to ask you. These questions will be about you, your life and anything you’ve been talking with your probation officer about. They’ll choose what to ask you to make sure you can give a proper update to them. This means they’ll be able to help you with things in a better way, and ask about things specific to you and your needs.",
+        "confirmation": {
+          "heading": "Confirmation that you’ve completed the check in and what happens next",
+          "body": "Once you’ve submitted your check in, you’ll get a text or an email to confirm that you’ve completed a check in and that your probation officer will review it and get in touch if needed."
+        },
+        "askedSupport": {
+          "heading": "If you have asked for support",
+          "body": "If you have asked for support with something in your check in, or said that you are not feeling great or you’re struggling, your probation officer will get in touch with you to see what they can do to help."
+        },
+        "failed": {
+          "heading": "If you fail to check in",
+          "body": "If you fail to check in for any reason, your probation officer may stop your check ins and contact you to find out why you’ve not been able to complete a check in.",
+          "difficulty": "If you’re having difficulty using online check ins, you should let your probation officer know as soon as possible so they can stop check ins."
+        }
+      },
+      "struggling": {
+        "heading": "What to do if you’re struggling or something goes wrong",
+        "intro": "Contact your probation officer or speak to them in your face-to-face appointment if you have any issues with online check ins. This could include:",
+        "items": {
+          "notWorking": "the system not working",
+          "difficult": "you're finding it difficult to use",
+          "contactChanged": "you’ve changed your contact details",
+          "lostPhone": "you've lost your phone or have an issue accessing the link",
+          "forget": "you forget to check in",
+          "faceToFace": "you want to go back to face-to-face only"
+        },
+        "noBreach": "Any issues you have with online check ins will not result in a breach of your conditions."
+      },
+      "info": {
+        "heading": "How we will use your information",
+        "body": "We’ll use the information you give us as part of your check in to update your probation officer about how you are doing, and if you need any support. This is stored in our system securely.",
+        "privacyLink": "You can <a class=\"govuk-link\" href=\"/privacy-notice\">check our privacy policy to learn more about how we use your data</a>.",
+        "sar": {
+          "heading": "Subject access requests",
+          "body": "If you would like a copy of the information we hold about you, your probation officer can email the team and ask to see it. This is called a subject access request. You can ask your probation officer and they’ll submit this on your behalf.",
+          "email": "You can also email the team at: <a href=\"mailto:data.access1@justice.gov.uk\" class=\"govuk-link\">data.access1@justice.gov.uk</a> to ask for a copy of the information."
+        }
+      },
+      "feedback": {
+        "heading": "How to give feedback about online check ins",
+        "form": "We have an <a href=\"/feedback\" class=\"govuk-link\">online feedback form for you to tell us your experience of online check ins.</a>",
+        "share": "You can fill in the form yourself or with your probation officer whenever you have something to share about online check ins.",
+        "other": "There’ll be other opportunities for you to give feedback, for example, you could choose to talk about your experience in short phone calls."
+      }
+    },
+    "practitionerGuidance": {
+      "title": "About online check ins",
+      "headerServiceLabel": "Manage probation check ins <strong class=\"govuk-tag govuk-phase-banner__content__tag\">Private Beta</strong>",
+      "intro": "Online check ins allow people on probation to update you about their needs and how they are feeling. They’ll do this by answering some questions about how they are and if they need any support. We’ll then ask them to verify their identity to confirm it’s them completing the check in. Once they have completed their check in, you’ll review their answers and can use this information to help monitor risk.",
+      "meaning": {
+        "heading": "What online check ins mean for you",
+        "body": "It is an organisational decision to pilot this tool, as part of wider package of digital products designed to support the Probation Service. We have guidance relating to who is eligible and suitable for online check ins to help you decide who on your caseload can use the service. In line with existing practice, any decisions relating to the frequency of reporting must be recorded."
+      },
+      "howUse": {
+        "heading": "How you can use online check ins",
+        "intro": "You can use online check ins:",
+        "items": {
+          "replace": "to replace some face-to-face contact where appropriate (option 1)",
+          "addition": "as well as existing face-to-face contact to give you an update between appointments (option 2)"
+        },
+        "notAll": "Not everyone will be eligible or suitable to use online check ins, and some might only be eligible for option 2 – using online check ins in addition to existing face-to-face appointments."
+      },
+      "notEligible": {
+        "heading": "Who is not eligible to use online check ins for either option",
+        "body": "People on the Intensive Supervision Court pilot are not eligible for online check ins."
+      },
+      "replace": {
+        "heading": "Using online check ins to replace some face-to-face contact (option 1)",
+        "monthly": "If you’re meeting someone in person every month but they’re doing well, you could use online check ins every other month in place of a face-to-face appointment. While using online check ins in this way, you can deviate from national standards about monthly face-to-face meetings.",
+        "judgement": "Once you’ve determined if the person is eligible, you should use your judgement to decide if they’re suitable.",
+        "suitable": "Someone may be suitable to use online check ins to replace some face-to-face contact if they have:",
+        "items": {
+          "stable": "stable lifestyle factors (for example, employment, accommodation, relationships)",
+          "time": "spent time on probation and understand their responsibilities",
+          "relationship": "an established relationship with their probation practitioner",
+          "agreed": "agreed to use online check ins",
+          "digital": "sufficient digital literacy to complete online forms",
+          "phone": "access to a mobile phone or technology they can use the internet on",
+          "noRestrictions": "no restrictions on device or internet use as part of their conditions",
+          "noDependencies": "no dependencies in their sentence plan that could be affected by using online check ins"
+        },
+        "someOnly": "You must only replace <b>some</b> face-to-face meetings. You cannot use online check ins to replace all face-to-face contact with a person.",
+        "approval": "All decisions to use an online check in to reduce contact must be made with the approval of a senior probation officer, and will have managerial oversight."
+      },
+      "excluded": {
+        "heading": "Who is excluded from using online check ins to replace some face-to-face contact (option 1)",
+        "intro": "People are not eligible to use online check ins to replace face-to-face contact if they are:",
+        "items": {
+          "suspended": "on suspended supervision (for example, through IMPACT and Reset)",
+          "highRisk": "at very high risk of serious harm (ROSH)",
+          "mappa": "a MAPPA (multi-agency public protection arrangements) eligible case level 2 and 3",
+          "nsd": "a National Security Division case",
+          "youth": "on a youth sentence",
+          "child": "part of a child protection or child in need plan",
+          "domesticAbuse": "under a current domestic abuse conviction, have a risk flag for domestic abuse or other evidence that could suggest domestic abuse",
+          "sexual": "under a current sexual conviction/motivation"
+        }
+      },
+      "addition": {
+        "heading": "Using online check ins in addition to existing face-to-face contact (option 2)",
+        "extra": "If you’re meeting a person on probation every two weeks and would like an extra contact due to concern about them, using online check ins could give you an update about how they are without needing an additional face-to-face appointment.",
+        "suitable": "Someone may be suitable to use online check ins as well as existing face-to-face appointments if:",
+        "items": {
+          "additional": "you would like additional information about them for risk management",
+          "agree": "they agree to use online check ins",
+          "digital": "sufficient digital literacy to complete online forms",
+          "phone": "access to a mobile phone or technology they can use the internet on",
+          "noRestrictions": "they have no restrictions on device or internet use as part of their conditions",
+          "noDependencies": "no dependencies in their sentence plan that could be affected by using online check ins"
+        }
+      },
+      "tailored": {
+        "heading": "Tailored questions to help monitor risk",
+        "intro": "All online check ins will include two questions:",
+        "items": {
+          "feeling": "How have you been feeling since we last spoke?",
+          "support": "Is there anything you need support with or want to let us know about?"
+        },
+        "additional": "In addition to these two questions, you can choose to add up to 3 additional questions, up to 23:59 the day before the check in link is sent. You’ll choose from a list of question starters, which all have a space for you to add the subject you want. These are then added to the person’s check in, following the order you add them to the list.",
+        "examples": {
+          "heading": "Examples of tailored questions",
+          "detail": "Some questions have a bit more detail, asking if someone has been able to do something, or get in touch with a person or organisation. Others are more open, allowing you to add more detail or something more specific to their circumstances.",
+          "list": "You’ll choose from a list of question starters, which all have a space for you to customise. For example, you can change 'Have you been able to [insert your text here]?' to 'Have you been able to speak with your GP about your health?."
+        }
+      },
+      "writing": {
+        "heading": "How to write questions for online services",
+        "consider": {
+          "heading": "Things to consider",
+          "different": "Online check ins are very different to face-to-face appointments, as they remove the personal connection and can feel quite detached for people on probation.",
+          "reluctant": "We’ve also heard from people on probation that they are reluctant to write some things down as they are concerned it could be used against them."
+        },
+        "shouldDo": {
+          "heading": "What you should do when writing questions for online check ins",
+          "think": "Think about how the question will come across to someone reading it without the context of a face-to-face conversation.",
+          "youShould": "You should:",
+          "items": {
+            "appropriate": "consider if a question is appropriate for an online service",
+            "context": "think about the person’s circumstances when asking questions about topics that could be upsetting or dangerous, such as drugs, alcohol or abusive relationships",
+            "single": "avoid asking about more than one topic in a single question",
+            "simple": "avoid using complicated language or words that have a simpler alternative",
+            "check": "check spelling and grammar"
+          }
+        }
+      },
+      "data": {
+        "heading": "How data is used and who can see it",
+        "use": "We’ll use the information the person submits to update you about how they are doing, and if they need any support. This is stored in our system securely.",
+        "speak": "They should speak to you about anything relating to their data, and you can email the team at <a href=\"mailto:checkinwithprobation@justice.gov.uk\" class=\"govuk-link\">checkinwithprobation@justice.gov.uk</a> so we can action any data requests.",
+        "privacyLink": "You can <a class=\"govuk-link\" href=\"/privacy-notice\">check our privacy policy to learn more about how we use data</a>.",
+        "sar": {
+          "heading": "Subject access requests",
+          "body": "If anyone you have signed up to use online check ins would like a copy of their information, you can submit a subject access request on their behalf.",
+          "email": "You can also email the team at: <a href=\"mailto:data.access1@justice.gov.uk\" class=\"govuk-link\">data.access1@justice.gov.uk</a> to ask for a copy of the information."
+        }
+      },
+      "stop": {
+        "heading": "When online check ins stop",
+        "body": "If a person on probation’s sentence ends, including where Early Termination is approved, their online check ins will stop automatically. Practitioners do not need to stop check ins manually or record the person as not eligible.",
+        "wantStop": {
+          "heading": "If someone wants to stop using online check ins",
+          "body": "If a person on your caseload wants to stop using online check ins, you can stop their check ins which will stop the links being sent. This will not delete any data and you will still be able to access past check ins. If they decide to restart, you can choose to restart check ins."
+        }
+      },
+      "timeOff": {
+        "heading": "What happens if you take time off",
+        "intro": "If you have annual leave or other leave which means you’ll be unable to review completed check ins, you should talk to the practitioner who will be covering your cases and tell them when the person is expected to check in.",
+        "notifications": "They will not receive notifications for the person, so will need to search for them in Manage people on probation to:",
+        "items": {
+          "find": "find out if they’ve checked in",
+          "review": "review their check in",
+          "followUp": "carry out any follow up tasks needed"
+        },
+        "feedback": "We would like to hear your feedback about how this works and what could be improved."
+      },
+      "contactChange": {
+        "heading": "If someone’s contact details change",
+        "body": "You can view and change a person’s contact details in Manage people on probation."
+      },
+      "concerns": {
+        "heading": "If you have concerns about someone’s risk",
+        "body": "If you have concerns about new or escalating risk for someone on your caseload, you should speak to your Senior Probation Officer (SPO) to decide what to do next. You might want to stop their online check ins. The person would then revert back to in-person appointments only.",
+        "wantStop": {
+          "heading": "If someone wants to stop using online check ins",
+          "body": "If a person on your caseload wants to stop using online check ins, you can stop their check ins which will stop the links being sent. This will not delete any data and you will still be able to access past check ins. If they decide to restart, you’ll have to set them up again. This will cause a duplication in the system. This is something we’re working on and your feedback is appreciated."
+        },
+        "failed": {
+          "heading": "If someone fails to check in",
+          "intro": "There could be many reasons why someone fails to check in, including if:",
+          "items": {
+            "contactChanged": "their contact details have changed and they have not yet updated you",
+            "lostAccess": "they lose access to their phone or email",
+            "notDelivered": "the link to check in is not delivered",
+            "wrong": "something has gone wrong for them"
+          }
+        },
+        "whatToDo": {
+          "heading": "What to do if someone fails to check in",
+          "intro": "You should use your discretion when dealing with failed check ins, but you could:",
+          "items": {
+            "contact": "contact the person to find out why they have failed to check in",
+            "stop": "stop check ins so the person would revert to in-person appointments only",
+            "raise": "raise any issues with contacting the person through the usual channels",
+            "speak": "speak to the single point of contact for online check ins in your office, or your senior probation officer"
+          },
+          "notLinked": "For now, online check ins will not be linked to the person’s conditions, and there will be no breaches. You can use your judgement depending on the situation. If someone hasn’t checked in and there is not a reason for this, you could:",
+          "options": {
+            "warning": "give them a verbal warning after the first failed check in",
+            "stopAfterSecond": "stop check ins after a second failure to complete an online check in and revert to face-to-face contact only"
+          }
+        }
+      },
+      "contact": {
+        "heading": "Who to contact and when",
+        "mailbox": {
+          "heading": "Support mailbox",
+          "intro": "Use the <a href=\"mailto:checkinwithprobation@justice.gov.uk\" class=\"govuk-link\">checkinwithprobation@justice.gov.uk</a> mailbox to tell us if:",
+          "items": {
+            "notWorking": "online check ins are not working",
+            "notAsExpected": "something in online check ins is not working as expected",
+            "struggling": "someone you manage is struggling to use online check ins and needs support",
+            "delete": "someone asks for their data to be deleted",
+            "sar": "someone submits a subject access request (SAR) under the Freedom of Information Act (FOIA)"
+          }
+        }
+      },
+      "givingFeedback": {
+        "heading": "Giving feedback",
+        "thoughts": {
+          "heading": "Tell us your thoughts",
+          "body": "Whether you’ve been using online check ins regularly or haven’t been able to get started yet, <a class=\"govuk-link\" href=\"{{surveyHref}}\">we’d really appreciate hearing from you using our survey</a>, which takes about 5 minutes."
+        },
+        "monthly": {
+          "heading": "Join our monthly feedback calls",
+          "meetings": "Each month we will be hosting 1-hour Teams meetings where you can discuss your experiences of using online check ins with us. These meetings will be open to staff from different offices so you can also learn about the experiences of others. You can attend as many or as few feedback calls as you wish.",
+          "form": "If you are new to online check ins or have been involved in the first phase, we need you to <a class=\"govuk-link\" href=\"{{feedbackFormHref}}\">complete this short form to receive an invitation to provide feedback</a>. By filling out the form, you’ll confirm that you’d like to provide feedback and understand how we’ll handle your information."
+        },
+        "caseload": {
+          "heading": "Feedback from people on your caseload",
+          "form": "We have a <a class=\"govuk-link\" href=\"{{popFeedbackFormHref}}\">feedback form for people using online check ins</a>. This is to understand their experiences.",
+          "access": "They will be able to access this:",
+          "items": {
+            "completing": "when completing their check in",
+            "link": "using a link to it within the confirmation notification they receive when they’ve checked in"
+          },
+          "complete": "You can also complete this with them in face-to-face appointments or share it with them if they want to complete this themselves.",
+          "other": "There may be other ways we contact people on probation to hear their feedback. For example, conducting short phone calls from the local Engaging People on Probation (EPOP) staff member to learn about their experience.",
+          "update": "We will update this guidance when the new form is available."
+        },
+        "whatWeDo": {
+          "heading": "What we do with your feedback",
+          "body": "If something in online check ins is not working or online check ins go down, your feedback will enable us to fix these issues as soon as possible. Your feedback will also help us to improve the design and the way it works."
+        }
+      }
+    },
+    "notFound": {
+      "heading": "Page not found",
+      "typed": "If you typed the web address, check it is correct.",
+      "pasted": "If you pasted the web address, check you copied the entire address.",
+      "linkOrButton": "If the web address is correct or you selected a link or button, contact your probation officer."
+    },
+    "authError": {
+      "heading": "Authorisation error",
+      "body": "You are not authorised to use this application."
+    },
+    "outsideUk": {
+      "title": "Sorry, the service is not available outside of the UK",
+      "body": "You cannot use this service if you are currently outside of the UK. Contact your probation officer for help."
+    },
+    "feedback": {
+      "provide": {
+        "heading": "Give feedback about online check ins",
+        "optional": "You can answer these questions if you want to give feedback on using online check ins to help us improve it. This is completely optional.",
+        "anonymous": "Your feedback is anonymous.",
+        "howEasy": {
+          "legend": "How easy was it to use online check ins? (optional)",
+          "veryEasy": "Very easy",
+          "easy": "Easy",
+          "neitherEasyOrDifficult": "Neither easy or difficult",
+          "difficult": "Difficult",
+          "veryDifficult": "Very difficult"
+        },
+        "gettingSupport": {
+          "legend": "Are you getting the support you need from probation? (optional)",
+          "yes": "Yes",
+          "no": "No"
+        },
+        "improvements": {
+          "legend": "What part of online check ins could we improve? (optional)"
+        },
+        "submit": "Submit feedback"
+      },
+      "thankyou": {
+        "heading": "Thank you for your feedback",
+        "body": "Your feedback is anonymous so you will not receive a reply."
+      }
+    }
+  }
+}

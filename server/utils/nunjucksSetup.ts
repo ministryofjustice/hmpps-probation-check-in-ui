@@ -6,6 +6,8 @@ import fs from 'fs'
 import { get as getKeypath } from 'lodash'
 import { format } from 'date-fns/format'
 import { isValid, parse, parseISO } from 'date-fns'
+import { cy as cyLocale } from 'date-fns/locale/cy'
+import { enGB as enLocale } from 'date-fns/locale/en-GB'
 import { initialiseName } from './utils'
 import config from '../config'
 import logger from '../../logger'
@@ -74,7 +76,9 @@ export default function nunjucksSetup(app: express.Express): void {
     return str.split(sep).map(item => item.trim())
   })
 
-  njkEnv.addFilter('gdsDate', (input?: string | Date | null) => {
+  const resolveLocale = (lang?: string) => (lang === 'cy' ? cyLocale : enLocale)
+
+  njkEnv.addFilter('gdsDate', (input?: string | Date | null, lang?: string) => {
     if (!input) return ''
 
     let d: Date | null = null
@@ -104,15 +108,15 @@ export default function nunjucksSetup(app: express.Express): void {
       }
     }
 
-    return format(d, 'd MMMM yyyy')
+    return format(d, 'd MMMM yyyy', { locale: resolveLocale(lang) })
   })
 
-  njkEnv.addFilter('gdsDateTime', (date: string) => {
+  njkEnv.addFilter('gdsDateTime', (date: string, lang?: string) => {
     if (!date) {
       return ''
     }
     const d = new Date(date)
-    return format(d, "d MMMM yyyy', ' h:mmaaa")
+    return format(d, "d MMMM yyyy', ' h:mmaaa", { locale: resolveLocale(lang) })
   })
 
   njkEnv.addGlobal('checked', function isChecked(name: string, value: string) {

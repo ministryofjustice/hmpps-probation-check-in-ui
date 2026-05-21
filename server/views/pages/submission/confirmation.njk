@@ -2,7 +2,7 @@
 {% extends "../../partials/layout.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
-{% set pageTitle = "Check in completed" %}
+{% set pageTitle = t('submission.confirmation.title') %}
 {% set mainClasses = "app-container govuk-body" %}
 
 {% block content %}
@@ -10,22 +10,21 @@
     <div class="govuk-grid-column-two-thirds">
       {{
         govukPanel({
-          titleText: "Check in completed"
+          titleText: t('submission.confirmation.panel')
         })
       }}
-      <p>We have sent you a confirmation message.</p>
-      <h2 class="govuk-heading-m">What happens next?</h2>
+      <p>{{ t('submission.confirmation.sent') }}</p>
+      <h2 class="govuk-heading-m">{{ t('submission.confirmation.whatNext.heading') }}</h2>
       <p>
-        Your video and answers have been shared with your probation officer. They will contact you if there are any
-        concerns with the information you’ve entered, or if you requested contact.
+        {{ t('submission.confirmation.whatNext.intro') }}
       </p>
-      <p>We will remind you when it is time for your next check in.</p>
+      <p>{{ t('submission.confirmation.whatNext.reminder') }}</p>
 
-      <h2 class="govuk-heading-m">Have your say about online check ins</h2>
-      <p>Help us to improve check ins by answering a few questions about your experience.</p>
-      
+      <h2 class="govuk-heading-m">{{ t('submission.confirmation.feedback.heading') }}</h2>
+      <p>{{ t('submission.confirmation.feedback.intro') }}</p>
+
       {{ govukButton({
-        text: "Give feedback",
+        text: t('submission.confirmation.feedback.button'),
         href: "/feedback"
       }) }}
     </div>

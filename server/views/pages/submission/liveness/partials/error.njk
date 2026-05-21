@@ -1,21 +1,21 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">We cannot confirm this is you because an error occurred</h1>
-    <p>We cannot confirm this is you due to an error. You can try to verify your identity again or record a video instead.</p>
-    <p class="govuk-!-font-weight-bold">If you try to verify your identity again</p>
-    <p>Make sure:</p>
+    <h1 class="govuk-heading-l">{{ t('submission.liveness.partials.error.heading') }}</h1>
+    <p>{{ t('submission.liveness.partials.error.intro') }}</p>
+    <p class="govuk-!-font-weight-bold">{{ t('submission.liveness.partials.error.rulesHeading') }}</p>
+    <p>{{ t('submission.liveness.partials.error.rulesIntro') }}</p>
     <ul class="govuk-list govuk-list--bullet">
-      <li>your face is in the frame</li>
-      <li>you follow the instructions to move closer, keeping your face in the frame</li>
-      <li>you move at a steady pace</li>
+      <li>{{ t('submission.liveness.partials.error.rules.faceInFrame') }}</li>
+      <li>{{ t('submission.liveness.partials.error.rules.followInstructions') }}</li>
+      <li>{{ t('submission.liveness.partials.error.rules.steadyPace') }}</li>
     </ul>
     <p>
-      If you are struggling to confirm your identity this way, you can record a video instead.
+      {{ t('submission.liveness.partials.error.fallbackHint') }}
     </p>
     <div class="govuk-button-group">
-      {{ govukButton({ text: "Verify identity again", href: "/" + submissionId + "/liveness/record" }) }}
-      {{ govukButton({ text: "Record a video instead", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/fallback-inform" }) }}
+      {{ govukButton({ text: t('submission.liveness.partials.error.verifyAgain'), href: "/" + submissionId + "/liveness/record" }) }}
+      {{ govukButton({ text: t('submission.liveness.partials.error.recordInstead'), classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/fallback-inform" }) }}
     </div>
   </div>
 </div>
