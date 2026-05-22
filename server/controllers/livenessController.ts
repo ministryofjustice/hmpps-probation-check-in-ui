@@ -178,18 +178,18 @@ export const getLivenessCredentials: RequestHandler = async (req, res, next) => 
 export const getSnapshotUploadUrl: RequestHandler = async (req, res, next) => {
   try {
     const { submissionId } = req.params
-    // Optional sha256 lets the API bind the URL to the snapshot's bytes.
-    // GET requests will arrive with no body (back-compat for older client builds);
-    // POST requests carry { sha256 } in the JSON body.
-    const sha256 =
-      typeof (req.body as { sha256?: unknown })?.sha256 === 'string'
-        ? (req.body as { sha256: string }).sha256
-        : undefined
+    // The client sends a SHA-256 (base64) of the snapshot it is about to upload, so the
+    // API can bind the presigned URL to those exact bytes. Every snapshot upload must be
+    // hash-bound, so a missing or malformed hash is rejected rather than signed loosely.
+    const { sha256 } = (req.body ?? {}) as { sha256?: unknown }
+    if (typeof sha256 !== 'string' || sha256.length === 0) {
+      throw new Error('Missing snapshot sha256')
+    }
 
     const uploadLocations = await esupervisionService.getCheckinUploadLocation(
       submissionId,
       { video: 'video/mp4', snapshots: ['image/jpeg'] },
-      sha256 ? { snapshots: [{ sha256 }] } : undefined,
+      { snapshots: [{ sha256 }] },
     )
 
     if (!uploadLocations.snapshots?.length) {
