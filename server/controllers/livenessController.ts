@@ -179,8 +179,7 @@ export const getSnapshotUploadUrl: RequestHandler = async (req, res, next) => {
   try {
     const { submissionId } = req.params
     // The client sends a SHA-256 (base64) of the snapshot it is about to upload, so the
-    // API can bind the presigned URL to those exact bytes. Every snapshot upload must be
-    // hash-bound, so a missing or malformed hash is rejected rather than signed loosely.
+    // API can bind the presigned URL to those exact bytes.
     const { sha256 } = (req.body ?? {}) as { sha256?: unknown }
     if (typeof sha256 !== 'string' || sha256.length === 0) {
       throw new Error('Missing snapshot sha256')
