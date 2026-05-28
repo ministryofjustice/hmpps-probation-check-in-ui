@@ -1,30 +1,30 @@
 <div class="es-pane" id="noMatchScreen" hidden aria-hidden="true">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">We cannot confirm this is you</h1>
-      <p>We have checked and we cannot confirm this is you. You can try recording again or submit your video anyway.</p>
+      <h1 class="govuk-heading-l">{{ t('submission.video.partials.nomatch.heading') }}</h1>
+      <p>{{ t('submission.video.partials.nomatch.intro') }}</p>
       <div class="videoRecorder__videoWrap">
         <video class="videoRecorder__video-preview" id="noMatchPreview" controls>
-          Your browser does not support video
+          {{ t('submission.video.partials.nomatch.browserUnsupported') }}
         </video>
       </div>
-      <h2 class="govuk-heading-m">If you record your video again</h2>
-      <p>In your video, make sure:</p>
+      <h2 class="govuk-heading-m">{{ t('submission.video.partials.nomatch.rulesHeading') }}</h2>
+      <p>{{ t('submission.video.partials.nomatch.rulesIntro') }}</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>you are in a well lit area</li>
-        <li>you are in front of a plain background</li>
-        <li>your face is in the frame</li>
-        <li>you are not wearing a hat or sunglasses</li>
+        <li>{{ t('submission.video.partials.nomatch.rules.litArea') }}</li>
+        <li>{{ t('submission.video.partials.nomatch.rules.plainBackground') }}</li>
+        <li>{{ t('submission.video.partials.nomatch.rules.faceInFrame') }}</li>
+        <li>{{ t('submission.video.partials.nomatch.rules.noHatSunglasses') }}</li>
       </ul>
       <div class="govuk-button-group">
-        <a class="govuk-button" role="button" href="">Record video again</a>
+        <a class="govuk-button" role="button" href="">{{ t('submission.video.partials.nomatch.recordAgain') }}</a>
         <a
           class="govuk-button govuk-button--secondary"
           role="button"
           data-module="govuk-button"
           href="/{{ submissionId }}/check-your-answers"
         >
-          Submit video anyway
+          {{ t('submission.video.partials.nomatch.submitAnyway') }}
         </a>
       </div>
     </div>

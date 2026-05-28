@@ -1,23 +1,23 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">We could not complete your identity check</h1>
+    <h1 class="govuk-heading-l">{{ t('submission.liveness.partials.cancelled.heading') }}</h1>
     <p>
-      This is because you cancelled the check before it was finished. You can try to verify your identity again.
+      {{ t('submission.liveness.partials.cancelled.intro') }}
     </p>
-    <p class="govuk-!-font-weight-bold">If you try to verify your identity again</p>
-    <p>Make sure:</p>
+    <p class="govuk-!-font-weight-bold">{{ t('submission.liveness.partials.cancelled.rulesHeading') }}</p>
+    <p>{{ t('submission.liveness.partials.cancelled.rulesIntro') }}</p>
     <ul class="govuk-list govuk-list--bullet">
-      <li>your face is in the frame</li>
-      <li>you follow the instructions to move closer, keeping your face in the frame</li>
-      <li>you move at a steady pace</li>
+      <li>{{ t('submission.liveness.partials.cancelled.rules.faceInFrame') }}</li>
+      <li>{{ t('submission.liveness.partials.cancelled.rules.followInstructions') }}</li>
+      <li>{{ t('submission.liveness.partials.cancelled.rules.steadyPace') }}</li>
     </ul>
     <p>
-      If you are struggling to confirm your identity this way, you can record a video instead.
+      {{ t('submission.liveness.partials.cancelled.fallbackHint') }}
     </p>
     <div class="govuk-button-group">
-      {{ govukButton({ text: "Verify identity again", href: "/" + submissionId + "/liveness/record" }) }}
-      {{ govukButton({ text: "Record a video instead", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/fallback-inform" }) }}
+      {{ govukButton({ text: t('submission.liveness.partials.cancelled.verifyAgain'), href: "/" + submissionId + "/liveness/record" }) }}
+      {{ govukButton({ text: t('submission.liveness.partials.cancelled.recordInstead'), classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/fallback-inform" }) }}
     </div>
   </div>
 </div>

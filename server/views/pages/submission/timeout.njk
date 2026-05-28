@@ -1,16 +1,16 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% extends "../../partials/layout.njk" %}
 
-{% set pageTitle = "Your check in has been reset" %}
+{% set pageTitle = t('submission.timeout.title') %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
-      <p>For your security, your answers have been deleted.</p>
+      <p>{{ t('submission.timeout.intro') }}</p>
       {{
         govukButton({
-          text: "Restart check in",
+          text: t('submission.timeout.restart'),
           href: "/" + submissionId
         })
       }}

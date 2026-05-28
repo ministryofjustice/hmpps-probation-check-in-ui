@@ -4,12 +4,12 @@
 
 {% extends "../../../partials/layout.njk" %}
 
-{% set pageTitle = "Confirm your identity" %}
+{% set pageTitle = t('submission.liveness.inform.title') %}
 
 {% block beforeContent %}
   {{
     govukBackLink({
-      text: "Back",
+      text: t('common.buttons.back'),
       href: "/" + submissionId + ("/questions/additional/" + formData['additionalQuestions'].length if formData['additionalQuestions'] and formData['additionalQuestions'].length else "/questions/assistance")
     })
   }}
@@ -20,27 +20,25 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
       <p>
-        Next you need to verify your identity by moving your face into a frame on your screen using your camera.
-        Follow the instructions to move your face closer, keeping it in the frame.</p>
+        {{ t('submission.liveness.inform.intro') }}</p>
       <p>
-        We’ll compare an image from this with the photo your probation officer took when they signed you up. This will
-        only be used to confirm your identity.
+        {{ t('submission.liveness.inform.comparison') }}
       </p>
-      <p>You’ll need to accept permissions to access your camera on your device.</p>
-      <h2 class="govuk-heading-s">Before you verify your identity</h2>
-      <p>Before you verify your identity, make sure:</p>
+      <p>{{ t('submission.liveness.inform.permissions') }}</p>
+      <h2 class="govuk-heading-s">{{ t('submission.liveness.inform.rulesHeading') }}</h2>
+      <p>{{ t('submission.liveness.inform.rulesIntro') }}</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>your face is in the frame</li>
-        <li>you are in a well lit area</li>
-        <li>you are in front of a plain background</li>
-        <li>you are not wearing a hat or sunglasses</li>
+        <li>{{ t('submission.liveness.inform.rules.faceInFrame') }}</li>
+        <li>{{ t('submission.liveness.inform.rules.litArea') }}</li>
+        <li>{{ t('submission.liveness.inform.rules.plainBackground') }}</li>
+        <li>{{ t('submission.liveness.inform.rules.noHatSunglasses') }}</li>
       </ul>
       {{ govukInsetText({
-        text: "Remember this is a probation check in and should be treated the same as a face-to-face meeting. You should wear appropriate clothing."
+        text: t('submission.liveness.inform.inset')
       }) }}
       {{
         govukButton({
-        text: "Continue",
+        text: t('common.buttons.continue'),
         href: "/" + submissionId + "/liveness/record"
         })
       }}

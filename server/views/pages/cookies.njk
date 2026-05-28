@@ -1,55 +1,67 @@
 {% extends "../partials/layout.njk" %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
+{% set pageTitle = t('public.cookies.title') %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds govuk-body">
-        <h1 class="govuk-heading-xl">Cookies policy for Check in with your probation officer</h1>
-        <p class="govuk-body">Last reviewed: 5 December 2025</p> 
+        <h1 class="govuk-heading-xl">{{ t('public.cookies.heading') }}</h1>
+        <p class="govuk-body">{{ t('public.cookies.lastReviewed') }}</p>
 
-        <p class="govuk-body">The Check in with your probation officer service stores small pieces of data (known as 'cookies') on your computer in order to operate, and to collect information about how you use online check ins. </p> 
+        <p class="govuk-body">{{ t('public.cookies.intro') }}</p>
 
-        <p class="govuk-body">Cookies are used to:</p> 
+        <p class="govuk-body">{{ t('public.cookies.usedTo') }}</p>
         <ul class="govuk-list govuk-list--bullet">
-            <li>keep you logged in </li> 
-            <li>measure how you use the sites, so they can be updated and improved based on your needs </li> 
+            <li>{{ t('public.cookies.items.loggedIn') }}</li>
+            <li>{{ t('public.cookies.items.measure') }}</li>
         </ul>
 
-        <p class="govuk-body">Third-party cookies are not used to identify you personally. </p> 
+        <p class="govuk-body">{{ t('public.cookies.thirdParty') }}</p>
 
-        <h2 class="govuk-heading-l">Session cookies</h2>
+        <h2 class="govuk-heading-l">{{ t('public.cookies.session.heading') }}</h2>
 
-        <p class="govuk-body">The Check in with your probation officer service may store a cookie when you log in to open a session. The cookies used are classed as essential cookies. This means they are necessary to provide this online service, where they are used to transmit, carry out or facilitate the transmission of communications over a network.</p> 
+        <p class="govuk-body">{{ t('public.cookies.session.intro') }}</p>
 
         {{ govukTable({
-            caption: "Types of session cookies used within service",
+            caption: t('public.cookies.table.caption'),
             captionClasses: "govuk-visually-hidden",
             head: [
                 {
-                    text: "Type of cookie"
+                    text: t('public.cookies.table.head.type')
                 },
                 {
-                    text: "What it's used for"
+                    text: t('public.cookies.table.head.purpose')
+                },
+                {
+                    text: t('public.cookies.table.head.expires')
                 }
             ],
             rows: [
                 [
-                    { text: "hmpps-esupervision-ui.session" },
-                    { text: "This is used to manage user authentication and session data. This is essential to make online check ins work." }
+                    { text: t('public.cookies.table.rows.session.name') },
+                    { text: t('public.cookies.table.rows.session.purpose') },
+                    { text: "" }
                 ],
                 [
-                    { text: "es-feature-flags" },
-                    { text: "This is a functional cookie that controls what functions are available to you." }
+                    { text: t('public.cookies.table.rows.featureFlags.name') },
+                    { text: t('public.cookies.table.rows.featureFlags.purpose') },
+                    { text: "" }
+                ],
+                [
+                    { text: t('public.cookies.table.rows.lang.name') },
+                    { text: t('public.cookies.table.rows.lang.purpose') },
+                    { text: t('public.cookies.table.rows.lang.expires') }
                 ]
             ]
             })
         }}
 
-        <h2 class="govuk-heading-l">Analytics cookies</h2> 
+        <h2 class="govuk-heading-l">{{ t('public.cookies.analytics.heading') }}</h2>
 
-        <p class="govuk-body">We do not use any analytics, tracking or marketing cookies in online check ins.</p> 
+        <p class="govuk-body">{{ t('public.cookies.analytics.body') }}</p>
 
-        <p class="govuk-body">You can <a class="govuk-link" href="/privacy-notice">check our privacy policy to learn more about how your data is used</a>.</p>
+        <p class="govuk-body">{{ t('public.cookies.analytics.privacyLink') | safe }}</p>
     </div>
   </div>
 {% endblock %}

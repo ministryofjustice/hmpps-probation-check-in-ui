@@ -2,13 +2,13 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">
-      We have confirmed this is you
+      {{ t('submission.liveness.partials.match.heading') }}
     </h1>
     <p>
-      We have confirmed this is you. You can now continue to check your answers.
+      {{ t('submission.liveness.partials.match.intro') }}
     </p>
     <div class="govuk-button-group">
-      {{ govukButton({ text: "Continue", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
+      {{ govukButton({ text: t('submission.liveness.partials.match.continue'), href: "/" + submissionId + "/liveness/check-your-answers" }) }}
     </div>
   </div>
 </div>

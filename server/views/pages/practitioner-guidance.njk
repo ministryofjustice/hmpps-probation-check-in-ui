@@ -1,5 +1,5 @@
 {% extends "../partials/layout.njk" %}
-{% set pageTitle = "About online check ins" %}
+{% set pageTitle = t('public.practitionerGuidance.title') %}
 {%- from "moj/components/header/macro.njk" import mojHeader -%}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% set feedbackFormHref = "https://portal.consentkit.com/consent/form/b2e85747-2989-41f8-bcd4-e6633bbca324/start" %}
@@ -13,7 +13,7 @@
         href: "/"
       },
       serviceLabel: {
-        html: 'Manage probation check ins <strong class="govuk-tag govuk-phase-banner__content__tag">Private Beta</strong>',
+        html: t('public.practitionerGuidance.headerServiceLabel'),
         href: "/"
       }
     })
@@ -26,271 +26,242 @@
       <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
 
       <p class="govuk-body">
-        Online check ins allow people on probation to update you about their needs and how they are feeling. They’ll do this by answering some questions about how they are and if they need any support. We’ll then ask them to verify their identity to confirm it’s them completing the check in. Once they have completed their check in, you’ll review their answers and can use this information to help monitor risk.
+        {{ t('public.practitionerGuidance.intro') }}
       </p>
 
-      <h2 class="govuk-heading-l">What online check ins mean for you</h2>
+      <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.meaning.heading') }}</h2>
 
       <p class="govuk-body">
-        It is an organisational decision to pilot this tool, as part of wider package of digital products designed to
-        support the Probation Service. We have guidance relating to who is eligible and suitable for online check ins to
-        help you decide who on your caseload can use the service. In line with existing practice, any decisions relating
-        to the frequency of reporting must be recorded.
+        {{ t('public.practitionerGuidance.meaning.body') }}
       </p>
 
 
-        <h2 class="govuk-heading-l">How you can use online check ins</h2>
-        <p class="govuk-body">You can use online check ins:</p>
+        <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.howUse.heading') }}</h2>
+        <p class="govuk-body">{{ t('public.practitionerGuidance.howUse.intro') }}</p>
         <ul class="govuk-list govuk-list--bullet">
-        <li>to replace some face-to-face contact where appropriate (option 1)</li>
-        <li>as well as existing face-to-face contact to give you an update between appointments (option 2)</li>
+        <li>{{ t('public.practitionerGuidance.howUse.items.replace') }}</li>
+        <li>{{ t('public.practitionerGuidance.howUse.items.addition') }}</li>
         </ul>
-        <p class="govuk-body">Not everyone will be eligible or suitable to use online check ins, and some might only be eligible for option 2 – using online check ins in addition to existing face-to-face appointments.</p>
-        <h2 class="govuk-heading-l">Who is not eligible to use online check ins for either option</h2>
-        <p class="govuk-body">People on the Intensive Supervision Court pilot are not eligible for online check ins.</p>
-        <h2 class="govuk-heading-l">Using online check ins to replace some face-to-face contact (option 1)</h2>
+        <p class="govuk-body">{{ t('public.practitionerGuidance.howUse.notAll') }}</p>
+        <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.notEligible.heading') }}</h2>
+        <p class="govuk-body">{{ t('public.practitionerGuidance.notEligible.body') }}</p>
+        <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.replace.heading') }}</h2>
 
 
-        <p class="govuk-body">If you’re meeting someone in person every month but they’re doing well, you could use online check ins every other month in place of a face-to-face appointment. While using online check ins in this way, you can deviate from national standards about monthly face-to-face meetings.</p>
-        <p class="govuk-body">Once you’ve determined if the person is eligible, you should use your judgement to decide if they’re suitable.</p>
+        <p class="govuk-body">{{ t('public.practitionerGuidance.replace.monthly') }}</p>
+        <p class="govuk-body">{{ t('public.practitionerGuidance.replace.judgement') }}</p>
 
 
-        <p class="govuk-body">Someone may be suitable to use online check ins to replace some face-to-face contact if they have:</p>
+        <p class="govuk-body">{{ t('public.practitionerGuidance.replace.suitable') }}</p>
           <ul class="govuk-list govuk-list--bullet">
-              <li>stable lifestyle factors (for example, employment, accommodation, relationships)</li>
-              <li>spent time on probation and understand their responsibilities</li>
-              <li>an established relationship with their probation practitioner</li>
-              <li>agreed to use online check ins</li>
-              <li>sufficient digital literacy to complete online forms</li>
-              <li>access to a mobile phone or technology they can use the internet on</li>
-              <li>no restrictions on device or internet use as part of their conditions</li>
-              <li>no dependencies in their sentence plan that could be affected by using online check ins</li>
-          </ul> <p>You must only replace <b>some</b> face-to-face meetings. You cannot use online check ins to replace all face-to-face contact with a person.
+              <li>{{ t('public.practitionerGuidance.replace.items.stable') }}</li>
+              <li>{{ t('public.practitionerGuidance.replace.items.time') }}</li>
+              <li>{{ t('public.practitionerGuidance.replace.items.relationship') }}</li>
+              <li>{{ t('public.practitionerGuidance.replace.items.agreed') }}</li>
+              <li>{{ t('public.practitionerGuidance.replace.items.digital') }}</li>
+              <li>{{ t('public.practitionerGuidance.replace.items.phone') }}</li>
+              <li>{{ t('public.practitionerGuidance.replace.items.noRestrictions') }}</li>
+              <li>{{ t('public.practitionerGuidance.replace.items.noDependencies') }}</li>
+          </ul> <p>{{ t('public.practitionerGuidance.replace.someOnly') | safe }}
                        </p>
-                       <p>All decisions to use an online check in to reduce contact must be made with the approval of a senior probation officer, and will have managerial oversight. </p>
+                       <p>{{ t('public.practitionerGuidance.replace.approval') }}</p>
 
 
-        <h2 class="govuk-heading-l"> Who is excluded from using online check ins to replace some face-to-face contact (option 1)</h2>
-        <p class="govuk-body">People are not eligible to use online check ins to replace face-to-face contact if they are:</p>
+        <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.excluded.heading') }}</h2>
+        <p class="govuk-body">{{ t('public.practitionerGuidance.excluded.intro') }}</p>
           <ul class="govuk-list govuk-list--bullet">
-              <li>on suspended supervision (for example, through IMPACT and Reset)</li>
-              <li>at very high risk of serious harm (ROSH)</li>
-              <li>a MAPPA (multi-agency public protection arrangements) eligible case level 2 and 3</li>
-              <li>a National Security Division case</li>
-              <li>on a youth sentence</li>
-              <li>part of a child protection or child in need plan </li>
-              <li>under a current domestic abuse conviction, have a risk flag for domestic abuse or other evidence that could suggest domestic abuse  </li>
-              <li>under a current sexual conviction/motivation </li>
+              <li>{{ t('public.practitionerGuidance.excluded.items.suspended') }}</li>
+              <li>{{ t('public.practitionerGuidance.excluded.items.highRisk') }}</li>
+              <li>{{ t('public.practitionerGuidance.excluded.items.mappa') }}</li>
+              <li>{{ t('public.practitionerGuidance.excluded.items.nsd') }}</li>
+              <li>{{ t('public.practitionerGuidance.excluded.items.youth') }}</li>
+              <li>{{ t('public.practitionerGuidance.excluded.items.child') }}</li>
+              <li>{{ t('public.practitionerGuidance.excluded.items.domesticAbuse') }}</li>
+              <li>{{ t('public.practitionerGuidance.excluded.items.sexual') }}</li>
           </ul>
-       <h2 class="govuk-heading-l">Using online check ins in addition to existing face-to-face contact (option 2)</h2>
-        <p class="govuk-body">If you’re meeting a person on probation every two weeks and would like an extra contact due to concern about them, using online check ins could give you an update about how they are without needing an additional face-to-face appointment.</p>
-        <p class="govuk-body">Someone may be suitable to use online check ins as well as existing face-to-face appointments if: </p>
+       <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.addition.heading') }}</h2>
+        <p class="govuk-body">{{ t('public.practitionerGuidance.addition.extra') }}</p>
+        <p class="govuk-body">{{ t('public.practitionerGuidance.addition.suitable') }}</p>
           <ul class="govuk-list govuk-list--bullet">
-              <li>you would like additional information about them for risk management</li>
-              <li>they agree to use online check ins</li>
-              <li>sufficient digital literacy to complete online forms</li>
-              <li>access to a mobile phone or technology they can use the internet on</li>
-              <li>they have no restrictions on device or internet use as part of their conditions</li>
-              <li>no dependencies in their sentence plan that could be affected by using online check ins </li>
+              <li>{{ t('public.practitionerGuidance.addition.items.additional') }}</li>
+              <li>{{ t('public.practitionerGuidance.addition.items.agree') }}</li>
+              <li>{{ t('public.practitionerGuidance.addition.items.digital') }}</li>
+              <li>{{ t('public.practitionerGuidance.addition.items.phone') }}</li>
+              <li>{{ t('public.practitionerGuidance.addition.items.noRestrictions') }}</li>
+              <li>{{ t('public.practitionerGuidance.addition.items.noDependencies') }}</li>
           </ul>
 
 
-        <h2 class="govuk-heading-l">Tailored questions to help monitor risk</h2>
-        <p>All online check ins will include two questions: </p>
+        <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.tailored.heading') }}</h2>
+        <p>{{ t('public.practitionerGuidance.tailored.intro') }}</p>
         <ul class="govuk-list govuk-list--bullet">
-            <li>How have you been feeling since we last spoke? </li>
-            <li>Is there anything you need support with or want to let us know about? </li>
+            <li>{{ t('public.practitionerGuidance.tailored.items.feeling') }}</li>
+            <li>{{ t('public.practitionerGuidance.tailored.items.support') }}</li>
         </ul>
-<p>In addition to these two questions, you can choose to add up to 3 additional questions, up to 23:59 the day before the check in link is sent. You’ll choose from a list of question starters, which all have a space for you to add the subject you want. These are then added to the person’s check in, following the order you add them to the list.  </p>
+<p>{{ t('public.practitionerGuidance.tailored.additional') }}</p>
 
-    <h3 class="govuk-heading-m">Examples of tailored questions</h3>
-    <p>Some questions have a bit more detail, asking if someone has been able to do something, or get in touch with a person or organisation. Others are more open, allowing you to add more detail or something more specific to their circumstances. </p>
-    <p>You’ll choose from a list of question starters, which all have a space for you to customise. For example, you can change 'Have you been able to [insert your text here]?' to 'Have you been able to speak with your GP about your health?. </p>
+    <h3 class="govuk-heading-m">{{ t('public.practitionerGuidance.tailored.examples.heading') }}</h3>
+    <p>{{ t('public.practitionerGuidance.tailored.examples.detail') }}</p>
+    <p>{{ t('public.practitionerGuidance.tailored.examples.list') }}</p>
 
-<h2 class="govuk-heading-l">How to write questions for online services</h2>
-<h3 class="govuk-heading-m">Things to consider</h3>
-<p>Online check ins are very different to face-to-face appointments, as they remove the personal connection and can feel quite detached for people on probation. </p>
-  <p>We’ve also heard from people on probation that they are reluctant to write some things down as they are concerned it could be used against them. </p>
-<h3 class="govuk-heading-m">What you should do when writing questions for online check ins</h3>
-<p>Think about how the question will come across to someone reading it without the context of a face-to-face conversation. </p>
-<p>You should: </p>
+<h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.writing.heading') }}</h2>
+<h3 class="govuk-heading-m">{{ t('public.practitionerGuidance.writing.consider.heading') }}</h3>
+<p>{{ t('public.practitionerGuidance.writing.consider.different') }}</p>
+  <p>{{ t('public.practitionerGuidance.writing.consider.reluctant') }}</p>
+<h3 class="govuk-heading-m">{{ t('public.practitionerGuidance.writing.shouldDo.heading') }}</h3>
+<p>{{ t('public.practitionerGuidance.writing.shouldDo.think') }}</p>
+<p>{{ t('public.practitionerGuidance.writing.shouldDo.youShould') }}</p>
 <ul class="govuk-list govuk-list--bullet">
     <li>
-    consider if a question is appropriate for an online service </li>
+    {{ t('public.practitionerGuidance.writing.shouldDo.items.appropriate') }} </li>
 
-    <li>think about the person’s circumstances when asking questions about topics that could be upsetting or dangerous, such as drugs, alcohol or abusive relationships </li>
+    <li>{{ t('public.practitionerGuidance.writing.shouldDo.items.context') }}</li>
 
-    <li>avoid asking about more than one topic in a single question </li>
+    <li>{{ t('public.practitionerGuidance.writing.shouldDo.items.single') }}</li>
 
-    <li>avoid using complicated language or words that have a simpler alternative </li>
+    <li>{{ t('public.practitionerGuidance.writing.shouldDo.items.simple') }}</li>
 
-    <li>check spelling and grammar</li>
+    <li>{{ t('public.practitionerGuidance.writing.shouldDo.items.check') }}</li>
 </ul>
 
 
-      <h2 class="govuk-heading-l">How data is used and who can see it</h2>
+      <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.data.heading') }}</h2>
       <p class="govuk-body">
-        We’ll use the information the person submits to update you about how they are doing, and if they need any
-        support. This is stored in our system securely.
+        {{ t('public.practitionerGuidance.data.use') }}
       </p>
       <p class="govuk-body">
-        They should speak to you about anything relating to their data, and you can email the team at
-        <a href="mailto:checkinwithprobation@justice.gov.uk" class="govuk-link">checkinwithprobation@justice.gov.uk</a>
-        so we can action any data requests.
+        {{ t('public.practitionerGuidance.data.speak') | safe }}
       </p>
-      <p class="govuk-body">You can <a class="govuk-link" href="/privacy-notice">check our privacy policy to learn more about how we use data</a>.</p>
+      <p class="govuk-body">{{ t('public.practitionerGuidance.data.privacyLink') | safe }}</p>
 
-      <h3 class="govuk-heading-m">Subject access requests</h3>
+      <h3 class="govuk-heading-m">{{ t('public.practitionerGuidance.data.sar.heading') }}</h3>
 
       <p class="govuk-body">
-        If anyone you have signed up to use online check ins would like a copy of their information, you can submit a
-        subject access request on their behalf.
+        {{ t('public.practitionerGuidance.data.sar.body') }}
       </p>
       <p class="govuk-body">
-        You can also email the team at:
-        <a href="mailto:data.access1@justice.gov.uk" class="govuk-link">data.access1@justice.gov.uk</a> to ask for a
-        copy of the information.
+        {{ t('public.practitionerGuidance.data.sar.email') | safe }}
       </p>
 
-      <h2 class="govuk-heading-l">When online check ins stop</h2>
-      <p>If a person on probation’s sentence ends, including where Early Termination is approved, their online check ins will stop automatically. Practitioners do not need to stop check ins manually or record the person as not eligible. </p>
-      <h3 class="govuk-heading-m">If someone wants to stop using online check ins</h3>
-      <p>If a person on your caseload wants to stop using online check ins, you can stop their check ins which will stop the links being sent. This will not delete any data and you will still be able to access past check ins. If they decide to restart, you can choose to restart check ins.   </p>
+      <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.stop.heading') }}</h2>
+      <p>{{ t('public.practitionerGuidance.stop.body') }}</p>
+      <h3 class="govuk-heading-m">{{ t('public.practitionerGuidance.stop.wantStop.heading') }}</h3>
+      <p>{{ t('public.practitionerGuidance.stop.wantStop.body') }}</p>
 
-      <h2 class="govuk-heading-l">What happens if you take time off</h2>
+      <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.timeOff.heading') }}</h2>
       <p class="govuk-body">
-        If you have annual leave or other leave which means you’ll be unable to review completed check ins, you should
-        talk to the practitioner who will be covering your cases and tell them when the person is expected to check in.
+        {{ t('public.practitionerGuidance.timeOff.intro') }}
       </p>
       <p class="govuk-body">
-        They will not receive notifications for the person, so will need to search for them in Manage people on
-        probation to:
+        {{ t('public.practitionerGuidance.timeOff.notifications') }}
       </p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>find out if they’ve checked in</li>
-        <li>review their check in</li>
-        <li>carry out any follow up tasks needed</li>
+        <li>{{ t('public.practitionerGuidance.timeOff.items.find') }}</li>
+        <li>{{ t('public.practitionerGuidance.timeOff.items.review') }}</li>
+        <li>{{ t('public.practitionerGuidance.timeOff.items.followUp') }}</li>
       </ul>
-      <p class="govuk-body">We would like to hear your feedback about how this works and what could be improved.</p>
+      <p class="govuk-body">{{ t('public.practitionerGuidance.timeOff.feedback') }}</p>
 
-      <h2 class="govuk-heading-l">If someone’s contact details change</h2>
+      <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.contactChange.heading') }}</h2>
 
-      <p class="govuk-body">You can view and change a person’s contact details in Manage people on probation.</p>
+      <p class="govuk-body">{{ t('public.practitionerGuidance.contactChange.body') }}</p>
 
-      <h2 class="govuk-heading-l">If you have concerns about someone’s risk</h2>
-
-      <p class="govuk-body">
-        If you have concerns about new or escalating risk for someone on your caseload, you should speak to your Senior Probation Officer (SPO) to decide what to do next. You might want to stop their online check ins. The person would then revert back to in-person appointments only.
-      </p>
-
-      <h3 class="govuk-heading-m">If someone wants to stop using online check ins</h3>
+      <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.concerns.heading') }}</h2>
 
       <p class="govuk-body">
-        If a person on your caseload wants to stop using online check ins, you can stop their check ins which will stop
-        the links being sent. This will not delete any data and you will still be able to access past check ins. If they
-        decide to restart, you’ll have to set them up again. This will cause a duplication in the system. This is
-        something we’re working on and your feedback is appreciated.
+        {{ t('public.practitionerGuidance.concerns.body') }}
       </p>
 
-      <h3 class="govuk-heading-m">If someone fails to check in</h3>
+      <h3 class="govuk-heading-m">{{ t('public.practitionerGuidance.concerns.wantStop.heading') }}</h3>
 
-      <p class="govuk-body">There could be many reasons why someone fails to check in, including if:</p>
+      <p class="govuk-body">
+        {{ t('public.practitionerGuidance.concerns.wantStop.body') }}
+      </p>
+
+      <h3 class="govuk-heading-m">{{ t('public.practitionerGuidance.concerns.failed.heading') }}</h3>
+
+      <p class="govuk-body">{{ t('public.practitionerGuidance.concerns.failed.intro') }}</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>their contact details have changed and they have not yet updated you</li>
-        <li>they lose access to their phone or email</li>
-        <li>the link to check in is not delivered</li>
-        <li>something has gone wrong for them</li>
+        <li>{{ t('public.practitionerGuidance.concerns.failed.items.contactChanged') }}</li>
+        <li>{{ t('public.practitionerGuidance.concerns.failed.items.lostAccess') }}</li>
+        <li>{{ t('public.practitionerGuidance.concerns.failed.items.notDelivered') }}</li>
+        <li>{{ t('public.practitionerGuidance.concerns.failed.items.wrong') }}</li>
       </ul>
 
-      <h4 class="govuk-heading-s">What to do if someone fails to check in</h4>
+      <h4 class="govuk-heading-s">{{ t('public.practitionerGuidance.concerns.whatToDo.heading') }}</h4>
 
-      <p class="govuk-body">You should use your discretion when dealing with failed check ins, but you could:</p>
+      <p class="govuk-body">{{ t('public.practitionerGuidance.concerns.whatToDo.intro') }}</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>contact the person to find out why they have failed to check in</li>
-        <li>stop check ins so the person would revert to in-person appointments only</li>
-        <li>raise any issues with contacting the person through the usual channels</li>
+        <li>{{ t('public.practitionerGuidance.concerns.whatToDo.items.contact') }}</li>
+        <li>{{ t('public.practitionerGuidance.concerns.whatToDo.items.stop') }}</li>
+        <li>{{ t('public.practitionerGuidance.concerns.whatToDo.items.raise') }}</li>
         <li>
-          speak to the single point of contact for online check ins in your office, or your senior probation officer
+          {{ t('public.practitionerGuidance.concerns.whatToDo.items.speak') }}
         </li>
       </ul>
       <p class="govuk-body">
-        For now, online check ins will not be linked to the person’s conditions, and there will be no breaches. You can
-        use your judgement depending on the situation. If someone hasn’t checked in and there is not a reason for this,
-        you could:
+        {{ t('public.practitionerGuidance.concerns.whatToDo.notLinked') }}
       </p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>give them a verbal warning after the first failed check in</li>
+        <li>{{ t('public.practitionerGuidance.concerns.whatToDo.options.warning') }}</li>
         <li>
-          stop check ins after a second failure to complete an online check in and revert to face-to-face contact only
+          {{ t('public.practitionerGuidance.concerns.whatToDo.options.stopAfterSecond') }}
         </li>
       </ul>
 
-      <h2 class="govuk-heading-l">Who to contact and when</h2>
+      <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.contact.heading') }}</h2>
 
-      <h3 class="govuk-heading-m">Support mailbox</h3>
+      <h3 class="govuk-heading-m">{{ t('public.practitionerGuidance.contact.mailbox.heading') }}</h3>
 
       <p class="govuk-body">
-        Use the
-        <a href="mailto:checkinwithprobation@justice.gov.uk" class="govuk-link">checkinwithprobation@justice.gov.uk</a>
-        mailbox to tell us if:
+        {{ t('public.practitionerGuidance.contact.mailbox.intro') | safe }}
       </p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>online check ins are not working</li>
-        <li>something in online check ins is not working as expected</li>
-        <li>someone you manage is struggling to use online check ins and needs support</li>
-        <li>someone asks for their data to be deleted</li>
-        <li>someone submits a subject access request (SAR) under the Freedom of Information Act (FOIA)</li>
+        <li>{{ t('public.practitionerGuidance.contact.mailbox.items.notWorking') }}</li>
+        <li>{{ t('public.practitionerGuidance.contact.mailbox.items.notAsExpected') }}</li>
+        <li>{{ t('public.practitionerGuidance.contact.mailbox.items.struggling') }}</li>
+        <li>{{ t('public.practitionerGuidance.contact.mailbox.items.delete') }}</li>
+        <li>{{ t('public.practitionerGuidance.contact.mailbox.items.sar') }}</li>
       </ul>
 
-      <h2 class="govuk-heading-l">Giving feedback</h2>
+      <h2 class="govuk-heading-l">{{ t('public.practitionerGuidance.givingFeedback.heading') }}</h2>
 
-      <h3 class="govuk-heading-m">Tell us your thoughts</h3>
-      <p>Whether you’ve been using online check ins regularly or haven’t been able to get started yet,
-      <a class="govuk-link" href="{{ surveyHref }}">we’d really appreciate hearing from you using our survey</a>,
-      which takes about 5 minutes.   </p>
-      <h3 class="govuk-heading-m">Join our monthly feedback calls</h3>
+      <h3 class="govuk-heading-m">{{ t('public.practitionerGuidance.givingFeedback.thoughts.heading') }}</h3>
+      <p>{{ t('public.practitionerGuidance.givingFeedback.thoughts.body', { surveyHref: surveyHref }) | safe }}</p>
+      <h3 class="govuk-heading-m">{{ t('public.practitionerGuidance.givingFeedback.monthly.heading') }}</h3>
 
 
       <p class="govuk-body">
-        Each month we will be hosting 1-hour Teams meetings where you can discuss your experiences of using online check
-        ins with us. These meetings will be open to staff from different offices so you can also learn about the
-        experiences of others. You can attend as many or as few feedback calls as you wish.
+        {{ t('public.practitionerGuidance.givingFeedback.monthly.meetings') }}
       </p>
 
       <p class="govuk-body">
-        If you are new to online check ins or have been involved in the first phase, we need you to
-        <a class="govuk-link" href="{{ feedbackFormHref }}"
-          >complete this short form to receive an invitation to provide feedback</a
-        >. By filling out the form, you’ll confirm that you’d like to provide feedback and understand how we’ll handle
-        your information.
+        {{ t('public.practitionerGuidance.givingFeedback.monthly.form', { feedbackFormHref: feedbackFormHref }) | safe }}
       </p>
 
 
 
-      <h3 class="govuk-heading-m">Feedback from people on your caseload</h3>
+      <h3 class="govuk-heading-m">{{ t('public.practitionerGuidance.givingFeedback.caseload.heading') }}</h3>
 
       <p class="govuk-body">
-        We have a <a class="govuk-link" href="{{ popFeedbackFormHref }}">feedback form for people using online check ins</a>. This is to understand their experiences.
+        {{ t('public.practitionerGuidance.givingFeedback.caseload.form', { popFeedbackFormHref: popFeedbackFormHref }) | safe }}
       </p>
-      <p class="govuk-body">They will be able to access this:</p>
+      <p class="govuk-body">{{ t('public.practitionerGuidance.givingFeedback.caseload.access') }}</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>when completing their check in</li>
-        <li>using a link to it within the confirmation notification they receive when they’ve checked in</li>
+        <li>{{ t('public.practitionerGuidance.givingFeedback.caseload.items.completing') }}</li>
+        <li>{{ t('public.practitionerGuidance.givingFeedback.caseload.items.link') }}</li>
       </ul>
       <p class="govuk-body">
-        You can also complete this with them in face-to-face appointments or share it with them if they want to complete
-        this themselves.
+        {{ t('public.practitionerGuidance.givingFeedback.caseload.complete') }}
       </p>
       <p class="govuk-body">
-        There may be other ways we contact people on probation to hear their feedback. For example, conducting short
-        phone calls from the local Engaging People on Probation (EPOP) staff member to learn about their experience.
+        {{ t('public.practitionerGuidance.givingFeedback.caseload.other') }}
       </p>
-      <p class="govuk-body">We will update this guidance when the new form is available.</p>
+      <p class="govuk-body">{{ t('public.practitionerGuidance.givingFeedback.caseload.update') }}</p>
 
-      <h3 class="govuk-heading-m">What we do with your feedback</h3>
+      <h3 class="govuk-heading-m">{{ t('public.practitionerGuidance.givingFeedback.whatWeDo.heading') }}</h3>
       <p class="govuk-body">
-        If something in online check ins is not working or online check ins go down, your feedback will enable us to fix
-        these issues as soon as possible. Your feedback will also help us to improve the design and the way it works.
+        {{ t('public.practitionerGuidance.givingFeedback.whatWeDo.body') }}
       </p>
     </div>
   </div>

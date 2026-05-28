@@ -2,13 +2,13 @@
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% extends "../../../partials/layout.njk" %}
 
-{% set pageTitle = "View your video" %}
+{% set pageTitle = t('submission.video.view.title') %}
 {% set showPane = true %}
 
 {% block beforeContent %}
   {{
     govukBackLink({
-      text: "Back",
+      text: t('common.buttons.back'),
       href: "/" + submissionId + "/check-your-answers" if cya else "/" + submissionId + "/video/record"
     })
   }}
@@ -18,8 +18,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% if checkin.autoIdCheck == 'MATCH' or autoVerifyResult == 'MATCH' %}
-        <h1 class="govuk-heading-l">We have confirmed this is you</h1>
-        <p>We have confirmed this is you. You can now continue to check your answers.</p>
+        <h1 class="govuk-heading-l">{{ t('submission.video.view.match.heading') }}</h1>
+        <p>{{ t('submission.video.view.match.intro') }}</p>
         <div class="videoRecorder__videoWrap">
           <video
             class="videoRecorder__video-preview"
@@ -27,7 +27,7 @@
             src="{{ checkin.videoUrl }}"
             controls
           >
-            Your browser does not support video
+            {{ t('submission.video.view.browserUnsupported') }}
           </video>
         </div>
         <div class="govuk-button-group">
@@ -36,13 +36,13 @@
             data-module="govuk-button"
             role="button"
             href="/{{ submissionId }}/check-your-answers"
-            >Continue</a
+            >{{ t('submission.video.view.match.continue') }}</a
           >
         </div>
       {% else %}
-        <h1 class="govuk-heading-l">We cannot confirm this is you</h1>
+        <h1 class="govuk-heading-l">{{ t('submission.video.view.noMatch.heading') }}</h1>
         <p>
-          We have checked and we cannot confirm this is you. You can try recording again or submit your video anyway.
+          {{ t('submission.video.view.noMatch.intro') }}
         </p>
         <div class="videoRecorder__videoWrap">
           <video
@@ -51,19 +51,19 @@
             src="{{ checkin.videoUrl }}"
             controls
           >
-            Your browser does not support video
+            {{ t('submission.video.view.browserUnsupported') }}
           </video>
         </div>
-        <p class="govuk-!-font-weight-bold">In your video, make sure:</p>
+        <p class="govuk-!-font-weight-bold">{{ t('submission.video.view.noMatch.rulesIntro') }}</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>you are in a well lit area</li>
-          <li>you are in front of a plain background</li>
-          <li>your face is in the frame</li>
-          <li>you are not wearing a hat or sunglasses</li>
+          <li>{{ t('submission.video.view.noMatch.rules.litArea') }}</li>
+          <li>{{ t('submission.video.view.noMatch.rules.plainBackground') }}</li>
+          <li>{{ t('submission.video.view.noMatch.rules.faceInFrame') }}</li>
+          <li>{{ t('submission.video.view.noMatch.rules.noHatSunglasses') }}</li>
         </ul>
         <div class="govuk-button-group">
           <a class="govuk-button" role="button" href="/{{ submissionId }}/video/record"
-            >Record video again</a
+            >{{ t('submission.video.view.noMatch.recordAgain') }}</a
           >
           <a
             class="govuk-button govuk-button--secondary"
@@ -71,7 +71,7 @@
             data-module="govuk-button"
             href="/{{ submissionId }}/check-your-answers"
           >
-            Submit video anyway
+            {{ t('submission.video.view.noMatch.submitAnyway') }}
           </a>
         </div>
       {% endif %}

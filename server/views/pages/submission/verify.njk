@@ -6,12 +6,12 @@
 {% from "../../partials/validatedDateInput.njk" import validatedDateInput %}
 {% extends "../../partials/layout.njk" %}
 
-{% set pageTitle = "Personal details" %}
+{% set pageTitle = t('submission.verify.title') %}
 
 {% block beforeContent %}
   {{
     govukBackLink({
-      text: "Back",
+      text: t('common.buttons.back'),
       href: "/" + submissionId
     })
   }}
@@ -29,17 +29,17 @@
   {% endif %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {{ errorSummary(validationErrors) }}
+      {{ errorSummary(validationErrors, t('common.errorSummary.title')) }}
 
-      <h1 class="govuk-heading-l">Personal details</h1>
-      <p>We will use your personal details to make sure you are signed up to use this service.</p>
+      <h1 class="govuk-heading-l">{{ t('submission.verify.heading') }}</h1>
+      <p>{{ t('submission.verify.intro') }}</p>
       <form method="POST">
         <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
 
         {{
           govukInput({
             label: {
-              text: "First name",
+              text: t('submission.verify.firstName'),
               classes: "govuk-label--m"
             },
             classes: "govuk-!-width-two-thirds",
@@ -54,7 +54,7 @@
         {{
           govukInput({
             label: {
-              text: "Last name",
+              text: t('submission.verify.lastName'),
               classes: "govuk-label--m"
             },
             classes: "govuk-!-width-two-thirds",
@@ -70,11 +70,14 @@
           validatedDateInput({
             id: "dob",
             title: {
-              text: "Date of birth",
+              text: t('submission.verify.dob.legend'),
               isPageHeading: false,
               classes: "govuk-fieldset__legend--m"
             },
-            hintText: "For example, 27 3 2007",
+            hintText: t('submission.verify.dob.hint'),
+            dayText: t('common.dateInput.day'),
+            monthText: t('common.dateInput.month'),
+            yearText: t('common.dateInput.year'),
             validationErrors: validationErrors,
             day: formData["day"],
             month: formData["month"],
@@ -84,7 +87,7 @@
 
         {{
           govukButton({
-            text: "Continue"
+            text: t('common.buttons.continue')
           })
         }}
       </form>

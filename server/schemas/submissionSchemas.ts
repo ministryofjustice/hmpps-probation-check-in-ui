@@ -1,9 +1,10 @@
 import { z } from 'zod'
-import { createDateSchema } from './shared'
+import createDateSchema from './shared'
+import { i18nMessage } from '../utils/i18nValidation'
 
 const dobSchema = createDateSchema({
   who: 'your',
-  label: 'date of birth',
+  labelKey: 'submission.verify.dob.label',
   groupPath: 'dob',
   rules: {
     mustBeInPast: true,
@@ -12,8 +13,8 @@ const dobSchema = createDateSchema({
 
 export const personalDetailsSchema = z
   .object({
-    firstName: z.string().min(1, 'Enter your first name'),
-    lastName: z.string().min(1, 'Enter your last name'),
+    firstName: z.string().min(1, i18nMessage('submission.verify.errors.firstNameRequired')),
+    lastName: z.string().min(1, i18nMessage('submission.verify.errors.lastNameRequired')),
   })
   .and(dobSchema)
 
@@ -32,7 +33,7 @@ const validCircumstances = [
 const MentalHealthEnum = z
   .enum(['VERY_WELL', 'WELL', 'OK', 'NOT_GREAT', 'STRUGGLING'], {
     error: issue =>
-      issue.input === undefined ? 'Select how you have been feeling since we last spoke' : issue.message,
+      issue.input === undefined ? i18nMessage('submission.questions.mentalHealth.errors.required') : issue.message,
   })
   .describe('Select how you have been feeling since we last spoke')
 
@@ -52,21 +53,20 @@ export const assistanceSchema = z.object({
       if (Array.isArray(val)) return val
       return []
     },
-    z
-      .array(z.enum(validCircumstances))
-      .min(1, "Select what you need help with or select 'No, I do not need any support'"),
+    z.array(z.enum(validCircumstances)).min(1, i18nMessage('submission.questions.assistance.errors.required')),
   ),
 })
 
 export const additionalAnswerSchema = z.object({
-  additionalAnswer: z.string().min(1, 'Enter your answer to the question'),
+  additionalAnswer: z.string().min(1, i18nMessage('submission.questions.additional.errors.required')),
 })
 
 export const checkAnswersSchema = z
   .object({
     checkAnswers: z
       .enum(['CONFIRM'], {
-        error: issue => (issue.input === undefined ? 'Confirm your details are correct' : issue.message),
+        error: issue =>
+          issue.input === undefined ? i18nMessage('submission.checkAnswers.errors.required') : issue.message,
       })
       .describe('Confirm your details are correct'),
   })

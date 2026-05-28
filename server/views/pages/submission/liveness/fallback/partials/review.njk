@@ -2,25 +2,25 @@
 <div class="es-pane" id="fallbackReviewScreen" hidden aria-hidden="true">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Review your video</h1>
-      <p>In your video, make sure:</p>
+      <h1 class="govuk-heading-l">{{ t('submission.liveness.fallback.partials.review.heading') }}</h1>
+      <p>{{ t('submission.liveness.fallback.partials.review.rulesIntro') }}</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>you are in a well lit area</li>
-        <li>you are in front of a plain background</li>
-        <li>your face is in the frame</li>
-        <li>you are not wearing a hat or sunglasses</li>
+        <li>{{ t('submission.liveness.fallback.partials.review.rules.litArea') }}</li>
+        <li>{{ t('submission.liveness.fallback.partials.review.rules.plainBackground') }}</li>
+        <li>{{ t('submission.liveness.fallback.partials.review.rules.faceInFrame') }}</li>
+        <li>{{ t('submission.liveness.fallback.partials.review.rules.noHatSunglasses') }}</li>
       </ul>
       <div class="videoRecorder__container">
         <div class="videoRecorder__videoWrap">
-          <img id="fallbackReviewImage" class="videoRecorder__video" alt="Screenshot from your video" />
+          <img id="fallbackReviewImage" class="videoRecorder__video" alt="{{ t('submission.liveness.fallback.partials.review.imageAlt') }}" />
         </div>
       </div>
       <p>
-        If your video meets the rules, you can continue and we will verify your identity.
+        {{ t('submission.liveness.fallback.partials.review.ifMeetsRules') }}
       </p>
       <div class="govuk-button-group">
-        {{ govukButton({ text: "Continue", element: "a", attributes: { "data-fallback-continue": "" } }) }}
-        {{ govukButton({ text: "Record video again", classes: "govuk-button--secondary", element: "a", attributes: { "data-fallback-video": "" } }) }}
+        {{ govukButton({ text: t('submission.liveness.fallback.partials.review.continue'), element: "a", attributes: { "data-fallback-continue": "" } }) }}
+        {{ govukButton({ text: t('submission.liveness.fallback.partials.review.recordAgain'), classes: "govuk-button--secondary", element: "a", attributes: { "data-fallback-video": "" } }) }}
       </div>
     </div>
   </div>

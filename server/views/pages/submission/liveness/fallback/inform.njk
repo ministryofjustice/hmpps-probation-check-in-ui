@@ -4,12 +4,12 @@
 
 {% extends "../../../../partials/layout.njk" %}
 
-{% set pageTitle = "Confirm your identity" %}
+{% set pageTitle = t('submission.liveness.fallback.inform.title') %}
 
 {% block beforeContent %}
   {{
     govukBackLink({
-      text: "Back",
+      text: t('common.buttons.back'),
       href: "/" + submissionId + "/liveness/record"
     })
   }}
@@ -20,28 +20,26 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
       <p>
-        Next, we need to record a 5-second video of you on this device. You do not need to speak in the video. Anything
-        you say will not be recorded. You will be able to review the video before you continue.
+        {{ t('submission.liveness.fallback.inform.intro') }}
       </p>
       <p>
-        We will save an image of you taken from the video to compare with the photo your probation officer took when
-        they signed you up. This  will only be used to confirm your identity.
+        {{ t('submission.liveness.fallback.inform.comparison') }}
       </p>
-      <p>You'll need to accept permissions to record a video on your device.</p>
-      <h2 class="govuk-heading-s">Before you record your video</h2>
-      <p>Before you record your video, make sure:</p>
+      <p>{{ t('submission.liveness.fallback.inform.permissions') }}</p>
+      <h2 class="govuk-heading-s">{{ t('submission.liveness.fallback.inform.rulesHeading') }}</h2>
+      <p>{{ t('submission.liveness.fallback.inform.rulesIntro') }}</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>you are in a well lit area</li>
-        <li>you are in front of a plain background</li>
-        <li>your face is in the frame</li>
-        <li>you are not wearing a hat or sunglasses</li>
+        <li>{{ t('submission.liveness.fallback.inform.rules.litArea') }}</li>
+        <li>{{ t('submission.liveness.fallback.inform.rules.plainBackground') }}</li>
+        <li>{{ t('submission.liveness.fallback.inform.rules.faceInFrame') }}</li>
+        <li>{{ t('submission.liveness.fallback.inform.rules.noHatSunglasses') }}</li>
       </ul>
       {{ govukInsetText({
-        text: "Remember this is a probation check in and should be treated the same as a face-to-face meeting. You should wear appropriate clothing."
+        text: t('submission.liveness.fallback.inform.inset')
       }) }}
       {{
         govukButton({
-        text: "Continue",
+        text: t('common.buttons.continue'),
         href: "/" + submissionId + "/liveness/fallback-record"
         })
       }}

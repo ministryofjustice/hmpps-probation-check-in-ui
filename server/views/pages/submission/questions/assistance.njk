@@ -5,15 +5,15 @@
 {% from "../../../partials/errorSummary.njk" import errorSummary %}
 {% extends "../../../partials/layout.njk" %}
 
-{% set title = "Is there anything you need support with or want to let us know about?" %}
+{% set title = t('submission.questions.assistance.title') %}
 {% set pageTitle = title %}
-{% set hintText = "This could be anything you're worrying about, struggling with or just want to let us know." %}
+{% set hintText = t('submission.questions.assistance.hint') %}
 {% set mainClasses = "app-container govuk-body" %}
 
 {% block beforeContent %}
   {{
     govukBackLink({
-      text: "Back",
+      text: t('common.buttons.back'),
       href: "/" + submissionId + ("/liveness/check-your-answers" if flags.faceLiveness else "/check-your-answers") if cya else "/" + submissionId + "/questions/mental-health"
     })
   }}
@@ -22,7 +22,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {{ errorSummary(validationErrors) }}
+      {{ errorSummary(validationErrors, t('common.errorSummary.title')) }}
 
 
       {% set mentalHealthSupport %}
@@ -33,7 +33,7 @@
             errorMessage: validationErrors | findError("mentalHealthSupport"),
             value: formData["mentalHealthSupport"],
             label: {
-              text: "Tell us what you want us to know about mental health (optional)"
+              text: t('submission.questions.assistance.labels.mentalHealth')
             }
           })
         }}
@@ -48,7 +48,7 @@
             errorMessage: validationErrors | findError("alcoholSupport"),
             value: formData["alcoholSupport"],
             label: {
-              text: "Tell us what you want us to know about alcohol (optional)"
+              text: t('submission.questions.assistance.labels.alcohol')
             }
           })
         }}
@@ -63,7 +63,7 @@
             errorMessage: validationErrors | findError("drugsSupport"),
             value: formData["drugsSupport"],
             label: {
-              text: "Tell us what you want us to know about drugs (optional)"
+              text: t('submission.questions.assistance.labels.drugs')
             }
           })
         }}
@@ -78,7 +78,7 @@
             errorMessage: validationErrors | findError("moneySupport"),
             value: formData["moneySupport"],
             label: {
-              text: "Tell us what you want us to know about money (optional)"
+              text: t('submission.questions.assistance.labels.money')
             }
           })
         }}
@@ -93,7 +93,7 @@
             errorMessage: validationErrors | findError("housingSupport"),
             value: formData["housingSupport"],
             label: {
-              text: "Tell us what you want us to know about housing (optional)"
+              text: t('submission.questions.assistance.labels.housing')
             }
           })
         }}
@@ -107,7 +107,7 @@
             errorMessage: validationErrors | findError("employmentEduSupport"),
             value: formData["employmentEduSupport"],
             label: {
-              text: "Tell us what you want us to know about employment and education (optional)"
+              text: t('submission.questions.assistance.labels.employmentEdu')
             }
           })
         }}
@@ -122,7 +122,7 @@
             errorMessage: validationErrors | findError("supportSystemSupport"),
             value: formData["supportSystemSupport"],
             label: {
-              text: "Tell us what you want us to know about your relationships (optional)"
+              text: t('submission.questions.assistance.labels.supportSystem')
             }
           })
         }}
@@ -135,7 +135,7 @@
             errorMessage: validationErrors | findError("otherSupport"),
             value: formData["otherSupport"],
             label: {
-              text: "Tell us what you want us to know about (optional)"
+              text: t('submission.questions.assistance.labels.other')
             }
           })
         }}
@@ -161,7 +161,7 @@
             items: [
               {
                 value: "MENTAL_HEALTH",
-                text: "Mental health",
+                text: t('submission.questions.assistance.options.mentalHealth'),
                 checked: checked("assistance", "MENTAL_HEALTH"),
                 conditional: {
                   html: mentalHealthSupport
@@ -169,7 +169,7 @@
               },
               {
                 value: "ALCOHOL",
-                text: "Alcohol",
+                text: t('submission.questions.assistance.options.alcohol'),
                 checked: checked("assistance", "ALCOHOL"),
                 conditional: {
                   html: alcoholSupport
@@ -177,7 +177,7 @@
               },
               {
                 value: "DRUGS",
-                text: "Drugs",
+                text: t('submission.questions.assistance.options.drugs'),
                 checked: checked("assistance", "DRUGS"),
                 conditional: {
                   html: drugsSupport
@@ -185,7 +185,7 @@
               },
               {
                 value: "MONEY",
-                text: "Money",
+                text: t('submission.questions.assistance.options.money'),
                 checked: checked("assistance", "MONEY"),
                 conditional: {
                   html: moneySupport
@@ -193,7 +193,7 @@
               },
               {
                 value: "HOUSING",
-                text: "Housing",
+                text: t('submission.questions.assistance.options.housing'),
                 checked: checked("assistance", "HOUSING"),
                 conditional: {
                   html: housingSupport
@@ -201,7 +201,7 @@
               },
               {
                 value: "EMPLOYMENT_EDU",
-                text: "Employment and education",
+                text: t('submission.questions.assistance.options.employmentEdu'),
                 checked: checked("assistance", "EMPLOYMENT_EDU"),
                 conditional: {
                   html: employmentEduSupport
@@ -209,7 +209,7 @@
               },
               {
                 value: "SUPPORT_SYSTEM",
-                text: "Relationships (family, friends, partner)",
+                text: t('submission.questions.assistance.options.supportSystem'),
                 checked: checked("assistance", "SUPPORT_SYSTEM"),
                 conditional: {
                   html: supportSystemSupport
@@ -217,19 +217,19 @@
               },
               {
                 value: "OTHER",
-                text: "Something else",
+                text: t('submission.questions.assistance.options.other'),
                 checked: checked("assistance", "OTHER"),
                 conditional: {
                   html: otherSupport
                 }
               },
               {
-                divider: "or"
+                divider: t('submission.questions.assistance.divider')
               },
               {
                 value: "NO_HELP",
                 checked: checked("assistance", "NO_HELP"),
-                text: "No, I do not need any support",
+                text: t('submission.questions.assistance.options.noHelp'),
                 behaviour: "exclusive"
               }
             ]
@@ -238,7 +238,7 @@
 
         {{
           govukButton({
-            text: "Continue"
+            text: t('common.buttons.continue')
           })
         }}
       </form>

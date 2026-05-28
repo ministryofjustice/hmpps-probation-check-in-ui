@@ -5,12 +5,12 @@
 {% from "../../../partials/errorSummary.njk" import errorSummary %}
 {% extends "../../../partials/layout.njk" %}
 
-{% set pageTitle = "Check your answers before you complete your check in" %}
+{% set pageTitle = t('submission.checkAnswers.title') %}
 
 {% block beforeContent %}
   {{
     govukBackLink({
-      text: "Back",
+      text: t('common.buttons.back'),
       href: "/" + submissionId + "/liveness/view"
     })
   }}
@@ -19,30 +19,30 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {{ errorSummary(validationErrors) }}
+      {{ errorSummary(validationErrors, t('common.errorSummary.title')) }}
 
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
 
-      <h2 class="govuk-heading-m">About you</h2>
+      <h2 class="govuk-heading-m">{{ t('submission.checkAnswers.aboutYou') }}</h2>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">How have you been feeling since we last spoke?</dt>
+          <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.mentalHealth') }}</dt>
           <dd class="govuk-summary-list__value">{{ formData['mentalHealth'] | userFriendlyString }}</dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true"
-              >Change<span class="govuk-visually-hidden"> answer for how have you been feeling since we last spoke</span></a
+              >{{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.mentalHealth') }}</span></a
             >
           </dd>
         </div>
 
         {% if formData['mentalHealth'] == 'VERY_WELL' and formData['mentalHealthVeryWell'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us why you are very well</dt>
+            <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.mentalHealthVeryWell') }}</dt>
             <dd class="govuk-summary-list__value">{{ formData['mentalHealthVeryWell'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true">
-                Change<span class="govuk-visually-hidden"> answer for tell us why you are very well</span>
+                {{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.mentalHealthVeryWell') }}</span>
               </a>
             </dd>
           </div>
@@ -50,11 +50,11 @@
 
         {% if formData['mentalHealth'] == 'WELL' and formData['mentalHealthWell'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us why you are well</dt>
+            <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.mentalHealthWell') }}</dt>
             <dd class="govuk-summary-list__value">{{ formData['mentalHealthWell'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true">
-                Change<span class="govuk-visually-hidden"> answer for tell us why you are well</span>
+                {{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.mentalHealthWell') }}</span>
               </a>
             </dd>
           </div>
@@ -62,11 +62,11 @@
 
         {% if formData['mentalHealth'] == 'OK' and formData['mentalHealthOk'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us why you are OK</dt>
+            <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.mentalHealthOk') }}</dt>
             <dd class="govuk-summary-list__value">{{ formData['mentalHealthOk'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true">
-                Change<span class="govuk-visually-hidden"> answer for tell us why you are OK</span>
+                {{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.mentalHealthOk') }}</span>
               </a>
             </dd>
           </div>
@@ -74,11 +74,11 @@
 
         {% if formData['mentalHealth'] == 'NOT_GREAT' and formData['mentalHealthNotGreat'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us why you are not great</dt>
+            <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.mentalHealthNotGreat') }}</dt>
             <dd class="govuk-summary-list__value">{{ formData['mentalHealthNotGreat'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true">
-                Change<span class="govuk-visually-hidden"> answer for tell us why you are not great</span>
+                {{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.mentalHealthNotGreat') }}</span>
               </a>
             </dd>
           </div>
@@ -86,17 +86,17 @@
 
         {% if formData['mentalHealth'] == 'STRUGGLING' and formData['mentalHealthStruggling'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us why you are struggling</dt>
+            <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.mentalHealthStruggling') }}</dt>
             <dd class="govuk-summary-list__value">{{ formData['mentalHealthStruggling'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/mental-health?checkAnswers=true">
-                Change<span class="govuk-visually-hidden"> answer for tell us why you are struggling</span>
+                {{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.mentalHealthStruggling') }}</span>
               </a>
             </dd>
           </div>
         {% endif %}
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">Is there anything you need support with or want to let us know about?</dt>
+          <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.assistance') }}</dt>
           <dd class="govuk-summary-list__value">
             {% for a in formData['assistance'] | split(",") %}
               {{ a | userFriendlyString }}{% if not loop.last %},{% endif %}
@@ -104,20 +104,18 @@
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-              >Change<span class="govuk-visually-hidden"> answer for is there anything you need support with or want to let us know about</span></a
+              >{{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.assistance') }}</span></a
             >
           </dd>
         </div>
 
         {% if formData['mentalHealthSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us what you want us to know about mental health</dt>
+            <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.mentalHealthSupport') }}</dt>
             <dd class="govuk-summary-list__value">{{ formData['mentalHealthSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden">
-                  answer for tell us what you want us to know about mental health</span
-                ></a
+                >{{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.mentalHealthSupport') }}</span></a
               >
             </dd>
           </div>
@@ -125,44 +123,44 @@
 
         {% if formData['alcoholSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us what you want us to know about alcohol</dt>
+            <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.alcoholSupport') }}</dt>
             <dd class="govuk-summary-list__value">{{ formData['alcoholSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about alcohol</span></a
+                >{{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.alcoholSupport') }}</span></a
               >
             </dd>
           </div>
         {% endif %}
         {% if formData['drugsSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us what you want us to know about drugs</dt>
+            <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.drugsSupport') }}</dt>
             <dd class="govuk-summary-list__value">{{ formData['drugsSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about drugs</span></a
+                >{{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.drugsSupport') }}</span></a
               >
             </dd>
           </div>
         {% endif %}
         {% if formData['moneySupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us what you want us to know about money</dt>
+            <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.moneySupport') }}</dt>
             <dd class="govuk-summary-list__value">{{ formData['moneySupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about money</span></a
+                >{{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.moneySupport') }}</span></a
               >
             </dd>
           </div>
         {% endif %}
         {% if formData['housingSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us what you want us to know about housing</dt>
+            <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.housingSupport') }}</dt>
             <dd class="govuk-summary-list__value">{{ formData['housingSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about housing</span></a
+                >{{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.housingSupport') }}</span></a
               >
             </dd>
           </div>
@@ -170,11 +168,11 @@
 
         {% if formData['employmentEduSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us what you want us to know about employment and education</dt>
+            <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.employmentEduSupport') }}</dt>
             <dd class="govuk-summary-list__value">{{ formData['employmentEduSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know about employment and education</span></a
+                >{{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.employmentEduSupport') }}</span></a
               >
             </dd>
           </div>
@@ -182,13 +180,11 @@
 
         {% if formData['supportSystemSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us what you want us to know about your relationships</dt>
+            <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.supportSystemSupport') }}</dt>
             <dd class="govuk-summary-list__value">{{ formData['supportSystemSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden">
-                  answer for tell us what you want us to know about your relationships</span
-                ></a
+                >{{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.supportSystemSupport') }}</span></a
               >
             </dd>
           </div>
@@ -196,11 +192,11 @@
 
         {% if formData['otherSupport'] %}
           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">Tell us what you want us to know (something else)</dt>
+            <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.otherSupport') }}</dt>
             <dd class="govuk-summary-list__value">{{ formData['otherSupport'] }}</dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/{{ submissionId }}/questions/assistance?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> answer for tell us what you want us to know</span></a
+                >{{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.otherSupport') }}</span></a
               >
             </dd>
           </div>
@@ -213,7 +209,7 @@
               <dd class="govuk-summary-list__value">{{ item.response }}</dd>
               <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="/{{ submissionId }}/questions/additional/{{ loop.index }}?checkAnswers=true"
-                  >Change<span class="govuk-visually-hidden"> answer for {{ item.question | lower }}</span></a
+                  >{{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.additionalPrefix') }}{{ item.question | lower }}</span></a
                 >
               </dd>
             </div>
@@ -221,41 +217,41 @@
         {% endif %}
       </dl>
 
-      <h2 class="govuk-heading-m">Identity check</h2>
+      <h2 class="govuk-heading-m">{{ t('submission.checkAnswers.identityCheck') }}</h2>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">Identity check</dt>
+          <dt class="govuk-summary-list__key">{{ t('submission.checkAnswers.rows.identityCheck') }}</dt>
 
           <dd class="govuk-summary-list__value">
             {% if isLive == true and autoVerifyResult == 'MATCH' %}
-              We have confirmed this is you
+              {{ t('submission.checkAnswers.identityResult.match') }}
             {% elif isLive == true and autoVerifyResult == 'NO_MATCH' %}
-              We cannot confirm this is you
+              {{ t('submission.checkAnswers.identityResult.noMatch') }}
             {% elif isLive == false and autoVerifyResult == 'MATCH' %}
-              We cannot confirm your identity
+              {{ t('submission.checkAnswers.identityResult.notLiveMatch') }}
             {% elif isLive == false and autoVerifyResult == 'NO_MATCH' %}
-              There's been a problem with your identity check
+              {{ t('submission.checkAnswers.identityResult.notLiveNoMatch') }}
             {% elif autoVerifyResult == 'MATCH' %}
-              We have confirmed this is you
+              {{ t('submission.checkAnswers.identityResult.match') }}
             {% elif autoVerifyResult == 'NO_MATCH' %}
-              We cannot confirm this is you
+              {{ t('submission.checkAnswers.identityResult.noMatch') }}
             {% else %}
-              We cannot confirm this is you
+              {{ t('submission.checkAnswers.identityResult.noMatch') }}
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             {% if (isLive == true and autoVerifyResult == 'MATCH') or (isLive == undefined and autoVerifyResult == 'MATCH') %}
               <a class="govuk-link" href="/{{ submissionId }}/liveness/view?checkAnswers=true"
-                >View<span class="govuk-visually-hidden"> identity check</span></a
+                >{{ t('submission.checkAnswers.view') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.identity') }}</span></a
               >
             {% elif isLive == true or isLive == false %}
               <a class="govuk-link" href="/{{ submissionId }}/liveness/record?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> identity check</span></a
+                >{{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.identity') }}</span></a
               >
             {% else %}
               <a class="govuk-link" href="/{{ submissionId }}/liveness/fallback-record?checkAnswers=true"
-                >Change<span class="govuk-visually-hidden"> identity check</span></a
+                >{{ t('submission.checkAnswers.change') }}<span class="govuk-visually-hidden">{{ t('submission.checkAnswers.hidden.identity') }}</span></a
               >
             {% endif %}
           </dd>
@@ -273,13 +269,13 @@
             fieldset: {
               legend: {
                 classes: "govuk-fieldset__legend--m",
-                text: "Complete your check in"
+                text: t('submission.checkAnswers.complete.legend')
               }
             },
             items: [
               {
                 value: "CONFIRM",
-                text: "I confirm that, to the best of my knowledge, the details I have provided are correct. I understand that this information will be shared with my probation officer."
+                text: t('submission.checkAnswers.complete.confirm')
               }
             ]
           })
@@ -287,7 +283,7 @@
 
         {{
           govukButton({
-            text: "Complete check in"
+            text: t('submission.checkAnswers.complete.button')
           })
         }}
       </form>

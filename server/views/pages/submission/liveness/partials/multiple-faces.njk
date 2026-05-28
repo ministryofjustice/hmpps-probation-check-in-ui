@@ -1,23 +1,23 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">There's been a problem with your identity check</h1>
+    <h1 class="govuk-heading-l">{{ t('submission.liveness.partials.multipleFaces.heading') }}</h1>
     <p>
-      This is because there are other faces in the frame when we’re trying to verify your identity.
+      {{ t('submission.liveness.partials.multipleFaces.intro') }}
     </p>
-    <p class="govuk-!-font-weight-bold">If you try to verify your identity again</p>
-    <p>Make sure:</p>
+    <p class="govuk-!-font-weight-bold">{{ t('submission.liveness.partials.multipleFaces.rulesHeading') }}</p>
+    <p>{{ t('submission.liveness.partials.multipleFaces.rulesIntro') }}</p>
     <ul class="govuk-list govuk-list--bullet">
-      <li>your face is in the frame</li>
-      <li>you follow the instructions to move closer, keeping your face in the frame</li>
-      <li>you move at a steady pace</li>
+      <li>{{ t('submission.liveness.partials.multipleFaces.rules.faceInFrame') }}</li>
+      <li>{{ t('submission.liveness.partials.multipleFaces.rules.followInstructions') }}</li>
+      <li>{{ t('submission.liveness.partials.multipleFaces.rules.steadyPace') }}</li>
     </ul>
     <p>
-      If you are struggling to confirm your identity this way, you can record a video instead.
+      {{ t('submission.liveness.partials.multipleFaces.fallbackHint') }}
     </p>
     <div class="govuk-button-group">
-      {{ govukButton({ text: "Verify identity again", href: "/" + submissionId + "/liveness/record" }) }}
-      {{ govukButton({ text: "Record a video instead", classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/fallback-inform" }) }}
+      {{ govukButton({ text: t('submission.liveness.partials.multipleFaces.verifyAgain'), href: "/" + submissionId + "/liveness/record" }) }}
+      {{ govukButton({ text: t('submission.liveness.partials.multipleFaces.recordInstead'), classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/fallback-inform" }) }}
     </div>
   </div>
 </div>

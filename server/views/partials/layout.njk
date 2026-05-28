@@ -11,24 +11,32 @@
 {% block pageTitle %}
   {% set pageTitlePrefix = "" %}
   {% if validationErrors %}
-    {% set pageTitlePrefix = "Error - " %}
+    {% set pageTitlePrefix = t('common.pageTitle.errorPrefix') %}
   {% endif %}
+  {% set applicationName = t('common.serviceName') %}
   {{ pageTitlePrefix + pageTitle + ' - ' + applicationName if pageTitle else pageTitlePrefix + applicationName }}
 {% endblock %}
 
 {% block header %}
-  {% include "partials/header.njk" %}
-  {{
-    govukServiceNavigation({
-      serviceName: serviceName
-    })
-  }}
+  {{ govukHeader({
+    homepageUrl: "/"
+  }) }}
+    <section aria-label="Service information" class="govuk-service-navigation" data-module="govuk-service-navigation" data-govuk-service-navigation-init="">
+      <div class="govuk-width-container">
+        <div class="govuk-service-navigation__container hmpps-language-toggle__container">
+          <span class="govuk-service-navigation__service-name">
+            <span class="govuk-service-navigation__text">{{ t('common.serviceName') }}</span>
+          </span>
+          {% include "partials/languageToggle.njk" %}
+        </div>
+      </div>
+    </section>
   {{
     govukPhaseBanner({
     tag: {
-      text: "Private Beta"
+      text: t('common.phaseBanner.tag')
     },
-    html: 'This is a new service – your <a class="govuk-link govuk-link--no-visited-state" target="_blank" rel="nofollow" href="/feedback">feedback (opens in a new tab)</a> will help us to improve it.'
+    html: t('common.phaseBanner.html')
     })
   }}
 {% endblock %}
@@ -43,19 +51,19 @@
     items: [
           {
             href: "/guidance",
-            text: "Online check in guidance"
+            text: t('common.footer.guidance')
           },
           {
             href: "/cookies",
-            text: "Cookies"
+            text: t('common.footer.cookies')
           },
           {
             href: "/privacy-notice",
-            text: "Privacy"
+            text: t('common.footer.privacy')
           },
           {
             href: "/accessibility",
-            text: "Accessibility statement"
+            text: t('common.footer.accessibility')
           }
         ]
     }

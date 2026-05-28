@@ -92,7 +92,7 @@
 }
 
 .es-table__cell--highlight {
-  background-color: gds.govuk-colour("light-grey");
+  background-color: gds.govuk-colour("black", $variant: "tint-95");
   padding-left: 1rem;
   padding-right: 1rem;
 

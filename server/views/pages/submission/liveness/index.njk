@@ -4,46 +4,42 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Check in with your probation officer</h1>
+      <h1 class="govuk-heading-l">{{ t('submission.liveness.index.heading') }}</h1>
       <p>
-        You can use this service to check in with your probation officer as part of your probation. Your probation
-        officer will have signed you up for this service during a face-to-face appointment.
+        {{ t('submission.liveness.index.intro') }}
       </p>
-      <h2 class="govuk-heading-m">Before you start</h2>
-      <p>You will need:</p>
+      <h2 class="govuk-heading-m">{{ t('submission.liveness.index.beforeStart.heading') }}</h2>
+      <p>{{ t('submission.liveness.index.beforeStart.intro') }}</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>access to the internet</li>
-        <li>a device with a camera</li>
-        <li>your name and date of birth</li>
+        <li>{{ t('submission.liveness.index.beforeStart.items.internet') }}</li>
+        <li>{{ t('submission.liveness.index.beforeStart.items.camera') }}</li>
+        <li>{{ t('submission.liveness.index.beforeStart.items.details') }}</li>
       </ul>
-      <p>You will not be able to use this service to check in if you are outside of the UK.</p>
-      <h2 class="govuk-heading-m">What you need to do</h2>
-      <p>As part of this service you will need to:</p>
+      <p>{{ t('submission.liveness.index.beforeStart.uk') }}</p>
+      <h2 class="govuk-heading-m">{{ t('submission.liveness.index.whatToDo.heading') }}</h2>
+      <p>{{ t('submission.liveness.index.whatToDo.intro') }}</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>answer a set of questions relating to how you are and if you need any help</li>
-        <li>give permission to access your device’s camera</li>
+        <li>{{ t('submission.liveness.index.whatToDo.items.questions') }}</li>
+        <li>{{ t('submission.liveness.index.whatToDo.items.camera') }}</li>
         <li>
-          verify your identity by moving your face into a frame on your screen using your camera, and following
-          instructions on the screen
+          {{ t('submission.liveness.index.whatToDo.items.verify') }}
         </li>
       </ul>
       <p>
-        We will compare an image from you verifying your identity with the photo your probation officer took when they
-        signed you up. This will not use your microphone or location.
+        {{ t('submission.liveness.index.whatToDo.comparison') }}
       </p>
-      <p>The answers to your questions will be sent to your probation officer to review.</p>
+      <p>{{ t('submission.liveness.index.whatToDo.shareAnswers') }}</p>
 
-      <h2 class="govuk-heading-m">If you need help</h2>
+      <h2 class="govuk-heading-m">{{ t('submission.liveness.index.help.heading') }}</h2>
       <p>
-        If you have difficulty using this service, or you do not have access to everything you need, you should contact
-        your probation officer and let them know.
+        {{ t('submission.liveness.index.help.intro') }}
       </p>
-      <p class="govuk-body">You can <a href="/guidance?submissionId={{ submissionId }}" class="govuk-link">learn more about online check ins in our guidance</a>.</p>
+      <p class="govuk-body">{{ t('submission.liveness.index.help.guidance', { submissionId: submissionId }) | safe }}</p>
       <form action="/{{ submissionId }}/start" method="POST">
         <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
         {{
           govukButton({
-          text: "Start now",
+          text: t('submission.liveness.index.start'),
           isStartButton: true
           })
         }}

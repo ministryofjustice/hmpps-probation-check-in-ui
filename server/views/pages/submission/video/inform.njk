@@ -4,12 +4,12 @@
 
 {% extends "../../../partials/layout.njk" %}
 
-{% set pageTitle = "Confirm your identity" %}
+{% set pageTitle = t('submission.video.inform.title') %}
 
 {% block beforeContent %}
   {{
     govukBackLink({
-      text: "Back",
+      text: t('common.buttons.back'),
       href: "/" + submissionId + "/questions/additional/" + additionalQuestionsCount if additionalQuestionsCount else "/" + submissionId + "/questions/assistance"
     })
   }}
@@ -19,26 +19,25 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
-      <p>Next, we need to record a 5-second video of you on this device. You do not need to speak in the video. Anything you say will not be recorded.</p>
+      <p>{{ t('submission.video.inform.intro') }}</p>
       <p>
-        We’ll use your video to confirm who you are. We’ll do this by comparing your video with the photo your probation
-        officer took when they signed you up. This video will only be used to confirm your identity.
+        {{ t('submission.video.inform.comparison') }}
       </p>
-      <p>You’ll need to accept permissions to record a video on your device.</p>
-      <h2 class="govuk-heading-s">Before you record your video</h2>
-      <p>Before you record your video, make sure:</p>
+      <p>{{ t('submission.video.inform.permissions') }}</p>
+      <h2 class="govuk-heading-s">{{ t('submission.video.inform.rulesHeading') }}</h2>
+      <p>{{ t('submission.video.inform.rulesIntro') }}</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>you are in a well lit area</li>
-        <li>you are in front of a plain background</li>
-        <li>your face is in the frame</li>
-        <li>you are not wearing a hat or sunglasses</li>
+        <li>{{ t('submission.video.inform.rules.litArea') }}</li>
+        <li>{{ t('submission.video.inform.rules.plainBackground') }}</li>
+        <li>{{ t('submission.video.inform.rules.faceInFrame') }}</li>
+        <li>{{ t('submission.video.inform.rules.noHatSunglasses') }}</li>
       </ul>
       {{ govukInsetText({
-        text: "Remember this is a probation check in and should be treated the same as a face-to-face meeting. You should wear appropriate clothing when taking the video."
+        text: t('submission.video.inform.inset')
       }) }}
       {{
         govukButton({
-        text: "Continue",
+        text: t('common.buttons.continue'),
         href: "/" + submissionId + "/video/record"
         })
       }}
