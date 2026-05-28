@@ -83,6 +83,9 @@ function FaceLivenessApp() {
         <h3>AWS Rekognition Face Liveness simulations</h3>
         <button data-qa="mock-complete" className="govuk-button"  onClick={handleAnalysisComplete}>Simulate Complete</button>
         <button data-qa="mock-cancel" className="govuk-button govuk-button--secondary"  onClick={handleUserCancel}>Simulate Cancel</button>
+        <button data-qa="mock-error" className="govuk-button govuk-button--warning"  onClick={() => handleError({ state: '' })}>Mock Generic Error Simulation</button>
+
+
       </div>
       <div>
 

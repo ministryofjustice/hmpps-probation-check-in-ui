@@ -155,6 +155,20 @@ export default {
     })
   },
 
+  stubLivenessClientFailure: (checkin: Checkin): SuperAgentRequest => {
+    return stubFor({
+      request: {
+        method: 'POST',
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/liveness/client-failure`),
+      },
+      response: {
+        status: 204,
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        jsonBody: {},
+      },
+    })
+  },
+
   stubLivenessSuccessRightPerson: (
     checkin: Checkin,
     result = AutomatedIdVerificationResult.Match,
