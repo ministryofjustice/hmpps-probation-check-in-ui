@@ -75,7 +75,10 @@ function FaceLivenessApp() {
 
 
   const urlParams = new URLSearchParams(window.location.search);
-  const isMock = urlParams.get('mock') === 'true';
+  const mockParam = urlParams.get('mock') === 'true';
+  const livenessRoot = document.getElementById('face-liveness-root');
+  const backendAllowsMocks = livenessRoot?.dataset.allowMocks === 'true';
+  const isMock = mockParam && backendAllowsMocks
   if (isMock) {
     return (
       <>
