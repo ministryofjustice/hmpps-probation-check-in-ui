@@ -145,30 +145,30 @@
     },
     "questions": {
       "mentalHealth": {
-        "title": "Sut ydych chi'n teimlo?",
-        "legend": "Sut ydych chi'n teimlo?",
-        "hint": "Meddyliwch am bethau fel a ydych chi wedi sylwi ar newid yn eich hwyliau.",
+        "title": "Sut ydych chi wedi bod yn teimlo ers i ni siarad ddiwethaf?",
+        "legend": "Sut ydych chi wedi bod yn teimlo ers i ni siarad ddiwethaf?",
+        "hint": "Meddyliwch am bethau fel a ydych chi wedi sylwi ar newid yn eich hwyliau a beth allai fod wedi achosi hyn.",
         "options": {
           "veryWell": "Da iawn",
-          "well": "Da",
+          "well": "Yn dda",
           "ok": "Iawn",
-          "notGreat": "Ddim yn wych",
-          "struggling": "Yn cael trafferth"
+          "notGreat": "Ddim yn grêt",
+          "struggling": "Cael trafferth"
         },
-        "veryWellLabel": "",
-        "wellLabel": "",
-        "okLabel": "",
-        "notGreatLabel": "",
-        "strugglingLabel": "",
-        "insetHtml": "Os oes angen i chi siarad â rhywun ar frys am sut rydych chi'n teimlo, edrychwch ar <a href=\"https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/help-for-suicidal-thoughts/\" class=\"govuk-link\" target=\"_blank\">wefan y GIG am help (yn agor mewn tab newydd)</a>.",
+        "veryWellLabel": "Dywedwch wrthym pam eich bod yn teimlo'n dda iawn (dewisol)",
+        "wellLabel": "Dywedwch wrthym pam eich bod yn teimlo'n dda (dewisol)",
+        "okLabel": "Dywedwch wrthym pam eich bod yn teimlo'n iawn (dewisol)",
+        "notGreatLabel": "Dywedwch wrthym pam nad ydych chi'n teimlo'n grêt (dewisol)",
+        "strugglingLabel": "Dywedwch wrthym pam eich bod chi’n cael trafferth (dewisol)",
+        "insetHtml": "Os ydych chi angen siarad â rhywun ar frys am sut rydych chi'n teimlo, edrychwch ar <a href=\"https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/help-for-suicidal-thoughts/\" class=\"govuk-link\" target=\"_blank\">wefan y GIG i gael help (yn agor mewn tab newydd)</a>.",
         "errors": {
-          "required": "Dewiswch sut rydych chi'n teimlo"
+          "required": "Dewiswch sut ydych chi wedi bod yn teimlo ers i ni siarad ddiwethaf"
         }
       },
       "assistance": {
-        "title": "A oes unrhyw beth rydych chi angen cymorth gydag ef neu eisiau rhoi gwybod i ni amdano?",
-        "legend": "A oes unrhyw beth rydych chi angen cymorth gydag ef neu eisiau rhoi gwybod i ni amdano?",
-        "hint": "",
+        "title": "Oes angen cymorth arnoch chi neu ydych chi eisiau rhoi gwybod i ni am unrhyw beth?",
+        "legend": "Oes angen cymorth arnoch chi neu ydych chi eisiau rhoi gwybod i ni am unrhyw beth?",
+        "hint": "Gallai hyn fod yn unrhyw beth rydych chi’n poeni amdano, yn cael trafferth ag ef neu ddim ond eisiau rhoi gwybod i ni.",
         "options": {
           "mentalHealth": "Iechyd meddwl",
           "alcohol": "Alcohol",
@@ -177,22 +177,22 @@
           "housing": "Tai",
           "employmentEdu": "Cyflogaeth ac addysg",
           "supportSystem": "Perthnasoedd (teulu, ffrindiau, partner)",
-          "other": "Arall",
-          "noHelp": "Na, nid oes angen help arnaf"
+          "other": "Rhywbeth arall",
+          "noHelp": "Na, nid oes angen unrhyw gymorth arnaf"
         },
         "divider": "neu",
         "labels": {
-          "mentalHealth": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am iechyd meddwl (dewisol)",
-          "alcohol": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am alcohol (dewisol)",
-          "drugs": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am gyffuriau (dewisol)",
-          "money": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am arian (dewisol)",
-          "housing": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am dai (dewisol)",
+          "mentalHealth": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am iechyd meddwl (dewisol)",
+          "alcohol": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am alcohol (dewisol)",
+          "drugs": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am gyffuriau (dewisol)",
+          "money": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am arian (dewisol)",
+          "housing": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am dai (dewisol)",
           "employmentEdu": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am eich Cyflogaeth ac addysg (dewisol)",
           "supportSystem": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am eich perthnasoedd (dewisol)",
-          "other": "Dywedwch wrthym beth rydych chi angen help gydag ef (dewisol)"
+          "other": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod (dewisol)"
         },
         "errors": {
-          "required": "Dewiswch beth rydych chi angen help gydag ef neu dewiswch 'Na, nid oes angen help arnaf'"
+          "required": "Dewiswch gyda beth y mae angen cymorth arnoch chi neu dewiswch 'Na, nid oes angen unrhyw gymorth arnaf'"
         }
       },
       "callback": {
