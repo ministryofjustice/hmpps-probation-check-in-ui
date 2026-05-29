@@ -53,11 +53,15 @@ export async function reportClientFailure(
   }
 }
 
-export async function fetchSnapshotUploadLocation(submissionId: string, blob: Blob): Promise<SnapshotUploadLocation> {
+export async function fetchSnapshotUploadLocation(
+  submissionId: string,
+  blob: Blob,
+  csrfToken: string,
+): Promise<SnapshotUploadLocation> {
   const sha256 = await sha256Base64(blob)
   const res = await fetch(`/${submissionId}/liveness/upload-url`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'x-csrf-token': csrfToken },
     body: JSON.stringify({ sha256 }),
   })
   if (!res.ok) throw new Error('Failed to get upload URL')
