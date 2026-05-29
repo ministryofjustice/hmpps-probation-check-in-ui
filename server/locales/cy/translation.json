@@ -1,7 +1,7 @@
 {
   "common": {
-    "and": "",
-    "serviceName": "Cofrestru gyda'ch swyddog prawf",
+    "and": "a",
+    "serviceName": "Cyfarfod diweddaru gyda’ch swyddog prawf",
     "serviceNamePractitioner": "",
     "languageToggle": {
       "label": "Newid iaith"
@@ -11,19 +11,21 @@
     },
     "phaseBanner": {
       "tag": "Beta Preifat",
-      "html": "Mae hwn yn wasanaeth newydd – bydd eich <a class=\"govuk-link govuk-link--no-visited-state\" target=\"_blank\" rel=\"nofollow\" href=\"/feedback\">adborth (yn agor mewn tab newydd)</a> yn ein helpu i'w wella."
+      "html": "Mae hwn yn wasanaeth newydd – bydd eich <a class=\"govuk-link govuk-link--no-visited-state\" target=\"_blank\" rel=\"nofollow\" href=\"/feedback\">adborth (mae’n agor mewn tab newydd)</a> yn ein helpu i'w wella."
     },
     "footer": {
-      "guidance": "",
+      "guidance": "Arweiniad",
       "cookies": "Cwcis",
       "privacy": "Preifatrwydd",
-      "accessibility": "Datganiad hygyrchedd"
+      "accessibility": "Datganiad hygyrchedd",
+      "openGovLicence": "Mae’r holl gynnwys ar gael o dan <a class=\"govuk-footer__link\" href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"license\">Drwydded Llywodraeth Agored v3.0</a>, ac eithrio lle nodir fel arall",
+      "crownCopyright": "© Hawlfraint y Goron"
     },
     "buttons": {
       "continue": "Parhau",
       "back": "Yn ôl",
       "submit": "",
-      "tryAgain": "",
+      "tryAgain": "Rhoi cynnig arall arni",
       "cancel": "",
       "saveAndContinue": ""
     },
@@ -48,24 +50,24 @@
   },
   "submission": {
     "index": {
-      "heading": "Cofrestru gyda'ch swyddog prawf",
-      "intro": "Gallwch ddefnyddio'r gwasanaeth hwn i gofrestru gyda'ch swyddog prawf fel rhan o'ch prawf. Bydd eich swyddog prawf wedi'ch cofrestru ar gyfer y gwasanaeth hwn yn ystod apwyntiad wyneb yn wyneb.",
+      "heading": "Cyfarfod diweddaru gyda’ch swyddog prawf",
+      "intro": "Gallwch ddefnyddio'r gwasanaeth hwn i drefnu cyfarfod diweddaru gyda’ch swyddog prawf fel rhan o'ch cyfnod prawf.  Bydd eich swyddog prawf wedi eich cofrestru ar gyfer y gwasanaeth hwn yn ystod apwyntiad wyneb yn wyneb.",
       "beforeStart": {
         "heading": "Cyn i chi ddechrau",
-        "intro": "Bydd angen arnoch:",
+        "intro": "Bydd angen y canlynol arnoch chi:",
         "items": {
-          "internet": "mynediad i'r rhyngrwyd",
+          "internet": "mynediad at y rhyngrwyd",
           "camera": "dyfais gyda chamera",
           "details": "eich enw a'ch dyddiad geni"
         },
-        "uk": "Ni fyddwch yn gallu defnyddio'r gwasanaeth hwn i gofrestru os ydych y tu allan i'r DU."
+        "uk": "Ni fyddwch yn gallu defnyddio'r gwasanaeth hwn i ymuno â chyfarfod diweddaru os ydych chi y tu allan i'r Deyrnas Unedig."
       },
       "whatToDo": {
-        "heading": "Beth sydd angen i chi ei wneud",
-        "intro": "Fel rhan o'r gwasanaeth hwn bydd angen i chi:",
+        "heading": "Beth mae angen i chi ei wneud",
+        "intro": "Fel rhan o'r gwasanaeth hwn, bydd angen i chi wneud y canlynol:",
         "items": {
-          "questions": "ateb set o gwestiynau yn ymwneud â sut ydych chi ac os oes angen unrhyw help arnoch",
-          "camera": "rhoi caniatâd i gyrchu camera eich dyfais",
+          "questions": "ateb set o gwestiynau sy’n ymwneud â sut ydych chi ac a oes angen help arnoch chi",
+          "camera": "rhoi caniatâd i gael mynediad at gamera eich dyfais",
           "video": "recordio fideo byr ohonoch chi'ch hun fel y gallwn wirio mai chi sy'n defnyddio'r gwasanaeth"
         },
         "videoUse": "Byddwn yn defnyddio'ch fideo i gadarnhau pwy ydych chi. Byddwn yn gwneud hyn trwy ei gymharu â'r llun a dynnodd eich swyddog prawf pan wnaethant eich cofrestru.",
@@ -81,7 +83,7 @@
     "verify": {
       "title": "Manylion personol",
       "heading": "Manylion personol",
-      "intro": "Byddwn yn defnyddio'ch manylion personol i wneud yn siŵr eich bod wedi cofrestru i ddefnyddio'r gwasanaeth hwn.",
+      "intro": "Byddwn yn defnyddio eich manylion personol i wneud yn siŵr eich bod chi wedi cofrestru i ddefnyddio'r gwasanaeth hwn.",
       "firstName": "Enw cyntaf",
       "lastName": "Cyfenw",
       "dob": {
@@ -95,8 +97,8 @@
       }
     },
     "noMatchFound": {
-      "title": "",
-      "intro": "",
+      "title": "Ni chanfuwyd unrhyw beth sy’n cyd-fynd",
+      "intro": "Nid oedd modd i ni ddilysu pwy ydych chi. Gwiriwch eich gwybodaeth am wallau a rhowch gynnig arall arni.",
       "table": {
         "caption": "",
         "firstName": "Enw cyntaf",
@@ -105,8 +107,8 @@
         "notProvided": ""
       },
       "help": {
-        "heading": "",
-        "intro": ""
+        "heading": "Angen cymorth?",
+        "intro": "Os yw eich gwybodaeth yn gywir ac nad ydych chi’n gallu cadarnhau pwy ydych chi o hyd, rhaid i chi gysylltu â'ch swyddog prawf."
       }
     },
     "notFound": {
@@ -361,33 +363,33 @@
     },
     "liveness": {
       "index": {
-        "heading": "Cofrestru gyda'ch swyddog prawf",
-        "intro": "Gallwch ddefnyddio'r gwasanaeth hwn i gofrestru gyda'ch swyddog prawf fel rhan o'ch prawf. Bydd eich swyddog prawf wedi'ch cofrestru ar gyfer y gwasanaeth hwn yn ystod apwyntiad wyneb yn wyneb.",
+        "heading": "Cyfarfod diweddaru gyda’ch swyddog prawf",
+        "intro": "Gallwch ddefnyddio'r gwasanaeth hwn i drefnu cyfarfod diweddaru gyda’ch swyddog prawf fel rhan o'ch cyfnod prawf.  Bydd eich swyddog prawf wedi eich cofrestru ar gyfer y gwasanaeth hwn yn ystod apwyntiad wyneb yn wyneb.",
         "beforeStart": {
           "heading": "Cyn i chi ddechrau",
-          "intro": "Bydd angen arnoch:",
+          "intro": "Bydd angen y canlynol arnoch chi:",
           "items": {
-            "internet": "mynediad i'r rhyngrwyd",
+            "internet": "mynediad at y rhyngrwyd",
             "camera": "dyfais gyda chamera",
             "details": "eich enw a'ch dyddiad geni"
           },
-          "uk": "Ni fyddwch yn gallu defnyddio'r gwasanaeth hwn i gofrestru os ydych y tu allan i'r DU."
+          "uk": "Ni fyddwch yn gallu defnyddio'r gwasanaeth hwn i ymuno â chyfarfod diweddaru os ydych chi y tu allan i'r Deyrnas Unedig."
         },
         "whatToDo": {
-          "heading": "Beth sydd angen i chi ei wneud",
-          "intro": "Fel rhan o'r gwasanaeth hwn bydd angen i chi:",
+          "heading": "Beth mae angen i chi ei wneud",
+          "intro": "Fel rhan o'r gwasanaeth hwn, bydd angen i chi wneud y canlynol:",
           "items": {
-            "questions": "ateb set o gwestiynau yn ymwneud â sut ydych chi ac os oes angen unrhyw help arnoch",
-            "camera": "rhoi caniatâd i gyrchu camera eich dyfais",
+            "questions": "ateb set o gwestiynau sy’n ymwneud â sut ydych chi ac a oes angen help arnoch chi",
+            "camera": "rhoi caniatâd i gael mynediad at gamera eich dyfais",
             "verify": "dilysu pwy ydych chi drwy symud eich wyneb i ffrâm ar eich sgrin gan ddefnyddio eich camera, a dilyn y cyfarwyddiadau ar y sgrin"
           },
           "comparison": "Byddwn yn cymharu’r llun a ddefnyddiwyd i ddilysu pwy ydych chi â'r llun a dynnodd eich swyddog prawf pan wnaeth eich cofrestru. Ni fydd hyn yn defnyddio eich meicroffon na’ch lleoliad",
           "shareAnswers": "Bydd yr atebion i'ch cwestiynau yn cael eu hanfon at eich swyddog prawf i'w hadolygu."
         },
         "help": {
-          "heading": "Os oes angen help arnoch",
-          "intro": "Os ydych yn cael anhawster defnyddio'r gwasanaeth hwn, neu os nad oes gennych fynediad i bopeth sydd ei angen arnoch, dylech gysylltu â'ch swyddog prawf a rhoi gwybod iddynt.",
-          "guidance": "Gallwch <a href=\"/guidance?submissionId={{submissionId}}\" class=\"govuk-link\">ddysgu mwy am gofrestriadau ar-lein yn ein canllawiau</a>."
+          "heading": "Os oes angen help arnoch chi",
+          "intro": "Os ydych chi'n cael trafferth defnyddio'r gwasanaeth hwn, neu os nad ydych chi'n gallu cael gafael ar bopeth sydd ei angen arnoch chi, dylech gysylltu â'ch swyddog prawf a rhoi gwybod iddynt.",
+          "guidance": "Gallwch <a href=\"/guidance?submissionId={{submissionId}}\" class=\"govuk-link\">ddysgu mwy am gyfarfodydd diweddaru ar-lein yn ein canllawiau</a>."
         },
         "start": "Dechrau nawr"
       },
@@ -728,23 +730,23 @@
     "errors": {
       "date": {
         "who": {
-          "your": "",
-          "their": ""
+          "your": "eich",
+          "their": "eu"
         },
         "parts": {
-          "day": "",
-          "month": "",
-          "year": "",
+          "day": "diwrnod",
+          "month": "mis",
+          "year": "blwyddyn",
           "year4digits": "4 rhif ar gyfer y flwyddyn"
         },
-        "allMissing": "",
-        "missingParts": "",
+        "allMissing": "Rhaid {{who}} {{label}}",
+        "missingParts": "Rhaid i'r dyddiad geni gynnwys {{parts}}",
         "yearMustBe4": "Rhaid i'r flwyddyn gynnwys 4 rhif",
-        "dayMustBeNumber": "Dim ond rhifau y dylai'r diwrnod eu cynnwys",
-        "monthMustBeNumber": "Dim ond rhifau y dylai'r mis eu cynnwys",
-        "yearMustBeNumber": "Dim ond rhifau y dylai'r flwyddyn eu cynnwys",
+        "dayMustBeNumber": "Rhaid i'r diwrnod gynnwys rhifau'n unig",
+        "monthMustBeNumber": "Rhaid i'r mis gynnwys rhifau'n unig",
+        "yearMustBeNumber": "Rhaid i'r flwyddyn gynnwys rhifau'n unig",
         "allMustBeNumbers": "",
-        "mustBeReal": "",
+        "mustBeReal": "Rhaid i’r dyddiad geni fod yn ddyddiad go iawn",
         "mustBeFuture": "",
         "mustBeFutureOrToday": "",
         "mustBePast": ""
