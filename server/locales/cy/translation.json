@@ -1,7 +1,7 @@
 {
   "common": {
-    "and": "",
-    "serviceName": "Cofrestru gyda'ch swyddog prawf",
+    "and": "a",
+    "serviceName": "Cyfarfod diweddaru gyda’ch swyddog prawf",
     "serviceNamePractitioner": "",
     "languageToggle": {
       "label": "Newid iaith"
@@ -11,19 +11,21 @@
     },
     "phaseBanner": {
       "tag": "Beta Preifat",
-      "html": "Mae hwn yn wasanaeth newydd – bydd eich <a class=\"govuk-link govuk-link--no-visited-state\" target=\"_blank\" rel=\"nofollow\" href=\"/feedback\">adborth (yn agor mewn tab newydd)</a> yn ein helpu i'w wella."
+      "html": "Mae hwn yn wasanaeth newydd – bydd eich <a class=\"govuk-link govuk-link--no-visited-state\" target=\"_blank\" rel=\"nofollow\" href=\"/feedback\">adborth (mae’n agor mewn tab newydd)</a> yn ein helpu i'w wella."
     },
     "footer": {
-      "guidance": "",
+      "guidance": "Arweiniad",
       "cookies": "Cwcis",
       "privacy": "Preifatrwydd",
-      "accessibility": "Datganiad hygyrchedd"
+      "accessibility": "Datganiad hygyrchedd",
+      "openGovLicence": "Mae’r holl gynnwys ar gael o dan <a class=\"govuk-footer__link\" href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"license\">Drwydded Llywodraeth Agored v3.0</a>, ac eithrio lle nodir fel arall",
+      "crownCopyright": "© Hawlfraint y Goron"
     },
     "buttons": {
       "continue": "Parhau",
       "back": "Yn ôl",
       "submit": "",
-      "tryAgain": "",
+      "tryAgain": "Rhoi cynnig arall arni",
       "cancel": "",
       "saveAndContinue": ""
     },
@@ -48,24 +50,24 @@
   },
   "submission": {
     "index": {
-      "heading": "Cofrestru gyda'ch swyddog prawf",
-      "intro": "Gallwch ddefnyddio'r gwasanaeth hwn i gofrestru gyda'ch swyddog prawf fel rhan o'ch prawf. Bydd eich swyddog prawf wedi'ch cofrestru ar gyfer y gwasanaeth hwn yn ystod apwyntiad wyneb yn wyneb.",
+      "heading": "Cyfarfod diweddaru gyda’ch swyddog prawf",
+      "intro": "Gallwch ddefnyddio'r gwasanaeth hwn i drefnu cyfarfod diweddaru gyda’ch swyddog prawf fel rhan o'ch cyfnod prawf.  Bydd eich swyddog prawf wedi eich cofrestru ar gyfer y gwasanaeth hwn yn ystod apwyntiad wyneb yn wyneb.",
       "beforeStart": {
         "heading": "Cyn i chi ddechrau",
-        "intro": "Bydd angen arnoch:",
+        "intro": "Bydd angen y canlynol arnoch chi:",
         "items": {
-          "internet": "mynediad i'r rhyngrwyd",
+          "internet": "mynediad at y rhyngrwyd",
           "camera": "dyfais gyda chamera",
-          "details": "eich enw a'ch dyddiad geni"
+          "details": "beth yw eich enw a'ch dyddiad geni"
         },
-        "uk": "Ni fyddwch yn gallu defnyddio'r gwasanaeth hwn i gofrestru os ydych y tu allan i'r DU."
+        "uk": "Ni fyddwch yn gallu defnyddio'r gwasanaeth hwn i ymuno â chyfarfod diweddaru os ydych chi y tu allan i'r Deyrnas Unedig."
       },
       "whatToDo": {
-        "heading": "Beth sydd angen i chi ei wneud",
-        "intro": "Fel rhan o'r gwasanaeth hwn bydd angen i chi:",
+        "heading": "Beth mae angen i chi ei wneud",
+        "intro": "Fel rhan o'r gwasanaeth hwn, bydd angen i chi wneud y canlynol:",
         "items": {
-          "questions": "ateb set o gwestiynau yn ymwneud â sut ydych chi ac os oes angen unrhyw help arnoch",
-          "camera": "rhoi caniatâd i gyrchu camera eich dyfais",
+          "questions": "ateb set o gwestiynau sy’n ymwneud â sut ydych chi ac a oes angen help arnoch chi",
+          "camera": "rhoi caniatâd i gael mynediad at gamera eich dyfais",
           "video": "recordio fideo byr ohonoch chi'ch hun fel y gallwn wirio mai chi sy'n defnyddio'r gwasanaeth"
         },
         "videoUse": "Byddwn yn defnyddio'ch fideo i gadarnhau pwy ydych chi. Byddwn yn gwneud hyn trwy ei gymharu â'r llun a dynnodd eich swyddog prawf pan wnaethant eich cofrestru.",
@@ -81,7 +83,7 @@
     "verify": {
       "title": "Manylion personol",
       "heading": "Manylion personol",
-      "intro": "Byddwn yn defnyddio'ch manylion personol i wneud yn siŵr eich bod wedi cofrestru i ddefnyddio'r gwasanaeth hwn.",
+      "intro": "Byddwn yn defnyddio eich manylion personol i wneud yn siŵr eich bod chi wedi cofrestru i ddefnyddio'r gwasanaeth hwn.",
       "firstName": "Enw cyntaf",
       "lastName": "Cyfenw",
       "dob": {
@@ -95,8 +97,8 @@
       }
     },
     "noMatchFound": {
-      "title": "",
-      "intro": "",
+      "title": "Ni chanfuwyd unrhyw beth sy’n cyd-fynd",
+      "intro": "Nid oedd modd i ni ddilysu pwy ydych chi. Gwiriwch eich gwybodaeth am wallau a rhowch gynnig arall arni.",
       "table": {
         "caption": "",
         "firstName": "Enw cyntaf",
@@ -105,68 +107,68 @@
         "notProvided": ""
       },
       "help": {
-        "heading": "",
-        "intro": ""
+        "heading": "Angen cymorth?",
+        "intro": "Os yw eich gwybodaeth yn gywir ac nad ydych chi’n gallu cadarnhau pwy ydych chi o hyd, rhaid i chi gysylltu â'ch swyddog prawf."
       }
     },
     "notFound": {
-      "title": "Tudalen heb ei chanfod",
-      "heading": "Tudalen heb ei chanfod",
-      "checkAddressTyped": "Os gwnaethoch deipio'r cyfeiriad gwe, gwiriwch ei fod yn gywir.",
-      "checkAddressPasted": "Os gwnaethoch gludo'r cyfeiriad gwe, gwiriwch eich bod wedi copïo'r cyfeiriad cyfan.",
+      "title": "Ni chanfuwyd y dudalen",
+      "heading": "Ni chanfuwyd y dudalen",
+      "checkAddressTyped": "Os ydych chi wedi teipio’r cyfeiriad gwe, gwiriwch ei fod yn gywir.",
+      "checkAddressPasted": "Os ydych chi wedi gludo’r cyfeiriad gwe, gwiriwch eich bod wedi copïo'r cyfeiriad cyfan.",
       "linkOutOfDate": "",
       "contactOfficer": ""
     },
     "expired": {
-      "title": "Mae'r cofrestriad hwn wedi dod i ben",
-      "intro": ""
+      "title": "Mae dolen eich cyfarfod diweddaru wedi dod i ben",
+      "intro": "Cysylltwch â'ch swyddog prawf i ofyn am ddolen newydd."
     },
     "timeout": {
-      "title": "Mae eich cofrestriad wedi'i ailosod",
-      "intro": "Er eich diogelwch, mae eich atebion wedi'u dileu.",
-      "restart": "Ailddechrau cofrestriad"
+      "title": "Mae eich cyfarfod diweddaru wedi cael ei ailosod",
+      "intro": "Er eich diogelwch chi, mae eich atebion wedi cael eu dileu.",
+      "restart": "Ailgychwyn y cyfarfod diweddaru"
     },
     "confirmation": {
-      "title": "Cofrestriad wedi'i gwblhau",
-      "panel": "Cofrestriad wedi'i gwblhau",
+      "title": "Wedi cwblhau’r cyfarfod diweddaru",
+      "panel": "Wedi cwblhau’r cyfarfod diweddaru",
       "sent": "Rydym wedi anfon neges gadarnhau atoch.",
       "whatNext": {
-        "heading": "Beth sy'n digwydd nesaf?",
-        "intro": "Mae eich fideo ac atebion wedi'u rhannu â'ch swyddog prawf. Byddant yn cysylltu â chi os oes unrhyw bryderon gyda'r wybodaeth rydych chi wedi'i rhoi, neu os gwnaethoch ofyn am gysylltiad.",
-        "reminder": "Byddwn yn eich atgoffa pan fydd hi'n amser ar gyfer eich cofrestriad nesaf."
+        "heading": "Beth fydd yn digwydd nesaf?",
+        "intro": "Mae eich fideo a'ch atebion wedi cael eu rhannu â'ch swyddog prawf. Byddant yn cysylltu â chi os oes pryderon ynghylch yr wybodaeth rydych chi wedi ei rhoi, neu os ydych chi wedi gofyn am gyswllt.",
+        "reminder": "Byddwn yn eich atgoffa pan fydd hi'n amser eich cyfarfod diweddaru nesaf."
       },
       "feedback": {
-        "heading": "",
-        "intro": "",
-        "button": ""
+        "heading": "Dweud eich dweud am gyfarfodydd diweddaru ar-lein",
+        "intro": "Helpwch ni i wella cyfarfodydd diweddaru ar-lein drwy ateb ychydig o gwestiynau am eich profiad. ",
+        "button": "Rhoi adborth"
       }
     },
     "questions": {
       "mentalHealth": {
-        "title": "Sut ydych chi'n teimlo?",
-        "legend": "Sut ydych chi'n teimlo?",
-        "hint": "Meddyliwch am bethau fel a ydych chi wedi sylwi ar newid yn eich hwyliau.",
+        "title": "Sut ydych chi wedi bod yn teimlo ers i ni siarad ddiwethaf?",
+        "legend": "Sut ydych chi wedi bod yn teimlo ers i ni siarad ddiwethaf?",
+        "hint": "Meddyliwch am bethau fel a ydych chi wedi sylwi ar newid yn eich hwyliau a beth allai fod wedi achosi hyn.",
         "options": {
           "veryWell": "Da iawn",
-          "well": "Da",
+          "well": "Yn dda",
           "ok": "Iawn",
-          "notGreat": "Ddim yn wych",
-          "struggling": "Yn cael trafferth"
+          "notGreat": "Ddim yn grêt",
+          "struggling": "Cael trafferth"
         },
-        "veryWellLabel": "",
-        "wellLabel": "",
-        "okLabel": "",
-        "notGreatLabel": "",
-        "strugglingLabel": "",
-        "insetHtml": "Os oes angen i chi siarad â rhywun ar frys am sut rydych chi'n teimlo, edrychwch ar <a href=\"https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/help-for-suicidal-thoughts/\" class=\"govuk-link\" target=\"_blank\">wefan y GIG am help (yn agor mewn tab newydd)</a>.",
+        "veryWellLabel": "Dywedwch wrthym pam eich bod yn teimlo'n dda iawn (dewisol)",
+        "wellLabel": "Dywedwch wrthym pam eich bod yn teimlo'n dda (dewisol)",
+        "okLabel": "Dywedwch wrthym pam eich bod yn teimlo'n iawn (dewisol)",
+        "notGreatLabel": "Dywedwch wrthym pam nad ydych chi'n teimlo'n grêt (dewisol)",
+        "strugglingLabel": "Dywedwch wrthym pam eich bod chi’n cael trafferth (dewisol)",
+        "insetHtml": "Os ydych chi angen siarad â rhywun ar frys am sut rydych chi'n teimlo, edrychwch ar <a href=\"https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/help-for-suicidal-thoughts/\" class=\"govuk-link\" target=\"_blank\">wefan y GIG i gael help (yn agor mewn tab newydd)</a>.",
         "errors": {
-          "required": "Dewiswch sut rydych chi'n teimlo"
+          "required": "Dewiswch sut ydych chi wedi bod yn teimlo ers i ni siarad ddiwethaf"
         }
       },
       "assistance": {
-        "title": "A oes unrhyw beth rydych chi angen cymorth gydag ef neu eisiau rhoi gwybod i ni amdano?",
-        "legend": "A oes unrhyw beth rydych chi angen cymorth gydag ef neu eisiau rhoi gwybod i ni amdano?",
-        "hint": "",
+        "title": "Oes angen cymorth arnoch chi neu ydych chi eisiau rhoi gwybod i ni am unrhyw beth?",
+        "legend": "Oes angen cymorth arnoch chi neu ydych chi eisiau rhoi gwybod i ni am unrhyw beth?",
+        "hint": "Gallai hyn fod yn unrhyw beth rydych chi’n poeni amdano, yn cael trafferth ag ef neu ddim ond eisiau rhoi gwybod i ni.",
         "options": {
           "mentalHealth": "Iechyd meddwl",
           "alcohol": "Alcohol",
@@ -175,22 +177,22 @@
           "housing": "Tai",
           "employmentEdu": "Cyflogaeth ac addysg",
           "supportSystem": "Perthnasoedd (teulu, ffrindiau, partner)",
-          "other": "Arall",
-          "noHelp": "Na, nid oes angen help arnaf"
+          "other": "Rhywbeth arall",
+          "noHelp": "Na, nid oes angen unrhyw gymorth arnaf"
         },
         "divider": "neu",
         "labels": {
-          "mentalHealth": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am iechyd meddwl (dewisol)",
-          "alcohol": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am alcohol (dewisol)",
-          "drugs": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am gyffuriau (dewisol)",
-          "money": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am arian (dewisol)",
-          "housing": "Dywedwch wrthym beth rydych chi eisiau i ni wybod am dai (dewisol)",
+          "mentalHealth": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am iechyd meddwl (dewisol)",
+          "alcohol": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am alcohol (dewisol)",
+          "drugs": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am gyffuriau (dewisol)",
+          "money": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am arian (dewisol)",
+          "housing": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am dai (dewisol)",
           "employmentEdu": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am eich Cyflogaeth ac addysg (dewisol)",
           "supportSystem": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am eich perthnasoedd (dewisol)",
-          "other": "Dywedwch wrthym beth rydych chi angen help gydag ef (dewisol)"
+          "other": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod (dewisol)"
         },
         "errors": {
-          "required": "Dewiswch beth rydych chi angen help gydag ef neu dewiswch 'Na, nid oes angen help arnaf'"
+          "required": "Dewiswch gyda beth y mae angen cymorth arnoch chi neu dewiswch 'Na, nid oes angen unrhyw gymorth arnaf'"
         }
       },
       "callback": {
@@ -211,31 +213,31 @@
       }
     },
     "checkAnswers": {
-      "title": "Gwiriwch eich atebion cyn i chi gwblhau eich cofrestriad",
+      "title": "Gwiriwch eich atebion cyn cwblhau eich cyfarfod diweddaru",
       "aboutYou": "Amdanoch chi",
       "video": "Fideo",
       "identityCheck": "",
       "rows": {
-        "mentalHealth": "Sut ydych chi'n teimlo?",
-        "mentalHealthVeryWell": "",
-        "mentalHealthWell": "",
-        "mentalHealthOk": "",
-        "mentalHealthNotGreat": "",
-        "mentalHealthStruggling": "",
-        "assistance": "A oes unrhyw beth rydych chi angen cymorth gydag ef neu eisiau rhoi gwybod i ni amdano?",
-        "mentalHealthSupport": "Dywedwch wrthym pam mae angen help arnoch gydag iechyd meddwl",
-        "alcoholSupport": "Dywedwch wrthym pam mae angen help arnoch gydag alcohol",
+        "mentalHealth": "Sut ydych chi wedi bod yn teimlo ers i ni siarad ddiwethaf? ",
+        "mentalHealthVeryWell": "Dywedwch wrthym pam eich bod yn teimlo'n dda iawn",
+        "mentalHealthWell": "Dywedwch wrthym pam eich bod yn teimlo'n dda",
+        "mentalHealthOk": "Dywedwch wrthym pam eich bod yn teimlo'n iawn",
+        "mentalHealthNotGreat": "Dywedwch wrthym pam nad ydych chi'n teimlo'n grêt",
+        "mentalHealthStruggling": "Dywedwch wrthym pam eich bod chi’n cael trafferth",
+        "assistance": "Oes angen cymorth arnoch chi neu ydych chi eisiau rhoi gwybod i ni am unrhyw beth?",
+        "mentalHealthSupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am iechyd meddwl",
+        "alcoholSupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am alcohol",
         "drugsSupport": "Dywedwch wrthym pam mae angen help arnoch gyda chyffuriau",
         "moneySupport": "Dywedwch wrthym pam mae angen help arnoch gydag arian",
         "housingSupport": "Dywedwch wrthym pam mae angen help arnoch gyda thai",
-        "employmentEduSupport": "",
-        "supportSystemSupport": "Dywedwch wrthym pam mae angen help arnoch gyda system gymorth",
-        "otherSupport": "Dywedwch wrthym pam mae angen help arnoch (arall)",
+        "employmentEduSupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am eich Cyflogaeth ac addysg",
+        "supportSystemSupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am eich perthnasoedd ",
+        "otherSupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod (rhywbeth arall)",
         "videoCheck": "Gwiriad fideo",
-        "identityCheck": ""
+        "identityCheck": "Gwiriad adnabod"
       },
       "change": "Newid",
-      "view": "Gweld",
+      "view": "Gwylio",
       "hidden": {
         "mentalHealth": " ateb ar gyfer sut ydych chi'n teimlo",
         "mentalHealthVeryWell": "",
@@ -244,8 +246,8 @@
         "mentalHealthNotGreat": "",
         "mentalHealthStruggling": "",
         "assistance": " ateb ar gyfer a oes unrhyw beth rydych chi angen cymorth gydag ef neu eisiau rhoi gwybod i ni amdano",
-        "mentalHealthSupport": " ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gydag iechyd meddwl",
-        "alcoholSupport": " ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gydag alcohol",
+        "mentalHealthSupport": " ateb ar gyfer Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am iechyd meddwl",
+        "alcoholSupport": " ateb ar gyfer Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am alcohol",
         "drugsSupport": " ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gyda chyffuriau",
         "moneySupport": " ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gydag arian",
         "housingSupport": " ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gyda thai",
@@ -255,105 +257,105 @@
         "otherSupportLegacy": "",
         "additionalPrefix": "",
         "video": " fideo",
-        "identity": ""
+        "identity": " Gwiriad adnabod"
       },
       "videoResult": {
-        "match": "Rydym wedi cadarnhau mai chi yw hwn",
-        "noMatch": "Ni allwn gadarnhau mai chi yw hwn"
+        "match": "Rydym wedi cadarnhau mai chi sydd yno",
+        "noMatch": "Ni allwn gadarnhau mai chi sydd yno"
       },
       "identityResult": {
-        "match": "Rydym wedi cadarnhau mai chi yw hwn",
-        "noMatch": "Ni allwn gadarnhau mai chi yw hwn",
+        "match": "Rydym wedi cadarnhau mai chi sydd yno",
+        "noMatch": "Ni allwn gadarnhau mai chi sydd yno",
         "notLiveMatch": "",
         "notLiveNoMatch": ""
       },
       "complete": {
-        "legend": "Cwblhewch eich cofrestriad",
-        "confirm": "Rwy'n cadarnhau, hyd eithaf fy ngwybodaeth, bod y manylion rwyf wedi'u darparu yn gywir. Rwy'n deall y bydd y wybodaeth hon yn cael ei rhannu â'm swyddog prawf.",
-        "button": "Cwblhau cofrestriad"
+        "legend": "Cwblhau eich cyfarfod diweddaru",
+        "confirm": "Rydw i'n cadarnhau, hyd eithaf fy ngwybodaeth, bod y manylion rydw i wedi eu rhoi yn gywir. Rydw i'n deall y bydd yr wybodaeth hon yn cael ei rhannu â'm swyddog prawf.",
+        "button": "Cwblhau eich cyfarfod diweddaru"
       },
       "errors": {
-        "required": "Cadarnhewch fod eich manylion yn gywir"
+        "required": "Cadarnhau bod eich manylion yn gywir"
       }
     },
     "video": {
       "inform": {
         "title": "Cadarnhau pwy ydych chi",
-        "intro": "Nesaf, mae angen i ni recordio fideo 5 eiliad ohonoch chi ar y ddyfais hon. Ni fydd angen i chi siarad yn y fideo.",
+        "intro": "Nesaf, mae angen i ni recordio fideo 5 eiliad ohonoch chi ar y ddyfais hon. Nid oes angen i chi siarad yn y fideo. Ni fydd unrhyw beth a ddywedwch yn cael ei recordio. Byddwch yn gallu gwylio'r fideo cyn parhau.",
         "comparison": "Byddwn yn defnyddio'ch fideo i gadarnhau pwy ydych chi. Byddwn yn gwneud hyn trwy gymharu'ch fideo â'r llun a dynnodd eich swyddog prawf pan wnaethant eich cofrestru. Dim ond i gadarnhau pwy ydych chi y bydd y fideo hwn yn cael ei ddefnyddio.",
-        "permissions": "Bydd angen i chi dderbyn caniatâd i recordio fideo ar eich dyfais.",
-        "rulesHeading": "Cyn i chi recordio'ch fideo",
-        "rulesIntro": "Cyn i chi recordio'ch fideo, gwnewch yn siŵr:",
+        "permissions": "Bydd angen i chi dderbyn hawliau i recordio ar eich dyfais.",
+        "rulesHeading": "Cyn i chi recordio eich fideo",
+        "rulesIntro": "Cyn recordio eich fideo, gwnewch yn siŵr:",
         "rules": {
-          "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
-          "plainBackground": "eich bod o flaen cefndir plaen",
+          "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
+          "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
           "faceInFrame": "bod eich wyneb yn y ffrâm",
-          "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
+          "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
         },
         "inset": "Cofiwch mai cofrestriad prawf yw hwn a dylid ei drin yr un fath â chyfarfod wyneb yn wyneb. Dylech wisgo dillad priodol wrth gymryd y fideo."
       },
       "record": {
         "title": "Recordio eich fideo",
         "intro": "",
-        "permissionsHeading": "Mae angen i chi dderbyn caniatâd ar eich dyfais",
-        "permissionsBody": "Nid ydym yn gallu cael mynediad i'ch camera i recordio fideo. Gwiriwch osodiadau a chaniatâd eich porwr. Os ydych chi'n cael trafferth defnyddio'r gwasanaeth hwn, cysylltwch â'ch swyddog prawf.",
+        "permissionsHeading": "Mae angen i chi dderbyn hawliau ar eich dyfais",
+        "permissionsBody": "Ni allwn ddefnyddio eich camera i recordio fideo. Gwiriwch osodiadau a hawliau eich porwr. Os ydych chi'n cael trafferth defnyddio'r gwasanaeth hwn, cysylltwch â'ch swyddog prawf.",
         "startButton": "Dechrau recordio",
         "browserUnsupported": ""
       },
       "view": {
         "title": "Gwiriwch eich fideo",
         "match": {
-          "heading": "Rydym wedi cadarnhau mai chi yw hwn",
-          "intro": "Rydym wedi cadarnhau mai chi yw hwn. Gallwch nawr barhau i wirio'ch atebion.",
+          "heading": "Rydym wedi cadarnhau mai chi sydd yno",
+          "intro": "Rydym wedi cadarnhau mai chi sydd yno. Gallwch nawr barhau i wirio eich atebion.",
           "continue": "Parhau"
         },
         "noMatch": {
-          "heading": "Ni allwn gadarnhau mai chi yw hwn",
-          "intro": "Rydym wedi gwirio ac ni allwn gadarnhau mai chi yw hwn. Gallwch geisio recordio eto neu gyflwyno'ch fideo beth bynnag.",
+          "heading": "Ni allwn gadarnhau mai chi sydd yno",
+          "intro": "Rydym wedi gwirio eich manylion ac ni allwn gadarnhau mai chi sydd yno. Gallwch roi cynnig arall ar recordio eich fideo neu ei gyflwyno beth bynnag.",
           "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
           "rules": {
-            "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
-            "plainBackground": "eich bod o flaen cefndir plaen",
+            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
+            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
+            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
           },
-          "recordAgain": "Recordio fideo eto",
-          "submitAnyway": "Cyflwyno fideo beth bynnag"
+          "recordAgain": "Recordio'r fideo eto",
+          "submitAnyway": "Cyflwyno’r fideo beth bynnag"
         },
         "browserUnsupported": ""
       },
       "partials": {
-        "loading": "Yn gwirio mai chi yw hwn",
+        "loading": "Gwirio mai chi sydd yno",
         "match": {
-          "heading": "Rydym wedi cadarnhau mai chi yw hwn",
-          "intro": "Rydym wedi cadarnhau mai chi yw hwn. Gallwch nawr barhau i wirio'ch atebion.",
+          "heading": "Rydym wedi cadarnhau mai chi sydd yno",
+          "intro": "Rydym wedi cadarnhau mai chi sydd yno. Gallwch nawr barhau i wirio eich atebion.",
           "continue": "Parhau",
           "browserUnsupported": ""
         },
         "nomatch": {
-          "heading": "Ni allwn gadarnhau mai chi yw hwn",
-          "intro": "Rydym wedi gwirio ac ni allwn gadarnhau mai chi yw hwn. Gallwch geisio recordio eto neu gyflwyno'ch fideo beth bynnag.",
-          "rulesHeading": "Os ydych chi'n recordio'ch fideo eto",
+          "heading": "Ni allwn gadarnhau mai chi sydd yno",
+          "intro": "Rydym wedi gwirio eich manylion ac ni allwn gadarnhau mai chi sydd yno. Gallwch roi cynnig arall ar recordio eich fideo neu ei gyflwyno beth bynnag.",
+          "rulesHeading": "Os byddwch chi'n recordio eich fideo eto",
           "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
           "rules": {
-            "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
-            "plainBackground": "eich bod o flaen cefndir plaen",
+            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
+            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
+            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
           },
-          "recordAgain": "Recordio fideo eto",
-          "submitAnyway": "Cyflwyno fideo beth bynnag",
+          "recordAgain": "Recordio'r fideo eto",
+          "submitAnyway": "Cyflwyno’r fideo beth bynnag",
           "browserUnsupported": ""
         },
         "error": {
-          "heading": "Ni allwn gadarnhau mai chi yw hwn oherwydd digwyddodd gwall",
-          "intro": "Rydym wedi gwirio ac ni allwn gadarnhau mai chi yw hwn. Gallwch geisio recordio eto.",
+          "heading": "Ni allwn gadarnhau mai chi sydd yno oherwydd digwyddodd gwall",
+          "intro": "Rydym wedi gwirio ac Ni allwn gadarnhau mai chi sydd yno. Gallwch geisio recordio eto.",
           "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
           "rules": {
-            "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
-            "plainBackground": "eich bod o flaen cefndir plaen",
+            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
+            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
+            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
           },
           "tryAgain": "Rhowch gynnig arall ar recordio'ch fideo"
         }
@@ -361,33 +363,33 @@
     },
     "liveness": {
       "index": {
-        "heading": "Cofrestru gyda'ch swyddog prawf",
-        "intro": "Gallwch ddefnyddio'r gwasanaeth hwn i gofrestru gyda'ch swyddog prawf fel rhan o'ch prawf. Bydd eich swyddog prawf wedi'ch cofrestru ar gyfer y gwasanaeth hwn yn ystod apwyntiad wyneb yn wyneb.",
+        "heading": "Cyfarfod diweddaru gyda’ch swyddog prawf",
+        "intro": "Gallwch ddefnyddio'r gwasanaeth hwn i drefnu cyfarfod diweddaru gyda’ch swyddog prawf fel rhan o'ch cyfnod prawf.  Bydd eich swyddog prawf wedi eich cofrestru ar gyfer y gwasanaeth hwn yn ystod apwyntiad wyneb yn wyneb.",
         "beforeStart": {
           "heading": "Cyn i chi ddechrau",
-          "intro": "Bydd angen arnoch:",
+          "intro": "Bydd angen y canlynol arnoch chi:",
           "items": {
-            "internet": "mynediad i'r rhyngrwyd",
+            "internet": "mynediad at y rhyngrwyd",
             "camera": "dyfais gyda chamera",
-            "details": "eich enw a'ch dyddiad geni"
+            "details": "beth yw eich enw a'ch dyddiad geni"
           },
-          "uk": "Ni fyddwch yn gallu defnyddio'r gwasanaeth hwn i gofrestru os ydych y tu allan i'r DU."
+          "uk": "Ni fyddwch yn gallu defnyddio'r gwasanaeth hwn i ymuno â chyfarfod diweddaru os ydych chi y tu allan i'r Deyrnas Unedig."
         },
         "whatToDo": {
-          "heading": "Beth sydd angen i chi ei wneud",
-          "intro": "Fel rhan o'r gwasanaeth hwn bydd angen i chi:",
+          "heading": "Beth mae angen i chi ei wneud",
+          "intro": "Fel rhan o'r gwasanaeth hwn, bydd angen i chi wneud y canlynol:",
           "items": {
-            "questions": "ateb set o gwestiynau yn ymwneud â sut ydych chi ac os oes angen unrhyw help arnoch",
-            "camera": "rhoi caniatâd i gyrchu camera eich dyfais",
+            "questions": "ateb set o gwestiynau sy’n ymwneud â sut ydych chi ac a oes angen help arnoch chi",
+            "camera": "rhoi caniatâd i gael mynediad at gamera eich dyfais",
             "verify": "dilysu pwy ydych chi drwy symud eich wyneb i ffrâm ar eich sgrin gan ddefnyddio eich camera, a dilyn y cyfarwyddiadau ar y sgrin"
           },
           "comparison": "Byddwn yn cymharu’r llun a ddefnyddiwyd i ddilysu pwy ydych chi â'r llun a dynnodd eich swyddog prawf pan wnaeth eich cofrestru. Ni fydd hyn yn defnyddio eich meicroffon na’ch lleoliad",
           "shareAnswers": "Bydd yr atebion i'ch cwestiynau yn cael eu hanfon at eich swyddog prawf i'w hadolygu."
         },
         "help": {
-          "heading": "Os oes angen help arnoch",
-          "intro": "Os ydych yn cael anhawster defnyddio'r gwasanaeth hwn, neu os nad oes gennych fynediad i bopeth sydd ei angen arnoch, dylech gysylltu â'ch swyddog prawf a rhoi gwybod iddynt.",
-          "guidance": "Gallwch <a href=\"/guidance?submissionId={{submissionId}}\" class=\"govuk-link\">ddysgu mwy am gofrestriadau ar-lein yn ein canllawiau</a>."
+          "heading": "Os oes angen help arnoch chi",
+          "intro": "Os ydych chi'n cael trafferth defnyddio'r gwasanaeth hwn, neu os nad ydych chi'n gallu cael gafael ar bopeth sydd ei angen arnoch chi, dylech gysylltu â'ch swyddog prawf a rhoi gwybod iddynt.",
+          "guidance": "Gallwch <a href=\"/guidance?submissionId={{submissionId}}\" class=\"govuk-link\">ddysgu mwy am gyfarfodydd diweddaru ar-lein yn ein canllawiau</a>."
         },
         "start": "Dechrau nawr"
       },
@@ -400,11 +402,11 @@
         "rulesIntro": "Cyn i chi ddilysu pwy ydych chi, chi gwnewch yn siŵr:",
         "rules": {
           "faceInFrame": "bod eich wyneb yn y ffrâm",
-          "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
-          "plainBackground": "eich bod o flaen cefndir plaen",
-          "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
+          "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
+          "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
+          "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
         },
-        "inset": "Cofiwch mai cofrestriad prawf yw hwn a dylid ei drin yr un fath â chyfarfod wyneb yn wyneb. Dylech wisgo dillad priodol."
+        "inset": "Cofiwch mai cyfarfod diweddaru prawf yw hwn a dylid ei drin yr un fath â chyfarfod wyneb yn wyneb. Dylech wisgo dillad addas. "
       },
       "record": {
         "title": "Dilysu pwy ydych chi"
@@ -415,27 +417,27 @@
       "view": {
         "title": "Gwiriwch eich fideo",
         "match": {
-          "heading": "Rydym wedi cadarnhau mai chi yw hwn",
-          "intro": "Rydym wedi cadarnhau mai chi yw hwn. Gallwch nawr barhau i wirio'ch atebion.",
+          "heading": "Rydym wedi cadarnhau mai chi sydd yno",
+          "intro": "Rydym wedi cadarnhau mai chi sydd yno. Gallwch nawr barhau i wirio eich atebion.",
           "continue": "Parhau"
         },
         "liveNoMatch": {
-          "heading": "Ni allwn gadarnhau mai chi yw hwn",
+          "heading": "Ni allwn gadarnhau mai chi sydd yno",
           "intro": "Y rheswm am hyn yw nad yw eich llun yn cyfateb i’r llun sydd gennym ar eich ffeil. ",
           "rulesHeading": "Gallwch roi cynnig arall ar ddilysu pwy ydych chi ",
           "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
-            "plainBackground": "eich bod o flaen cefndir plaen",
-            "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
+            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
+            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
+            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
           },
           "tryAgain": "Dilysu pwy ydych chi eto",
           "submitAnyway": "Parhau i wirio eich atebion"
         },
         "notLiveMatch": {
           "heading": "Ni allwn gadarnhau pwy ydych chi",
-          "intro": "Ni allwn gadarnhau mai chi yw hwn, gan na wnaethoch symud yn ddigon cyflym, neu fod eich wyneb wedi gadael y ffrâm.",
+          "intro": "Ni allwn gadarnhau mai chi sydd yno, gan na wnaethoch symud yn ddigon cyflym, neu fod eich wyneb wedi gadael y ffrâm.",
           "rulesHeading": "Os ydych am roi cynnig arall ar ddilysu pwy ydych chi",
           "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
@@ -464,19 +466,19 @@
           "submitAnyway": "Parhau i wirio eich atebion"
         },
         "fallbackMatch": {
-          "heading": "Rydym wedi cadarnhau mai chi yw hwn",
-          "intro": "Rydym wedi cadarnhau mai chi yw hwn. Gallwch nawr barhau i wirio'ch atebion.",
+          "heading": "Rydym wedi cadarnhau mai chi sydd yno",
+          "intro": "Rydym wedi cadarnhau mai chi sydd yno. Gallwch nawr barhau i wirio eich atebion.",
           "continue": "Parhau"
         },
         "fallback": {
-          "heading": "Ni allwn gadarnhau mai chi yw hwn",
+          "heading": "Ni allwn gadarnhau mai chi sydd yno",
           "intro": "",
           "rulesHeading": "",
           "rules": {
-            "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
-            "plainBackground": "eich bod o flaen cefndir plaen",
+            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
+            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
+            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
           },
           "tryAgain": "Dilysu pwy ydych chi eto",
           "submitAnyway": "Parhau i wirio eich atebion"
@@ -492,16 +494,16 @@
             "followInstructions": "dilyn y cyfarwyddiadau i symud eich wyneb yn nes, gan ei gadw yn y ffrâm"
           }
         },
-        "loading": "Yn gwirio mai chi yw hwn",
+        "loading": "Gwirio mai chi sydd yno",
         "match": {
-          "heading": "Rydym wedi cadarnhau mai chi yw hwn",
-          "intro": "Rydym wedi cadarnhau mai chi yw hwn. Gallwch nawr barhau i wirio'ch atebion.",
+          "heading": "Rydym wedi cadarnhau mai chi sydd yno",
+          "intro": "Rydym wedi cadarnhau mai chi sydd yno. Gallwch nawr barhau i wirio eich atebion.",
           "continue": "Parhau"
         },
         "cameraError": {
           "heading": "Dilysu pwy ydych chi",
-          "subHeading": "Mae angen i chi dderbyn caniatâd ar eich dyfais",
-          "body": "Nid oes modd i ni fynd at eich camera i ddilysu pwy ydych chi. Gwiriwch osodiadau a hawliau eich porwr. Os ydych chi'n cael trafferth defnyddio'r gwasanaeth hwn, cysylltwch â'ch swyddog prawf.  ",
+          "subHeading": "Mae angen i chi dderbyn hawliau ar eich dyfais",
+          "body": "Nid oes modd i ni fynd at eich camera i ddilysu pwy ydych chi. Gwiriwch osodiadau a hawliau eich porwr. Os ydych chi'n cael trafferth defnyddio'r gwasanaeth hwn, cysylltwch â'ch swyddog prawf.",
           "start": "Dechrau’r gwiriad adnabod"
         },
         "cameraFramerate": {
@@ -577,15 +579,15 @@
           "recordInstead": "Recordio fideo yn lle hynny"
         },
         "liveNoMatch": {
-          "heading": "Ni allwn gadarnhau mai chi yw hwn",
+          "heading": "Ni allwn gadarnhau mai chi sydd yno",
           "intro": "Y rheswm am hyn yw nad yw eich llun yn cyfateb i’r llun sydd gennym ar eich ffeil. ",
           "rulesHeading": "Gallwch roi cynnig arall ar ddilysu pwy ydych chi ",
           "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
-            "plainBackground": "eich bod o flaen cefndir plaen",
-            "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
+            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
+            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
+            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
           },
           "submitHint": "Os ydych chi’n cael trafferth dilysu pwy ydych chi, gallwch barhau i gyflwyno eich manylion mewngofnodi. Bydd eich swyddog prawf yn cadarnhau mai chi yw hwn pan fydd yn adolygu eich manylion mewngofnodi. ",
           "verifyAgain": "Dilysu pwy ydych chi eto",
@@ -607,7 +609,7 @@
         },
         "notLiveMatch": {
           "heading": "Ni allwn gadarnhau pwy ydych chi",
-          "intro": "Ni allwn gadarnhau mai chi yw hwn, gan na wnaethoch symud yn ddigon cyflym, neu fod eich wyneb wedi gadael y ffrâm.",
+          "intro": "Ni allwn gadarnhau mai chi sydd yno, gan na wnaethoch symud yn ddigon cyflym, neu fod eich wyneb wedi gadael y ffrâm.",
           "rulesHeading": "Os ydych am roi cynnig arall ar ddilysu pwy ydych chi",
           "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
@@ -655,70 +657,70 @@
       "fallback": {
         "inform": {
           "title": "Cadarnhau pwy ydych chi",
-          "intro": "Nesaf, mae angen i ni recordio fideo 5 eiliad ohonoch chi ar y ddyfais hon. Ni fydd angen i chi siarad yn y fideo.",
+          "intro": "Nesaf, mae angen i ni recordio fideo 5 eiliad ohonoch chi ar y ddyfais hon. Nid oes angen i chi siarad yn y fideo. Ni fydd unrhyw beth a ddywedwch yn cael ei recordio. Byddwch yn gallu gwylio'r fideo cyn parhau.",
           "comparison": "Bydd llun ohonoch wedi ei gymryd o’r fideo yn cael e gadw i’w gymharu â'r llun a dynnodd eich swyddog prawf pan wnaeth eich cofrestru. Dim ond i gadarnhau pwy ydych chi y bydd hwn yn cael ei ddefnyddio.",
-          "permissions": "Bydd angen i chi dderbyn caniatâd i recordio fideo ar eich dyfais.",
-          "rulesHeading": "Cyn i chi recordio'ch fideo",
-          "rulesIntro": "Cyn i chi recordio'ch fideo, gwnewch yn siŵr:",
+          "permissions": "Bydd angen i chi dderbyn hawliau i recordio ar eich dyfais.",
+          "rulesHeading": "Cyn i chi recordio eich fideo",
+          "rulesIntro": "Cyn recordio eich fideo, gwnewch yn siŵr:",
           "rules": {
-            "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
-            "plainBackground": "eich bod o flaen cefndir plaen",
+            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
+            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
+            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
           },
-          "inset": "Cofiwch mai cofrestriad prawf yw hwn a dylid ei drin yr un fath â chyfarfod wyneb yn wyneb. Dylech wisgo dillad priodol."
+          "inset": "Cofiwch mai cyfarfod diweddaru prawf yw hwn a dylid ei drin yr un fath â chyfarfod wyneb yn wyneb. Dylech wisgo dillad addas. "
         },
         "record": {
           "title": "Recordio eich fideo",
-          "intro": "",
-          "permissionsHeading": "Mae angen i chi dderbyn caniatâd ar eich dyfais",
-          "permissionsBody": "Nid ydym yn gallu cael mynediad i'ch camera i recordio fideo. Gwiriwch osodiadau a chaniatâd eich porwr. Os ydych chi'n cael trafferth defnyddio'r gwasanaeth hwn, cysylltwch â'ch swyddog prawf.",
+          "intro": "Nid oes angen i chi wneud unrhyw beth yn ystod y fideo. Ni fydd unrhyw beth a ddywedwch yn cael ei recordio.",
+          "permissionsHeading": "Mae angen i chi dderbyn hawliau ar eich dyfais",
+          "permissionsBody": "Ni allwn ddefnyddio eich camera i recordio fideo. Gwiriwch osodiadau a hawliau eich porwr. Os ydych chi'n cael trafferth defnyddio'r gwasanaeth hwn, cysylltwch â'ch swyddog prawf.",
           "startButton": "Dechrau recordio"
         },
         "partials": {
-          "loading": "Yn gwirio mai chi yw hwn",
+          "loading": "Gwirio mai chi sydd yno",
           "review": {
-            "heading": "",
+            "heading": "Adolygu eich fideo",
             "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
             "rules": {
-              "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
-              "plainBackground": "eich bod o flaen cefndir plaen",
+              "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
+              "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
               "faceInFrame": "bod eich wyneb yn y ffrâm",
-              "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
+              "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
             },
             "imageAlt": "",
-            "ifMeetsRules": "",
+            "ifMeetsRules": "Os yw eich fideo yn bodloni'r rheolau, gallwch barhau a byddwn yn cadarnhau pwy ydych chi.",
             "continue": "Parhau",
-            "recordAgain": "Recordio fideo eto"
+            "recordAgain": "Recordio'r fideo eto"
           },
           "match": {
-            "heading": "Rydym wedi cadarnhau mai chi yw hwn",
-            "intro": "Rydym wedi cadarnhau mai chi yw hwn. Gallwch nawr barhau i wirio'ch atebion.",
+            "heading": "Rydym wedi cadarnhau mai chi sydd yno",
+            "intro": "Rydym wedi cadarnhau mai chi sydd yno. Gallwch nawr barhau i wirio eich atebion.",
             "continue": "Parhau"
           },
           "nomatch": {
-            "heading": "Ni allwn gadarnhau mai chi yw hwn",
-            "intro": "Rydym wedi gwirio ac ni allwn gadarnhau mai chi yw hwn. Gallwch geisio recordio eto neu gyflwyno'ch fideo beth bynnag.",
-            "rulesHeading": "Os ydych chi'n recordio'ch fideo eto",
+            "heading": "Ni allwn gadarnhau mai chi sydd yno",
+            "intro": "Rydym wedi gwirio eich manylion ac ni allwn gadarnhau mai chi sydd yno. Gallwch roi cynnig arall ar recordio eich fideo neu ei gyflwyno beth bynnag.",
+            "rulesHeading": "Os byddwch chi'n recordio eich fideo eto",
             "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
             "rules": {
-              "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
-              "plainBackground": "eich bod o flaen cefndir plaen",
+              "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
+              "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
               "faceInFrame": "bod eich wyneb yn y ffrâm",
-              "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
+              "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
             },
-            "recordAgain": "Recordio fideo eto",
-            "submitAnyway": "Cyflwyno fideo beth bynnag"
+            "recordAgain": "Recordio'r fideo eto",
+            "submitAnyway": "Cyflwyno’r fideo beth bynnag"
           },
           "error": {
-            "heading": "Ni allwn gadarnhau mai chi yw hwn oherwydd digwyddodd gwall",
-            "intro": "Rydym wedi gwirio ac ni allwn gadarnhau mai chi yw hwn. Gallwch geisio recordio eto.",
+            "heading": "Ni allwn gadarnhau mai chi sydd yno oherwydd digwyddodd gwall",
+            "intro": "Rydym wedi gwirio ac Ni allwn gadarnhau mai chi sydd yno. Gallwch geisio recordio eto.",
             "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
             "rules": {
-              "litArea": "eich bod mewn ardal sydd wedi'i goleuo'n dda",
-              "plainBackground": "eich bod o flaen cefndir plaen",
+              "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
+              "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
               "faceInFrame": "bod eich wyneb yn y ffrâm",
-              "noHatSunglasses": "nad ydych yn gwisgo het na sbectol haul"
+              "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
             },
             "tryAgain": "Rhowch gynnig arall ar recordio'ch fideo"
           }
@@ -728,23 +730,23 @@
     "errors": {
       "date": {
         "who": {
-          "your": "",
-          "their": ""
+          "your": "eich",
+          "their": "eu"
         },
         "parts": {
-          "day": "",
-          "month": "",
-          "year": "",
+          "day": "diwrnod",
+          "month": "mis",
+          "year": "blwyddyn",
           "year4digits": "4 rhif ar gyfer y flwyddyn"
         },
-        "allMissing": "",
-        "missingParts": "",
+        "allMissing": "Rhaid {{who}} {{label}}",
+        "missingParts": "Rhaid i'r dyddiad geni gynnwys {{parts}}",
         "yearMustBe4": "Rhaid i'r flwyddyn gynnwys 4 rhif",
-        "dayMustBeNumber": "Dim ond rhifau y dylai'r diwrnod eu cynnwys",
-        "monthMustBeNumber": "Dim ond rhifau y dylai'r mis eu cynnwys",
-        "yearMustBeNumber": "Dim ond rhifau y dylai'r flwyddyn eu cynnwys",
+        "dayMustBeNumber": "Rhaid i'r diwrnod gynnwys rhifau'n unig",
+        "monthMustBeNumber": "Rhaid i'r mis gynnwys rhifau'n unig",
+        "yearMustBeNumber": "Rhaid i'r flwyddyn gynnwys rhifau'n unig",
         "allMustBeNumbers": "",
-        "mustBeReal": "",
+        "mustBeReal": "Rhaid i’r dyddiad geni fod yn ddyddiad go iawn",
         "mustBeFuture": "",
         "mustBeFutureOrToday": "",
         "mustBePast": ""
@@ -769,157 +771,157 @@
       "title": "Hysbysiad Preifatrwydd y Gwasanaeth Prawf",
       "heading": "Hysbysiad Preifatrwydd y Gwasanaeth Prawf",
       "purpose": {
-        "heading": "Diben",
-        "intro": "Mae'r hysbysiad preifatrwydd hwn yn egluro'r safonau y gallwch eu disgwyl gan y Gwasanaeth Prawf",
+        "heading": "Pwrpas",
+        "intro": "Mae’r hysbysiad preifatrwydd hwn yn egluro’r safonau y gallwch eu disgwyl gan Gwasanaeth Carchardai a Phrawf Ei Fawrhydi",
         "items": {
-          "personalData": "Pan fyddwn yn gofyn am, defnyddio neu ddal gwybodaeth bersonol ('data personol') amdanoch chi",
-          "access": "Sut y gallwch gael mynediad at gopi o'ch data personol",
-          "complain": "Sut y gallwch gwyno os credwch ein bod wedi gwneud rhywbeth o'i le"
+          "personalData": "pan fyddwn yn gofyn am wybodaeth bersonol neu’n cadw gwybodaeth bersonol (‘data personol’) amdanoch chi                                                                                                                                  ",
+          "access": "y ffordd y gallwch gael gafael ar gopi o’ch data personol                                                                                                                                    ",
+          "complain": "y ffordd y gallwch gwyno os ydych chi’n meddwl ein bod wedi gwneud rhywbeth o’i le"
         },
-        "hmpps": "Mae'r Gwasanaeth Prawf yn un rhan o Wasanaeth Carchardai a Phrawf Ei Mawrhydi (HMPPS) sy'n rhan o'r Weinyddiaeth Gyfiawnder (MoJ).",
-        "collect": "Mae angen i ni gasglu eich gwybodaeth bersonol i gyflawni swyddogaethau fel cyflawni dedfrydau a roddir gan y llysoedd, yn y ddalfa ac yn y gymuned, ac adsefydlu pobl yn ein gofal trwy addysg a chyflogaeth."
+        "hmpps": "Mae’r Gwasanaeth Prawf yn un rhan o Wasanaeth Carchardai a Phrawf Ei Fawrhydi, sy’n rhan o’r Weinyddiaeth Gyfiawnder.",
+        "collect": "Bydd angen i ni gasglu’ch gwybodaeth bersonol er mwyn cyflawni swyddogaethau fel cyflawni dedfrydau a roddir gan y llysoedd (yn y ddalfa ac yn y gymuned), ac adsefydlu pobl yn ein gofal drwy addysg a chyflogaeth. "
       },
       "definitions": {
         "heading": "Diffiniadau",
-        "controller": "",
-        "personalData": "",
-        "moj": "Y MoJ yw'r rheolwr data ar gyfer y wybodaeth bersonol rydym yn ei dal yn HMPPS."
+        "controller": "Y rheolydd data yw’r sawl sy’n gwneud y penderfyniad lle mae data personol yn cael ei brosesu. Nhw sy’n penderfynu pam mae data personol yn cael ei brosesu a sut bydd yn cael ei brosesu.",
+        "personalData": "Mae data personol neu wybodaeth bersonol yn golygu unrhyw wybodaeth y gellir ei defnyddio i adnabod person naturiol, naill ai’n uniongyrchol neu’n anuniongyrchol.",
+        "moj": "Y Weinyddiaeth Gyfiawnder yw’r rheolydd data ar gyfer yr wybodaeth bersonol rydyn ni’n ei chadw yng Ngwasanaeth Carchardai a Phrawf EM."
       },
       "types": {
-        "heading": "Mathau o ddata personol rydym yn eu prosesu",
-        "intro": "",
+        "heading": "Y mathau o ddata personol rydym yn eu prosesu",
+        "intro": "Dim ond data personol sy’n berthnasol i'r gwasanaethau cyfarfod diweddaru rydym yn eu darparu i chi y byddwn ni’n ei brosesu.",
         "includes": "Mae hyn yn cynnwys:",
         "items": {
-          "nameAddress": "",
-          "phone": "",
-          "dob": "",
-          "photoVideo": "",
-          "feelings": "",
-          "location": "",
-          "feedback": ""
+          "nameAddress": "eich enw a’ch cyfeiriad",
+          "phone": "rhif ffôn",
+          "dob": "dyddiad geni",
+          "photoVideo": "lluniau a fideos",
+          "feelings": "gwybodaeth rydych chi’n ei rhoi i ni am sut rydych chi’n teimlo",
+          "location": "eich lleoliad",
+          "feedback": "eich adborth am y gwasanaeth"
         }
       },
       "purposeProcessing": {
-        "heading": "Diben prosesu a'r sail gyfreithlon ar gyfer y broses",
-        "legalBasis": "",
-        "decisions": "Defnyddir eich gwybodaeth bersonol rydym yn ei chasglu i'n helpu i wneud penderfyniadau amdanoch chi a'ch cynnydd.",
-        "lawfulDuty": "",
+        "heading": "Pwrpas y prosesu a’r sail gyfreithiol ar gyfer y broses",
+        "legalBasis": "Y sail gyfreithiol ar gyfer prosesu eich gwybodaeth bersonol yw bod angen ei brosesu er mwyn cyflawni tasg sydd er budd y cyhoedd neu wrth arfer awdurdod swyddogol sydd wedi’u breinio ynddo ni.",
+        "decisions": "Bydd eich gwybodaeth bersonol rydym ni’n ei chasglu yn cael ei defnyddio i'n helpu i wneud penderfyniadau amdanoch chi a'ch cynnydd.",
+        "lawfulDuty": "Mae gennym hefyd ddyletswydd gyfreithiol i atal troseddau, gweithredu cosbau troseddol a diogelu yn erbyn atal bygythiadau i ddiogelwch y cyhoedd, ac mae casglu a defnyddio eich gwybodaeth bersonol hefyd yn angenrheidiol i’n galluogi i gydymffurfio â’n rhwymedigaethau o dan y canlynol:",
         "laws": {
-          "prisonAct": "Deddf Carchardai 1952",
+          "prisonAct": "Deddf Carchar 1952",
           "prisonRules": "Rheolau Carchardai 1999",
           "offenderAct": "Deddf Rheoli Troseddwyr 2007",
           "childrensAct": "Deddf Plant 2004"
         }
       },
       "use": {
-        "heading": "",
-        "body": ""
+        "heading": "Y ffordd y byddwn ni’n defnyddio eich gwybodaeth",
+        "body": "Byddwn yn defnyddio’r wybodaeth rydych chi’n ei rhoi i ni fel rhan o’ch cyfarfodydd diweddaru i roi’r wybodaeth ddiweddaraf i’ch swyddog prawf am eich cynnydd, ac a oes angen unrhyw gymorth arnoch chi. Caiff hyn ei storio yn ein system yn ddiogel."
       },
       "sharing": {
         "heading": "Gyda phwy y gellir rhannu'r wybodaeth",
-        "intro": "O bryd i'w gilydd, efallai y byddwn yn cynnwys sefydliadau eraill a all eich helpu ymhellach. Efallai y bydd angen i ni basio rhywfaint o wybodaeth i'r canlynol:",
+        "intro": "O bryd i’w gilydd, efallai y byddwn yn cynnwys sefydliadau eraill a all roi rhagor o gymorth i chi. Efallai y bydd angen i ni drosglwyddo rhywfaint o wybodaeth i’r canlynol:",
         "items": {
-          "nhs": "Gwasanaeth Iechyd Gwladol (GIG)",
+          "nhs": "Y Gwasanaeth Iechyd Gwladol (GIG)",
           "socialServices": "Gwasanaethau Cymdeithasol",
-          "employment": "Gwasanaeth Cyflogaeth neu asiantaethau",
+          "employment": "Gwasanaeth neu asiantaethau cyflogaeth",
           "counsellors": "Cwnselwyr",
           "drugAlcohol": "Grwpiau cymorth cyffuriau ac alcohol",
           "mentalHealth": "Grwpiau cymorth iechyd meddwl",
           "housing": "Darparwyr Tai",
-          "specialist": "Grŵp arbenigol arall"
+          "specialist": "grwpiau arbenigol eraill"
         },
-        "tellBefore": "Fel arfer byddwn yn dweud wrthych cyn pasio eich gwybodaeth bersonol ymlaen i eraill; fodd bynnag, mewn rhai achosion (fel achosion diogelu) efallai na fydd gofyn i ni eich hysbysu ond bydd hyn yn unol â deddfau diogelu data."
+        "tellBefore": "Byddwn fel arfer yn rhoi gwybod i chi cyn trosglwyddo eich gwybodaeth bersonol i eraill; fodd bynnag, mewn rhai achosion (fel achosion diogelu) efallai na fydd yn rhaid i ni roi gwybod i chi, ond bydd hyn yn unol â chyfreithiau diogelu data."
       },
       "askingForData": {
         "heading": "Pan fyddwn yn gofyn i chi am ddata personol",
-        "intro": "Rydym yn addo eich hysbysu pam mae angen eich data personol arnom a gofyn dim ond am y data personol sydd ei angen arnom a pheidio â chasglu gwybodaeth sy'n amherthnasol neu'n ormodol;",
+        "intro": "Rydym yn addo dweud wrthych pam ein bod angen eich data personol a dim ond gofyn am yr wybodaeth sydd ei angen arnom; Gallwch chi wneud y canlynol:",
         "items": {
-          "refuse": "Gallwch wrthod cytuno i rannu gwybodaeth ar unrhyw adeg, ond dim ond lle mae'n gyfreithlon i wneud hynny",
-          "discuss": "Gallwch drafod gyda'ch Rheolwr Troseddwyr os oes gennych unrhyw gwestiynau neu bryderon",
-          "protect": "Dylech ddiogelu eich gwybodaeth a sicrhau nad oes gan unrhyw berson heb awdurdod fynediad iddo"
+          "refuse": "gwrthod cytuno i rannu gwybodaeth ar unrhyw adeg, lle mae’n gyfreithlon gwneud hynny",
+          "discuss": "trafod gyda’ch swyddog prawf os oes gennych chi unrhyw gwestiynau neu bryderon",
+          "protect": "diogelu eich gwybodaeth a sicrhau nad oes neb heb awdurdod yn gallu cael gafael arni"
         },
-        "possession": "Os oes gennych wybodaeth bersonol yn eich meddiant ac yn bryderus am ei chadw'n ddiogel, siaradwch â'ch rheolwr troseddwyr.",
-        "weWill": "",
+        "possession": "Os oes gennych chi wybodaeth bersonol yn eich meddiant a’ch bod yn poeni am ei chadw’n ddiogel, siaradwch â’ch swyddog prawf.",
+        "weWill": "Byddwn:",
         "promises": {
-          "shareOnlyIfNeeded": "Byddwn yn rhannu'ch gwybodaeth bersonol gyda sefydliadau eraill dim ond lle bo hynny'n berthnasol ac yn angenrheidiol",
-          "notKeepTooLong": "Byddwn yn sicrhau nad ydym yn cadw'ch gwybodaeth bersonol yn hirach nag sy'n angenrheidiol",
-          "notForSale": "Ni fyddwn yn gwneud eich gwybodaeth bersonol ar gael i'w gwerthu i eraill",
-          "considerRequest": "Byddwn yn ystyried eich cais i gywiro, stopio casglu neu ddileu eich gwybodaeth bersonol os yw'n berthnasol ac yn gyfreithlon"
+          "shareOnlyIfNeeded": "dim ond yn rhannu eich gwybodaeth bersonol â sefydliadau eraill os oes angen gwneud hynny a’i bod yn berthnasol",
+          "notKeepTooLong": "yn gwneud yn siŵr nad ydyn ni’n cadw eich gwybodaeth bersonol yn hirach nag sydd angen",
+          "notForSale": "yn gwneud yn siŵr nad yw eich gwybodaeth bersonol ar gael i’w gwerthu i eraill",
+          "considerRequest": "yn ystyried eich cais i gywiro eich gwybodaeth bersonol, rhoi’r gorau i’w chasglu neu ei dileu os yw’n berthnasol ac yn gyfreithlon"
         },
-        "survey": "Yn achlysurol efallai y byddwn yn defnyddio'ch gwybodaeth gyswllt i ofyn a hoffech gwblhau arolwg. Rydym yn defnyddio'r wybodaeth hon i weld ble a sut y gallem wella ein gwasanaethau i chi.",
-        "moreInfo": ""
+        "survey": " O bryd i’w gilydd, efallai y byddwn yn defnyddio eich gwybodaeth gyswllt i ofyn i chi a hoffech lenwi arolwg, neu gymryd rhan mewn ymchwil am gyfarfodydd diweddaru ar-lein. Rydym yn defnyddio’r wybodaeth hon i weld ble a sut y gallem wella ein gwasanaethau i chi.",
+        "moreInfo": "Os hoffech gael rhagor o wybodaeth am y ffordd rydym yn defnyddio ac yn storio eich data, darllenwch <a class=\"govuk-link\" href=\"/privacy-notice\">Hysbysiad Preifatrwydd y Gwasanaeth Prawf</a> a’r <a target=\"_blank\" rel=\"nofollow\" href=\"https://www.gov.uk/government/publications/records-information-management-policy-psi-042018-pi-022018?_ga=2.111056325.1998926715.1755701905-1493322833.1755701905\" class=\"govuk-link\">Polisi Cofnodion, Rheoli a Chadw Gwybodaeth HMPPS</a>."
       },
       "retention": {
-        "heading": "",
-        "policy": "",
-        "details": "Gallwch gael mwy o fanylion ar:",
+        "heading": "Hysbysiad Preifatrwydd y Gwasanaeth Prawf ",
+        "policy": "Mae gennym bolisi manwl ynghylch am ba hyd y mae angen i ni gadw eich gwybodaeth bersonol. Gallwch siarad â’ch swyddog prawf am hyn neu edrych ar <a target=\"_blank\" rel=\"nofollow\" href=\"https://www.gov.uk/government/publications/records-information-management-policy-psi-042018-pi-022018?_ga=2.111056325.1998926715.1755701905-1493322833.1755701905\" class=\"govuk-link\">Bolisi Cofnodion, Rheoli a Chadw Gwybodaeth HMPPS</a>.",
+        "details": "Gallwch gael rhagor o fanylion ynghylch y canlynol:",
         "items": {
-          "agreements": "Cytundebau sydd gennym gyda sefydliadau eraill ar gyfer rhannu gwybodaeth",
+          "agreements": "cytundebau sydd gennym â sefydliadau eraill ar gyfer rhannu gwybodaeth",
           "instructions": "Ein cyfarwyddiadau i staff ar sut i gasglu a rheoli eich gwybodaeth bersonol",
-          "checkAccurate": "Sut rydym yn gwirio bod y wybodaeth sydd gennym yn gywir ac yn gyfredol",
+          "checkAccurate": "sut rydym yn gwneud yn siŵr bod yr wybodaeth sydd gennym yn gywir ac yn gyfredol",
           "complaint": "Sut i wneud cwyn"
         },
-        "moreInfo": ""
+        "moreInfo": "I gael rhagor o wybodaeth, siaradwch â’ch Swyddog Prawf."
       },
       "access": {
-        "heading": "Mynediad at wybodaeth bersonol",
-        "body": "Gallwch ddarganfod a ydym yn dal unrhyw wybodaeth bersonol amdanoch trwy siarad â'ch rheolwr troseddwyr yn y lle cyntaf. Bydd y swyddfa Prawf yn gallu rhyddhau rhywfaint o wybodaeth i chi fel gwybodaeth arferol. Ni fydd gwybodaeth arferol yn dod o dan gais mynediad pwnc (SAR).",
+        "heading": "Mynediad at eich gwybodaeth bersonol",
+        "body": "Gallwch gael gwybod a oes gennym ni unrhyw wybodaeth bersonol amdanoch chi drwy siarad â’ch swyddog prawf. Byddant yn gallu rhoi rhywfaint o wybodaeth arferol i chi, nad yw’n dod o dan gais am fynediad at ddata gan y testun",
         "sar": {
-          "heading": "",
-          "body": "",
-          "contact": ""
+          "heading": "Cais am Fynediad at Ddata gan y Testun (SAR)",
+          "body": "Os hoffech chi gael copi o'r holl wybodaeth sydd gennym amdanoch chi, gall eich swyddog prawf anfon e-bost at y tîm a gofyn am gael ei gweld. Gelwir hyn yn Gais am Fynediad at Ddata gan y Testun ac mae’n golygu y gallwch weld pa wybodaeth sydd gennym amdanoch. Gallwch ofyn i’ch swyddog prawf a bydd yn cyflwyno’r cais ar eich rhan.",
+          "contact": "Gallwch hefyd anfon e-bost i data.access1@justice.gov.uk i ofyn am gopi o'r wybodaeth."
         }
       },
       "contact": {
-        "heading": "",
-        "onBehalf": "Ar ran Swyddog Diogelu Data'r MoJ.",
+        "heading": "Manylion cyswllt a’r Swyddog Diogelu Data",
+        "onBehalf": "Ar ran Swyddog Diogelu Data y Weinyddiaeth Gyfiawnder.",
         "address": "102 Petty France<br/> Llundain<br/> SW1H 9AJ",
-        "dpo": ""
+        "dpo": "Gallwch hefyd gysylltu â Swyddog Diogelu Data’r Weinyddiaeth Gyfiawnder drwy anfon e-bost i <a href=\"mailto:address: DPO@justice.gov.uk\" target=\"_blank\" rel=\"nofollow\" class=\"govuk-link\">DPO.justice.gov.uk</a> os oes gennych chi unrhyw gwestiynau neu bryderon ynghylch sut rydyn ni’n prosesu eich gwybodaeth."
       },
       "complaints": {
         "heading": "Cwynion",
-        "body": "Pan fyddwn yn gofyn i chi am wybodaeth, byddwn yn cadw at y gyfraith. Os credwch fod eich gwybodaeth bersonol wedi'i thrin yn anghywir, gallwch gysylltu â'r Comisiynydd Gwybodaeth am gyngor annibynnol am ddiogelu data. Gallwch gysylltu â'r Comisiynydd Gwybodaeth yn:",
-        "address": "Swyddfa'r Comisiynydd Gwybodaeth<br/> Tŷ Wycliffe<br/> Water Lane<br/> Wilmslow<br/> Cheshire<br/> SK9 5AF<br/> Ffôn: 0303 123 1113 <a target=\"_blank\" rel=\"nofollow\" href=\"http://www.ico.org.uk\">http://www.ico.org.uk</a>"
+        "body": "Pan fyddwn yn gofyn i chi am wybodaeth, byddwn yn cadw at y gyfraith. Os ydych chi’n credu bod eich gwybodaeth bersonol wedi cael ei thrin yn anghywir, gallwch gysylltu â’r Comisiynydd Gwybodaeth i gael cyngor annibynnol ar ddiogelu data. Gallwch gysylltu â’r Comisiynydd Gwybodaeth yn:",
+        "address": "Information Commissioner's Office<br/> Wycliffe House<br/> Water Lane<br/> Wilmslow<br/> Cheshire<br/> SK9 5AF<br/> Ffôn: 0303 123 1113 <a target=\"_blank\" rel=\"nofollow\" href=\"http://www.ico.org.uk\">http://www.ico.org.uk</a>"
       }
     },
     "accessibility": {
-      "title": "Datganiad hygyrchedd ar gyfer Cofrestru gyda'ch swyddog prawf",
-      "applies": "Mae'r datganiad hygyrchedd hwn yn berthnasol i wasanaeth Cofrestru gyda'ch swyddog prawf.",
-      "runBy": "Mae'r wefan hon yn cael ei rhedeg gan y Weinyddiaeth Gyfiawnder (MoJ). Rydym am i gymaint o bobl â phosibl allu defnyddio'r wefan hon. Er enghraifft, mae hynny'n golygu y dylech allu:",
+      "title": "Datganiad hygyrchedd ar gyfer cyfarfodydd diweddaru gyda'ch swyddog prawf",
+      "applies": "Mae'r datganiad hygyrchedd hwn yn berthnasol i'r cyfarfodydd diweddaru gyda'ch swyddog prawf. ",
+      "runBy": "Mae'r wefan hon yn cael ei rhedeg gan y Weinyddiaeth Gyfiawnder. Rydym eisiau i gynifer o bobl â phosibl allu defnyddio'r wefan hon. Er enghraifft, mae hynny’n golygu y dylech allu:",
       "items": {
-        "colours": "newid lliwiau, lefelau cyferbyniad a ffontiau gan ddefnyddio gosodiadau porwr neu ddyfais",
-        "zoom": "chwyddo hyd at 400% heb i'r testun arllwys oddi ar y sgrin",
-        "keyboard": "llywio'r rhan fwyaf o'r wefan gan ddefnyddio bysellfwrdd neu feddalwedd adnabod lleferydd",
-        "screenReader": "gwrando ar y rhan fwyaf o'r wefan gan ddefnyddio darllenydd sgrin (gan gynnwys fersiynau diweddaraf JAWS, NVDA a VoiceOver)"
+        "colours": "newid lliwiau, lefelau cyferbyniad a ffontiau gan ddefnyddio gosodiadau'r porwr neu'r ddyfais",
+        "zoom": "chwyddo i mewn hyd at 400% heb i'r testun lifo oddi ar y sgrin",
+        "keyboard": " llywio drwy'r rhan fwyaf o'r wefan gan ddefnyddio bysellfwrdd neu feddalwedd adnabod llais",
+        "screenReader": "gwrando ar y rhan fwyaf o'r wefan gan ddefnyddio darllenydd sgrin (gan gynnwys y fersiynau diweddaraf o JAWS, NVDA a VoiceOver) "
       },
-      "simple": "Rydym hefyd wedi gwneud testun y wefan mor syml â phosibl i'w ddeall.",
-      "abilityNet": "Mae gan <a rel=\"external\" href=\"https://mcmw.abilitynet.org.uk/\">AbilityNet</a> gyngor ar wneud eich dyfais yn haws i'w defnyddio os oes gennych anabledd.",
+      "simple": "Rydyn ni hefyd wedi gwneud testun y wefan mor hawdd ei ddeall ag sy’n bosibl. ",
+      "abilityNet": "Mae gan <a rel=\"external\" href=\"https://mcmw.abilitynet.org.uk/\">AbilityNet</a> gyngor ar wneud eich dyfais yn haws ei defnyddio os oes gennych chi anabledd. ",
       "howAccessible": {
         "heading": "Pa mor hygyrch yw'r wefan hon",
-        "intro": "Rydym yn gwybod nad yw rhai rhannau o'r wefan hon yn gwbl hygyrch:",
+        "intro": "Rydym yn ymwybodol nad yw rhannau o'r wefan hon yn gwbl hygyrch:",
         "items": {
-          "video": "gall y nodwedd fideo achosi heriau i bobl â golwg isel neu ddim golwg",
-          "speechToText": "gall rhai defnyddwyr sy'n defnyddio lleferydd i destun gael anawsterau wrth lywio rhai meysydd",
-          "backLinks": "nid yw rhai dolenni yn ôl yn llywio i'r newid disgwyliedig, a allai achosi i ddefnyddwyr fynd ar goll yn y gwasanaeth",
+          "video": "gall y nodwedd fideo achosi heriau i bobl sydd â golwg gwan neu ddim golwg o gwbl",
+          "speechToText": "efallai y bydd rhai defnyddwyr sy'n defnyddio llais-i-destun yn cael trafferth llywio drwy rai meysydd",
+          "backLinks": "nid yw rhai dolenni yn ôl yn mynd i'r mannau disgwyliedig, gan achosi i ddefnyddwyr fynd ar goll yn y gwasanaeth o bosibl ",
           "hiddenText": "",
           "headings": ""
         }
       },
       "feedback": {
         "heading": "Adborth a gwybodaeth gyswllt",
-        "body": "Os ydych yn dod o hyd i unrhyw broblemau nad ydynt wedi'u rhestru ar y dudalen hon neu'n meddwl nad ydym yn bodloni gofynion hygyrchedd, cysylltwch â'r tîm gwasanaeth yn: <a href=\"mailto:{{supportEmailAddress}}\" class=\"govuk-link\">{{supportEmailAddress}}</a>",
-        "respond": "Byddwn yn ystyried eich cais ac yn cysylltu â chi o fewn 5 diwrnod gwaith."
+        "body": "Os ydych chi’n dod ar draws unrhyw broblem na restrwyd ar y dudalen hon neu os ydych chi o'r farn nad ydym yn bodloni gofynion hygyrchedd, cysylltwch â thîm y gwasanaeth: <a href=\"mailto:{{supportEmailAddress}}\" class=\"govuk-link\">{{supportEmailAddress}}</a>",
+        "respond": "Byddwn yn ystyried eich cais ac yn cysylltu â chi ymhen 5 diwrnod gwaith."
       },
       "enforcement": {
-        "heading": "Gweithdrefn gorfodi",
-        "body": "Y Comisiwn Cydraddoldeb a Hawliau Dynol (EHRC) sy'n gyfrifol am orfodi Rheoliadau Hygyrchedd Cyrff y Sector Cyhoeddus (Gwefannau a Chymwysiadau Symudol) (Rhif 2) 2018 (y 'rheoliadau hygyrchedd'). Os nad ydych yn hapus â'r ffordd rydym yn ymateb i'ch cwyn, <a href=\"https://www.equalityadvisoryservice.com/\" class=\"govuk-link\">cysylltwch â'r Gwasanaeth Cynghori a Chymorth Cydraddoldeb (EASS)</a>."
+        "heading": "Gweithdrefn orfodi ",
+        "body": "Y Comisiwn Cydraddoldeb a Hawliau Dynol (EHRC) sy’n gyfrifol am orfodi Rheoliadau Hygyrchedd Cyrff Sector Cyhoeddus (Gwefannau ac Apiau Symudol) (Rhif 2) 2018 (y ‘rheoliadau hygyrchedd’). Os nad ydych chi’n fodlon â sut rydyn ni’n ymateb i’ch cwyn, <a href=\"https://www.equalityadvisoryservice.com/\" class=\"govuk-link\">cysylltwch â’r Gwasanaeth Cynghori a Chefnogi Cydraddoldeb (EASS)</a>."
       },
       "technical": {
         "heading": "Gwybodaeth dechnegol am hygyrchedd y wefan hon",
-        "body": "Mae'r Weinyddiaeth Gyfiawnder (MoJ) wedi ymrwymo i wneud ei gwefan yn hygyrch, yn unol â Rheoliadau Hygyrchedd Cyrff y Sector Cyhoeddus (Gwefannau a Chymwysiadau Symudol) (Rhif 2) 2018."
+        "body": "Mae’r Weinyddiaeth Gyfiawnder wedi ymrwymo i wneud ei gwefan yn hygyrch, yn unol â Rheoliadau Hygyrchedd Cyrff Sector Cyhoeddus (Gwefannau ac Apiau Symudol) (Rhif 2) 2018. "
       },
       "compliance": {
-        "heading": "Statws cydymffurfiaeth",
+        "heading": "Statws cydymffurfio ",
         "tested": "",
         "publish": "",
         "notCompliant": "",
@@ -927,10 +929,10 @@
       },
       "outsideScope": {
         "heading": "Cynnwys nad yw o fewn cwmpas y rheoliadau hygyrchedd",
-        "body": "Nid oes gennym gynnwys y tu allan i gwmpas rheoliadau hygyrchedd."
+        "body": "Cynnwys nad yw o fewn cwmpas y rheoliadau hygyrchedd "
       },
       "preparation": {
-        "heading": "Paratoi'r datganiad hygyrchedd hwn",
+        "heading": "Paratoi’r datganiad hygyrchedd hwn ",
         "body": ""
       }
     },
@@ -979,109 +981,109 @@
       }
     },
     "guidance": {
-      "title": "Ynglŷn â'r gwasanaeth Cofrestru gyda'ch swyddog prawf",
-      "intro": "Bydd y gwasanaeth hwn yn eich galluogi i gofrestru gyda'ch swyddog prawf ar-lein. Gellir defnyddio hyn rhwng eich apwyntiadau wyneb yn wyneb, neu i gymryd lle rhai o'ch apwyntiadau wyneb yn wyneb.",
+      "title": "Ynglŷn â'r cyfarfod diweddaru gyda'ch swyddog prawf",
+      "intro": "Bydd y gwasanaeth hwn yn eich galluogi i gael cyfarfododd diweddaru ar-lein gyda’ch swyddog prawf. Gellid cael y rhain rhwng eich apwyntiadau wyneb yn wyneb, neu yn lle rhai ohonynt.",
       "choosing": {
-        "heading": "Dewis a yw cofrestriadau ar-lein yn iawn i chi",
-        "talk": "Bydd eich swyddog prawf yn siarad â chi am sut mae cofrestriadau ar-lein yn gweithio, a gallwch benderfynu gyda'ch gilydd a hoffech eu defnyddio neu a ydynt yn rhywbeth addas i chi.",
-        "stop": "Gallwch stopio cofrestriadau ar-lein ar unrhyw adeg trwy siarad â'ch swyddog prawf.",
-        "accessible": "Rydym yn gweithio i wneud y cofrestriadau ar-lein hyn mor hygyrch â phosibl. Byddwn yn parhau â'r gwaith hwn i drwsio unrhyw broblemau hygyrchedd sy'n codi."
+        "heading": "Dewis a yw cyfarfod diweddaru ar-lein yn iawn i chi",
+        "talk": "Bydd eich swyddog prawf yn siarad â chi am sut mae cyfarfodydd diweddaru ar-lein yn gweithio, a gallwch benderfynu gyda’ch gilydd a ydych chi am eu defnyddio neu a ydynt yn rhywbeth sy’n addas i chi.",
+        "stop": "Gallwch stopio cyfarfodydd diweddaru ar-lein unrhyw bryd drwy siarad â'ch swyddog prawf.",
+        "accessible": "Rydym yn gweithio i wneud y cyfarfodydd diweddaru ar-lein hyn mor hygyrch â phosibl. Byddwn yn parhau â'r gwaith hwn i ddatrys unrhyw fater hygyrchedd sy'n codi."
       },
       "signup": {
-        "heading": "Sut y cewch eich cofrestru i ddefnyddio cofrestriadau ar-lein",
-        "intro": "Os ydych yn dewis defnyddio cofrestriadau ar-lein, cewch eich cofrestru gan eich swyddog prawf. Gallant wneud hyn yn eich apwyntiad wyneb yn wyneb. I gofrestru, bydd angen iddynt nodi:",
+        "heading": "Sut byddwch chi’n cael eich cofrestru i ddefnyddio cyfarfodydd diweddaru ar-lein",
+        "intro": "Os byddwch chi’n dewis defnyddio cyfarfodydd diweddaru ar-lein, bydd eich swyddog prawf yn eich cofrestru. Mae’n bosibl y bydd hyn yn digwydd yn eich apwyntiad wyneb yn wyneb. I gofrestru, byddant angen y canlynol:",
         "items": {
-          "name": "eich enw a'ch dyddiad geni",
+          "name": "beth yw eich enw a'ch dyddiad geni",
           "phone": "eich rhif ffôn neu gyfeiriad e-bost",
-          "photo": "ffotograff o'ch wyneb y gallwn ei ddefnyddio i gyd-fynd â'ch hunaniaeth",
-          "startDate": "y dyddiad y byddwch yn dechrau defnyddio cofrestriadau ar-lein",
-          "frequency": "pa mor aml y byddwch yn defnyddio cofrestriadau ar-lein"
+          "photo": "llun o'ch wyneb y gallwn ei ddefnyddio i’ch adnabod",
+          "startDate": "y dyddiad y byddwch chi’n dechrau defnyddio cyfarfodydd diweddaru ar-lein",
+          "frequency": "pa mor aml y byddwch chi'n defnyddio cyfarfodydd diweddaru ar-lein"
         },
-        "confirm": "Unwaith y byddwch wedi cofrestru, byddwch yn cael neges i'ch dull cyswllt dewisol i gadarnhau eich bod wedi cofrestru ac yn dweud wrthych pryd y byddwch yn cael dolen i gwblhau eich cofrestriad cyntaf ar-lein.",
+        "confirm": "Ar ôl i chi gofrestru, fe anfonir neges i’r dull cyswllt rydych chi’n ei ffafrio i gadarnhau eich bod chi wedi cofrestru ac i ddweud wrthych chi pryd byddwch chi’n cael dolen i fynychu eich cyfarfod diweddaru ar-lein cyntaf.",
         "photoMatch": {
-          "heading": "Sut rydym yn defnyddio'ch llun i gyd-fynd â'ch cyflwyniadau",
-          "body": "Rydym yn cymryd llun ohonoch yn ystod cofrestru i gyd-fynd â fideo y byddwch yn ei gymryd yn ystod eich cofrestriad. Mae hyn i wneud yn siŵr mai chi sy'n cwblhau'r cofrestriad, yn union fel mae rhai apiau bancio yn gofyn am lun neu fideo i wirio mai chi yw'r person iawn. Gall eich swyddog prawf gymryd hwn neu ofyn i chi ei gymryd a'i anfon atynt."
+          "heading": "Sut rydym yn defnyddio eich llun",
+          "body": "Rydym yn tynnu llun ohonoch wrth i chi gofrestru i gyfateb i fideo y byddwch chi’n ei ffilmio wrth gofrestru. Gwneir hyn er mwyn sicrhau mai chi sy’n cwblhau'r cyfarfod diweddaru, yn union fel mae rhai apiau bancio yn gofyn am lun neu fideo i wneud yn siŵr mai chi sydd yno o ddifrif. Mae’n bosibl y bydd eich swyddog prawf yn ffilmio'r fideo neu'n gofyn i chi wneud un a'i anfon atynt."
         }
       },
       "completing": {
-        "heading": "Sut y byddwch yn cwblhau cofrestriad",
+        "heading": "Sut y byddwch yn Cwblhau eich cyfarfod diweddaru",
         "getLink": {
-          "heading": "Cael y ddolen i ddefnyddio cofrestriadau ar-lein",
-          "firstCheckIn": "Pan fydd eich swyddog prawf yn eich cofrestru i ddefnyddio cofrestriadau ar-lein, byddant yn gosod dyddiad ar gyfer eich cofrestriad cyntaf.",
-          "messageDate": "Ar y dyddiad hwn, byddwch yn cael neges naill ai trwy destun neu e-bost, pa un bynnag a ddewisoch. Bydd hon yn cynnwys dolen i gofrestru, a bydd gennych 3 diwrnod i'w chwblhau."
+          "heading": "Cael y ddolen i ddefnyddio cyfarfodydd diweddaru ar-lein",
+          "firstCheckIn": "Pan fydd eich swyddog prawf yn eich cofrestru i ddefnyddio cyfarfodydd diweddaru ar-lein, bydd yn pennu dyddiad ar gyfer eich cyfarfod diweddaru cyntaf.",
+          "messageDate": "Ar y dyddiad hwn, byddwch yn cael neges naill ai drwy neges testun neu e-bost, pa un bynnag rydych chi’n dewis. Bydd hwn yn cynnwys dolen i'r cyfarfod diweddaru, a bydd gennych chi 3 diwrnod i’w gwblhau."
         },
         "whatAsked": {
-          "heading": "Beth y gofynnir i chi ei wneud",
-          "intro": "Yn ystod eich cofrestriad gofynnir i chi:",
+          "heading": "Beth fydd gofyn i chi ei wneud",
+          "intro": "Yn ystod eich cyfarfod diweddaru, gofynnir:",
           "items": {
-            "name": "eich enw a'ch dyddiad geni",
-            "questions": "",
-            "identity": ""
+            "name": "beth yw beth yw eich enw a'ch dyddiad geni",
+            "questions": "hyd at 5 cwestiwn am sut ydych chi ac a oes C320angen cymorth arnoch gydag unrhyw beth",
+            "identity": "i chi gadarnhau pwy ydych chi"
           },
-          "treat": "Dylech drin eich cofrestriad ar-lein fel unrhyw apwyntiad prawf arall a gwneud yn siŵr eich bod wedi'ch gwisgo'n llawn ac yn briodol ar gyfer eich fideo.",
-          "outsideUk": "Ni fyddwch yn gallu defnyddio'r gwasanaeth hwn i gofrestru os ydych y tu allan i'r DU."
+          "treat": "Dylech drin eich cyfarfod diweddaru ar-lein fel unrhyw apwyntiad arall gyda'r gwasanaeth prawf a gwneud yn siŵr eich bod wedi gwisgo’n llawn ac yn briodol ar gyfer eich fideo.",
+          "outsideUk": "Ni fyddwch yn gallu defnyddio'r gwasanaeth hwn i ymuno â chyfarfod diweddaru os ydych chi y tu allan i'r Deyrnas Unedig."
         },
         "verify": {
-          "heading": "",
-          "compare": "",
-          "permissions": ""
+          "heading": "Y ffordd rydym yn gwirio pwy ydych chi",
+          "compare": "Bydd llun ohonoch yn dilysu pwy ydych chi yn cael ei gymharu â'r llun ohonoch chi pan wnaethoch chi gofrestru. Mae hyn er mwyn cadarnhau mai chi sy’n cwblhau’r broses mewngofnodi. Bydd angen i chi hefyd ddilysu pwy ydych chi drwy symud eich wyneb i ffrâm ar eich sgrin gan ddefnyddio eich camera. Dilynwch y cyfarwyddiadau i symud eich wyneb yn agosach, gan ei gadw yn y ffrâm. ",
+          "permissions": "Bydd angen i chi dderbyn hawliau i gael mynediad at gamera eich dyfais. "
         },
         "cannotConfirm": {
-          "heading": "Os na allwn gadarnhau'ch hunaniaeth",
-          "continue": "Os na allwn gadarnhau'ch hunaniaeth, gallwch dal ddewis parhau a chyflwyno'ch cofrestriad beth bynnag. Gall gwiriad hunaniaeth aflwyddiannus gael ei achosi gan lawer o bethau, fel os ydych wedi newid sut rydych yn edrych, neu os nad ydych mewn ardal sydd wedi'i goleuo'n dda.",
-          "review": "Bydd eich swyddog prawf yn cymharu'ch fideo â'ch llun pan fyddant yn adolygu'ch cofrestriad. Os oes ganddynt unrhyw gwestiynau am y fideo, byddant yn cysylltu â chi."
+          "heading": "Os na allwn gadarnhau pwy ydych chi",
+          "continue": "Os na allwn gadarnhau pwy ydych chi, gallwch barhau a chyflwyno eich manylion mewngofnodi beth bynnag. Gall llawer o bethau achosi gwiriad adnabod aflwyddiannus, fel os ydych chi wedi newid sut rydych chi’n edrych, os nad ydych chi mewn man sydd wedi ei oleuo’n dda neu os nad ydych chi wedi symud yn ddigon cyflym o flaen y camera.  ",
+          "review": "Bydd eich swyddog prawf yn cymharu eich gwiriad adnabod â'ch llun pan fydd yn adolygu eich cyfarfod diweddaru. Os oes ganddo gwestiynau, bydd yn cysylltu â chi.  "
         }
       },
       "questions": {
-        "heading": "",
-        "intro": "",
+        "heading": "Cwestiynau yn eich cyfarfod diweddaru ar-lein",
+        "intro": "Yn ystod eich cyfarfod diweddaru, gofynnir rhai cwestiynau i chi. Mae 2 gwestiwn y gofynnir i bawb ym mhob cyfarfod diweddaru:",
         "items": {
-          "feeling": "",
-          "support": ""
+          "feeling": "Sut ydych chi wedi bod yn teimlo ers i ni siarad ddiwethaf?",
+          "support": "Oes arnoch angen cymorth gydag unrhyw beth neu ydych chi eisiau rhoi gwybod i ni am unrhyw beth?"
         },
-        "extra": "",
+        "extra": "Gall eich swyddog prawf wedyn ddewis hyd at 3 chwestiwn ychwanegol i’w gofyn i chi. Bydd y cwestiynau hyn amdanoch chi, eich bywyd ac unrhyw beth rydych chi wedi bod yn siarad amdano gyda’ch swyddog prawf. Byddan nhw’n dewis beth i’w ofyn i chi er mwyn gwneud yn siŵr eich bod yn gallu rhoi diweddariad iawn iddyn nhw. Mae hyn yn golygu y byddan nhw’n gallu eich helpu gyda phethau mewn ffordd well, a gofyn am bethau sy’n benodol i chi a’ch anghenion.  ",
         "confirmation": {
-          "heading": "Cadarnhad eich bod wedi cwblhau'r cofrestriad a beth sy'n digwydd nesaf",
-          "body": "Unwaith y byddwch wedi cyflwyno'ch cofrestriad, byddwch yn cael neges destun neu e-bost i gadarnhau eich bod wedi cwblhau cofrestriad ac y bydd eich swyddog prawf yn ei adolygu ac yn cysylltu â chi os oes angen."
+          "heading": "Cadarnhad eich bod chi wedi cwblhau’r cyfarfod diweddaru a beth fydd yn digwydd nesaf",
+          "body": "Ar ôl i chi gyflwyno eich cyfarfod diweddaru, byddwch yn cael neges testun neu e-bost i gadarnhau eich bod chi wedi cwblhau cyfarfod diweddaru a bydd eich swyddog prawf yn ei adolygu ac yn cysylltu â chi os bydd angen."
         },
         "askedSupport": {
-          "heading": "Os ydych wedi gofyn am gymorth",
-          "body": "Os ydych wedi gofyn am gymorth gyda rhywbeth yn eich cofrestriad, neu wedi dweud nad ydych yn teimlo'n wych neu eich bod yn cael trafferth, bydd eich swyddog prawf yn cysylltu â chi i weld beth allant ei wneud i helpu."
+          "heading": "Os ydych chi wedi gofyn am gymorth",
+          "body": "Os ydych chi wedi gofyn am gymorth gyda rhywbeth yn eich cyfarfod diweddaru, neu wedi dweud nad ydych chi’n teimlo’n grêt neu eich bod chi’n cael trafferth, bydd eich swyddog prawf yn cysylltu â chi i weld beth allant wneud i helpu."
         },
         "failed": {
-          "heading": "Os ydych yn methu â chofrestru",
-          "body": "Os ydych yn methu â chofrestru am unrhyw reswm, gall eich swyddog prawf stopio'ch cofrestriadau a chysylltu â chi i ddarganfod pam nad ydych wedi gallu cwblhau cofrestriad.",
-          "difficulty": "Os ydych yn cael anhawster defnyddio cofrestriadau ar-lein, dylech roi gwybod i'ch swyddog prawf cyn gynted â phosibl fel y gallant stopio cofrestriadau."
+          "heading": "Os na fyddwch chi'n cael cyfarfod diweddaru",
+          "body": "Os na fyddwch chi’n cael cyfarfod diweddaru am unrhyw reswm, mae’n bosibl y bydd eich swyddog prawf yn stopio eich cyfarfodydd diweddaru ac yn cysylltu â chi i gael gwybod pam nad ydych chi wedi gallu cael cyfarfod diweddaru.",
+          "difficulty": "Os ydych chi’n cael trafferth defnyddio cyfarfodydd diweddaru ar-lein, dylech roi gwybod i’ch swyddog prawf cyn gynted â phosibl er mwyn iddynt allu rhoi’r gorau i gyfarfodydd diweddaru."
         }
       },
       "struggling": {
-        "heading": "Beth i'w wneud os ydych yn cael trafferth neu os aiff rhywbeth o'i le",
-        "intro": "Cysylltwch â'ch swyddog prawf neu siaradwch â nhw yn eich apwyntiad wyneb yn wyneb os oes gennych unrhyw broblemau gyda chofrestriadau ar-lein. Gallai hyn gynnwys:",
+        "heading": "Beth i’w wneud os ydych chi’n cael trafferth neu os bydd rhywbeth yn mynd o’i le",
+        "intro": "Cysylltwch â'ch swyddog prawf neu siaradwch â nhw yn eich apwyntiad wyneb yn wyneb os ydych chi'n cael unrhyw broblem gyda chyfarfodydd diweddaru ar-lein. Gallai hyn gynnwys:",
         "items": {
           "notWorking": "y system ddim yn gweithio",
-          "difficult": "rydych yn ei chael hi'n anodd ei ddefnyddio",
+          "difficult": "rydych chi'n ei chael hi'n anodd ei defnyddioio",
           "contactChanged": "rydych wedi newid eich manylion cyswllt",
-          "lostPhone": "rydych wedi colli'ch ffôn neu mae gennych broblem yn cyrchu'r ddolen",
-          "forget": "rydych yn anghofio cofrestru",
-          "faceToFace": "rydych am fynd yn ôl i wyneb yn wyneb yn unig"
+          "lostPhone": "rydych chi wedi colli eich ffôn neu'n cael trafferth defnyddio'r ddolen",
+          "forget": "rydych chi wedi anghofio cael cyfarfod diweddaru",
+          "faceToFace": " rydych chi eisiau mynd yn ôl i gyfarfodydd wyneb yn wyneb yn unig"
         },
-        "noBreach": "Ni fydd unrhyw broblemau sydd gennych gyda chofrestriadau ar-lein yn arwain at dorri'ch amodau."
+        "noBreach": "Ni fydd unrhyw broblem rydych chi'n ei chael gyda chyfarfodydd diweddaru ar-lein yn arwain at dorri eich amodau."
       },
       "info": {
-        "heading": "Sut y byddwn yn defnyddio'ch gwybodaeth",
-        "body": "Byddwn yn defnyddio'r wybodaeth a roddwch i ni fel rhan o'ch cofrestriad i roi'r wybodaeth ddiweddaraf i'ch swyddog prawf am sut rydych yn gwneud, ac os oes angen unrhyw gymorth arnoch. Mae hyn yn cael ei storio yn ein system yn ddiogel.",
-        "privacyLink": "Gallwch <a class=\"govuk-link\" href=\"/privacy-notice\">wirio ein polisi preifatrwydd i ddysgu mwy am sut rydym yn defnyddio'ch data</a>.",
+        "heading": "Sut byddwn ni’n defnyddio eich gwybodaeth",
+        "body": "Byddwn yn defnyddio’r wybodaeth rydych chi’n ei rhoi i ni fel rhan o’ch cyfarfodydd diweddaru i roi’r wybodaeth ddiweddaraf i’ch swyddog prawf am eich cynnydd, ac a oes angen unrhyw gymorth arnoch chi. Caiff hyn ei storio yn ein system yn ddiogel.",
+        "privacyLink": "Gallwch <a class=\"govuk-link\" href=\"/privacy-notice\">ddarllen ein polisi preifatrwydd i ddysgu mwy am sut rydym yn defnyddio eich data</a>.",
         "sar": {
-          "heading": "Ceisiadau mynediad pwnc",
-          "body": "Os hoffech gael copi o'r wybodaeth sydd gennym amdanoch, gall eich swyddog prawf e-bostio'r tîm a gofyn i'w gweld. Gelwir hyn yn Gais Mynediad Pwnc. Gallwch ofyn i'ch swyddog prawf a byddant yn cyflwyno hyn ar eich rhan.",
-          "email": "Gallwch hefyd e-bostio'r tîm yn: <a href=\"mailto:data.access1@justice.gov.uk\" class=\"govuk-link\">data.access1@justice.gov.uk</a> i ofyn am gopi o'r wybodaeth."
+          "heading": "Ceisiadau gwrthrych am wybodaeth",
+          "body": "Os hoffech chi gael copi o'r wybodaeth sydd gennym amdanoch chi, gall eich swyddog prawf anfon e-bost at y tîm a gofyn am gael ei gweld. Gelwir hyn yn gais gwrthrych am wybodaeth. Gallwch ofyn i’ch swyddog prawf a bydd yn cyflwyno hwn ar eich rhan.",
+          "email": "Gallwch hefyd anfon e-bost at y tîm yn: <a href=\"mailto:data.access1@justice.gov.uk\" class=\"govuk-link\">data.access1@justice.gov.uk</a> i ofyn am gopi o'r wybodaeth."
         }
       },
       "feedback": {
-        "heading": "Sut i roi adborth am gofrestriadau ar-lein",
-        "form": "",
+        "heading": "Sut mae rhoi adborth am gyfarfodydd diweddaru ar-lein",
+        "form": "Mae gennym ffurflen <a href=\"/feedback\" class=\"govuk-link\">adborth ar-lein i chi roi gwybod i ni am eich profiad o gyfarfodydd diweddaru ar-lein.</a>",
         "share": "Byddwch yn gallu llenwi'r ffurflen eich hun neu gyda'ch swyddog prawf pryd bynnag y mae gennych rywbeth i'w rannu am gofrestriadau ar-lein.",
-        "other": "Bydd cyfleoedd eraill i chi roi adborth, er enghraifft, gallech ddewis siarad am eich profiad mewn galwadau ffôn byr."
+        "other": "Bydd cyfleoedd eraill i chi roi adborth. Er enghraifft, gallech ddewis siarad am eich profiad drwy alwadau ffôn byr. "
       }
     },
     "practitionerGuidance": {
@@ -1295,9 +1297,9 @@
       }
     },
     "notFound": {
-      "heading": "Tudalen heb ei chanfod",
-      "typed": "Os gwnaethoch deipio'r cyfeiriad gwe, gwiriwch ei fod yn gywir.",
-      "pasted": "Os gwnaethoch gludo'r cyfeiriad gwe, gwiriwch eich bod wedi copïo'r cyfeiriad cyfan.",
+      "heading": "Ni chanfuwyd y dudalen",
+      "typed": "Os ydych chi wedi teipio’r cyfeiriad gwe, gwiriwch ei fod yn gywir.",
+      "pasted": "Os ydych chi wedi gludo’r cyfeiriad gwe, gwiriwch eich bod wedi copïo'r cyfeiriad cyfan.",
       "linkOrButton": ""
     },
     "authError": {
@@ -1310,26 +1312,26 @@
     },
     "feedback": {
       "provide": {
-        "heading": "",
-        "optional": "",
-        "anonymous": "",
+        "heading": "Rhoi adborth am gyfarfodydd diweddaru ar-lein",
+        "optional": "Gallwch ateb y cwestiynau hyn os ydych chi eisiau rhoi adborth ar ddefnyddio cyfarfodydd diweddaru ar-lein i'n helpu ni i'w gwella. Mae hyn yn gwbl ddewisol.",
+        "anonymous": "Mae eich adborth yn ddienw.",
         "howEasy": {
-          "legend": "",
-          "veryEasy": "",
-          "easy": "",
-          "neitherEasyOrDifficult": "",
-          "difficult": "",
-          "veryDifficult": ""
+          "legend": "Pa mor hawdd oedd defnyddio cyfarfodydd diweddaru ar-lein? (dewisol)",
+          "veryEasy": "Hawdd iawn",
+          "easy": "Hawdd",
+          "neitherEasyOrDifficult": "Ddim yn hawdd nac yn anodd",
+          "difficult": "Anodd",
+          "veryDifficult": "Anodd iawn"
         },
         "gettingSupport": {
-          "legend": "",
-          "yes": "",
-          "no": ""
+          "legend": "A ydych chi’n cael y gefnogaeth sydd ei hangen arnoch gan y gwasanaeth prawf? (dewisol)",
+          "yes": "Ydw",
+          "no": "Nac ydw"
         },
         "improvements": {
-          "legend": ""
+          "legend": "Pa rannau o'r cyfarfodydd diweddaru ar-lein y gallem eu gwella? (dewisol)"
         },
-        "submit": ""
+        "submit": "Cyflwyno adborth"
       },
       "thankyou": {
         "heading": "",
