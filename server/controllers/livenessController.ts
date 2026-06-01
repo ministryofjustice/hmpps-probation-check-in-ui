@@ -57,11 +57,15 @@ export const renderLivenessRecord: RequestHandler = async (req, res: Response<ob
   try {
     const { submissionId } = req.params
     const livenessSession = await esupervisionService.createLivenessSession(submissionId)
+    const isMockRequested = req.query.mock === 'true'
+    const isMockEnabledInEnv = process.env.MOCK_LIVENESS === 'true'
 
+    const allowMocks = isMockRequested && isMockEnabledInEnv
     res.render('pages/submission/liveness/record', {
       ...pageParams(req),
       sessionId: livenessSession.sessionId,
       region: config.awsRegion,
+      allowMocks,
     })
   } catch (error) {
     next(error)

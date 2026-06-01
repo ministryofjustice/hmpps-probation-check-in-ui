@@ -155,7 +155,24 @@ export default {
     })
   },
 
-  stubVerifyLiveness: (checkin: Checkin, result = AutomatedIdVerificationResult.Match): SuperAgentRequest => {
+  stubLivenessClientFailure: (checkin: Checkin): SuperAgentRequest => {
+    return stubFor({
+      request: {
+        method: 'POST',
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/liveness/client-failure`),
+      },
+      response: {
+        status: 204,
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        jsonBody: {},
+      },
+    })
+  },
+
+  stubLivenessSuccessRightPerson: (
+    checkin: Checkin,
+    result = AutomatedIdVerificationResult.Match,
+  ): SuperAgentRequest => {
     return stubFor({
       request: {
         method: 'POST',
@@ -165,6 +182,54 @@ export default {
         status: 200,
         headers: { 'Content-Type': 'application/json;charset=UTF-8' },
         jsonBody: { isLive: true, livenessConfidence: 99.5, result },
+      },
+    })
+  },
+
+  stubLivenessFailRightPerson: (checkin: Checkin, result = AutomatedIdVerificationResult.Match): SuperAgentRequest => {
+    return stubFor({
+      request: {
+        method: 'POST',
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/liveness/verify`),
+      },
+      response: {
+        status: 200,
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        jsonBody: { isLive: false, livenessConfidence: 10.0, result },
+      },
+    })
+  },
+
+  stubLivenessSuccessWrongPerson: (
+    checkin: Checkin,
+    result = AutomatedIdVerificationResult.NoMatch,
+  ): SuperAgentRequest => {
+    return stubFor({
+      request: {
+        method: 'POST',
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/liveness/verify`),
+      },
+      response: {
+        status: 200,
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        jsonBody: { isLive: true, livenessConfidence: 99.5, result },
+      },
+    })
+  },
+
+  stubLivenessFailWrongPerson: (
+    checkin: Checkin,
+    result = AutomatedIdVerificationResult.NoMatch,
+  ): SuperAgentRequest => {
+    return stubFor({
+      request: {
+        method: 'POST',
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/liveness/verify`),
+      },
+      response: {
+        status: 200,
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        jsonBody: { isLive: false, livenessConfidence: 10.0, result },
       },
     })
   },

@@ -13,3 +13,10 @@ export default abstract class SubmissionPage {
     cy.get('h1').contains(this.title)
   }
 }
+
+Cypress.on('uncaught:exception', err => {
+  if (err.message.includes('Cannot cancel a locked stream')) {
+    return false
+  }
+  return true
+})

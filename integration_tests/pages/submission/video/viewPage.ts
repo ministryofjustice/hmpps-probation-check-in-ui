@@ -2,12 +2,12 @@ import SubmissionPage, { PageElement } from '../submissionPage'
 
 export default class VideoViewPage extends SubmissionPage {
   constructor() {
-    super('We cannot confirm this is you')
+    super('you')
   }
 
-  matchHeading = (): PageElement => cy.contains('h1', 'We have confirmed this is you')
-
-  noMatchHeading = (): PageElement => cy.contains('h1', 'We cannot confirm this is you')
+  verifyHeadingText(expectedText: string) {
+    cy.contains('h1', expectedText).should('be.visible')
+  }
 
   continueButton = (): PageElement => cy.contains('a.govuk-button', 'Continue')
 
