@@ -90,43 +90,43 @@
             }
           },
           items: [
-              {
-                value: "VERY_WELL",
-                text: t('submission.questions.mentalHealth.options.veryWell'),
-                conditional: {
-                  html: veryWellHtml
-                }
-              },
-              {
-                value: "WELL",
-                text: t('submission.questions.mentalHealth.options.well'),
-                conditional: {
-                  html: wellHtml
-                }
-              },
-              {
-                value: "OK",
-                text: t('submission.questions.mentalHealth.options.ok'),
-                conditional: {
-                  html: okHtml
-                }
-              },
-              {
-                value: "NOT_GREAT",
-                text: t('submission.questions.mentalHealth.options.notGreat'),
-                conditional: {
-                  html: notGreatHtml
-                }
-              },
-              {
-                value: "STRUGGLING",
-                text: t('submission.questions.mentalHealth.options.struggling'),
-                conditional: {
-                  html: strugglingHtml
-                }
+            {
+              value: "VERY_WELL",
+              html: t('submission.questions.mentalHealth.options.veryWell') ~ ' <span class="govuk-visually-hidden">, Selecting this option will reveal an additional input</span>',
+              conditional: {
+                html: veryWellHtml
               }
-            ]
-          })
+            },
+            {
+              value: "WELL",
+              html: t('submission.questions.mentalHealth.options.well') ~ ' <span class="govuk-visually-hidden">, Selecting this option will reveal an additional input</span>',
+              conditional: {
+                html: wellHtml
+              }
+            },
+            {
+              value: "OK",
+              html: t('submission.questions.mentalHealth.options.ok') ~ ' <span class="govuk-visually-hidden">, Selecting this option will reveal an additional input</span>',
+              conditional: {
+                html: okHtml
+              }
+            },
+            {
+              value: "NOT_GREAT",
+              html: t('submission.questions.mentalHealth.options.notGreat') ~ ' <span class="govuk-visually-hidden">, Selecting this option will reveal an additional input</span>',
+              conditional: {
+                html: notGreatHtml
+              }
+            },
+            {
+              value: "STRUGGLING",
+              html: t('submission.questions.mentalHealth.options.struggling') ~ ' <span class="govuk-visually-hidden">, Selecting this option will reveal an additional input</span>',
+              conditional: {
+                html: strugglingHtml
+              }
+            }
+          ]
+        })
         }}
         {{
           govukInsetText({
