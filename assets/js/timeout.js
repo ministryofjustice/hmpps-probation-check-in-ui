@@ -9,7 +9,7 @@ function SessionTimeOutModal(submissionId) {
     logout: `/${submissionId}/timeout`,
   }
   this.modalHtml = `
-        <dialog class="es-modal" id="${this.modalId}">
+        <dialog class="es-modal" role="dialog" aria-modal="true" id="${this.modalId}">
             <div class="es-modal__body" tabindex="0">
                 <h1 class="govuk-heading-l">Your check in will time out soon<span class="govuk-visually-hidden">.</span></h1>
                 <p class="govuk-body">Your check in will reset in <strong>${this.formatTime(this.modalCountdownTime)}</strong>.</p>
