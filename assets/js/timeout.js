@@ -9,17 +9,18 @@ function SessionTimeOutModal(submissionId) {
     logout: `/${submissionId}/timeout`,
   }
   this.modalHtml = `
-        <div class="es-modal" role="dialog" aria-modal="true" id="${this.modalId}" tabindex="-1">
+        <dialog class="es-modal" role="dialog" aria-modal="true" id="${this.modalId}">
             <div class="es-modal__body" tabindex="0">
-                <h1 class="govuk-heading-m">You’re about to be signed out<span class="govuk-visually-hidden">.</span></h1>
-                <p class="govuk-body">For your security, we will sign you out in <strong>${this.formatTime(this.modalCountdownTime)}</strong>.</p>
+                <h1 class="govuk-heading-l">Your check in will time out soon<span class="govuk-visually-hidden">.</span></h1>
+                <p class="govuk-body">Your check in will reset in <strong>${this.formatTime(this.modalCountdownTime)}</strong>.</p>
+                <p class="govuk-body">For your security, any information you have entered will not be saved.</p>
                 <div class="es-modal__actions govuk-button-group">
-                    <button class="govuk-button" id="es-timeout-action-renew" aria-label="Stay signed in">Stay signed in</button>
+                    <button class="govuk-button" id="es-timeout-action-renew" aria-label="Continue check in">Continue check in</button>
                     <span class="govuk-visually-hidden">or</span>
-                    <a class="govuk-link govuk-link--no-visited-state" id="es-timeout-action-logout" href="${this.urls.logout}" aria-label="Sign out">Sign out</a>
+                    <a class="govuk-link govuk-link--no-visited-state" id="es-timeout-action-logout" href="${this.urls.logout}" aria-label="Exit check in">Exit check in</a>
                 </div>
             </div>
-        </div>`
+        </dialog>`
 }
 
 SessionTimeOutModal.prototype.init = function init() {
@@ -44,7 +45,7 @@ SessionTimeOutModal.prototype.formatTime = function formatTime(seconds) {
 SessionTimeOutModal.prototype.showModal = function showModal() {
   document.body.insertAdjacentHTML('beforeend', this.modalHtml)
   this.modal = document.getElementById(this.modalId)
-  this.modal.firstElementChild.focus()
+  this.modal.showModal()
   this.modalEvents()
   this.startModalCountdown()
 }
@@ -52,6 +53,9 @@ SessionTimeOutModal.prototype.showModal = function showModal() {
 SessionTimeOutModal.prototype.modalEvents = function modalEvents() {
   const renewButton = document.getElementById('es-timeout-action-renew')
   renewButton.addEventListener('click', this.renewSession.bind(this))
+  this.modal.addEventListener('cancel', e => {
+    e.preventDefault()
+  })
 }
 
 SessionTimeOutModal.prototype.startModalCountdown = function startModalCountdown() {
@@ -92,6 +96,7 @@ SessionTimeOutModal.prototype.renewSession = function renewSession(e) {
 
 SessionTimeOutModal.prototype.hideModal = function hideModal() {
   clearInterval(this.modalTimeout)
+  this.modal.close()
   this.modal.remove()
 }
 
