@@ -14,7 +14,7 @@
       "html": "Mae hwn yn wasanaeth newydd – bydd eich <a class=\"govuk-link govuk-link--no-visited-state\" target=\"_blank\" rel=\"nofollow\" href=\"/feedback\">adborth (mae’n agor mewn tab newydd)</a> yn ein helpu i'w wella."
     },
     "footer": {
-      "guidance": "Arweiniad",
+      "guidance": "Canllawiau ar gyfarfodydd diweddaru gyda’ch swyddog prawf",
       "cookies": "Cwcis",
       "privacy": "Preifatrwydd",
       "accessibility": "Datganiad hygyrchedd",
@@ -58,7 +58,7 @@
         "items": {
           "internet": "mynediad at y rhyngrwyd",
           "camera": "dyfais gyda chamera",
-          "details": "beth yw eich enw a'ch dyddiad geni"
+          "details": "eich enw a'ch dyddiad geni"
         },
         "uk": "Ni fyddwch yn gallu defnyddio'r gwasanaeth hwn i ymuno â chyfarfod diweddaru os ydych chi y tu allan i'r Deyrnas Unedig."
       },
@@ -227,10 +227,10 @@
         "assistance": "Oes angen cymorth arnoch chi neu ydych chi eisiau rhoi gwybod i ni am unrhyw beth?",
         "mentalHealthSupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am iechyd meddwl",
         "alcoholSupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am alcohol",
-        "drugsSupport": "Dywedwch wrthym pam mae angen help arnoch gyda chyffuriau",
-        "moneySupport": "Dywedwch wrthym pam mae angen help arnoch gydag arian",
-        "housingSupport": "Dywedwch wrthym pam mae angen help arnoch gyda thai",
-        "employmentEduSupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am eich Cyflogaeth ac addysg",
+        "drugsSupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am gyffuriau",
+        "moneySupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am arian",
+        "housingSupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am dai",
+        "employmentEduSupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am gyflogaeth ac addysg",
         "supportSystemSupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am eich perthnasoedd ",
         "otherSupport": "Dywedwch wrthym beth rydych chi eisiau i ni ei wybod (rhywbeth arall)",
         "videoCheck": "Gwiriad fideo",
@@ -240,22 +240,22 @@
       "view": "Gwylio",
       "hidden": {
         "mentalHealth": " ateb ar gyfer sut ydych chi'n teimlo",
-        "mentalHealthVeryWell": "",
-        "mentalHealthWell": "",
-        "mentalHealthOk": "",
-        "mentalHealthNotGreat": "",
-        "mentalHealthStruggling": "",
-        "assistance": " ateb ar gyfer a oes unrhyw beth rydych chi angen cymorth gydag ef neu eisiau rhoi gwybod i ni amdano",
-        "mentalHealthSupport": " ateb ar gyfer Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am iechyd meddwl",
-        "alcoholSupport": " ateb ar gyfer Dywedwch wrthym beth rydych chi eisiau i ni ei wybod am alcohol",
-        "drugsSupport": " ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gyda chyffuriau",
-        "moneySupport": " ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gydag arian",
-        "housingSupport": " ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gyda thai",
-        "employmentEduSupport": "",
-        "supportSystemSupport": " ateb ar gyfer dywedwch wrthym pam mae angen help arnoch gyda'ch system gymorth",
-        "otherSupport": " ateb ar gyfer dywedwch wrthym pam mae angen help arnoch",
+        "mentalHealthVeryWell": " yr ateb ar gyfer dweud wrthym pam eich bod yn teimlo'n dda iawn",
+        "mentalHealthWell": " yr ateb ar gyfer dweud wrthym pam eich bod yn teimlo’n dda",
+        "mentalHealthOk": " yr ateb ar gyfer dweud wrthym pam eich bod yn teimlo'n iawn",
+        "mentalHealthNotGreat": " yr ateb ar gyfer dweud wrthym pam nad ydych chi’n teimlo'n grêt",
+        "mentalHealthStruggling": " yr ateb ar gyfer dweud wrthym pam eich bod chi'n cael trafferth",
+        "assistance": " yr ateb ar gyfer oes angen cymorth arnoch chi neu ydych chi eisiau rhoi gwybod i ni am unrhyw beth",
+        "mentalHealthSupport": " yr ateb ar gyfer dywedwch wrthym beth rydych chi eisiau i ni ei wybod am iechyd meddwl",
+        "alcoholSupport": " yr ateb ar gyfer dywedwch wrthym beth rydych chi eisiau i ni ei wybod am alcohol",
+        "drugsSupport": " yr ateb ar gyfer dywedwch wrthym beth rydych chi eisiau i ni ei wybod am gyffuriau",
+        "moneySupport": "  yr ateb ar gyfer dywedwch wrthym beth rydych chi eisiau i ni ei wybod am arian",
+        "housingSupport": " yr ateb ar gyfer dywedwch wrthym beth rydych chi eisiau i ni ei wybod am dai",
+        "employmentEduSupport": " yr ateb ar gyfer dywedwch wrthym beth rydych chi eisiau i ni ei wybod am gyflogaeth ac addysg",
+        "supportSystemSupport": " yr ateb ar gyfer dywedwch wrthym beth rydych chi eisiau i ni ei wybod am eich perthnasoedd",
+        "otherSupport": " yr ateb ar gyfer dywedwch wrthym am beth rydych chi eisiau siarad",
         "otherSupportLegacy": "",
-        "additionalPrefix": "",
+        "additionalPrefix": " ateb ar",
         "video": " fideo",
         "identity": " Gwiriad adnabod"
       },
@@ -287,10 +287,10 @@
         "rulesHeading": "Cyn i chi recordio eich fideo",
         "rulesIntro": "Cyn recordio eich fideo, gwnewch yn siŵr:",
         "rules": {
-          "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
-          "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
+          "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
+          "plainBackground": "eich bod o flaen cefndir plaen",
           "faceInFrame": "bod eich wyneb yn y ffrâm",
-          "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
+          "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
         },
         "inset": "Cofiwch mai cofrestriad prawf yw hwn a dylid ei drin yr un fath â chyfarfod wyneb yn wyneb. Dylech wisgo dillad priodol wrth gymryd y fideo."
       },
@@ -314,10 +314,10 @@
           "intro": "Rydym wedi gwirio eich manylion ac ni allwn gadarnhau mai chi sydd yno. Gallwch roi cynnig arall ar recordio eich fideo neu ei gyflwyno beth bynnag.",
           "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
           "rules": {
-            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
-            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
+            "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
+            "plainBackground": "eich bod o flaen cefndir plaen",
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
+            "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
           },
           "recordAgain": "Recordio'r fideo eto",
           "submitAnyway": "Cyflwyno’r fideo beth bynnag"
@@ -338,10 +338,10 @@
           "rulesHeading": "Os byddwch chi'n recordio eich fideo eto",
           "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
           "rules": {
-            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
-            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
+            "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
+            "plainBackground": "eich bod o flaen cefndir plaen",
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
+            "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
           },
           "recordAgain": "Recordio'r fideo eto",
           "submitAnyway": "Cyflwyno’r fideo beth bynnag",
@@ -352,10 +352,10 @@
           "intro": "Rydym wedi gwirio ac Ni allwn gadarnhau mai chi sydd yno. Gallwch geisio recordio eto.",
           "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
           "rules": {
-            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
-            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
+            "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
+            "plainBackground": "eich bod o flaen cefndir plaen",
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
+            "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
           },
           "tryAgain": "Rhowch gynnig arall ar recordio'ch fideo"
         }
@@ -402,9 +402,9 @@
         "rulesIntro": "Cyn i chi ddilysu pwy ydych chi, chi gwnewch yn siŵr:",
         "rules": {
           "faceInFrame": "bod eich wyneb yn y ffrâm",
-          "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
-          "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
-          "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
+          "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
+          "plainBackground": "eich bod o flaen cefndir plaen",
+          "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
         },
         "inset": "Cofiwch mai cyfarfod diweddaru prawf yw hwn a dylid ei drin yr un fath â chyfarfod wyneb yn wyneb. Dylech wisgo dillad addas. "
       },
@@ -428,9 +428,9 @@
           "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
-            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
-            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
+            "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
+            "plainBackground": "eich bod o flaen cefndir plaen",
+            "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
           },
           "tryAgain": "Dilysu pwy ydych chi eto",
           "submitAnyway": "Parhau i wirio eich atebion"
@@ -475,10 +475,10 @@
           "intro": "",
           "rulesHeading": "",
           "rules": {
-            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
-            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
+            "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
+            "plainBackground": "eich bod o flaen cefndir plaen",
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
+            "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
           },
           "tryAgain": "Dilysu pwy ydych chi eto",
           "submitAnyway": "Parhau i wirio eich atebion"
@@ -585,9 +585,9 @@
           "rulesIntro": "Gwnewch yn siŵr: ",
           "rules": {
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
-            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
-            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
+            "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
+            "plainBackground": "eich bod o flaen cefndir plaen",
+            "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
           },
           "submitHint": "Os ydych chi’n cael trafferth dilysu pwy ydych chi, gallwch barhau i gyflwyno eich manylion mewngofnodi. Bydd eich swyddog prawf yn cadarnhau mai chi yw hwn pan fydd yn adolygu eich manylion mewngofnodi. ",
           "verifyAgain": "Dilysu pwy ydych chi eto",
@@ -663,12 +663,12 @@
           "rulesHeading": "Cyn i chi recordio eich fideo",
           "rulesIntro": "Cyn recordio eich fideo, gwnewch yn siŵr:",
           "rules": {
-            "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
-            "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
+            "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
+            "plainBackground": "eich bod o flaen cefndir plaen",
             "faceInFrame": "bod eich wyneb yn y ffrâm",
-            "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
+            "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
           },
-          "inset": "Cofiwch mai cyfarfod diweddaru prawf yw hwn a dylid ei drin yr un fath â chyfarfod wyneb yn wyneb. Dylech wisgo dillad addas. "
+          "inset": "Cofiwch mai cyfarfod diweddaru yw hwn a dylid ei drin yr un fath â chyfarfod wyneb yn wyneb. Dylech wisgo dillad addas.  "
         },
         "record": {
           "title": "Recordio eich fideo",
@@ -683,10 +683,10 @@
             "heading": "Adolygu eich fideo",
             "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
             "rules": {
-              "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
-              "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
+              "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
+              "plainBackground": "eich bod o flaen cefndir plaen",
               "faceInFrame": "bod eich wyneb yn y ffrâm",
-              "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
+              "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
             },
             "imageAlt": "",
             "ifMeetsRules": "Os yw eich fideo yn bodloni'r rheolau, gallwch barhau a byddwn yn cadarnhau pwy ydych chi.",
@@ -704,10 +704,10 @@
             "rulesHeading": "Os byddwch chi'n recordio eich fideo eto",
             "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
             "rules": {
-              "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
-              "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
+              "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
+              "plainBackground": "eich bod o flaen cefndir plaen",
               "faceInFrame": "bod eich wyneb yn y ffrâm",
-              "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
+              "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
             },
             "recordAgain": "Recordio'r fideo eto",
             "submitAnyway": "Cyflwyno’r fideo beth bynnag"
@@ -717,10 +717,10 @@
             "intro": "Rydym wedi gwirio ac Ni allwn gadarnhau mai chi sydd yno. Gallwch geisio recordio eto.",
             "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
             "rules": {
-              "litArea": "eich bod chi mewn lle sydd wedi ei oleuo'n dda",
-              "plainBackground": "dydych chi ddim yn gwisgo het neu sbectol haul",
+              "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
+              "plainBackground": "eich bod o flaen cefndir plaen",
               "faceInFrame": "bod eich wyneb yn y ffrâm",
-              "noHatSunglasses": "nad ydych chi’n gwisgo het neu sbectol haul"
+              "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
             },
             "tryAgain": "Rhowch gynnig arall ar recordio'ch fideo"
           }
@@ -1006,7 +1006,7 @@
         }
       },
       "completing": {
-        "heading": "Sut y byddwch yn Cwblhau eich cyfarfod diweddaru",
+        "heading": "Sut byddwch chi'n cwblhau cyfarfod diweddaru",
         "getLink": {
           "heading": "Cael y ddolen i ddefnyddio cyfarfodydd diweddaru ar-lein",
           "firstCheckIn": "Pan fydd eich swyddog prawf yn eich cofrestru i ddefnyddio cyfarfodydd diweddaru ar-lein, bydd yn pennu dyddiad ar gyfer eich cyfarfod diweddaru cyntaf.",
@@ -1082,7 +1082,7 @@
       "feedback": {
         "heading": "Sut mae rhoi adborth am gyfarfodydd diweddaru ar-lein",
         "form": "Mae gennym ffurflen <a href=\"/feedback\" class=\"govuk-link\">adborth ar-lein i chi roi gwybod i ni am eich profiad o gyfarfodydd diweddaru ar-lein.</a>",
-        "share": "Byddwch yn gallu llenwi'r ffurflen eich hun neu gyda'ch swyddog prawf pryd bynnag y mae gennych rywbeth i'w rannu am gofrestriadau ar-lein.",
+        "share": "Gallwch lenwi'r ffurflen eich hun neu gyda'ch swyddog prawf pryd bynnag y bydd gennych chi rywbeth i'w rannu am gyfarfodydd diweddaru ar-lein.",
         "other": "Bydd cyfleoedd eraill i chi roi adborth. Er enghraifft, gallech ddewis siarad am eich profiad drwy alwadau ffôn byr. "
       }
     },
