@@ -73,6 +73,37 @@ function FaceLivenessApp() {
     }
   }
 
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const mockParam = urlParams.get('mock') === 'true';
+  const livenessRoot = document.getElementById('face-liveness-root');
+  const backendAllowsMocks = livenessRoot?.dataset.allowMocks === 'true';
+  const isMock = mockParam && backendAllowsMocks
+  if (isMock) {
+    return (
+      <>
+      <div>
+        <h3>AWS Rekognition Face Liveness simulations</h3>
+        <button data-qa="mock-complete" className="govuk-button"  onClick={handleAnalysisComplete}>Simulate Complete</button>
+        <button data-qa="mock-cancel" className="govuk-button govuk-button--secondary"  onClick={handleUserCancel}>Simulate Cancel</button>
+        <button data-qa="mock-error" className="govuk-button govuk-button--warning"  onClick={() => handleError({ state: '' })}>Mock Generic Error Simulation</button>
+
+
+      </div>
+      <div>
+
+        <button data-qa="mock-timeout" className="govuk-button govuk-button--warning"  onClick={() => handleError({ state: 'TIMEOUT' })}>Mock Timeout Simulation</button>
+        <button data-qa="mock-connection-timeout"className="govuk-button govuk-button--warning"  onClick={() => handleError({ state: 'CONNECTION_TIMEOUT' })}>Mock Connection Timeout Simulation</button>
+        <button data-qa="mock-default-camera-not-found" className="govuk-button govuk-button--warning"  onClick={() => handleError({ state: 'DEFAULT_CAMERA_NOT_FOUND_ERROR' })}>Mock Default Camera Not Found Error Simulation</button>
+        <button data-qa="mock-camera-access" className="govuk-button govuk-button--warning"  onClick={() => handleError({ state: 'CAMERA_ACCESS_ERROR' })}>Mock Camera Access Error Simulation</button>
+        <button data-qa="mock-camera-framerate" className="govuk-button govuk-button--warning"  onClick={() => handleError({ state: 'CAMERA_FRAMERATE_ERROR' })}>Mock Camera Framerate Error Simulation</button>
+        <button data-qa="mock-multiple-faces" className="govuk-button govuk-button--warning"  onClick={() => handleError({ state: 'MULTIPLE_FACES_ERROR' })}>Mock Multiple Faces Error Simulation</button>
+        <button data-qa="mock-mobile-landscape" className="govuk-button govuk-button--warning"  onClick={() => handleError({ state: 'MOBILE_LANDSCAPE_ERROR' })}>Mock Mobile Landscape Error Simulation</button>
+        </div>
+      </>
+    );
+  }
+  
   if (!sessionId) return null
 
   return (
