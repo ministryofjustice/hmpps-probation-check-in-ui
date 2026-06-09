@@ -117,4 +117,48 @@ describe('Start Check-in Journey', () => {
     cy.url().should('include', '/confirmation')
     SubmissionPage.verifyOnPage(ConfirmationPage)
   })
+  it('should throw a validation error when a user attempts to enter just whitespace into the additional questions text box', () => {
+    cy.visit(`/${testCheckin.uuid}`)
+    const submissionIndexPage = SubmissionPage.verifyOnPage(CheckinIndexPage)
+    cy.contains('h1', 'Check in with your probation officer').should('be.visible')
+    submissionIndexPage.startButton().should('contain.text', 'Start now')
+    submissionIndexPage.startButton().click()
+    const personalDetailsPage = SubmissionPage.verifyOnPage(PersonalDetailsPage)
+    const { firstName } = testOffender
+    const { lastName } = testOffender
+    const dob = new Date(testOffender.dateOfBirth)
+    const day = dob.getDate().toString()
+    const month = (dob.getMonth() + 1).toString()
+    const year = dob.getFullYear().toString()
+    personalDetailsPage.completeForm({
+      firstName,
+      lastName,
+      day,
+      month,
+      year,
+    })
+    personalDetailsPage.continueButton().click()
+    const mentalHealthPage = SubmissionPage.verifyOnPage(MentalHealthPage)
+    mentalHealthPage.veryWellRadio().should('exist')
+    mentalHealthPage.wellRadio().should('exist')
+    mentalHealthPage.okRadio().should('exist')
+    mentalHealthPage.notGreatRadio().should('exist')
+    mentalHealthPage.strugglingRadio().should('exist')
+    mentalHealthPage.okRadio().click()
+    mentalHealthPage.continueButton().click()
+    const assistancePage = SubmissionPage.verifyOnPage(AssistancePage)
+    assistancePage.selectMoney()
+    assistancePage.enterMoneyReason('I am having trouble with my budgeting.')
+    assistancePage.selectHousing()
+    assistancePage.enterHousingReason('I need to find a new place to live.')
+    assistancePage.selectEmploymentEduSupport()
+    assistancePage.enterEmploymentEduReason('I need to get a job.')
+    assistancePage.continueButton().click()
+    const additionalQuestionPage = new AdditionalQuestionPage('How was the pottery class?')
+    additionalQuestionPage.answerTextarea().type(' ')
+    additionalQuestionPage.continueButton().click()
+    additionalQuestionPage.checkOnPage()
+    additionalQuestionPage.errorSummary().should('be.visible').and('contain.text', 'Enter your answer to the question')
+    additionalQuestionPage.errorMessage().should('be.visible').and('contain.text', 'Enter your answer to the question')
+  })
 })
