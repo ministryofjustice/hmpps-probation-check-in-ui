@@ -46,6 +46,9 @@
       "day": "Diwrnod",
       "month": "Mis",
       "year": "Blwyddyn"
+    },
+    "visuallyHidden": {
+      "mentalHealthTextBox": ""
     }
   },
   "submission": {
