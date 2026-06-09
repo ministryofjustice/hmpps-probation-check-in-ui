@@ -21,6 +21,11 @@ const buildImprovementOptions = () => {
 export default function feedbackRoutes(): Router {
   const router = Router({ mergeParams: true })
 
+  router.use('/feedback', (req, res, next) => {
+    res.locals.hideFeedbackLink = true
+    next()
+  })
+
   const get = (routePath: string | string[], ...handlers: RequestHandler[]) =>
     router.get(routePath, ...handlers.map(handler => asyncMiddleware(handler)))
 

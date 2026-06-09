@@ -31,14 +31,14 @@
         </div>
       </div>
     </section>
-  {{
-    govukPhaseBanner({
-    tag: {
-      text: t('common.phaseBanner.tag')
-    },
-    html: t('common.phaseBanner.html')
-    })
-  }}
+    {{
+      govukPhaseBanner({
+      tag: {
+        text: t('common.phaseBanner.tag')
+      },
+      html: t('common.phaseBanner.htmlNoLink') if hideFeedbackLink else t('common.phaseBanner.html')
+      })
+    }}
 {% endblock %}
 
 {% block bodyStart %}
