@@ -58,7 +58,7 @@ export const assistanceSchema = z.object({
 })
 
 export const additionalAnswerSchema = z.object({
-  additionalAnswer: z.string().min(1, i18nMessage('submission.questions.additional.errors.required')),
+  additionalAnswer: z.string().trim().min(1, i18nMessage('submission.questions.additional.errors.required')),
 })
 
 export const checkAnswersSchema = z
