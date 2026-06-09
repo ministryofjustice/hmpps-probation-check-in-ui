@@ -11,7 +11,8 @@
     },
     "phaseBanner": {
       "tag": "Beta Preifat",
-      "html": "Mae hwn yn wasanaeth newydd – bydd eich <a class=\"govuk-link govuk-link--no-visited-state\" target=\"_blank\" rel=\"nofollow\" href=\"/feedback\">adborth (mae’n agor mewn tab newydd)</a> yn ein helpu i'w wella."
+      "html": "Mae hwn yn wasanaeth newydd – bydd eich <a class=\"govuk-link govuk-link--no-visited-state\" target=\"_blank\" rel=\"nofollow\" href=\"/feedback\">adborth (mae’n agor mewn tab newydd)</a> yn ein helpu i'w wella.",
+      "htmlNoLink": "Mae hwn yn wasanaeth newydd – bydd eich adborth yn ein helpu i'w wella."
     },
     "footer": {
       "guidance": "Canllawiau ar gyfarfodydd diweddaru gyda’ch swyddog prawf",
