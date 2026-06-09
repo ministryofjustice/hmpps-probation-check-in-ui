@@ -22,6 +22,15 @@ export type CheckinUploadContentTypes = {
   snapshots: string[]
 }
 
+/**
+ * Per-snapshot SHA-256 (base64) digests, used to bind each presigned snapshot URL to the
+ * exact bytes the client is about to upload. Optional during dual-mode rollout
+ * (sign:true, require:false) — clients that don't hash get an unbound URL.
+ */
+export type CheckinUploadHashes = {
+  snapshots?: { sha256: string }[]
+}
+
 export default class EsupervisionApiClient extends RestClient {
   constructor(authenticationClient: AuthenticationClient) {
     super('eSupervision API', config.apis.esupervisionApi, logger, authenticationClient)
@@ -41,6 +50,7 @@ export default class EsupervisionApiClient extends RestClient {
   async getCheckinUploadLocation(
     checkinId: string,
     contentTypes: CheckinUploadContentTypes,
+    hashes?: CheckinUploadHashes,
   ): Promise<CheckinUploadLocationResponse> {
     const { video, snapshots } = contentTypes
     const query: Record<string, string> = {
@@ -53,6 +63,7 @@ export default class EsupervisionApiClient extends RestClient {
         path: `/v2/offender_checkins/${checkinId}/upload_location`,
         query,
         headers: { 'Content-Type': 'application/json' },
+        data: hashes ? JSON.stringify(hashes) : undefined,
       },
       asSystem(),
     )

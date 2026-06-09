@@ -1,4 +1,4 @@
-import EsupervisionApiClient, { CheckinUploadContentTypes } from '../data/esupervisionApiClient'
+import EsupervisionApiClient, { CheckinUploadContentTypes, CheckinUploadHashes } from '../data/esupervisionApiClient'
 import Checkin from '../data/models/checkin'
 import CheckinSubmission from '../data/models/checkinSubmission'
 import CheckinUploadLocationResponse from '../data/models/checkinUploadLocationResponse'
@@ -21,8 +21,9 @@ export default class EsupervisionService {
   getCheckinUploadLocation(
     submissionId: string,
     contentTypes: CheckinUploadContentTypes,
+    hashes?: CheckinUploadHashes,
   ): Promise<CheckinUploadLocationResponse> {
-    return this.esupervisionApiClient.getCheckinUploadLocation(submissionId, contentTypes)
+    return this.esupervisionApiClient.getCheckinUploadLocation(submissionId, contentTypes, hashes)
   }
 
   submitCheckin(checkinId: string, submission: CheckinSubmission): Promise<Checkin> {

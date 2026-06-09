@@ -142,7 +142,7 @@ export default function routes({ esupervisionService }: Services): Router {
   router.post('/liveness/check-your-answers', protectSubmission, validateFormData(checkAnswersSchema), handleSubmission)
   get('/liveness/session', protectSubmission, getLivenessSession)
   get('/liveness/credentials', protectSubmission, getLivenessCredentials)
-  get('/liveness/upload-url', protectSubmission, getSnapshotUploadUrl)
+  router.post('/liveness/upload-url', protectSubmission, asyncMiddleware(getSnapshotUploadUrl))
 
   get('/check-your-answers', protectSubmission, renderCheckAnswers)
   router.post('/check-your-answers', protectSubmission, validateFormData(checkAnswersSchema), handleSubmission)

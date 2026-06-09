@@ -35,9 +35,14 @@ function getSubmissionId(): string {
   return match ? match[1] : ''
 }
 
-const submissionId = getSubmissionId()
+function getCsrfToken(): string {
+  return document.querySelector<HTMLInputElement>('input[name=_csrf]')?.value ?? ''
+}
 
-initFallbackVideo(submissionId, (screen: string) => {
+const submissionId = getSubmissionId()
+const csrfToken = getCsrfToken()
+
+initFallbackVideo(submissionId, csrfToken, (screen: string) => {
   const partialId = SCREEN_TO_PARTIAL[screen]
   if (partialId) showPartial(partialId)
 })
@@ -48,7 +53,7 @@ document.addEventListener('click', e => {
   if (target.closest('[data-fallback-video]')) {
     e.preventDefault()
     showPartial('fallbackRecordingScreen')
-    initFallbackVideo(submissionId, (screen: string) => {
+    initFallbackVideo(submissionId, csrfToken, (screen: string) => {
       const partialId = SCREEN_TO_PARTIAL[screen]
       if (partialId) showPartial(partialId)
     })

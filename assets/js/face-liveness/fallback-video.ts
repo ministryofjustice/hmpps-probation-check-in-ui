@@ -1,11 +1,15 @@
-import { fetchSnapshotUploadUrl, uploadSnapshot, fetchVideoVerifyResult } from './api'
+import { fetchSnapshotUploadLocation, uploadSnapshot, fetchVideoVerifyResult } from './api'
 
 const COUNTDOWN_TIME = 3000
 const SCREENSHOT_TIME = 2000
 const RECORDING_TIME = 5000
 const LOADING_SCREEN_DELAY = 3000
 
-export default async function initFallbackVideo(submissionId: string, setScreen: (screen: string) => void) {
+export default async function initFallbackVideo(
+  submissionId: string,
+  csrfToken: string,
+  setScreen: (screen: string) => void,
+) {
   const video = document.getElementById('fallbackVideo') as HTMLVideoElement
   const canvas = document.getElementById('fallbackCanvas') as HTMLCanvasElement
   const startBtn = document.getElementById('fallbackStartBtn') as HTMLButtonElement
@@ -76,9 +80,9 @@ export default async function initFallbackVideo(submissionId: string, setScreen:
     const startTime = Date.now()
 
     try {
-      const uploadUrl = await fetchSnapshotUploadUrl(submissionId)
       if (!screenshotBlob) throw new Error('No screenshot captured')
-      await uploadSnapshot(uploadUrl, screenshotBlob)
+      const uploadLocation = await fetchSnapshotUploadLocation(submissionId, screenshotBlob, csrfToken)
+      await uploadSnapshot(uploadLocation, screenshotBlob)
       const result = await fetchVideoVerifyResult(submissionId)
 
       const elapsed = Date.now() - startTime
