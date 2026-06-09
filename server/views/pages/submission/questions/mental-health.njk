@@ -72,6 +72,7 @@
         }) }}
       {% endset -%}
 
+      {% set visuallyHiddenText = '<span class="govuk-visually-hidden">. ' ~ t('common.visuallyHidden.mentalHealthTextBox') ~ '</span>' %}
       <form method="POST">
         <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
         {{
@@ -92,35 +93,35 @@
           items: [
               {
                 value: "VERY_WELL",
-                text: t('submission.questions.mentalHealth.options.veryWell'),
+                html: t('submission.questions.mentalHealth.options.veryWell') + visuallyHiddenText,
                 conditional: {
                   html: veryWellHtml
                 }
               },
               {
                 value: "WELL",
-                text: t('submission.questions.mentalHealth.options.well'),
+                html: t('submission.questions.mentalHealth.options.well') + visuallyHiddenText,
                 conditional: {
                   html: wellHtml
                 }
               },
               {
                 value: "OK",
-                text: t('submission.questions.mentalHealth.options.ok'),
+                html: t('submission.questions.mentalHealth.options.ok') + visuallyHiddenText,
                 conditional: {
                   html: okHtml
                 }
               },
               {
                 value: "NOT_GREAT",
-                text: t('submission.questions.mentalHealth.options.notGreat'),
+                html: t('submission.questions.mentalHealth.options.notGreat') + visuallyHiddenText,
                 conditional: {
                   html: notGreatHtml
                 }
               },
               {
                 value: "STRUGGLING",
-                text: t('submission.questions.mentalHealth.options.struggling'),
+                html: t('submission.questions.mentalHealth.options.struggling') + visuallyHiddenText,
                 conditional: {
                   html: strugglingHtml
                 }

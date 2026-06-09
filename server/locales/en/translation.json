@@ -46,6 +46,9 @@
       "day": "Day",
       "month": "Month",
       "year": "Year"
+    },
+    "visuallyHidden": {
+      "mentalHealthTextBox": "Selecting this option will reveal a textbox"
     }
   },
   "submission": {
