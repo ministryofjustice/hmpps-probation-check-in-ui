@@ -9,4 +9,8 @@ export default class AdditionalQuestionPage extends SubmissionPage {
   answerTextarea = (): PageElement => cy.get('#additionalAnswer')
 
   continueButton = (): PageElement => cy.contains('button', 'Continue')
+
+  errorSummary = (): PageElement => cy.get('.govuk-error-summary')
+
+  errorMessage = (): PageElement => cy.get('#additionalAnswer-error')
 }
