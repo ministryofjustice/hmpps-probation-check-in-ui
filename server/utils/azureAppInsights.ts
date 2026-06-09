@@ -41,6 +41,12 @@ export function buildAppInsightsClient(
   return null
 }
 
+export function trackEvent(name: string, properties?: Record<string, string>): void {
+  if (defaultClient) {
+    defaultClient.trackEvent({ name, properties })
+  }
+}
+
 export function appInsightsMiddleware(): RequestHandler {
   return (req, res, next) => {
     res.prependOnceListener('finish', () => {

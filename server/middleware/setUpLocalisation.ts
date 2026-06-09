@@ -8,6 +8,8 @@ import {
   SupportedLanguage,
 } from '../utils/i18nSetup'
 import config from '../config'
+import { trackEvent } from '../utils/azureAppInsights'
+import logger from '../../logger'
 
 const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000
 
@@ -31,12 +33,28 @@ const handleLanguageQuery: RequestHandler = (req: Request, res: Response, next: 
   }
 
   if (isSupported(requested)) {
+    const previousLanguage = req.cookies?.[LANGUAGE_COOKIE] ?? 'none'
+
     res.cookie(LANGUAGE_COOKIE, requested, {
       maxAge: ONE_YEAR_MS,
       httpOnly: true,
       sameSite: 'lax',
       secure: config.https,
       signed: false,
+    })
+
+    // Track language switches in AppInsights
+    trackEvent('LanguageSwitch', {
+      language: requested,
+      previousLanguage,
+      switched: String(previousLanguage !== requested),
+    })
+
+    // Track language switches in bunyan
+    logger.info('LanguageSwitch', {
+      language: requested,
+      previousLanguage,
+      switched: String(previousLanguage !== requested),
     })
   }
 
