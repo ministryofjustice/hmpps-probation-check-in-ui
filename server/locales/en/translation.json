@@ -1336,10 +1336,7 @@
         "improvements": {
           "legend": "What part of online check ins could we improve? (optional)"
         },
-        "submit": "Submit feedback",
-        "errors": {
-          "howEasyRequired": "Select how easy it was to use online check ins"
-        }
+        "submit": "Submit feedback"
       },
       "thankyou": {
         "heading": "Thank you for your feedback",
