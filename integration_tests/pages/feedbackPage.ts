@@ -28,5 +28,5 @@ export default class FeedbackPage extends Page {
 
   errorSummary = (): PageElement => cy.get('.govuk-error-summary')
 
-  errorMessage = (): PageElement => cy.get('#additionalAnswer-error')
+  errorMessage = (): PageElement => cy.get('.govuk-error-summary__list a')
 }

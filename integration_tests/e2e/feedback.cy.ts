@@ -32,6 +32,5 @@ context('Feedback', () => {
       .errorMessage()
       .should('be.visible')
       .and('contain.text', 'Select how easy it was to use online check ins')
-    Page.verifyOnPage(FeedbackThankyouPage)
   })
 })
