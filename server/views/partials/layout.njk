@@ -21,16 +21,18 @@
   {{ govukHeader({
     homepageUrl: "/"
   }) }}
-    <section aria-label="Service information" class="govuk-service-navigation" data-module="govuk-service-navigation" data-govuk-service-navigation-init="">
-      <div class="govuk-width-container">
-        <div class="govuk-service-navigation__container hmpps-language-toggle__container">
-          <span class="govuk-service-navigation__service-name">
-            <span class="govuk-service-navigation__text">{{ t('common.serviceName') }}</span>
-          </span>
-          {% include "partials/languageToggle.njk" %}
-        </div>
+  <section aria-label="Service information" class="govuk-service-navigation" data-module="govuk-service-navigation" data-govuk-service-navigation-init="">
+    <div class="govuk-width-container">
+      <div class="govuk-service-navigation__container hmpps-language-toggle__container">
+        <span class="govuk-service-navigation__service-name">
+          <span class="govuk-service-navigation__text">{{ t('common.serviceName') }}</span>
+        </span>
+        {% include "partials/languageToggle.njk" %}
       </div>
-    </section>
+    </div>
+  </section>
+
+  <section aria-label="Feedback banner">
     {{
       govukPhaseBanner({
       tag: {
@@ -39,6 +41,7 @@
       html: t('common.phaseBanner.htmlNoLink') if hideFeedbackLink else t('common.phaseBanner.html')
       })
     }}
+  </section>
 {% endblock %}
 
 {% block bodyStart %}
