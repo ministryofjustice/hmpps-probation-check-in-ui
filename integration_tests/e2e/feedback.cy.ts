@@ -24,8 +24,14 @@ context('Feedback', () => {
     feedbackPage.selectImprovement('checkInQuestions')
     feedbackPage.submitFeedback()
     feedbackPage.checkOnPage()
-    feedbackPage.errorSummary().should('be.visible').and('contain.text', 'Select how easy it was to use online check ins')
-    feedbackPage.errorMessage().should('be.visible').and('contain.text', 'Select how easy it was to use online check ins')
+    feedbackPage
+      .errorSummary()
+      .should('be.visible')
+      .and('contain.text', 'Select how easy it was to use online check ins')
+    feedbackPage
+      .errorMessage()
+      .should('be.visible')
+      .and('contain.text', 'Select how easy it was to use online check ins')
     Page.verifyOnPage(FeedbackThankyouPage)
   })
 })
