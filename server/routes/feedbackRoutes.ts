@@ -2,6 +2,8 @@ import { type RequestHandler, Router } from 'express'
 import asyncMiddleware from '../middleware/asyncMiddleware'
 import handleFeedbackSubmission from '../controllers/feedbackController'
 import { improvementOptions } from '../data/models/feedback'
+import feedbackFormSchema from '../schemas/feedbackSchema'
+import validateFormData from '../middleware/validateFormData'
 
 const buildImprovementOptions = () => {
   const last = improvementOptions[improvementOptions.length - 1]
@@ -29,13 +31,16 @@ export default function feedbackRoutes(): Router {
   const get = (routePath: string | string[], ...handlers: RequestHandler[]) =>
     router.get(routePath, ...handlers.map(handler => asyncMiddleware(handler)))
 
-  get('/feedback', (req, res, next) => {
+  get('/feedback', (req, res) => {
+    const formData = res.locals.validationErrors ? res.locals.formData : {}
+    delete req.session.formData
     res.render('pages/feedback/provide-feedback', {
+      formData,
       improvementItems: buildImprovementOptions(),
     })
   })
 
-  router.post('/feedback', handleFeedbackSubmission)
+  router.post('/feedback', validateFormData(feedbackFormSchema), handleFeedbackSubmission)
 
   return router
 }

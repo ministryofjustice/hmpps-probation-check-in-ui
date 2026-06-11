@@ -1325,7 +1325,8 @@
           "easy": "Hawdd",
           "neitherEasyOrDifficult": "Ddim yn hawdd nac yn anodd",
           "difficult": "Anodd",
-          "veryDifficult": "Anodd iawn"
+          "veryDifficult": "Anodd iawn",
+          "error": ""
         },
         "gettingSupport": {
           "legend": "A ydych chi’n cael y gefnogaeth sydd ei hangen arnoch gan y gwasanaeth prawf? (dewisol)",

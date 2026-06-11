@@ -1320,12 +1320,13 @@
         "optional": "You can answer these questions if you want to give feedback on using online check ins to help us improve it. This is completely optional.",
         "anonymous": "Your feedback is anonymous.",
         "howEasy": {
-          "legend": "How easy was it to use online check ins? (optional)",
+          "legend": "How easy was it to use online check ins?",
           "veryEasy": "Very easy",
           "easy": "Easy",
           "neitherEasyOrDifficult": "Neither easy or difficult",
           "difficult": "Difficult",
-          "veryDifficult": "Very difficult"
+          "veryDifficult": "Very difficult",
+          "error": "Select how easy it was to use online check ins"
         },
         "gettingSupport": {
           "legend": "Are you getting the support you need from probation? (optional)",

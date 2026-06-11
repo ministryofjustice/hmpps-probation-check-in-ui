@@ -25,4 +25,8 @@ export default class FeedbackPage extends Page {
   submitFeedback(): void {
     this.submitButton().click()
   }
+
+  errorSummary = (): PageElement => cy.get('.govuk-error-summary')
+
+  errorMessage = (): PageElement => cy.get('.govuk-error-summary__list a')
 }

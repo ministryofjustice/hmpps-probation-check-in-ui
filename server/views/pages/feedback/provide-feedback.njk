@@ -2,6 +2,7 @@
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "../../partials/errorSummary.njk" import errorSummary %}
 
 {% set pageTitle = t('public.feedback.provide.heading') %}
 
@@ -9,6 +10,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ t('public.feedback.provide.heading') }}</h1>
+      {{ errorSummary(validationErrors, t('common.errorSummary.title')) }}
 
       <p>
         {{ t('public.feedback.provide.optional') }}
@@ -22,6 +24,8 @@
         {{
           govukRadios({
               name: "howEasy",
+              errorMessage: validationErrors | findError("howEasy"),
+              value: formData["howEasy"],
               fieldset: {
                 legend: {
                   text: t('public.feedback.provide.howEasy.legend'),
@@ -56,6 +60,7 @@
         {{
           govukRadios({
               name: "gettingSupport",
+              value: formData["gettingSupport"],
               fieldset: {
                 legend: {
                   text: t('public.feedback.provide.gettingSupport.legend'),
@@ -78,6 +83,7 @@
         {{
           govukCheckboxes({
             name: "improvements",
+            values: formData["improvements"],
             fieldset: {
               legend: {
                 text: t('public.feedback.provide.improvements.legend'),
