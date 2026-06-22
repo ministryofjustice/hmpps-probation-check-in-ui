@@ -165,6 +165,9 @@ FaceMesh (468 landmarks) is overkill unless we later want finer guidance.
 
 ### Spike (½–1 day, do this first — de-risks everything)
 
+> Built: [`spike/mediapipe-face-gate/`](../spike/mediapipe-face-gate/) — standalone page,
+> see its README for how to run it on a laptop and tunnel to a phone.
+
 1. Add MediaPipe Face Detection (or BlazeFace) to a throwaway page wired to `getUserMedia`.
 2. Confirm it detects + tracks a face at a usable frame rate on a **target mobile device**
    (test the actual device profile of our users, not just desktop Chrome).

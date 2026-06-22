@@ -78,6 +78,7 @@
     "@aws-amplify/ui-react-liveness": "^3.6.0",
     "@aws-sdk/client-sqs": "^3.940.0",
     "@maxmind/geoip2-node": "^6.3.4",
+    "@mediapipe/tasks-vision": "0.10.18",
     "@ministryofjustice/frontend": "^9.0.0",
     "@ministryofjustice/hmpps-auth-clients": "^2.0.0",
     "@ministryofjustice/hmpps-monitoring": "^2.1.0",

@@ -661,7 +661,7 @@
       "fallback": {
         "inform": {
           "title": "Confirm your identity",
-          "intro": "Next, we need to record a 5-second video of you on this device. You do not need to speak in the video. Anything you say will not be recorded. You will be able to review the video before you continue.",
+          "intro": "Next, we will use your camera to confirm your identity. Keep your face in the centre of the screen and we will check it matches the photo your probation officer took. You do not need to speak, and nothing you say is recorded.",
           "comparison": "We will save an image of you taken from the video to compare with the photo your probation officer took when they signed you up. This  will only be used to confirm your identity.",
           "permissions": "You'll need to accept permissions to record a video on your device.",
           "rulesHeading": "Before you record your video",
@@ -675,58 +675,70 @@
           "inset": "Remember this is a probation check in and should be treated the same as a face-to-face meeting. You should wear appropriate clothing."
         },
         "record": {
-          "title": "Record your video",
-          "intro": "You do not need to do anything during the video. Anything you say will not be recorded.",
+          "title": "Confirm your identity",
+          "intro": "Keep your face in the centre of the screen. We will check it matches the photo your probation officer took. This may take a few moments and you do not need to press anything.",
           "permissionsHeading": "You need to accept permissions on your device",
-          "permissionsBody": "We are unable to access your camera to record a video. Check your browser settings and permissions. If you are having trouble using this service, contact your probation officer.",
-          "startButton": "Start recording"
+          "permissionsBody": "We are unable to access your camera. Check your browser settings and permissions. If you are having trouble using this service, contact your probation officer.",
+          "startButton": "Start camera",
+          "starting": "Starting your camera.",
+          "searching": "Looking for you. Move your face into the centre of the screen.",
+          "hold": "Hold still. We can see you.",
+          "checking": "Checking this is you.",
+          "guidance": {
+            "noFace": "We cannot see your face. Move so your face is in view of the camera.",
+            "moveLeft": "Move your face to the left.",
+            "moveRight": "Move your face to the right.",
+            "moveUp": "Move your face up.",
+            "moveDown": "Move your face down.",
+            "moveCloser": "Move closer to the camera.",
+            "moveBack": "Move further away from the camera."
+          }
         },
         "partials": {
-          "loading": "Checking this is you",
-          "review": {
-            "heading": "Review your video",
-            "rulesIntro": "In your video, make sure:",
-            "rules": {
-              "litArea": "you are in a well lit area",
-              "plainBackground": "you are in front of a plain background",
-              "faceInFrame": "your face is in the frame",
-              "noHatSunglasses": "you are not wearing a hat or sunglasses"
-            },
-            "imageAlt": "Screenshot from your video",
-            "ifMeetsRules": "If your video meets the rules, you can continue and we will verify your identity.",
-            "continue": "Continue",
-            "recordAgain": "Record video again"
-          },
+          "capped": "You have tried several times. You can submit anyway, or contact your probation officer for help.",
           "match": {
             "heading": "We have confirmed this is you",
             "intro": "We have confirmed this is you. You can now continue to check your answers.",
             "continue": "Continue"
           },
-          "nomatch": {
+          "timeoutNoMatch": {
             "heading": "We cannot confirm this is you",
-            "intro": "We have checked and we cannot confirm this is you. You can try recording again or submit your video anyway.",
-            "rulesHeading": "If you record your video again",
-            "rulesIntro": "In your video, make sure:",
+            "intro": "We checked but could not confirm this is you. You can try again or submit anyway.",
+            "rulesHeading": "If you try again",
+            "rulesIntro": "Make sure:",
             "rules": {
               "litArea": "you are in a well lit area",
               "plainBackground": "you are in front of a plain background",
-              "faceInFrame": "your face is in the frame",
+              "faceInFrame": "your face is in the centre of the screen",
               "noHatSunglasses": "you are not wearing a hat or sunglasses"
             },
-            "recordAgain": "Record video again",
-            "submitAnyway": "Submit video anyway"
+            "tryAgain": "Try again",
+            "submitAnyway": "Submit anyway"
+          },
+          "timeoutNoFace": {
+            "heading": "We could not see you clearly",
+            "intro": "We could not get a clear view of your face in time. You can try again or submit anyway.",
+            "rulesIntro": "When you try again, make sure:",
+            "rules": {
+              "litArea": "you are in a well lit area, with light on your face",
+              "faceInFrame": "your face is in the centre of the screen",
+              "holdStill": "you hold the device steady and hold still",
+              "noHatSunglasses": "you are not wearing a hat or sunglasses"
+            },
+            "tryAgain": "Try again",
+            "submitAnyway": "Submit anyway"
           },
           "error": {
             "heading": "We cannot confirm this is you because an error occurred",
-            "intro": "We have checked and we cannot confirm this is you. You can try recording again.",
-            "rulesIntro": "In your video, make sure:",
+            "intro": "Something went wrong. You can try again.",
+            "rulesIntro": "When you try again, make sure:",
             "rules": {
               "litArea": "you are in a well lit area",
               "plainBackground": "you are in front of a plain background",
-              "faceInFrame": "your face is in the frame",
+              "faceInFrame": "your face is in the centre of the screen",
               "noHatSunglasses": "you are not wearing a hat or sunglasses"
             },
-            "tryAgain": "Try recording your video again"
+            "tryAgain": "Try again"
           }
         }
       }

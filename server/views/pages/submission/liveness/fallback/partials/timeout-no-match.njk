@@ -1,0 +1,23 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{# Timeout where we DID get clear, centred frames but none matched the reference photo. #}
+<div class="es-pane" id="fallbackTimeoutNoMatchScreen" hidden aria-hidden="true">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ t('submission.liveness.fallback.partials.timeoutNoMatch.heading') }}</h1>
+      <p>{{ t('submission.liveness.fallback.partials.timeoutNoMatch.intro') }}</p>
+      <h2 class="govuk-heading-m">{{ t('submission.liveness.fallback.partials.timeoutNoMatch.rulesHeading') }}</h2>
+      <p>{{ t('submission.liveness.fallback.partials.timeoutNoMatch.rulesIntro') }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ t('submission.liveness.fallback.partials.timeoutNoMatch.rules.litArea') }}</li>
+        <li>{{ t('submission.liveness.fallback.partials.timeoutNoMatch.rules.plainBackground') }}</li>
+        <li>{{ t('submission.liveness.fallback.partials.timeoutNoMatch.rules.faceInFrame') }}</li>
+        <li>{{ t('submission.liveness.fallback.partials.timeoutNoMatch.rules.noHatSunglasses') }}</li>
+      </ul>
+      <p data-fallback-capped hidden aria-hidden="true">{{ t('submission.liveness.fallback.partials.capped') }}</p>
+      <div class="govuk-button-group">
+        {{ govukButton({ text: t('submission.liveness.fallback.partials.timeoutNoMatch.tryAgain'), element: "a", attributes: { "data-fallback-retry": "" } }) }}
+        {{ govukButton({ text: t('submission.liveness.fallback.partials.timeoutNoMatch.submitAnyway'), classes: "govuk-button--secondary", href: "/" + submissionId + "/liveness/check-your-answers" }) }}
+      </div>
+    </div>
+  </div>
+</div>

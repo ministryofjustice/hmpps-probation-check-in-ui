@@ -64,6 +64,16 @@ const buildConfig = {
         from: path.join(cwd, 'assets/geo/**/*'),
         to: path.join(cwd, 'dist/assets/geo'),
       },
+      // Self-hosted MediaPipe face-detector assets (WASM runtime + model) for the fallback
+      // verify gate. Served at stable, unhashed paths referenced in mediapipe-gate.ts.
+      {
+        from: path.join(cwd, 'node_modules/@mediapipe/tasks-vision/wasm/**/*'),
+        to: path.join(cwd, 'dist/assets/mediapipe/wasm'),
+      },
+      {
+        from: path.join(cwd, 'assets/mediapipe/**/*'),
+        to: path.join(cwd, 'dist/assets/mediapipe'),
+      },
     ],
     clear: glob.sync([path.join(cwd, 'dist/assets/{css,js}')]),
   },

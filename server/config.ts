@@ -37,6 +37,14 @@ export default {
   production,
   https: process.env.NO_HTTPS === 'true' ? false : production,
   staticResourceCacheDuration: '1h',
+  // Continuous fallback identity verification (on-device face gate + periodic Rekognition).
+  fallbackVerify: {
+    // How long the user has, in front of the camera, before we give up and show a timeout
+    // outcome. Generous by design — the user is no longer racing a 5-second recording.
+    timeoutMs: Number(get('FALLBACK_VERIFY_TIMEOUT_MS', 15 * 60 * 1000)),
+    // How many "try again" attempts before we steer the user to submit-anyway / contact.
+    maxRetries: Number(get('FALLBACK_VERIFY_MAX_RETRIES', 3)),
+  },
   redis: {
     enabled: get('REDIS_ENABLED', 'false', requiredInProduction) === 'true',
     host: get('REDIS_HOST', 'localhost', requiredInProduction),

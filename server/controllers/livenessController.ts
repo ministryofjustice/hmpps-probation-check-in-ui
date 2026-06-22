@@ -47,7 +47,11 @@ export const renderFallbackRecord: RequestHandler = async (req, res, next) => {
       res.redirect(`/${req.params.submissionId}/liveness/inform`)
       return
     }
-    res.render('pages/submission/liveness/fallback/record', pageParams(req))
+    res.render('pages/submission/liveness/fallback/record', {
+      ...pageParams(req),
+      fallbackTimeoutMs: config.fallbackVerify.timeoutMs,
+      fallbackMaxRetries: config.fallbackVerify.maxRetries,
+    })
   } catch (error) {
     next(error)
   }

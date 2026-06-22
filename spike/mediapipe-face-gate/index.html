@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Spike — MediaPipe face-centring gate</title>
+    <style>
+      :root { font-family: system-ui, sans-serif; }
+      body { margin: 0; background: #0b0c0c; color: #fff; }
+      header { padding: 0.5rem 1rem; background: #1d70b8; }
+      header h1 { font-size: 1rem; margin: 0; }
+      main { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.5rem; }
+      #stage { position: relative; width: 100%; max-width: 480px; margin: 0 auto; }
+      /* The video + overlay share the same box. We mirror both so it reads like a selfie. */
+      #video, #overlay {
+        width: 100%; display: block; border-radius: 8px;
+        transform: scaleX(-1); /* mirror; toggled by the Mirror control */
+      }
+      #overlay { position: absolute; inset: 0; }
+      #stage.no-mirror #video, #stage.no-mirror #overlay { transform: none; }
+
+      /* The big, high-contrast guidance banner — primary visual feedback. */
+      #guidance {
+        font-size: 1.5rem; font-weight: 700; text-align: center;
+        padding: 0.75rem; border-radius: 8px; background: #2b2b2b; min-height: 1.5em;
+      }
+      #guidance.ready { background: #00703c; }      /* centred + stable */
+      #guidance.searching { background: #594d00; }  /* no face / off-centre */
+
+      /* The "we would take the snapshot now" pulse. */
+      #captureFlash {
+        position: absolute; inset: 0; border: 6px solid #00ff95; border-radius: 8px;
+        opacity: 0; pointer-events: none; transition: opacity 120ms;
+      }
+      #captureFlash.on { opacity: 1; }
+
+      .metrics { font-size: 0.8rem; background: #161616; padding: 0.5rem 0.75rem; border-radius: 8px; }
+      .metrics dl { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 1rem; margin: 0; }
+      .metrics dt { color: #b1b4b6; } .metrics dd { margin: 0; font-variant-numeric: tabular-nums; }
+      .controls { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+      button, select { font-size: 1rem; padding: 0.4rem 0.7rem; border-radius: 6px; border: 0; }
+      button { background: #00703c; color: #fff; }
+      .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+      .note { font-size: 0.75rem; color: #b1b4b6; }
+    </style>
+  </head>
+  <body>
+    <header><h1>Spike — MediaPipe face-centring gate</h1></header>
+    <main>
+      <div id="guidance" class="searching" aria-hidden="true">Click “Start camera” to begin</div>
+
+      <div id="stage">
+        <video id="video" playsinline muted></video>
+        <canvas id="overlay"></canvas>
+        <div id="captureFlash"></div>
+      </div>
+
+      <!-- Throttled screen-reader channel — mirrors the production accessibility approach.
+           Test this with VoiceOver / TalkBack: it must NOT chatter every frame. -->
+      <div id="live" class="sr-only" aria-live="polite" role="status"></div>
+
+      <div class="controls">
+        <button id="startBtn">Start camera</button>
+        <label>Delegate
+          <select id="delegate">
+            <option value="GPU" selected>GPU</option>
+            <option value="CPU">CPU</option>
+          </select>
+        </label>
+        <label><input type="checkbox" id="mirrorToggle" checked /> Mirror preview</label>
+      </div>
+
+      <div class="metrics">
+        <dl>
+          <dt>Model load</dt><dd id="mLoad">–</dd>
+          <dt>First detection</dt><dd id="mFirst">–</dd>
+          <dt>FPS (detect)</dt><dd id="mFps">–</dd>
+          <dt>Face size (h/frame)</dt><dd id="mSize">–</dd>
+          <dt>Offset (dx, dy)</dt><dd id="mOffset">–</dd>
+          <dt>Gate fired (good frames)</dt><dd id="mGate">0</dd>
+        </dl>
+        <p class="note">
+          Open DevTools → Network, filter by <code>wasm</code> / <code>tflite</code> to record
+          asset sizes (the self-hosting / CSP decision). On a phone, use remote debugging.
+        </p>
+      </div>
+    </main>
+
+    <script type="module">
+      // Served locally (no internet needed): run `npx serve . -l 8080` from the REPO ROOT,
+      // then open http://localhost:8080/spike/mediapipe-face-gate/. These are the same
+      // vendored assets the app ships under /assets/mediapipe.
+      import { FaceDetector, FilesetResolver } from '/node_modules/@mediapipe/tasks-vision/vision_bundle.mjs'
+
+      // ---- Tunables (the things the spike exists to validate) -------------------------
+      const DEADZONE = 0.12       // fraction of frame; within this of centre = "centred"
+      const SIZE_MIN = 0.30       // face height / frame height; below = "move closer"
+      const SIZE_MAX = 0.62       // above = "move back"
+      const STABLE_MS = 600       // must stay centred+sized this long before we'd capture
+      const ANNOUNCE_THROTTLE_MS = 1500 // min gap between screen-reader announcements
+      const WASM_BASE = '/node_modules/@mediapipe/tasks-vision/wasm'
+      const MODEL_URL = '/assets/mediapipe/blaze_face_short_range.tflite'
+
+      const $ = id => document.getElementById(id)
+      const video = $('video'), overlay = $('overlay'), ctx = overlay.getContext('2d')
+      const guidance = $('guidance'), live = $('live'), flash = $('captureFlash')
+
+      let detector = null, stream = null, running = false
+      let centredSince = 0, gateCount = 0
+      let lastAnnounce = 0, lastAnnounceText = ''
+      let fpsEMA = 0, lastFrameTs = 0, firstDetectionLogged = false
+
+      // ---- Build the detector (measure load time) -------------------------------------
+      async function buildDetector(delegate) {
+        const t0 = performance.now()
+        setGuidance('Loading WASM runtime…', 'searching')
+        const vision = await FilesetResolver.forVisionTasks(WASM_BASE)
+        setGuidance('Loading face model…', 'searching')
+        detector = await FaceDetector.createFromOptions(vision, {
+          baseOptions: { modelAssetPath: MODEL_URL, delegate },
+          runningMode: 'VIDEO',
+        })
+        $('mLoad').textContent = `${Math.round(performance.now() - t0)} ms (${delegate})`
+      }
+
+      // ---- Map a detection to user-facing guidance ------------------------------------
+      // We reason in the *mirrored* frame the user sees, so "right" means their right.
+      function evaluate(box, frameW, frameH, mirrored) {
+        const cx = (box.originX + box.width / 2) / frameW - 0.5
+        const cy = (box.originY + box.height / 2) / frameH - 0.5
+        const size = box.height / frameH
+        const dxUser = mirrored ? -cx : cx // flip horizontal when preview is mirrored
+
+        $('mSize').textContent = size.toFixed(2)
+        $('mOffset').textContent = `${cx.toFixed(2)}, ${cy.toFixed(2)}`
+
+        const msgs = []
+        if (dxUser < -DEADZONE) msgs.push('move right')
+        else if (dxUser > DEADZONE) msgs.push('move left')
+        if (cy < -DEADZONE) msgs.push('move down')
+        else if (cy > DEADZONE) msgs.push('move up')
+        if (size < SIZE_MIN) msgs.push('move closer')
+        else if (size > SIZE_MAX) msgs.push('move back')
+
+        const centred = msgs.length === 0
+        return { centred, text: centred ? null : msgs.join(', ') }
+      }
+
+      function announce(text) {
+        const now = performance.now()
+        if (text === lastAnnounceText) return            // only on change
+        if (now - lastAnnounce < ANNOUNCE_THROTTLE_MS) return
+        live.textContent = text
+        lastAnnounce = now
+        lastAnnounceText = text
+      }
+
+      function setGuidance(text, cls) {
+        guidance.textContent = text
+        guidance.className = cls
+      }
+
+      function drawBox(box, frameW, frameH, ok) {
+        const sx = overlay.width / frameW, sy = overlay.height / frameH
+        ctx.clearRect(0, 0, overlay.width, overlay.height)
+        ctx.lineWidth = 4
+        ctx.strokeStyle = ok ? '#00ff95' : '#ffdd00'
+        ctx.strokeRect(box.originX * sx, box.originY * sy, box.width * sx, box.height * sy)
+      }
+
+      function sizeOverlayToVideo() {
+        overlay.width = video.clientWidth
+        overlay.height = video.clientHeight
+      }
+
+      // ---- Detection loop -------------------------------------------------------------
+      function loop() {
+        if (!running) return
+        const ts = performance.now()
+        const result = detector.detectForVideo(video, ts)
+
+        if (lastFrameTs) {
+          const fps = 1000 / (ts - lastFrameTs)
+          fpsEMA = fpsEMA ? fpsEMA * 0.9 + fps * 0.1 : fps
+          $('mFps').textContent = fpsEMA.toFixed(1)
+        }
+        lastFrameTs = ts
+
+        const det = result.detections?.[0]
+        if (!det) {
+          ctx.clearRect(0, 0, overlay.width, overlay.height)
+          centredSince = 0
+          setGuidance('No face detected — move into view', 'searching')
+          announce('No face detected. Move into view.')
+        } else {
+          if (!firstDetectionLogged) {
+            firstDetectionLogged = true
+            $('mFirst').textContent = `${Math.round(ts - startTs)} ms`
+          }
+          const mirrored = !$('stage') || $('mirrorToggle').checked
+          const { centred, text } = evaluate(det.boundingBox, video.videoWidth, video.videoHeight, mirrored)
+          drawBox(det.boundingBox, video.videoWidth, video.videoHeight, centred)
+
+          if (centred) {
+            if (!centredSince) centredSince = ts
+            const held = ts - centredSince
+            if (held >= STABLE_MS) {
+              setGuidance('Hold still — got you', 'ready')
+              announce('Hold still. We can see you.')
+              flash.classList.add('on'); setTimeout(() => flash.classList.remove('on'), 150)
+              gateCount += 1; $('mGate').textContent = gateCount // <-- this is the verify trigger
+              centredSince = ts + 99999 // debounce: don't re-fire until they move & re-centre
+            } else {
+              setGuidance('Almost — hold still', 'searching')
+            }
+          } else {
+            centredSince = 0
+            setGuidance(text, 'searching')
+            announce(text + '.')
+          }
+        }
+        requestAnimationFrame(loop)
+      }
+
+      // ---- Wiring ---------------------------------------------------------------------
+      let startTs = 0
+      async function start() {
+        $('startBtn').disabled = true
+        try {
+          await buildDetector($('delegate').value)
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: 'user', width: { ideal: 480 }, height: { ideal: 640 } },
+            audio: false,
+          })
+          video.srcObject = stream
+          await video.play()
+          sizeOverlayToVideo()
+          guidance.removeAttribute('aria-hidden')
+          startTs = performance.now()
+          running = true
+          requestAnimationFrame(loop)
+        } catch (err) {
+          setGuidance('Camera/model error: ' + err.message, 'searching')
+          $('startBtn').disabled = false
+        }
+      }
+
+      $('startBtn').addEventListener('click', start)
+      $('mirrorToggle').addEventListener('change', e =>
+        $('stage').classList.toggle('no-mirror', !e.target.checked))
+      window.addEventListener('resize', () => { if (running) sizeOverlayToVideo() })
+    </script>
+  </body>
+</html>

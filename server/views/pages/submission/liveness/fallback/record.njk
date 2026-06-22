@@ -20,6 +20,24 @@
 
 {% block content %}
   <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+
+  {# Localised strings + config consumed by the client gate/loop. Kept out of the bundle so
+     translation stays server-side. #}
+  <div id="fallbackMessages" hidden aria-hidden="true"
+    data-timeout-ms="{{ fallbackTimeoutMs }}"
+    data-max-retries="{{ fallbackMaxRetries }}"
+    data-starting="{{ t('submission.liveness.fallback.record.starting') }}"
+    data-searching="{{ t('submission.liveness.fallback.record.searching') }}"
+    data-hold="{{ t('submission.liveness.fallback.record.hold') }}"
+    data-checking="{{ t('submission.liveness.fallback.record.checking') }}"
+    data-no-face="{{ t('submission.liveness.fallback.record.guidance.noFace') }}"
+    data-move-left="{{ t('submission.liveness.fallback.record.guidance.moveLeft') }}"
+    data-move-right="{{ t('submission.liveness.fallback.record.guidance.moveRight') }}"
+    data-move-up="{{ t('submission.liveness.fallback.record.guidance.moveUp') }}"
+    data-move-down="{{ t('submission.liveness.fallback.record.guidance.moveDown') }}"
+    data-move-closer="{{ t('submission.liveness.fallback.record.guidance.moveCloser') }}"
+    data-move-back="{{ t('submission.liveness.fallback.record.guidance.moveBack') }}"></div>
+
   <div id="fallbackRecordingScreen">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
@@ -30,10 +48,17 @@
             <video id="fallbackVideo" class="videoRecorder__video" autoplay muted playsinline></video>
             <span class="videoRecorder__frame"></span>
             <canvas id="fallbackCanvas" hidden></canvas>
-            <div id="fallbackStatusTag" class="govuk-tag govuk-tag--red videoRecorder__tag"></div>
           </div>
         </div>
-        <div class="videoRecorder__error" id="fallbackCameraError" hidden>
+
+        {# Visual positioning guidance — updates every frame. #}
+        <p id="fallbackGuidance" class="govuk-body govuk-!-font-weight-bold" aria-hidden="true"></p>
+        {# Subtle "checking" hint shown while a verification is in flight. #}
+        <p id="fallbackChecking" class="govuk-hint" hidden aria-hidden="true">{{ t('submission.liveness.fallback.record.checking') }}</p>
+        {# Throttled screen-reader channel (announced at most once per change, not every frame). #}
+        <div id="fallbackAnnouncer" class="govuk-visually-hidden" aria-live="polite" role="status"></div>
+
+        <div class="videoRecorder__error" id="fallbackCameraError" hidden aria-hidden="true">
           <div class="govuk-inset-text es-inset-text--error">
             <h2 class="govuk-heading-m es-heading--error">{{ t('submission.liveness.fallback.record.permissionsHeading') }}</h2>
             <p>
@@ -45,15 +70,14 @@
     </div>
     <div id="fallbackStickyActionBar" class="sticky-action-bar">
       <div class="sticky-action-bar__inner">
-        <button id="fallbackStartBtn" class="govuk-button" disabled aria-disabled="true">{{ t('submission.liveness.fallback.record.startButton') }}</button>
+        <button id="fallbackStartBtn" class="govuk-button">{{ t('submission.liveness.fallback.record.startButton') }}</button>
       </div>
     </div>
   </div>
 
-  {% include "./partials/review.njk" %}
-  {% include "./partials/loading.njk" %}
   {% include "./partials/match.njk" %}
-  {% include "./partials/nomatch.njk" %}
+  {% include "./partials/timeout-no-match.njk" %}
+  {% include "./partials/timeout-no-face.njk" %}
   {% include "./partials/error.njk" %}
 {% endblock %}
 

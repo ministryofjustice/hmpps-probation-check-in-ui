@@ -661,7 +661,7 @@
       "fallback": {
         "inform": {
           "title": "Cadarnhau pwy ydych chi",
-          "intro": "Nesaf, mae angen i ni recordio fideo 5 eiliad ohonoch chi ar y ddyfais hon. Nid oes angen i chi siarad yn y fideo. Ni fydd unrhyw beth a ddywedwch yn cael ei recordio. Byddwch yn gallu gwylio'r fideo cyn parhau.",
+          "intro": "[CY] Next, we will use your camera to confirm your identity. Keep your face in the centre of the screen and we will check it matches the photo your probation officer took. You do not need to speak, and nothing you say is recorded.",
           "comparison": "Bydd llun ohonoch wedi ei gymryd o’r fideo yn cael e gadw i’w gymharu â'r llun a dynnodd eich swyddog prawf pan wnaeth eich cofrestru. Dim ond i gadarnhau pwy ydych chi y bydd hwn yn cael ei ddefnyddio.",
           "permissions": "Bydd angen i chi dderbyn hawliau i recordio ar eich dyfais.",
           "rulesHeading": "Cyn i chi recordio eich fideo",
@@ -675,58 +675,70 @@
           "inset": "Cofiwch mai cyfarfod diweddaru yw hwn a dylid ei drin yr un fath â chyfarfod wyneb yn wyneb. Dylech wisgo dillad addas.  "
         },
         "record": {
-          "title": "Recordio eich fideo",
-          "intro": "Nid oes angen i chi wneud unrhyw beth yn ystod y fideo. Ni fydd unrhyw beth a ddywedwch yn cael ei recordio.",
+          "title": "[CY] Confirm your identity",
+          "intro": "[CY] Keep your face in the centre of the screen. We will check it matches the photo your probation officer took. This may take a few moments and you do not need to press anything.",
           "permissionsHeading": "Mae angen i chi dderbyn hawliau ar eich dyfais",
-          "permissionsBody": "Ni allwn ddefnyddio eich camera i recordio fideo. Gwiriwch osodiadau a hawliau eich porwr. Os ydych chi'n cael trafferth defnyddio'r gwasanaeth hwn, cysylltwch â'ch swyddog prawf.",
-          "startButton": "Dechrau recordio"
+          "permissionsBody": "Ni allwn ddefnyddio eich camera. Gwiriwch osodiadau a hawliau eich porwr. Os ydych chi'n cael trafferth defnyddio'r gwasanaeth hwn, cysylltwch â'ch swyddog prawf.",
+          "startButton": "[CY] Start camera",
+          "starting": "[CY] Starting your camera.",
+          "searching": "[CY] Looking for you. Move your face into the centre of the screen.",
+          "hold": "[CY] Hold still. We can see you.",
+          "checking": "Gwirio mai chi sydd yno",
+          "guidance": {
+            "noFace": "[CY] We cannot see your face. Move so your face is in view of the camera.",
+            "moveLeft": "[CY] Move your face to the left.",
+            "moveRight": "[CY] Move your face to the right.",
+            "moveUp": "[CY] Move your face up.",
+            "moveDown": "[CY] Move your face down.",
+            "moveCloser": "[CY] Move closer to the camera.",
+            "moveBack": "[CY] Move further away from the camera."
+          }
         },
         "partials": {
-          "loading": "Gwirio mai chi sydd yno",
-          "review": {
-            "heading": "Adolygu eich fideo",
-            "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
-            "rules": {
-              "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
-              "plainBackground": "eich bod o flaen cefndir plaen",
-              "faceInFrame": "bod eich wyneb yn y ffrâm",
-              "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
-            },
-            "imageAlt": "",
-            "ifMeetsRules": "Os yw eich fideo yn bodloni'r rheolau, gallwch barhau a byddwn yn cadarnhau pwy ydych chi.",
-            "continue": "Parhau",
-            "recordAgain": "Recordio'r fideo eto"
-          },
+          "capped": "[CY] You have tried several times. You can submit anyway, or contact your probation officer for help.",
           "match": {
             "heading": "Rydym wedi cadarnhau mai chi sydd yno",
             "intro": "Rydym wedi cadarnhau mai chi sydd yno. Gallwch nawr barhau i wirio eich atebion.",
             "continue": "Parhau"
           },
-          "nomatch": {
+          "timeoutNoMatch": {
             "heading": "Ni allwn gadarnhau mai chi sydd yno",
-            "intro": "Rydym wedi gwirio eich manylion ac ni allwn gadarnhau mai chi sydd yno. Gallwch roi cynnig arall ar recordio eich fideo neu ei gyflwyno beth bynnag.",
-            "rulesHeading": "Os byddwch chi'n recordio eich fideo eto",
-            "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
+            "intro": "[CY] We checked but could not confirm this is you. You can try again or submit anyway.",
+            "rulesHeading": "[CY] If you try again",
+            "rulesIntro": "[CY] Make sure:",
             "rules": {
               "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
               "plainBackground": "eich bod o flaen cefndir plaen",
               "faceInFrame": "bod eich wyneb yn y ffrâm",
               "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
             },
-            "recordAgain": "Recordio'r fideo eto",
-            "submitAnyway": "Cyflwyno’r fideo beth bynnag"
+            "tryAgain": "[CY] Try again",
+            "submitAnyway": "[CY] Submit anyway"
+          },
+          "timeoutNoFace": {
+            "heading": "[CY] We could not see you clearly",
+            "intro": "[CY] We could not get a clear view of your face in time. You can try again or submit anyway.",
+            "rulesIntro": "[CY] When you try again, make sure:",
+            "rules": {
+              "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
+              "faceInFrame": "bod eich wyneb yn y ffrâm",
+              "holdStill": "[CY] you hold the device steady and hold still",
+              "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
+            },
+            "tryAgain": "[CY] Try again",
+            "submitAnyway": "[CY] Submit anyway"
           },
           "error": {
             "heading": "Ni allwn gadarnhau mai chi sydd yno oherwydd digwyddodd gwall",
-            "intro": "Rydym wedi gwirio ac Ni allwn gadarnhau mai chi sydd yno. Gallwch geisio recordio eto.",
-            "rulesIntro": "Yn eich fideo, gwnewch yn siŵr:",
+            "intro": "[CY] Something went wrong. You can try again.",
+            "rulesIntro": "[CY] When you try again, make sure:",
             "rules": {
               "litArea": "eich bod mewn ardal sydd wedi’i goleuo’n dda",
               "plainBackground": "eich bod o flaen cefndir plaen",
               "faceInFrame": "bod eich wyneb yn y ffrâm",
               "noHatSunglasses": "dydych chi ddim yn gwisgo het neu sbectol haul"
             },
-            "tryAgain": "Rhowch gynnig arall ar recordio'ch fideo"
+            "tryAgain": "[CY] Try again"
           }
         }
       }
