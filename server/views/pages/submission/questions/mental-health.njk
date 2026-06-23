@@ -26,6 +26,7 @@
         {{ govukTextarea({
           name: "mentalHealthVeryWell",
           id: "mentalHealthVeryWell",
+          rows: "10",
           label: { text: t('submission.questions.mentalHealth.veryWellLabel') },
           value: formData["mentalHealthVeryWell"],
           errorMessage: validationErrors | findError("mentalHealthVeryWell")
@@ -36,6 +37,7 @@
         {{ govukTextarea({
           name: "mentalHealthWell",
           id: "mentalHealthWell",
+          rows: "10",
           label: { text: t('submission.questions.mentalHealth.wellLabel') },
           value: formData["mentalHealthWell"],
           errorMessage: validationErrors | findError("mentalHealthWell")
@@ -46,6 +48,7 @@
         {{ govukTextarea({
           name: "mentalHealthOk",
           id: "mentalHealthOk",
+          rows: "10",
           label: { text: t('submission.questions.mentalHealth.okLabel') },
           value: formData["mentalHealthOk"],
           errorMessage: validationErrors | findError("mentalHealthOk")
@@ -56,6 +59,7 @@
         {{ govukTextarea({
           name: "mentalHealthNotGreat",
           id: "mentalHealthNotGreat",
+          rows: "10",
           label: { text: t('submission.questions.mentalHealth.notGreatLabel') },
           value: formData["mentalHealthNotGreat"],
           errorMessage: validationErrors | findError("mentalHealthNotGreat")
@@ -66,6 +70,7 @@
         {{ govukTextarea({
           name: "mentalHealthStruggling",
           id: "mentalHealthStruggling",
+          rows: "10",
           label: { text: t('submission.questions.mentalHealth.strugglingLabel') },
           value: formData["mentalHealthStruggling"],
           errorMessage: validationErrors | findError("mentalHealthStruggling")
