@@ -43,6 +43,7 @@
           govukTextarea({
             name: "additionalAnswer",
             id: "additionalAnswer",
+            rows: "10",
             value: existingAnswer,
             errorMessage: validationErrors | findError("additionalAnswer"),
             label: {
