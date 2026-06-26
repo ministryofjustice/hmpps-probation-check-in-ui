@@ -11,17 +11,27 @@ import { fetchSnapshotUploadLocation, uploadSnapshot, fetchVideoVerifyResult } f
 const MIN_VERIFY_INTERVAL_MS = 3000 // backoff between Rekognition comparisons
 const GUIDANCE_UPDATE_INTERVAL_MS = 900 // min gap between visible guidance changes (anti-thrash)
 const ANNOUNCE_THROTTLE_MS = 1500 // min gap between screen-reader announcements
+const NO_FACE_PROMPT_MS = 90 * 1000 // ask "can't find you, carry on?" after this with no face
+const NO_FACE_RESPONSE_MS = 120 * 1000 // user must answer that prompt within this, else cancel
 const DEFAULT_TIMEOUT_MS = 15 * 60 * 1000
 
 // GuidanceCode → the data-* key carrying its localised string on #fallbackMessages.
 const GUIDANCE_DATA_KEY: Record<GuidanceCode, string> = {
   NO_FACE: 'noFace',
+  MULTIPLE_FACES: 'multipleFaces',
   MOVE_LEFT: 'moveLeft',
   MOVE_RIGHT: 'moveRight',
   MOVE_UP: 'moveUp',
   MOVE_DOWN: 'moveDown',
   MOVE_CLOSER: 'moveCloser',
   MOVE_BACK: 'moveBack',
+}
+
+// Replace a node with a deep clone so a re-init (after "try again") never stacks handlers.
+function freshClone<T extends HTMLElement>(el: T): T {
+  const clone = el.cloneNode(true) as T
+  el.replaceWith(clone)
+  return clone
 }
 
 export default async function initFallbackVideo(
@@ -39,15 +49,21 @@ export default async function initFallbackVideo(
   const actionBar = document.getElementById('fallbackStickyActionBar') as HTMLElement
   const messages = document.getElementById('fallbackMessages') as HTMLElement
   const startBtnEl = document.getElementById('fallbackStartBtn') as HTMLButtonElement
+  const dialogEl = document.getElementById('fallbackNoFaceDialog') as HTMLDialogElement | null
 
   if (!video || !startBtnEl || !messages) return
 
-  // Replace the start button so a re-init (after "try again") never stacks click handlers.
-  const startBtn = startBtnEl.cloneNode(true) as HTMLButtonElement
-  startBtnEl.replaceWith(startBtn)
+  // Replace nodes with fresh clones so a re-init (after "try again") never stacks handlers.
+  const startBtn = freshClone(startBtnEl)
+  const dialog = dialogEl ? freshClone(dialogEl) : null
+  const carryOnBtn = dialog?.querySelector<HTMLButtonElement>('[data-fallback-dialog-carryon]') ?? null
+  const stopBtn = dialog?.querySelector<HTMLButtonElement>('[data-fallback-dialog-stop]') ?? null
+  const countdownEl = dialog?.querySelector<HTMLElement>('[data-fallback-dialog-countdown]') ?? null
 
   const text = (key: string): string => messages.dataset[key] ?? ''
   const timeoutMs = Number(messages.dataset.timeoutMs) || DEFAULT_TIMEOUT_MS
+  const noFacePromptMs = Number(messages.dataset.noFacePromptMs) || NO_FACE_PROMPT_MS
+  const noFaceResponseMs = Number(messages.dataset.noFaceResponseMs) || NO_FACE_RESPONSE_MS
 
   let gate: FaceGate | null = null
   let matched = false
@@ -55,7 +71,10 @@ export default async function initFallbackVideo(
   let goodFrameSeen = false
   let lastVerify = 0
   let checkingAnnounced = false
+  let noFaceSince = 0
+  let dialogOpen = false
   let timeoutTimer: ReturnType<typeof setTimeout> | null = null
+  let dialogCountdownTimer: ReturnType<typeof setInterval> | null = null
 
   // Throttled, de-duplicated text setter: writes at most once per intervalMs and never
   // repeats the same message, so neither the visible banner nor the screen reader thrash as
@@ -85,6 +104,11 @@ export default async function initFallbackVideo(
     target.ariaHidden = String(!visible)
   }
 
+  function stopDialogCountdown() {
+    if (dialogCountdownTimer) clearInterval(dialogCountdownTimer)
+    dialogCountdownTimer = null
+  }
+
   function teardown() {
     gate?.stop()
     gate = null
@@ -92,6 +116,51 @@ export default async function initFallbackVideo(
     stream?.getTracks().forEach(track => track.stop())
     video.srcObject = null
     if (timeoutTimer) clearTimeout(timeoutTimer)
+    stopDialogCountdown()
+    if (dialog?.open) dialog.close()
+    dialogOpen = false
+  }
+
+  // Abort this attempt and route to the "we couldn't see you" outcome.
+  function cancelAttempt() {
+    teardown()
+    setScreen('fallbackTimeoutNoFace')
+  }
+
+  // The prompt itself counts down: the user has NO_FACE_RESPONSE_MS to answer, else cancel.
+  function startDialogCountdown() {
+    let remaining = Math.round(noFaceResponseMs / 1000)
+    const render = () => {
+      if (!countdownEl) return
+      const template = remaining === 1 ? text('countdownOne') : text('countdown')
+      countdownEl.textContent = template.replace('{seconds}', String(remaining))
+    }
+    render()
+    dialogCountdownTimer = setInterval(() => {
+      remaining -= 1
+      if (remaining <= 0) {
+        stopDialogCountdown()
+        cancelAttempt()
+        return
+      }
+      render()
+    }, 1000)
+  }
+
+  function openNoFaceDialog() {
+    if (!dialog || dialogOpen) return
+    dialogOpen = true
+    startDialogCountdown()
+    if (typeof dialog.showModal === 'function') dialog.showModal()
+    else dialog.setAttribute('open', '') // very old browsers: non-modal fallback
+  }
+
+  // Dismiss the prompt and give the user another NO_FACE_PROMPT_MS before asking again.
+  function dismissNoFaceDialog() {
+    stopDialogCountdown()
+    noFaceSince = 0
+    dialogOpen = false
+    if (dialog?.open) dialog.close()
   }
 
   function grabFrame(): Promise<Blob | null> {
@@ -137,16 +206,27 @@ export default async function initFallbackVideo(
     if (matched) return
     if (sample.centred) goodFrameSeen = true
 
+    const now = Date.now()
+
+    // No-visible-face prompt: once we've had no face for NO_FACE_PROMPT_MS, ask whether to
+    // carry on. A face reappearing dismisses the prompt automatically.
+    if (sample.present) {
+      noFaceSince = 0
+      if (dialogOpen) dismissNoFaceDialog()
+    } else {
+      if (!noFaceSince) noFaceSince = now
+      if (!dialogOpen && now - noFaceSince >= noFacePromptMs) openNoFaceDialog()
+    }
+
     // Visual guidance updates every frame; the announcer is throttled separately.
     let visual: string
     if (sample.centred) visual = text('hold')
     else if (sample.guidance) visual = text(GUIDANCE_DATA_KEY[sample.guidance])
     else visual = text('searching')
     setGuidance(visual)
-    if (!verifying) announce(visual)
+    if (!verifying && !dialogOpen) announce(visual)
 
-    const now = Date.now()
-    if (sample.centred && !verifying && now - lastVerify > MIN_VERIFY_INTERVAL_MS) {
+    if (sample.centred && !verifying && !dialogOpen && now - lastVerify > MIN_VERIFY_INTERVAL_MS) {
       verifyNow()
     }
   }
@@ -190,4 +270,10 @@ export default async function initFallbackVideo(
       setScreen(goodFrameSeen ? 'fallbackTimeoutNoMatch' : 'fallbackTimeoutNoFace')
     }, timeoutMs)
   })
+
+  // "We can't find you. Do you wish to carry on?"
+  carryOnBtn?.addEventListener('click', () => dismissNoFaceDialog())
+  stopBtn?.addEventListener('click', () => cancelAttempt())
+  // Escape (native dialog "cancel") behaves like "carry on".
+  dialog?.addEventListener('cancel', () => dismissNoFaceDialog())
 }

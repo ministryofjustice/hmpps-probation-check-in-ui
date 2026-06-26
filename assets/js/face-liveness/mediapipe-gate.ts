@@ -46,22 +46,27 @@ export function createMediaPipeGate(options: MediaPipeGateOptions = {}): FaceGat
         if (!running || !detector) return
 
         const ts = performance.now()
-        const detection = detector.detectForVideo(video, ts).detections[0]
-        const b = detection?.boundingBox ?? null
+        const { detections } = detector.detectForVideo(video, ts)
+        const b = detections[0]?.boundingBox ?? null
         const box = b ? { originX: b.originX, originY: b.originY, width: b.width, height: b.height } : null
 
         const assessment = assessFrame(box, video.videoWidth, video.videoHeight, mirrored, tunables)
 
-        // Layer the stability hold on top of the pure per-frame assessment.
+        // Layer the stability hold on top of the pure per-frame assessment. More than one
+        // face in frame must never verify — tell the user to be alone instead.
         let centred = false
-        if (assessment.withinTolerance) {
+        let { guidance } = assessment
+        if (detections.length > 1) {
+          guidance = 'MULTIPLE_FACES'
+          withinSince = 0
+        } else if (assessment.withinTolerance) {
           if (!withinSince) withinSince = ts
           centred = ts - withinSince >= stableMs
         } else {
           withinSince = 0
         }
 
-        onSample({ present: assessment.present, centred, guidance: assessment.guidance })
+        onSample({ present: assessment.present, centred, guidance })
         rafId = requestAnimationFrame(loop)
       }
 

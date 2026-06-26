@@ -51,6 +51,8 @@ export const renderFallbackRecord: RequestHandler = async (req, res, next) => {
       ...pageParams(req),
       fallbackTimeoutMs: config.fallbackVerify.timeoutMs,
       fallbackMaxRetries: config.fallbackVerify.maxRetries,
+      fallbackNoFacePromptMs: config.fallbackVerify.noFacePromptMs,
+      fallbackNoFaceResponseMs: config.fallbackVerify.noFaceResponseMs,
     })
   } catch (error) {
     next(error)

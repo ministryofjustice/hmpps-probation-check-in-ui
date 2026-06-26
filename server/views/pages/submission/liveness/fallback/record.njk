@@ -26,11 +26,16 @@
   <div id="fallbackMessages" hidden aria-hidden="true"
     data-timeout-ms="{{ fallbackTimeoutMs }}"
     data-max-retries="{{ fallbackMaxRetries }}"
+    data-no-face-prompt-ms="{{ fallbackNoFacePromptMs }}"
+    data-no-face-response-ms="{{ fallbackNoFaceResponseMs }}"
+    data-countdown="{{ t('submission.liveness.fallback.record.noFaceDialog.countdown') }}"
+    data-countdown-one="{{ t('submission.liveness.fallback.record.noFaceDialog.countdownOne') }}"
     data-starting="{{ t('submission.liveness.fallback.record.starting') }}"
     data-searching="{{ t('submission.liveness.fallback.record.searching') }}"
     data-hold="{{ t('submission.liveness.fallback.record.hold') }}"
     data-checking="{{ t('submission.liveness.fallback.record.checking') }}"
     data-no-face="{{ t('submission.liveness.fallback.record.guidance.noFace') }}"
+    data-multiple-faces="{{ t('submission.liveness.fallback.record.guidance.multipleFaces') }}"
     data-move-left="{{ t('submission.liveness.fallback.record.guidance.moveLeft') }}"
     data-move-right="{{ t('submission.liveness.fallback.record.guidance.moveRight') }}"
     data-move-up="{{ t('submission.liveness.fallback.record.guidance.moveUp') }}"
@@ -74,6 +79,17 @@
       </div>
     </div>
   </div>
+
+  <dialog id="fallbackNoFaceDialog" class="es-modal" role="dialog" aria-modal="true" aria-labelledby="fallbackNoFaceDialogTitle">
+    <div class="es-modal__body" tabindex="0">
+      <h1 id="fallbackNoFaceDialogTitle" class="govuk-heading-l">{{ t('submission.liveness.fallback.record.noFaceDialog.title') }}</h1>
+      <p class="govuk-body" data-fallback-dialog-countdown aria-hidden="true"></p>
+      <div class="es-modal__actions govuk-button-group">
+        <button type="button" class="govuk-button" data-fallback-dialog-carryon>{{ t('submission.liveness.fallback.record.noFaceDialog.carryOn') }}</button>
+        <button type="button" class="govuk-button govuk-button--secondary" data-fallback-dialog-stop>{{ t('submission.liveness.fallback.record.noFaceDialog.stop') }}</button>
+      </div>
+    </div>
+  </dialog>
 
   {% include "./partials/match.njk" %}
   {% include "./partials/timeout-no-match.njk" %}

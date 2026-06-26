@@ -9,6 +9,7 @@
 
 export type GuidanceCode =
   | 'NO_FACE'
+  | 'MULTIPLE_FACES'
   | 'MOVE_LEFT'
   | 'MOVE_RIGHT'
   | 'MOVE_UP'

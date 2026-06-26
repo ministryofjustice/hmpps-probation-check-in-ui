@@ -686,12 +686,20 @@
           "checking": "Gwirio mai chi sydd yno",
           "guidance": {
             "noFace": "[CY] We cannot see your face. Move so your face is in view of the camera.",
+            "multipleFaces": "[CY] You must be on your own in the camera image.",
             "moveLeft": "[CY] Move your face to the left.",
             "moveRight": "[CY] Move your face to the right.",
             "moveUp": "[CY] Move your face up.",
             "moveDown": "[CY] Move your face down.",
             "moveCloser": "[CY] Move closer to the camera.",
             "moveBack": "[CY] Move further away from the camera."
+          },
+          "noFaceDialog": {
+            "title": "[CY] We can't find you. Do you wish to carry on?",
+            "countdown": "[CY] This check will be cancelled in {seconds} seconds.",
+            "countdownOne": "[CY] This check will be cancelled in 1 second.",
+            "carryOn": "[CY] Carry on",
+            "stop": "[CY] No, stop"
           }
         },
         "partials": {

@@ -686,12 +686,20 @@
           "checking": "Checking this is you.",
           "guidance": {
             "noFace": "We cannot see your face. Move so your face is in view of the camera.",
+            "multipleFaces": "You must be on your own in the camera image.",
             "moveLeft": "Move your face to the left.",
             "moveRight": "Move your face to the right.",
             "moveUp": "Move your face up.",
             "moveDown": "Move your face down.",
             "moveCloser": "Move closer to the camera.",
             "moveBack": "Move further away from the camera."
+          },
+          "noFaceDialog": {
+            "title": "We can't find you. Do you wish to carry on?",
+            "countdown": "This check will be cancelled in {seconds} seconds.",
+            "countdownOne": "This check will be cancelled in 1 second.",
+            "carryOn": "Carry on",
+            "stop": "No, stop"
           }
         },
         "partials": {

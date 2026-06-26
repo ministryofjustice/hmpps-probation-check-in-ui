@@ -44,6 +44,10 @@ export default {
     timeoutMs: Number(get('FALLBACK_VERIFY_TIMEOUT_MS', 15 * 60 * 1000)),
     // How many "try again" attempts before we steer the user to submit-anyway / contact.
     maxRetries: Number(get('FALLBACK_VERIFY_MAX_RETRIES', 3)),
+    // How long with no visible face before we ask "We can't find you. Carry on?".
+    noFacePromptMs: Number(get('FALLBACK_NO_FACE_PROMPT_MS', 90 * 1000)),
+    // How long the user has to answer that prompt before the attempt is cancelled.
+    noFaceResponseMs: Number(get('FALLBACK_NO_FACE_RESPONSE_MS', 120 * 1000)),
   },
   redis: {
     enabled: get('REDIS_ENABLED', 'false', requiredInProduction) === 'true',

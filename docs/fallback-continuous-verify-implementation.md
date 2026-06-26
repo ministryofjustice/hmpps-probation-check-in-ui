@@ -33,6 +33,13 @@ reliable face-present signal in the browser without a model. Instead we build **
   guidance-code→text done; cy mirrored with `[CY]` placeholders (fallbackLng=en covers
   them) — **Welsh translation still required**; config `fallbackVerify.{timeoutMs,maxRetries}`
   added + threaded via controller. Build, typecheck, lint, 110 jest tests all pass.
+- ✅ **Multiple-face guard:** gate reports `MULTIPLE_FACES` when >1 face detected → shows
+  "You must be on your own in the camera image" and never verifies.
+- ✅ **No-face prompt:** after 90s with no visible face, an accessible `<dialog>` (`es-modal`
+  pattern) asks "We can't find you. Do you wish to carry on?" — Carry on resumes (resets the
+  90s window); No goes to the no-face timeout outcome; a face reappearing auto-dismisses it.
+  The dialog itself counts down 120s (`NO_FACE_RESPONSE_MS`); if unanswered the attempt is
+  cancelled (→ no-face timeout outcome).
 - ⏳ **Next:** runtime-verify in the app (WASM under CSP, end-to-end match), update Cypress
   (`integration_tests/e2e/submission/liveness.cy.ts` still drives the old record/review
   flow), complete Welsh, on-device QA of guidance + screen-reader announcements.
