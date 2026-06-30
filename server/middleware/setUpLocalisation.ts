@@ -43,19 +43,18 @@ const handleLanguageQuery: RequestHandler = (req: Request, res: Response, next: 
       signed: false,
     })
 
-    // Track language switches in AppInsights
+    // Structured event for AppInsights
+    const switched = previousLanguage !== requested
     trackEvent('LanguageSwitch', {
       language: requested,
       previousLanguage,
-      switched: String(previousLanguage !== requested),
+      switched: String(switched),
     })
 
-    // Track language switches in bunyan
-    logger.info('LanguageSwitch', {
-      language: requested,
-      previousLanguage,
-      switched: String(previousLanguage !== requested),
-    })
+    // More readable line for the logs
+    if (switched) {
+      logger.info(`Language switched from ${previousLanguage} to ${requested}`)
+    }
   }
 
   res.redirect(buildRedirectUrl(req))
