@@ -8,6 +8,8 @@ import {
   SupportedLanguage,
 } from '../utils/i18nSetup'
 import config from '../config'
+import { trackEvent } from '../utils/azureAppInsights'
+import logger from '../../logger'
 
 const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000
 
@@ -31,6 +33,8 @@ const handleLanguageQuery: RequestHandler = (req: Request, res: Response, next: 
   }
 
   if (isSupported(requested)) {
+    const previousLanguage = req.cookies?.[LANGUAGE_COOKIE] ?? 'none'
+
     res.cookie(LANGUAGE_COOKIE, requested, {
       maxAge: ONE_YEAR_MS,
       httpOnly: true,
@@ -38,6 +42,19 @@ const handleLanguageQuery: RequestHandler = (req: Request, res: Response, next: 
       secure: config.https,
       signed: false,
     })
+
+    // Structured event for AppInsights
+    const switched = previousLanguage !== requested
+    trackEvent('LanguageSwitch', {
+      language: requested,
+      previousLanguage,
+      switched: String(switched),
+    })
+
+    // More readable line for the logs
+    if (switched) {
+      logger.info(`Language switched from ${previousLanguage} to ${requested}`)
+    }
   }
 
   res.redirect(buildRedirectUrl(req))
