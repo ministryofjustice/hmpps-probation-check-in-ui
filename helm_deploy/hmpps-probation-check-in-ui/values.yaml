@@ -1,6 +1,6 @@
 generic-service:
   nameOverride: hmpps-probation-check-in-ui
-  productId: 'HMPPS9999' # productId for the product that this belongs too, i.e. DPS001, see README.md for details
+  productId: 'HMPPS557' # productId for the product that this belongs too, i.e. DPS001, see README.md for details
 
   replicaCount: 4
 
