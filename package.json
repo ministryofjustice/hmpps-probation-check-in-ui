@@ -80,10 +80,10 @@
     "@maxmind/geoip2-node": "^6.3.4",
     "@ministryofjustice/frontend": "^9.0.0",
     "@ministryofjustice/hmpps-auth-clients": "^2.0.0",
+    "@ministryofjustice/hmpps-azure-telemetry": "1.0.2",
     "@ministryofjustice/hmpps-monitoring": "^2.1.0",
     "@ministryofjustice/hmpps-rest-client": "^2.1.0",
     "@types/express": "^5.0.5",
-    "applicationinsights": "2.9.8",
     "aws-amplify": "^6.16.2",
     "body-parser": "^2.2.1",
     "bunyan": "^1.8.15",
@@ -128,6 +128,7 @@
     "@types/compression": "^1.8.1",
     "@types/connect-flash": "0.0.40",
     "@types/cookie-parser": "^1.4.10",
+    "@types/express-serve-static-core": "5.0.6",
     "@types/express-session": "^1.18.2",
     "@types/http-errors": "^2.0.5",
     "@types/jest": "^30.0.0",
@@ -145,7 +146,7 @@
     "concurrently": "^9.2.1",
     "cypress": "^15.7.0",
     "cypress-multi-reporters": "^2.0.5",
-    "esbuild": "^0.27.0",
+    "esbuild": "^0.28.1",
     "esbuild-plugin-clean": "^1.0.1",
     "esbuild-plugin-copy": "^2.1.1",
     "esbuild-plugin-manifest": "^1.0.5",
@@ -153,7 +154,7 @@
     "glob": "^13.0.0",
     "jest": "^30.2.0",
     "jest-html-reporter": "^4.3.0",
-    "jest-junit": "^16.0.0",
+    "jest-junit": "^17.0.0",
     "jsonwebtoken": "^9.0.2",
     "lint-staged": "^16.2.7",
     "mocha-junit-reporter": "^2.2.1",
@@ -167,6 +168,10 @@
   "overrides": {
     "@jgoz/esbuild-plugin-typecheck": {
       "esbuild": "$esbuild"
-    }
+    },
+    "brace-expansion": "^5.0.9",
+    "serialize-javascript": "^7.0.7",
+    "diff": "^8.0.4",
+    "@opentelemetry/core": "2.10.0"
   }
 }

@@ -1,62 +1,29 @@
-import {
-  defaultClient,
-  DistributedTracingModes,
-  getCorrelationContext,
-  setup,
-  type TelemetryClient,
-} from 'applicationinsights'
-import { RequestHandler } from 'express'
-import type { ApplicationInfo } from '../applicationInfo'
+/*
+ * Telemetry has to be initialised before any other application module is loaded, so that
+ * OpenTelemetry can instrument express, http and bunyan as they are required. This module is
+ * therefore imported first in server.ts, and deliberately imports nothing that would pull in
+ * those modules early - notably config, which loads http via the rest client.
+ */
+import { flushTelemetry, initialiseTelemetry, telemetry } from '@ministryofjustice/hmpps-azure-telemetry'
+import applicationName from '../applicationName'
 
-export function initialiseAppInsights(): void {
-  if (process.env.APPLICATIONINSIGHTS_CONNECTION_STRING) {
-    // eslint-disable-next-line no-console
-    console.log('Enabling azure application insights')
+initialiseTelemetry({
+  serviceName: applicationName,
+  serviceVersion: process.env.BUILD_NUMBER,
+  connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING,
+  debug: process.env.DEBUG_TELEMETRY === 'true',
+})
+  .addFilter(telemetry.processors.filterSpanWherePath(['/health', '/info', '/ping', '/assets/*']))
+  // Replaces the operation name override that used to be applied by an express middleware,
+  // turning 'GET' into 'GET /:submissionId/check-in'
+  .addModifier(telemetry.processors.enrichSpanNameWithHttpRoute())
+  .startRecording()
 
-    setup().setDistributedTracingMode(DistributedTracingModes.AI_AND_W3C).start()
-  }
-}
+process.on('SIGTERM', async () => {
+  await flushTelemetry()
+  process.exit(0)
+})
 
-export function buildAppInsightsClient(
-  { applicationName, buildNumber }: ApplicationInfo,
-  overrideName?: string,
-): TelemetryClient {
-  if (process.env.APPLICATIONINSIGHTS_CONNECTION_STRING) {
-    defaultClient.context.tags['ai.cloud.role'] = overrideName || applicationName
-    defaultClient.context.tags['ai.application.ver'] = buildNumber
-
-    defaultClient.addTelemetryProcessor(({ tags, data }, contextObjects) => {
-      const operationNameOverride = contextObjects.correlationContext?.customProperties?.getProperty('operationName')
-      if (operationNameOverride) {
-        /*  eslint-disable no-param-reassign */
-        tags['ai.operation.name'] = operationNameOverride
-        data.baseData.name = operationNameOverride
-        /*  eslint-enable no-param-reassign */
-      }
-      return true
-    })
-
-    return defaultClient
-  }
-  return null
-}
-
-export function trackEvent(name: string, properties?: Record<string, string>): void {
-  if (defaultClient) {
-    defaultClient.trackEvent({ name, properties })
-  }
-}
-
-export function appInsightsMiddleware(): RequestHandler {
-  return (req, res, next) => {
-    res.prependOnceListener('finish', () => {
-      const context = getCorrelationContext()
-      if (context && req.route) {
-        const path = req.route?.path
-        const pathToReport = Array.isArray(path) ? `"${path.join('" | "')}"` : path
-        context.customProperties.setProperty('operationName', `${req.method} ${pathToReport}`)
-      }
-    })
-    next()
-  }
+export default function trackEvent(name: string, properties?: Record<string, string>): void {
+  telemetry.trackEvent(name, properties)
 }
