@@ -3,7 +3,6 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import nunjucksSetup from './utils/nunjucksSetup'
 import errorHandler from './errorHandler'
-import { appInsightsMiddleware } from './utils/azureAppInsights'
 import feedbackRoutes from './routes/feedbackRoutes'
 import setUpAuthentication from './middleware/setUpAuthentication'
 import setUpCsrf from './middleware/setUpCsrf'
@@ -32,7 +31,6 @@ export default function createApp(services: Services): express.Application {
   // don't send X-Powered-By header
   app.disable('x-powered-by')
 
-  app.use(appInsightsMiddleware())
   app.use(setUpHealthChecks(services.applicationInfo))
   // app.use(setUpWebSecurity())
   app.use(setUpWebSession())

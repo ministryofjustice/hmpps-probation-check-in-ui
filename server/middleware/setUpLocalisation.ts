@@ -8,7 +8,7 @@ import {
   SupportedLanguage,
 } from '../utils/i18nSetup'
 import config from '../config'
-import { trackEvent } from '../utils/azureAppInsights'
+import trackEvent from '../utils/telemetry'
 import logger from '../../logger'
 
 const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000

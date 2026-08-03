@@ -1,4 +1,5 @@
 import config from './config'
+import applicationName from './applicationName'
 
 const { buildNumber, gitRef, productId, branchName } = config
 
@@ -12,6 +13,5 @@ export type ApplicationInfo = {
 }
 
 export default (): ApplicationInfo => {
-  const applicationName = 'hmpps-probation-check-in-ui'
   return { applicationName, buildNumber, gitRef, gitShortHash: gitRef.substring(0, 7), productId, branchName }
 }
