@@ -11,6 +11,7 @@ generic-service:
       SecRuleEngine On
       SecAuditEngine RelevantOnly
       SecRequestBodyAccess On
+      SecRuleRemoveById 932230 932250
       SecDefaultAction "phase:2,pass,log,tag:github_team=stg-pathfinders,tag:namespace={{ .Release.Namespace }}"
 
   env:
