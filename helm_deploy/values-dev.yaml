@@ -18,8 +18,34 @@ generic-service:
           phase:1,\
           pass,\
           nolog,\
-          ctl:ruleRemoveTargetById=932230;ARGS:/^(mentalHealthVeryWell|mentalHealthWell|mentalHealthOk|mentalHealthNotGreat|mentalHealthStruggling|mentalHealthSupport|alcoholSupport|drugsSupport|moneySupport|housingSupport|employmentEduSupport|supportSystemSupport|otherSupport|additionalAnswer)$/,\
-          ctl:ruleRemoveTargetById=932250;ARGS:/^(mentalHealthVeryWell|mentalHealthWell|mentalHealthOk|mentalHealthNotGreat|mentalHealthStruggling|mentalHealthSupport|alcoholSupport|drugsSupport|moneySupport|housingSupport|employmentEduSupport|supportSystemSupport|otherSupport|additionalAnswer)$/"
+          ctl:ruleRemoveTargetById=932230;ARGS:mentalHealthVeryWell,\
+          ctl:ruleRemoveTargetById=932230;ARGS:mentalHealthWell,\
+          ctl:ruleRemoveTargetById=932230;ARGS:mentalHealthOk,\
+          ctl:ruleRemoveTargetById=932230;ARGS:mentalHealthNotGreat,\
+          ctl:ruleRemoveTargetById=932230;ARGS:mentalHealthStruggling,\
+          ctl:ruleRemoveTargetById=932230;ARGS:mentalHealthSupport,\
+          ctl:ruleRemoveTargetById=932230;ARGS:alcoholSupport,\
+          ctl:ruleRemoveTargetById=932230;ARGS:drugsSupport,\
+          ctl:ruleRemoveTargetById=932230;ARGS:moneySupport,\
+          ctl:ruleRemoveTargetById=932230;ARGS:housingSupport,\
+          ctl:ruleRemoveTargetById=932230;ARGS:employmentEduSupport,\
+          ctl:ruleRemoveTargetById=932230;ARGS:supportSystemSupport,\
+          ctl:ruleRemoveTargetById=932230;ARGS:otherSupport,\
+          ctl:ruleRemoveTargetById=932230;ARGS:additionalAnswer,\
+          ctl:ruleRemoveTargetById=932250;ARGS:mentalHealthVeryWell,\
+          ctl:ruleRemoveTargetById=932250;ARGS:mentalHealthWell,\
+          ctl:ruleRemoveTargetById=932250;ARGS:mentalHealthOk,\
+          ctl:ruleRemoveTargetById=932250;ARGS:mentalHealthNotGreat,\
+          ctl:ruleRemoveTargetById=932250;ARGS:mentalHealthStruggling,\
+          ctl:ruleRemoveTargetById=932250;ARGS:mentalHealthSupport,\
+          ctl:ruleRemoveTargetById=932250;ARGS:alcoholSupport,\
+          ctl:ruleRemoveTargetById=932250;ARGS:drugsSupport,\
+          ctl:ruleRemoveTargetById=932250;ARGS:moneySupport,\
+          ctl:ruleRemoveTargetById=932250;ARGS:housingSupport,\
+          ctl:ruleRemoveTargetById=932250;ARGS:employmentEduSupport,\
+          ctl:ruleRemoveTargetById=932250;ARGS:supportSystemSupport,\
+          ctl:ruleRemoveTargetById=932250;ARGS:otherSupport,\
+          ctl:ruleRemoveTargetById=932250;ARGS:additionalAnswer"
       SecDefaultAction "phase:2,pass,log,tag:github_team=stg-pathfinders,tag:namespace={{ .Release.Namespace }}"
 
   env:
