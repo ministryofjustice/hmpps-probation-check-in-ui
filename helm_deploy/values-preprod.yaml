@@ -11,7 +11,13 @@ generic-service:
       SecRuleEngine On
       SecAuditEngine RelevantOnly
       SecRequestBodyAccess On
-      SecRuleRemoveById 932230 932250
+      SecRule REQUEST_URI "@rx ^/[^/]+/questions/(mental-health|assistance|additional/\d+)$" \
+          "id:1000001,\
+          phase:1,\
+          pass,\
+          nolog,\
+          ctl:ruleRemoveTargetById=932230;ARGS:/^(mentalHealthVeryWell|mentalHealthWell|mentalHealthOk|mentalHealthNotGreat|mentalHealthStruggling|mentalHealthSupport|alcoholSupport|drugsSupport|moneySupport|housingSupport|employmentEduSupport|supportSystemSupport|otherSupport|additionalAnswer)$/,\
+          ctl:ruleRemoveTargetById=932250;ARGS:/^(mentalHealthVeryWell|mentalHealthWell|mentalHealthOk|mentalHealthNotGreat|mentalHealthStruggling|mentalHealthSupport|alcoholSupport|drugsSupport|moneySupport|housingSupport|employmentEduSupport|supportSystemSupport|otherSupport|additionalAnswer)$/"
       SecDefaultAction "phase:2,pass,log,tag:github_team=stg-pathfinders,tag:namespace={{ .Release.Namespace }}"
 
   env:
