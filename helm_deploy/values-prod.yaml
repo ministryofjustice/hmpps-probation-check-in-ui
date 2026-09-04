@@ -9,6 +9,8 @@ generic-service:
       SecRuleEngine On
       SecAuditEngine RelevantOnly
       SecRequestBodyAccess On
+      # Disable CRS RCE rules (932230/932250) due to false positives on free-text answers
+      # Scoped to question pages and the named answer fields
       SecRule REQUEST_URI "@rx ^/[^/]+/questions/(mental-health|assistance|additional/\d+)$" \
           "id:1000001,\
           phase:1,\
