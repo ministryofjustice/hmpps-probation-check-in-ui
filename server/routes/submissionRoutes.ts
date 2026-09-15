@@ -12,6 +12,7 @@ import {
   renderQuestionsMentalHealth,
   renderCheckAnswers,
   renderConfirmation,
+  handleProbationAccounts,
   renderIndex,
   renderVerify,
   renderVideoInform,
@@ -44,6 +45,7 @@ import {
   assistanceSchema,
   checkAnswersSchema,
   additionalAnswerSchema,
+  probationAccountsSchema,
 } from '../schemas/submissionSchemas'
 
 import { Services } from '../services'
@@ -54,6 +56,9 @@ export default function routes({ esupervisionService }: Services): Router {
   const router = Router({ mergeParams: true })
   const get = (routePath: string | string[], ...handlers: RequestHandler[]) =>
     router.get(routePath, ...handlers.map(handler => asyncMiddleware(handler)))
+
+  // The only routes a person can reach once their check-in has been submitted
+  const postSubmissionPaths = ['/confirmation', '/probation-accounts']
 
   // all submission routes require a valid submission
   // fetch from the API and return a 404 if the submission doesn't exist
@@ -71,7 +76,8 @@ export default function routes({ esupervisionService }: Services): Router {
         // lookup submission from the API
         try {
           const checkinResponse = await esupervisionService.getCheckin(submissionId)
-          if (checkinResponse.checkin.status === 'SUBMITTED' && req.originalUrl.endsWith('/confirmation')) {
+          if (checkinResponse.checkin.status === 'SUBMITTED' && postSubmissionPaths.includes(req.path)) {
+            res.locals.checkin = checkinResponse.checkin
             next()
           } else if (checkinResponse.checkin.status === 'EXPIRED') {
             expired()
@@ -148,6 +154,11 @@ export default function routes({ esupervisionService }: Services): Router {
   router.post('/check-your-answers', protectSubmission, validateFormData(checkAnswersSchema), handleSubmission)
 
   get('/confirmation', renderConfirmation)
+  router.post(
+    '/probation-accounts',
+    validateFormData(probationAccountsSchema, req => `/${req.params.submissionId}/confirmation`),
+    asyncMiddleware(handleProbationAccounts),
+  )
 
   // Session management routes
 

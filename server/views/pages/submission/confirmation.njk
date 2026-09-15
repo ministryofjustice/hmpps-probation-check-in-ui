@@ -1,6 +1,8 @@
 {% from "govuk/components/panel/macro.njk" import govukPanel %}
 {% extends "../../partials/layout.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "../../partials/errorSummary.njk" import errorSummary %}
 
 {% set pageTitle = t('submission.confirmation.title') %}
 {% set mainClasses = "app-container govuk-body" %}
@@ -8,6 +10,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {{ errorSummary(validationErrors, t('common.errorSummary.title')) }}
       {{
         govukPanel({
           titleText: t('submission.confirmation.panel')
@@ -19,6 +22,41 @@
         {{ t('submission.confirmation.whatNext.intro') }}
       </p>
       <p>{{ t('submission.confirmation.whatNext.reminder') }}</p>
+
+      <h2 class="govuk-heading-m">{{ t('submission.confirmation.accounts.heading') }}</h2>
+      {% if probationAccounts == 'yes' %}
+        <p>{{ t('submission.confirmation.accounts.registered') }}</p>
+      {% elif probationAccounts == 'no' %}
+        <p>{{ t('submission.confirmation.accounts.declined') }}</p>
+      {% else %}
+        <p>{{ t('submission.confirmation.accounts.intro') }}</p>
+        <form method="POST" action="/{{ submissionId }}/probation-accounts">
+          <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+          {{
+            govukRadios({
+              name: "probationAccounts",
+              classes: "govuk-radios--inline",
+              errorMessage: validationErrors | findError("probationAccounts"),
+              fieldset: {
+                legend: {
+                  classes: "govuk-fieldset__legend--s",
+                  text: t('submission.confirmation.accounts.question')
+                }
+              },
+              items: [
+                { value: "YES", text: t('submission.confirmation.accounts.options.yes') },
+                { value: "NO", text: t('submission.confirmation.accounts.options.no') }
+              ]
+            })
+          }}
+          {{
+            govukButton({
+              text: t('submission.confirmation.accounts.button'),
+              classes: "govuk-button--secondary"
+            })
+          }}
+        </form>
+      {% endif %}
 
       <h2 class="govuk-heading-m">{{ t('submission.confirmation.feedback.heading') }}</h2>
       <p>{{ t('submission.confirmation.feedback.intro') }}</p>

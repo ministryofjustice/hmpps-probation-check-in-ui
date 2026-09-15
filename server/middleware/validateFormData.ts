@@ -4,7 +4,7 @@ import { resolveValidationMessage } from '../utils/i18nValidation'
 
 export type validationErrors = { text: string; href: string }[]
 
-export default function validateFormData(schema: z.ZodTypeAny) {
+export default function validateFormData(schema: z.ZodTypeAny, redirectTo?: (req: Request) => string) {
   return (req: Request, res: Response, next: NextFunction): void => {
     const validationResult = schema.safeParse(req.body)
 
@@ -20,7 +20,7 @@ export default function validateFormData(schema: z.ZodTypeAny) {
       })
 
       req.flash('validationErrors', JSON.stringify(errorMessages))
-      res.redirect(req.originalUrl)
+      res.redirect(redirectTo ? redirectTo(req) : req.originalUrl)
     }
   }
 }

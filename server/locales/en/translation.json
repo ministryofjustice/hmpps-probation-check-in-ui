@@ -145,6 +145,21 @@
         "heading": "Have your say about online check ins",
         "intro": "Help us to improve check ins by answering a few questions about your experience.",
         "button": "Give feedback"
+      },
+      "accounts": {
+        "heading": "Online probation accounts",
+        "intro": "We are developing online accounts so people on probation can see their appointments, sentence details and documents in one place.",
+        "question": "Are you interested in finding out more about online probation accounts?",
+        "button": "Send answer",
+        "registered": "Thank you. We will contact you with more information about online probation accounts.",
+        "declined": "Thank you for letting us know.",
+        "errors": {
+          "required": "Select yes if you are interested in finding out more about online probation accounts"
+        },
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
       }
     },
     "questions": {
