@@ -2,6 +2,7 @@
 const verifyIdentity = jest.fn()
 const getOffenderQuestions = jest.fn()
 const autoVerifyCheckinIdentity = jest.fn()
+const registerAccountInterest = jest.fn()
 
 jest.mock('../services', () => ({
   services: jest.fn(() => ({
@@ -9,6 +10,9 @@ jest.mock('../services', () => ({
       verifyIdentity: (...args: unknown[]) => verifyIdentity(...args),
       getOffenderQuestions: (...args: unknown[]) => getOffenderQuestions(...args),
       autoVerifyCheckinIdentity: (...args: unknown[]) => autoVerifyCheckinIdentity(...args),
+    },
+    probationAccountService: {
+      registerAccountInterest: (...args: unknown[]) => registerAccountInterest(...args),
     },
   })),
 }))
@@ -19,7 +23,9 @@ jest.mock('../../logger', () => ({
 }))
 
 // eslint-disable-next-line import/first
-import { handleVerify, handleVideoVerify } from './submissionController'
+import { handleVerify, handleVideoVerify, handleProbationAccounts } from './submissionController'
+// eslint-disable-next-line import/first
+import logger from '../../logger'
 
 describe('submissionController', () => {
   describe('handleVerify', () => {
@@ -204,6 +210,61 @@ describe('submissionController', () => {
       // 3. session state used by check-answers.njk should be a clean MATCH with no lingering isLive=false
       expect(session.formData.autoVerifyResult).toBe('MATCH')
       expect(session.formData).not.toHaveProperty('isLive')
+    })
+  })
+  describe('handleProbationAccounts', () => {
+    const mockNext = jest.fn()
+
+    const buildReq = (probationAccounts: string) => ({
+      params: { submissionId: 'sub-1' },
+      body: { probationAccounts },
+    })
+
+    const buildRes = (crn?: string) => {
+      const res: any = {}
+      res.redirect = jest.fn()
+      res.locals = { checkin: crn ? { crn } : undefined }
+      return res
+    }
+
+    beforeEach(() => {
+      jest.clearAllMocks()
+      registerAccountInterest.mockResolvedValue(undefined)
+    })
+
+    it('registers interest with the CRN and redirects with the answer when the person says yes', async () => {
+      const res = buildRes('X123456')
+      await handleProbationAccounts(buildReq('YES') as any, res, mockNext)
+
+      expect(registerAccountInterest).toHaveBeenCalledWith('X123456')
+      expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation?probationAccounts=yes')
+    })
+
+    it('does not call the API when the person says no', async () => {
+      const res = buildRes('X123456')
+      await handleProbationAccounts(buildReq('NO') as any, res, mockNext)
+
+      expect(registerAccountInterest).not.toHaveBeenCalled()
+      expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation?probationAccounts=no')
+    })
+
+    it('logs and still redirects when the API call fails', async () => {
+      registerAccountInterest.mockRejectedValue(new Error('boom'))
+      const res = buildRes('X123456')
+      await handleProbationAccounts(buildReq('YES') as any, res, mockNext)
+
+      expect(logger.error).toHaveBeenCalled()
+      expect(mockNext).not.toHaveBeenCalled()
+      expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation?probationAccounts=yes')
+    })
+
+    it('logs and does not call the API when the check-in has no CRN', async () => {
+      const res = buildRes(undefined)
+      await handleProbationAccounts(buildReq('YES') as any, res, mockNext)
+
+      expect(registerAccountInterest).not.toHaveBeenCalled()
+      expect(logger.error).toHaveBeenCalled()
+      expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation?probationAccounts=yes')
     })
   })
 })
