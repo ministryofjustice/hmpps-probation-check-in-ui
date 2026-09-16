@@ -18,7 +18,7 @@ export default class ProbationAccountApiClient extends RestClient {
   async registerAccountInterest(crn: string): Promise<void> {
     return this.post<void>(
       {
-        path: '/probation-accounts/interest',
+        path: '/v1/access-requests',
         headers: { 'Content-Type': 'application/json' },
         data: JSON.stringify({ crn }),
       },

@@ -147,14 +147,14 @@
         "button": "Give feedback"
       },
       "accounts": {
-        "heading": "Online probation accounts",
-        "intro": "We are developing online accounts so people on probation can see their appointments, sentence details and documents in one place.",
-        "question": "Are you interested in finding out more about online probation accounts?",
+        "heading": "Online probation accounts survey",
+        "intro": "We are developing online probation accounts so people on probation can see their appointments, sentence details and documents in one place.",
+        "question": "Would you find a service like this useful? (optional)",
         "button": "Send answer",
-        "registered": "Thank you. We will contact you with more information about online probation accounts.",
+        "registered": "Thank you. This helps us establish how many people would like to use online probation accounts.",
         "declined": "Thank you for letting us know.",
         "errors": {
-          "required": "Select yes if you are interested in finding out more about online probation accounts"
+          "required": "Select yes if you would find it useful"
         },
         "options": {
           "yes": "Yes",
