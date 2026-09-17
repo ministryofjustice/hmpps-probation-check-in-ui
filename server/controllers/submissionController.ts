@@ -436,17 +436,16 @@ export const handleProbationAccounts: RequestHandler = async (req, res: Response
 
   if (!answer) {
     return res.redirect(`/${submissionId}/confirmation`)
+  }
+  const crn = res.locals.checkin?.crn
+  if (!crn) {
+    logger.error(`No CRN found for submissionId ${submissionId} - cannot register probation account interest`)
   } else {
-    const crn = res.locals.checkin?.crn
-    if (!crn) {
-      logger.error(`No CRN found for submissionId ${submissionId} - cannot register probation account interest`)
-    } else {
-      try {
-        await probationAccountService.registerAccountInterest(crn, answer)
-        logger.info(`Registered probation account interest for submissionId ${submissionId}`)
-      } catch (error) {
-        logger.error(`Failed to register probation account interest for submissionId ${submissionId}`, error)
-      }
+    try {
+      await probationAccountService.registerAccountInterest(crn, answer)
+      logger.info(`Registered probation account interest for submissionId ${submissionId}`)
+    } catch (error) {
+      logger.error(`Failed to register probation account interest for submissionId ${submissionId}`, error)
     }
   }
 
