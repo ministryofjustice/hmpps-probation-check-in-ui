@@ -5,6 +5,7 @@ import config from '../config'
 import HmppsAuditClient from './hmppsAuditClient'
 import logger from '../../logger'
 import EsupervisionApiClient from './esupervisionApiClient'
+import ProbationAccountApiClient from './probationAccountApiClient'
 
 const applicationInfo = applicationInfoSupplier()
 
@@ -19,10 +20,11 @@ export const dataAccess = () => {
     applicationInfo,
     hmppsAuthClient,
     esupervisionApiClient: new EsupervisionApiClient(hmppsAuthClient),
+    probationAccountApiClient: new ProbationAccountApiClient(hmppsAuthClient),
     hmppsAuditClient: new HmppsAuditClient(config.sqs.audit),
   }
 }
 
 export type DataAccess = ReturnType<typeof dataAccess>
 
-export { AuthenticationClient, HmppsAuditClient, EsupervisionApiClient }
+export { AuthenticationClient, HmppsAuditClient, EsupervisionApiClient, ProbationAccountApiClient }

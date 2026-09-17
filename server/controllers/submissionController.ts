@@ -10,7 +10,7 @@ import { defaultFlags } from '../utils/flags'
 
 type SubmissionLocals = { checkin: Checkin }
 
-const { esupervisionService } = services()
+const { esupervisionService, probationAccountService } = services()
 
 const getSubmissionId = (req: Request): string => req.params.submissionId
 export const pageParams = (req: Request): Record<string, unknown> => {
@@ -404,9 +404,55 @@ export const handleSubmission: RequestHandler = async (req, res: Response<object
 
 export const renderConfirmation: RequestHandler = async (req, res, next) => {
   try {
-    req.session = null
-    res.render('pages/submission/confirmation', pageParams(req))
+    const params = pageParams(req)
+
+    // The check-in is successfully submitted, so we can drop the form data. The session itself is
+    // kept so the CSRF token in the probation accounts form below is stored and stays valid
+    req.session.formData = {}
+    req.session.submissionAuthorized = null
+    // Clear this submission-scoped flag when resetting the session.
+    delete req.session.livenessFallbackAllowed
+
+    // Set by handleProbationAccounts after the person answers the online accounts question
+    const { probationAccounts } = req.query
+    res.render('pages/submission/confirmation', { ...params, probationAccounts })
   } catch (error) {
     next(error)
   }
+}
+
+const probationAccountAnswers = ['YES', 'NO', 'NOT_SURE'] as const
+
+/**
+ * Handles the optional online probation accounts question on the confirmation page.
+ * There is no validation: submitting without an answer (or with an unrecognised one)
+ * simply returns to the confirmation page with the form still shown.
+ *
+ * Purposely not surfacing errors: the check-in has already been submitted, so a
+ * problem with a separate, optional API should not turn a successful check-in into an
+ * error page.
+ */
+export const handleProbationAccounts: RequestHandler = async (req, res: Response<object, SubmissionLocals>) => {
+  const submissionId = getSubmissionId(req)
+  const answer = probationAccountAnswers.find(value => value === req.body?.probationAccounts)
+
+  if (!answer) {
+    return res.redirect(`/${submissionId}/confirmation`)
+  }
+  const crn = res.locals.checkin?.crn
+  const checkInStatus = res.locals.checkin?.status
+  if (!crn || checkInStatus !== 'SUBMITTED') {
+    logger.error(
+      `No CRN found for submissionId ${submissionId} or they have not completed the checkin - cannot register probation account interest`,
+    )
+  } else {
+    try {
+      await probationAccountService.registerAccountInterest(crn, answer)
+      logger.info(`Registered probation account interest for submissionId ${submissionId}`)
+    } catch (error) {
+      logger.error(`Failed to register probation account interest for submissionId ${submissionId}`, error)
+    }
+  }
+
+  return res.redirect(`/${submissionId}/confirmation?probationAccounts=${answer.toLowerCase()}`)
 }
