@@ -236,7 +236,7 @@ describe('submissionController', () => {
       const res = buildRes('X123456')
       await handleProbationAccounts(buildReq('YES') as any, res, mockNext)
 
-      expect(registerAccountInterest).toHaveBeenCalledWith('X123456')
+      expect(registerAccountInterest).toHaveBeenCalledWith('X123456', 'YES')
       expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation?probationAccounts=yes')
     })
 
