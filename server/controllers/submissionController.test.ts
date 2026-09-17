@@ -240,19 +240,19 @@ describe('submissionController', () => {
       expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation?probationAccounts=yes')
     })
 
-    it('does not call the API when the person says no', async () => {
+    it('registers interest with the CRN and redirects with the answer when the person says  no', async () => {
       const res = buildRes('X123456')
       await handleProbationAccounts(buildReq('NO') as any, res, mockNext)
 
-      expect(registerAccountInterest).not.toHaveBeenCalled()
+      expect(registerAccountInterest).toHaveBeenCalledWith('X123456', 'NO')
       expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation?probationAccounts=no')
     })
 
-    it('acknowledges a not sure answer without calling the API', async () => {
+    it('registers interest with the CRN and redirects with the answer when the person says not sure', async () => {
       const res = buildRes('X123456')
       await handleProbationAccounts(buildReq('NOT_SURE') as any, res, mockNext)
 
-      expect(registerAccountInterest).not.toHaveBeenCalled()
+      expect(registerAccountInterest).toHaveBeenCalledWith('X123456', 'NOT_SURE')
       expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation?probationAccounts=not_sure')
     })
 
