@@ -410,6 +410,8 @@ export const renderConfirmation: RequestHandler = async (req, res, next) => {
     // kept so the CSRF token in the probation accounts form below is stored and stays valid
     req.session.formData = {}
     req.session.submissionAuthorized = null
+    // Clear this submission-scoped flag when resetting the session.
+    delete req.session.livenessFallbackAllowed
 
     // Set by handleProbationAccounts after the person answers the online accounts question
     const { probationAccounts } = req.query
