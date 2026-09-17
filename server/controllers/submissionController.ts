@@ -419,23 +419,30 @@ export const renderConfirmation: RequestHandler = async (req, res, next) => {
   }
 }
 
+const probationAccountAnswers = ['YES', 'NO', 'NOT_SURE'] as const
+
 /**
- * Handles the online probation accounts question on the confirmation page.
+ * Handles the optional online probation accounts question on the confirmation page.
+ * There is no validation: submitting without an answer (or with an unrecognised one)
+ * simply returns to the confirmation page with the form still shown.
+ *
  * Purposely not surfacing errors: the check-in has already been submitted, so a
  * problem with a separate, optional API should not turn a successful check-in into an
  * error page.
  */
 export const handleProbationAccounts: RequestHandler = async (req, res: Response<object, SubmissionLocals>) => {
   const submissionId = getSubmissionId(req)
-  const { probationAccounts } = req.body
+  const answer = probationAccountAnswers.find(value => value === req.body?.probationAccounts)
 
-  if (probationAccounts === 'YES') {
+  if (!answer) {
+    return res.redirect(`/${submissionId}/confirmation`)
+  } else {
     const crn = res.locals.checkin?.crn
     if (!crn) {
       logger.error(`No CRN found for submissionId ${submissionId} - cannot register probation account interest`)
     } else {
       try {
-        await probationAccountService.registerAccountInterest(crn)
+        await probationAccountService.registerAccountInterest(crn, answer)
         logger.info(`Registered probation account interest for submissionId ${submissionId}`)
       } catch (error) {
         logger.error(`Failed to register probation account interest for submissionId ${submissionId}`, error)
@@ -443,5 +450,5 @@ export const handleProbationAccounts: RequestHandler = async (req, res: Response
     }
   }
 
-  res.redirect(`/${submissionId}/confirmation?probationAccounts=${probationAccounts.toLowerCase()}`)
+  return res.redirect(`/${submissionId}/confirmation?probationAccounts=${answer.toLowerCase()}`)
 }

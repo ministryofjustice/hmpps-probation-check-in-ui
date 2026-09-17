@@ -71,10 +71,3 @@ export const checkAnswersSchema = z
       .describe('Confirm your details are correct'),
   })
   .required()
-
-export const probationAccountsSchema = z.object({
-  probationAccounts: z.enum(['YES', 'NO'], {
-    error: issue =>
-      issue.input === undefined ? i18nMessage('submission.confirmation.accounts.errors.required') : issue.message,
-  }),
-})

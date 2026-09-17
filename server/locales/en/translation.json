@@ -147,19 +147,23 @@
         "button": "Give feedback"
       },
       "accounts": {
-        "heading": "Online probation accounts survey",
-        "intro": "We are developing online probation accounts so people on probation can see their appointments, sentence details and documents in one place.",
-        "question": "Would you find a service like this useful? (optional)",
-        "button": "Send answer",
+        "heading": "Help shape the future of probation",
+        "intro": "The Probation Service are looking at ways to support you while you're on probation. We're trying to do this by creating a website to help you:",
+        "list": {
+          "1": "see your upcoming appointments",
+          "2": "understand what you should and shouldn't do while on probation",
+          "3": "check your progress while you're on probation"
+        },
+        "question": "Would you find a website that lets you check this information useful? (optional)",
+        "button": "Submit",
         "registered": "Thank you. This helps us establish how many people would like to use online probation accounts.",
         "declined": "Thank you for letting us know.",
-        "errors": {
-          "required": "Select yes if you would find it useful"
-        },
         "options": {
-          "yes": "Yes",
-          "no": "No"
-        }
+          "yes": "Yes, it would be useful",
+          "no": "No, I would not find it useful",
+          "notSure": "I'm not sure if it would be useful"
+        },
+        "inset": "If you answer this question, we will collect information about you. We will use this to understand if a new website might be useful for people in your area. We might contact you in the future to understand more about if you would use a website like this."
       }
     },
     "questions": {

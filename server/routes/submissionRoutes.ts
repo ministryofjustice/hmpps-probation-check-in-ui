@@ -45,7 +45,6 @@ import {
   assistanceSchema,
   checkAnswersSchema,
   additionalAnswerSchema,
-  probationAccountsSchema,
 } from '../schemas/submissionSchemas'
 
 import { Services } from '../services'
@@ -154,11 +153,7 @@ export default function routes({ esupervisionService }: Services): Router {
   router.post('/check-your-answers', protectSubmission, validateFormData(checkAnswersSchema), handleSubmission)
 
   get('/confirmation', renderConfirmation)
-  router.post(
-    '/probation-accounts',
-    validateFormData(probationAccountsSchema, req => `/${req.params.submissionId}/confirmation`),
-    asyncMiddleware(handleProbationAccounts),
-  )
+  router.post('/probation-accounts', asyncMiddleware(handleProbationAccounts))
 
   // Session management routes
 

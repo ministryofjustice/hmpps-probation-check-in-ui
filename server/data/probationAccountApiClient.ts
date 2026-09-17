@@ -12,15 +12,15 @@ export default class ProbationAccountApiClient extends RestClient {
   }
 
   /**
-   * Registers that the person identified by `crn` wants to hear more about online
-   * probation accounts.
+   * Registers that a person identified by `crn` and whether they would find
+   * probation accounts useful.
    */
-  async registerAccountInterest(crn: string): Promise<void> {
+  async registerAccountInterest(crn: string, answer: string): Promise<void> {
     return this.post<void>(
       {
         path: '/v1/access-requests',
         headers: { 'Content-Type': 'application/json' },
-        data: JSON.stringify({ crn }),
+        data: JSON.stringify({ personReference: crn, interested: answer }),
       },
       asSystem(),
     )

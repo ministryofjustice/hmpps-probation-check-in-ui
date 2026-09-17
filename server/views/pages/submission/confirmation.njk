@@ -2,7 +2,7 @@
 {% extends "../../partials/layout.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
-{% from "../../partials/errorSummary.njk" import errorSummary %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 {% set pageTitle = t('submission.confirmation.title') %}
 {% set mainClasses = "app-container govuk-body" %}
@@ -10,7 +10,6 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {{ errorSummary(validationErrors, t('common.errorSummary.title')) }}
       {{
         govukPanel({
           titleText: t('submission.confirmation.panel')
@@ -26,29 +25,36 @@
       <h2 class="govuk-heading-m">{{ t('submission.confirmation.accounts.heading') }}</h2>
       {% if probationAccounts == 'yes' %}
         <p>{{ t('submission.confirmation.accounts.registered') }}</p>
-      {% elif probationAccounts == 'no' %}
+      {% elif probationAccounts == 'no' or probationAccounts == 'not_sure' %}
         <p>{{ t('submission.confirmation.accounts.declined') }}</p>
       {% else %}
         <p>{{ t('submission.confirmation.accounts.intro') }}</p>
+        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+            <li>{{ t('submission.confirmation.accounts.list.1') }}</li>
+            <li>{{ t('submission.confirmation.accounts.list.2') }}</li>
+            <li>{{ t('submission.confirmation.accounts.list.3') }}</li>
+        </ul>
         <form method="POST" action="/{{ submissionId }}/probation-accounts">
           <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
-          {{
-            govukRadios({
-              name: "probationAccounts",
-              classes: "govuk-radios--inline",
-              errorMessage: validationErrors | findError("probationAccounts"),
-              fieldset: {
-                legend: {
-                  classes: "govuk-fieldset__legend--s",
-                  text: t('submission.confirmation.accounts.question')
-                }
-              },
-              items: [
-                { value: "YES", text: t('submission.confirmation.accounts.options.yes') },
-                { value: "NO", text: t('submission.confirmation.accounts.options.no') }
-              ]
-            })
-          }}
+          {{ govukRadios({
+               name: "probationAccounts",
+               fieldset: {
+                 legend: {
+                   classes: "govuk-fieldset__legend--s",
+                   text: t('submission.confirmation.accounts.question')
+                 }
+               },
+               items: [
+                 { value: "YES", text: t('submission.confirmation.accounts.options.yes') },
+                 { value: "NO", text: t('submission.confirmation.accounts.options.no') },
+                 { value: "NOT_SURE", text: t('submission.confirmation.accounts.options.notSure') }
+               ]
+             })
+           }}
+
+          {% call govukInsetText() %}
+            {{ t('submission.confirmation.accounts.inset') }}
+          {% endcall %}
           {{
             govukButton({
               text: t('submission.confirmation.accounts.button'),
@@ -56,6 +62,7 @@
             })
           }}
         </form>
+
       {% endif %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
       <h2 class="govuk-heading-m">{{ t('submission.confirmation.feedback.heading') }}</h2>

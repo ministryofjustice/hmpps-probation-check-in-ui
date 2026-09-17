@@ -6,7 +6,7 @@ export default class ProbationAccountService {
   /**
    * Registers interest in online probation accounts for the given CRN.
    */
-  async registerAccountInterest(crn: string): Promise<void> {
-    await this.probationAccountApiClient.registerAccountInterest(crn)
+  async registerAccountInterest(crn: string, answer: string): Promise<void> {
+    await this.probationAccountApiClient.registerAccountInterest(crn, answer)
   }
 }

@@ -215,7 +215,7 @@ describe('submissionController', () => {
   describe('handleProbationAccounts', () => {
     const mockNext = jest.fn()
 
-    const buildReq = (probationAccounts: string) => ({
+    const buildReq = (probationAccounts?: string) => ({
       params: { submissionId: 'sub-1' },
       body: { probationAccounts },
     })
@@ -246,6 +246,30 @@ describe('submissionController', () => {
 
       expect(registerAccountInterest).not.toHaveBeenCalled()
       expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation?probationAccounts=no')
+    })
+
+    it('acknowledges a not sure answer without calling the API', async () => {
+      const res = buildRes('X123456')
+      await handleProbationAccounts(buildReq('NOT_SURE') as any, res, mockNext)
+
+      expect(registerAccountInterest).not.toHaveBeenCalled()
+      expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation?probationAccounts=not_sure')
+    })
+
+    it('returns to the confirmation page when no answer is given', async () => {
+      const res = buildRes('X123456')
+      await handleProbationAccounts(buildReq(undefined) as any, res, mockNext)
+
+      expect(registerAccountInterest).not.toHaveBeenCalled()
+      expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation')
+    })
+
+    it('ignores an unrecognised answer', async () => {
+      const res = buildRes('X123456')
+      await handleProbationAccounts(buildReq('MAYBE') as any, res, mockNext)
+
+      expect(registerAccountInterest).not.toHaveBeenCalled()
+      expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation')
     })
 
     it('logs and still redirects when the API call fails', async () => {
