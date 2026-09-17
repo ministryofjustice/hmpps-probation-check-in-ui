@@ -220,10 +220,10 @@ describe('submissionController', () => {
       body: { probationAccounts },
     })
 
-    const buildRes = (crn?: string) => {
+    const buildRes = (crn?: string, status = 'SUBMITTED') => {
       const res: any = {}
       res.redirect = jest.fn()
-      res.locals = { checkin: crn ? { crn } : undefined }
+      res.locals = { checkin: crn ? { crn, status } : undefined }
       return res
     }
 
@@ -240,7 +240,7 @@ describe('submissionController', () => {
       expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation?probationAccounts=yes')
     })
 
-    it('registers interest with the CRN and redirects with the answer when the person says  no', async () => {
+    it('registers interest with the CRN and redirects with the answer when the person says no', async () => {
       const res = buildRes('X123456')
       await handleProbationAccounts(buildReq('NO') as any, res, mockNext)
 
@@ -279,6 +279,15 @@ describe('submissionController', () => {
 
       expect(logger.error).toHaveBeenCalled()
       expect(mockNext).not.toHaveBeenCalled()
+      expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation?probationAccounts=yes')
+    })
+
+    it('logs and does not call the API when the check-in has not been submitted', async () => {
+      const res = buildRes('X123456', 'CREATED')
+      await handleProbationAccounts(buildReq('YES') as any, res, mockNext)
+
+      expect(registerAccountInterest).not.toHaveBeenCalled()
+      expect(logger.error).toHaveBeenCalled()
       expect(res.redirect).toHaveBeenCalledWith('/sub-1/confirmation?probationAccounts=yes')
     })
 
