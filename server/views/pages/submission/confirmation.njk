@@ -12,6 +12,9 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if probationAccounts != 'yes' and probationAccounts != 'no' and probationAccounts != 'not_sure' %}
+        {% set probationAccounts = false %}
+      {% endif %}
       {% if probationAccounts %}
         {{ mojAlert({
           variant: "information",
