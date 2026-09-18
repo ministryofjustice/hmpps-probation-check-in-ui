@@ -156,8 +156,8 @@
         },
         "question": "Would you find a website that lets you check this information useful? (optional)",
         "button": "Submit",
-        "registered": "Thank you. This helps us establish how many people would like to use online probation accounts.",
-        "declined": "Thank you for letting us know.",
+        "registeredTitle": "Your answer has been saved",
+        "registered": " We might contact you in the future to understand more about if you would use a website like this. If you do not want us to contact you, speak to your probation officer.",
         "options": {
           "yes": "Yes, it would be useful",
           "no": "No, I would not find it useful",

@@ -3,6 +3,8 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{%- from "moj/components/alert/macro.njk" import mojAlert -%}
+
 
 {% set pageTitle = t('submission.confirmation.title') %}
 {% set mainClasses = "app-container govuk-body" %}
@@ -10,6 +12,16 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      {% if probationAccounts %}
+        {{ mojAlert({
+          variant: "information",
+          title: t('submission.confirmation.accounts.registeredTitle'),
+          showTitleAsHeading: true,
+          dismissible: false,
+          html: t('submission.confirmation.accounts.registered')
+        }) }}
+      {% endif %}
+
       {{
         govukPanel({
           titleText: t('submission.confirmation.panel')
@@ -21,13 +33,18 @@
         {{ t('submission.confirmation.whatNext.intro') }}
       </p>
       <p>{{ t('submission.confirmation.whatNext.reminder') }}</p>
-      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-      <h2 class="govuk-heading-m">{{ t('submission.confirmation.accounts.heading') }}</h2>
-      {% if probationAccounts == 'yes' %}
-        <p>{{ t('submission.confirmation.accounts.registered') }}</p>
-      {% elif probationAccounts == 'no' or probationAccounts == 'not_sure' %}
-        <p>{{ t('submission.confirmation.accounts.declined') }}</p>
-      {% else %}
+
+      <h2 class="govuk-heading-m">{{ t('submission.confirmation.feedback.heading') }}</h2>
+      <p>{{ t('submission.confirmation.feedback.intro') }}</p>
+      {{ govukButton({
+        text: t('submission.confirmation.feedback.button'),
+        href: "/feedback"
+      }) }}
+
+
+      {% if not probationAccounts %}
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <h2 class="govuk-heading-m">{{ t('submission.confirmation.accounts.heading') }}</h2>
         <p>{{ t('submission.confirmation.accounts.intro') }}</p>
         <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
             <li>{{ t('submission.confirmation.accounts.list.1') }}</li>
@@ -51,7 +68,6 @@
                ]
              })
            }}
-
           {% call govukInsetText() %}
             {{ t('submission.confirmation.accounts.inset') }}
           {% endcall %}
@@ -62,16 +78,7 @@
             })
           }}
         </form>
-
       {% endif %}
-      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-      <h2 class="govuk-heading-m">{{ t('submission.confirmation.feedback.heading') }}</h2>
-      <p>{{ t('submission.confirmation.feedback.intro') }}</p>
-
-      {{ govukButton({
-        text: t('submission.confirmation.feedback.button'),
-        href: "/feedback"
-      }) }}
     </div>
   </div>
 {% endblock %}
