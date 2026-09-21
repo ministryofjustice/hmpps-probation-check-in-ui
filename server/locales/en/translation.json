@@ -137,8 +137,8 @@
       "panel": "Check in completed",
       "sent": "We have sent you a confirmation message.",
       "whatNext": {
-        "heading": "What happens next?",
-        "intro": "Your video and answers have been shared with your probation officer. They will contact you if there are any concerns with the information you’ve entered, or if you requested contact.",
+        "heading": "What happens next",
+        "intro": "Your identity check and answers have been shared with your probation officer. They will contact you if there are any concerns with the information you’ve entered, or if you requested contact.",
         "reminder": "We will remind you when it is time for your next check in."
       },
       "feedback": {
@@ -157,7 +157,7 @@
         "question": "Would you find a website that lets you check this information useful? (optional)",
         "button": "Submit",
         "registeredTitle": "Your answer has been saved",
-        "registered": "We might contact you in the future to understand whether you would use a website like this. If you do not want us to contact you, speak to your probation officer.",
+        "registered": "We might contact you in the future to understand more about if you would use a website like this. If you do not want us to contact you, speak to your probation officer.",
         "options": {
           "yes": "Yes, it would be useful",
           "no": "No, I would not find it useful",
