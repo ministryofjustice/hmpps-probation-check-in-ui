@@ -21,4 +21,35 @@
 {% block bodyEnd %}
   {{ super() }}
   <script type="module" src="{{ '/assets/js/chatbot.js' | assetMap }}"></script>
+  <script nonce="{{ cspNonce }}">
+    (function () {
+      var root = document.getElementById('chatbot-root')
+      if (!root) return
+      var navToggle = document.querySelector('.govuk-service-navigation__toggle')
+
+      function closeMenuIfOpen() {
+        if (navToggle && navToggle.getAttribute('aria-expanded') === 'true') {
+          navToggle.click()
+        }
+      }
+
+      var lastScrollY = window.scrollY
+      var scrollingDownUntil = 0
+      window.addEventListener('scroll', function () {
+        var y = window.scrollY
+        if (y > lastScrollY) scrollingDownUntil = Date.now() + 800
+        lastScrollY = y
+      }, { passive: true })
+
+      function onChatInteract() {
+        closeMenuIfOpen()
+        var nearBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 4
+        if (Date.now() < scrollingDownUntil || nearBottom) return
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+
+      root.addEventListener('pointerdown', onChatInteract)
+      root.addEventListener('focusin', onChatInteract)
+    })()
+  </script>
 {% endblock %}
