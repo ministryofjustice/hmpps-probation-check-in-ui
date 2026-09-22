@@ -1,9 +1,16 @@
 import { type RequestHandler, Router } from 'express'
 import asyncMiddleware from '../middleware/asyncMiddleware'
+import config from '../config'
 
 export default function routes(): Router {
   const router = Router()
   const get = (path: string | string[], handler: RequestHandler) => router.get(path, asyncMiddleware(handler))
+
+  if (config.chatbot.enabled) {
+    get('/chat', (req, res) => {
+      res.render('pages/chat')
+    })
+  }
 
   get('/', (req, res, next) => {
     res.render('pages/index')

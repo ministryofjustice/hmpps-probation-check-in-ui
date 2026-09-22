@@ -1,0 +1,24 @@
+{% extends "../partials/layout.njk" %}
+
+{% set pageTitle = "Ask Fred – Submit a remote check-in – GOV.UK" %}
+{% set containerClasses = "app-chat-fullbleed" %}
+
+{% block head %}
+  {{ super() }}
+  <link href="{{ '/assets/css/chatbot.css' | assetMap }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block beforeContent %}{% endblock %}
+
+{% block main %}
+  <main id="main-content" role="main">
+    <div id="chatbot-root"></div>
+  </main>
+{% endblock %}
+
+{% block footer %}{{ super() }}{% endblock %}
+
+{% block bodyEnd %}
+  {{ super() }}
+  <script type="module" src="{{ '/assets/js/chatbot.js' | assetMap }}"></script>
+{% endblock %}

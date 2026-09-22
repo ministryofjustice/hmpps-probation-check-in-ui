@@ -44,9 +44,7 @@
   </section>
 {% endblock %}
 
-{% block bodyStart %}
-<div id="chatbot-root"></div>
-{% endblock %}
+{% block bodyStart %}{% endblock %}
 
 {% block footer %}
   {{
@@ -84,8 +82,5 @@
       document.body.dataset.submissionId = '{{ submissionId }}'
     </script>
     <script type="module" src="{{ '/assets/js/timeout.js' | assetMap }}"></script>
-  {% endif %}
-  {% if chatbotEnabled %}
-  <script type="module" src="{{ '/assets/js/chatbot.js' | assetMap }}"></script>
   {% endif %}
 {% endblock %}

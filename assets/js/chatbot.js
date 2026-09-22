@@ -17,14 +17,14 @@ const CONTENT = {
   },
   cy: {
     displayTitle: 'Helo, Fred ydw i',
-    placeholder: 'Gofynnwch am online check-ins…',
+    placeholder: 'Gofynnwch am fweldiadau ar-lein…',
     welcomeMessage:
-      "Fred ydw i. Gofynnwch i mi am online check-ins — sut maen nhw'n gweithio, beth fyddwch chi'n cael ei ofyn, beth sy'n digwydd os ydych chi'n colli un, neu sut mae'ch gwybodaeth yn cael ei defnyddio.",
+      'Fred ydw i. Gofynnwch i mi am fweldiadau ar-lein — sut maen nhw\'n gweithio, beth fyddwch chi\'n cael ei ofyn, beth sy\'n digwydd os byddwch chi\'n colli un, neu sut mae eich gwybodaeth yn cael ei defnyddio.',
     suggestedQuestions: [
-      'Sut mae online check-ins yn gweithio?',
-      "Beth fydda i'n cael fy ngofyn?",
-      'Beth os byddaf yn colli check-in?',
-      "Alla i roi'r gorau i ddefnyddio online check-ins?",
+      'Sut mae mweldiadau ar-lein yn gweithio?',
+      'Beth fyddaf yn cael ei ofyn?',
+      'Beth os byddaf yn colli mweldiad?',
+      'A allaf roi\'r gorau i fweldiadau ar-lein?',
       'Sut mae fy ngwybodaeth yn cael ei defnyddio?',
     ],
   },
@@ -37,6 +37,8 @@ init({
   container: '#chatbot-root',
   apiBaseUrl: '/api/chatbot/chat',
   domain: 'online-checkins',
+  inline: true,
+  hideHeader: true,
   config: {
     assistantName: 'Fred',
     displayTitle: content.displayTitle,
@@ -44,7 +46,6 @@ init({
     welcomeMessage: content.welcomeMessage,
     suggestedQuestions: content.suggestedQuestions,
     persistSession: false,
-    initiallyOpen: false,
     privacyMessage: null,
     privacyUrl: null,
   },
