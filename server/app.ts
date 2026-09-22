@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import nunjucksSetup from './utils/nunjucksSetup'
 import errorHandler from './errorHandler'
+import chatbotRoutes from './routes/chatbot'
 import feedbackRoutes from './routes/feedbackRoutes'
 import setUpAuthentication from './middleware/setUpAuthentication'
 import setUpCsrf from './middleware/setUpCsrf'
@@ -48,6 +49,8 @@ export default function createApp(services: Services): express.Application {
   app.use(bodyParser.json())
   app.use(storeFormDataInSession())
   app.use(populateValidationErrors())
+
+  app.use('/api/chatbot', chatbotRoutes())
 
   app.use(restrictToUK)
 

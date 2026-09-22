@@ -43,6 +43,8 @@ generic-service:
     ENVIRONMENT_NAME: DEV
     AUDIT_ENABLED: 'false'
     FEATURE_FACE_LIVENESS: 'true'
+    CHATBOT_ENABLED: 'true'
+    CHATBOT_API_URL: 'https://probationchatbot-dev.apps.live.cloud-platform.service.justice.gov.uk/api/backend/chatbot/chat-embed-stream'
 
 generic-prometheus-alerts:
   alertSeverity: hmpps_esupervision_alerts_nonprod
