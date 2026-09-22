@@ -44,13 +44,16 @@ export default function createApp(services: Services): express.Application {
 
   nunjucksSetup(app)
   app.use(setUpAuthentication())
+
+  // Chatbot proxy is an API route authenticated by X-API-Key on the upstream;
+  // it must be registered before CSRF so widget POST/GET requests are not blocked.
+  app.use('/api/chatbot', chatbotRoutes())
+
   app.use(setUpCsrf())
 
   app.use(bodyParser.json())
   app.use(storeFormDataInSession())
   app.use(populateValidationErrors())
-
-  app.use('/api/chatbot', chatbotRoutes())
 
   app.use(restrictToUK)
 
