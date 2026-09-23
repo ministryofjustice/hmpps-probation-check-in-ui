@@ -1,7 +1,6 @@
 {% extends "../partials/layout.njk" %}
 
 {% set pageTitle = "Ask Fred – Submit a remote check-in – GOV.UK" %}
-{% set containerClasses = "app-chat-fullbleed" %}
 
 {% block head %}
   {{ super() }}
@@ -11,7 +10,7 @@
 {% block beforeContent %}{% endblock %}
 
 {% block main %}
-  <main id="main-content" role="main">
+  <main class="govuk-main-wrapper" id="main-content" role="main">
     <div id="chatbot-root"></div>
   </main>
 {% endblock %}

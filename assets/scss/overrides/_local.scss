@@ -36,11 +36,6 @@
   font-variant: unset;
 }
 
-.govuk-width-container.app-chat-fullbleed {
-  max-width: none;
-  margin: 0;
-  padding: 0;
-}
 
 // GOV.UK Frontend only styles `.govuk-button[disabled]` (the attribute on real <button>s),
 // not the `.govuk-button--disabled` class used to disable link-style buttons. Mirror the
