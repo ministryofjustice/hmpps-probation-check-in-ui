@@ -56,7 +56,7 @@ jobs:
         id: restore-cache
         uses: actions/cache/restore@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         env:
-          cache-name: node-modules-v2
+          cache-name: node-modules
         with:
           path: |
             ./node_modules
@@ -86,7 +86,7 @@ jobs:
         id: save-cache
         uses: actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         env:
-          cache-name: node-modules-v2
+          cache-name: node-modules
         with:
           path: |
             ./node_modules

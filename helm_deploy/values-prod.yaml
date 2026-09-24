@@ -40,7 +40,7 @@ generic-service:
     PROBATION_ACCOUNT_API_URL: 'https://people-on-probation-api.hmpps.service.justice.gov.uk'
     AUDIT_ENABLED: "false"
     FEATURE_FACE_LIVENESS: 'true'
-    CHATBOT_ENABLED: 'true'
+    CHATBOT_ENABLED: 'false'
     CHATBOT_API_URL: 'https://probationchatbot-prod.apps.live.cloud-platform.service.justice.gov.uk/api/backend/chatbot/chat-embed-stream'
 
 generic-prometheus-alerts:

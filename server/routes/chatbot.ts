@@ -3,11 +3,33 @@ import config from '../config'
 import logger from '../../logger'
 
 const UPSTREAM_INACTIVITY_TIMEOUT_MS = 30_000
+const RATE_LIMIT_MAX = 30
+const RATE_LIMIT_WINDOW_MS = 60_000
+const MAX_MESSAGE_LENGTH = 2000
+const _rateLimitMap = new Map<string, { count: number; resetAt: number }>()
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now()
+  const entry = _rateLimitMap.get(ip)
+  if (!entry || entry.resetAt < now) {
+    _rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
+    return true
+  }
+  if (entry.count >= RATE_LIMIT_MAX) return false
+  entry.count++
+  return true
+}
 
 export default function chatbotRoutes(): Router {
   const router = Router()
 
   router.post('/chat', async (req: Request, res: Response) => {
+    const ip = req.ip ?? req.socket.remoteAddress ?? 'unknown'
+    if (!checkRateLimit(ip)) {
+      res.status(429).json({ error: 'Too many requests. Please wait before sending another message.' })
+      return
+    }
+
     const { apiUrl, apiKey } = config.chatbot
     // Forward the language the person chose with the site toggle (i18next sets
     // req.language) so Fred answers in Welsh or English deterministically.
@@ -30,6 +52,12 @@ export default function chatbotRoutes(): Router {
 
     const { message, conversation_id: conversationId, session_token: sessionToken } = req.body ?? {}
 
+    if (typeof message !== 'string' || message.length === 0 || message.length > MAX_MESSAGE_LENGTH) {
+      send({ type: 'error', text: 'Invalid request' })
+      res.end()
+      return
+    }
+
     const upstreamBody = {
       message,
       conversation_id: conversationId,
@@ -42,9 +70,9 @@ export default function chatbotRoutes(): Router {
       clearTimeout(idleTimer)
       idleTimer = setTimeout(() => controller.abort(), UPSTREAM_INACTIVITY_TIMEOUT_MS)
     }
-    req.on('close', () => {
+    res.on('close', () => {
       clearTimeout(idleTimer)
-      controller.abort()
+      if (!res.writableFinished) controller.abort()
     })
 
     try {

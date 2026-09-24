@@ -1,0 +1,159 @@
+import express, { Express } from 'express'
+import request from 'supertest'
+import chatbotRoutes from './chatbot'
+
+jest.mock('../config', () => ({
+  __esModule: true,
+  default: {
+    chatbot: {
+      enabled: true,
+      apiUrl: 'https://chatbot.example.com/chatbot/chat-embed-stream',
+      apiKey: 'test-api-key',
+    },
+  },
+}))
+
+jest.mock('../../logger', () => ({
+  warn: jest.fn(),
+  info: jest.fn(),
+  error: jest.fn(),
+}))
+
+const mockFetch = jest.fn()
+global.fetch = mockFetch
+
+function makeApp(): Express {
+  const app = express()
+  app.use(express.json())
+  app.use('/api/chatbot', chatbotRoutes())
+  return app
+}
+
+function sseStream(chunks: string[]): ReadableStream<Uint8Array> {
+  const encoder = new TextEncoder()
+  let i = 0
+  return new ReadableStream({
+    pull(controller) {
+      if (i < chunks.length) {
+        controller.enqueue(encoder.encode(chunks[i++]))
+      } else {
+        controller.close()
+      }
+    },
+  })
+}
+
+beforeEach(() => {
+  mockFetch.mockReset()
+})
+
+describe('POST /api/chatbot/chat', () => {
+  it('streams a successful upstream response through', async () => {
+    const chunk = 'data: {"type":"text","text":"Hello"}\n\n'
+    mockFetch.mockResolvedValue({
+      ok: true,
+      body: sseStream([chunk]),
+    })
+
+    const res = await request(makeApp())
+      .post('/api/chatbot/chat')
+      .send({ message: 'Hello' })
+      .expect(200)
+      .expect('Content-Type', /text\/event-stream/)
+
+    expect(res.text).toContain(chunk)
+  })
+
+  it('returns SSE error event when upstream returns non-2xx', async () => {
+    mockFetch.mockResolvedValue({
+      ok: false,
+      status: 503,
+      statusText: 'Service Unavailable',
+      text: async () => 'upstream down',
+    })
+
+    const res = await request(makeApp())
+      .post('/api/chatbot/chat')
+      .send({ message: 'Hello' })
+      .expect(200)
+
+    expect(res.text).toContain('"type":"error"')
+    expect(res.text).toContain('unavailable')
+  })
+
+  it('returns SSE error event when chatbot is not configured', async () => {
+    const configModule = require('../config')
+    const original = configModule.default.chatbot
+    configModule.default.chatbot = { enabled: false, apiUrl: '', apiKey: '' }
+
+    const res = await request(makeApp()).post('/api/chatbot/chat').send({ message: 'Hello' }).expect(200)
+    configModule.default.chatbot = original
+
+    expect(res.text).toContain('"type":"error"')
+    expect(res.text).toContain('not configured')
+  })
+
+  it('returns 400 when message is missing', async () => {
+    const res = await request(makeApp()).post('/api/chatbot/chat').send({}).expect(200)
+    expect(res.text).toContain('"type":"error"')
+  })
+
+  it('returns 400 when message exceeds max length', async () => {
+    const res = await request(makeApp())
+      .post('/api/chatbot/chat')
+      .send({ message: 'x'.repeat(2001) })
+      .expect(200)
+    expect(res.text).toContain('"type":"error"')
+  })
+})
+
+describe('POST /api/chatbot/chat/feedback', () => {
+  it('proxies valid feedback to the upstream feedback endpoint', async () => {
+    mockFetch.mockResolvedValue({ ok: true })
+
+    const res = await request(makeApp())
+      .post('/api/chatbot/chat/feedback')
+      .send({ message_id: 'msg-1', feedback_type: 'thumbs_up' })
+      .expect(200)
+
+    expect(res.body).toEqual({ message: 'Feedback recorded' })
+    expect(mockFetch).toHaveBeenCalledWith(
+      'https://chatbot.example.com/chatbot/feedback-embed',
+      expect.objectContaining({ method: 'POST' }),
+    )
+  })
+
+  it('returns 400 when message_id or feedback_type is missing', async () => {
+    await request(makeApp())
+      .post('/api/chatbot/chat/feedback')
+      .send({ message_id: 'msg-1' })
+      .expect(400)
+
+    await request(makeApp()).post('/api/chatbot/chat/feedback').send({ feedback_type: 'thumbs_up' }).expect(400)
+  })
+
+  it('derives feedback URL by replacing chat-embed-stream with feedback-embed', async () => {
+    mockFetch.mockResolvedValue({ ok: true })
+
+    await request(makeApp())
+      .post('/api/chatbot/chat/feedback')
+      .send({ message_id: 'msg-1', feedback_type: 'thumbs_down' })
+      .expect(200)
+
+    const [calledUrl] = mockFetch.mock.calls[0]
+    expect(calledUrl).toBe('https://chatbot.example.com/chatbot/feedback-embed')
+  })
+
+  it('returns 502 when upstream feedback returns non-2xx', async () => {
+    mockFetch.mockResolvedValue({
+      ok: false,
+      status: 500,
+      text: async () => 'error',
+    })
+
+    await request(makeApp())
+      .post('/api/chatbot/chat/feedback')
+      .send({ message_id: 'msg-1', feedback_type: 'thumbs_up' })
+      .expect(502)
+  })
+})
