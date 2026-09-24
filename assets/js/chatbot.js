@@ -19,12 +19,12 @@ const CONTENT = {
     displayTitle: 'Helo, Fred ydw i',
     placeholder: 'Gofynnwch am fweldiadau ar-lein…',
     welcomeMessage:
-      'Fred ydw i. Gofynnwch i mi am fweldiadau ar-lein — sut maen nhw\'n gweithio, beth fyddwch chi\'n cael ei ofyn, beth sy\'n digwydd os byddwch chi\'n colli un, neu sut mae eich gwybodaeth yn cael ei defnyddio.',
+      "Fred ydw i. Gofynnwch i mi am fweldiadau ar-lein — sut maen nhw'n gweithio, beth fyddwch chi'n cael ei ofyn, beth sy'n digwydd os byddwch chi'n colli un, neu sut mae eich gwybodaeth yn cael ei defnyddio.",
     suggestedQuestions: [
       'Sut mae mweldiadau ar-lein yn gweithio?',
       'Beth fyddaf yn cael ei ofyn?',
       'Beth os byddaf yn colli mweldiad?',
-      'A allaf roi\'r gorau i fweldiadau ar-lein?',
+      "A allaf roi'r gorau i fweldiadau ar-lein?",
       'Sut mae fy ngwybodaeth yn cael ei defnyddio?',
     ],
   },
