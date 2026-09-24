@@ -1,6 +1,7 @@
 import express, { Express } from 'express'
 import request from 'supertest'
 import chatbotRoutes from './chatbot'
+import config from '../config'
 
 jest.mock('../config', () => ({
   __esModule: true,
@@ -35,7 +36,8 @@ function sseStream(chunks: string[]): ReadableStream<Uint8Array> {
   return new ReadableStream({
     pull(controller) {
       if (i < chunks.length) {
-        controller.enqueue(encoder.encode(chunks[i++]))
+        controller.enqueue(encoder.encode(chunks[i]))
+        i += 1
       } else {
         controller.close()
       }
@@ -72,22 +74,18 @@ describe('POST /api/chatbot/chat', () => {
       text: async () => 'upstream down',
     })
 
-    const res = await request(makeApp())
-      .post('/api/chatbot/chat')
-      .send({ message: 'Hello' })
-      .expect(200)
+    const res = await request(makeApp()).post('/api/chatbot/chat').send({ message: 'Hello' }).expect(200)
 
     expect(res.text).toContain('"type":"error"')
     expect(res.text).toContain('unavailable')
   })
 
   it('returns SSE error event when chatbot is not configured', async () => {
-    const configModule = require('../config')
-    const original = configModule.default.chatbot
-    configModule.default.chatbot = { enabled: false, apiUrl: '', apiKey: '' }
+    const original = config.chatbot
+    config.chatbot = { enabled: false, apiUrl: '', apiKey: '' }
 
     const res = await request(makeApp()).post('/api/chatbot/chat').send({ message: 'Hello' }).expect(200)
-    configModule.default.chatbot = original
+    config.chatbot = original
 
     expect(res.text).toContain('"type":"error"')
     expect(res.text).toContain('not configured')
@@ -124,10 +122,7 @@ describe('POST /api/chatbot/chat/feedback', () => {
   })
 
   it('returns 400 when message_id or feedback_type is missing', async () => {
-    await request(makeApp())
-      .post('/api/chatbot/chat/feedback')
-      .send({ message_id: 'msg-1' })
-      .expect(400)
+    await request(makeApp()).post('/api/chatbot/chat/feedback').send({ message_id: 'msg-1' }).expect(400)
 
     await request(makeApp()).post('/api/chatbot/chat/feedback').send({ feedback_type: 'thumbs_up' }).expect(400)
   })
