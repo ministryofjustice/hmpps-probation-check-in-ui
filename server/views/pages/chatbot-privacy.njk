@@ -1,0 +1,60 @@
+{% extends "../partials/layout.njk" %}
+{% set pageTitle = t('public.chatbotPrivacy.title') %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ t('public.chatbotPrivacy.heading') }}</h1>
+
+      <h2 class="govuk-heading-l">{{ t('public.chatbotPrivacy.purpose.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.purpose.body1') }}</p>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.purpose.body2') }}</p>
+
+      <h2 class="govuk-heading-l">{{ t('public.chatbotPrivacy.howItWorks.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.howItWorks.body') }}</p>
+
+      <h2 class="govuk-heading-l">{{ t('public.chatbotPrivacy.whatInfo.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.whatInfo.intro') }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ t('public.chatbotPrivacy.whatInfo.items.messages') }}</li>
+        <li>{{ t('public.chatbotPrivacy.whatInfo.items.responses') }}</li>
+      </ul>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.whatInfo.noRecord') }}</p>
+
+      <h2 class="govuk-heading-l">{{ t('public.chatbotPrivacy.whoResponsible.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.whoResponsible.body') }}</p>
+
+      <h2 class="govuk-heading-l">{{ t('public.chatbotPrivacy.lawfulBasis.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.lawfulBasis.body') }}</p>
+
+      <h2 class="govuk-heading-l">{{ t('public.chatbotPrivacy.whoProcesses.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.whoProcesses.intro') }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ t('public.chatbotPrivacy.whoProcesses.items.microsoft') | safe }}</li>
+        <li>{{ t('public.chatbotPrivacy.whoProcesses.items.aws') | safe }}</li>
+      </ul>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.whoProcesses.outro') }}</p>
+
+      <h2 class="govuk-heading-l">{{ t('public.chatbotPrivacy.retention.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.retention.body') }}</p>
+
+      <h2 class="govuk-heading-l">{{ t('public.chatbotPrivacy.yourRights.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.yourRights.intro') }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ t('public.chatbotPrivacy.yourRights.items.access') }}</li>
+        <li>{{ t('public.chatbotPrivacy.yourRights.items.correction') }}</li>
+        <li>{{ t('public.chatbotPrivacy.yourRights.items.deletion') }}</li>
+        <li>{{ t('public.chatbotPrivacy.yourRights.items.restriction') }}</li>
+        <li>{{ t('public.chatbotPrivacy.yourRights.items.objection') }}</li>
+      </ul>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.yourRights.sar') | safe }}</p>
+
+      <h2 class="govuk-heading-l">{{ t('public.chatbotPrivacy.complaints.heading') }}</h2>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.complaints.body') }}</p>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.complaints.address') | safe }}</p>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.complaints.controller') }}</p>
+      <p class="govuk-body">{{ t('public.chatbotPrivacy.complaints.dpo') | safe }}</p>
+
+    </div>
+  </div>
+{% endblock %}

@@ -47,6 +47,6 @@ init({
     suggestedQuestions: content.suggestedQuestions,
     persistSession: false,
     privacyMessage: null,
-    privacyUrl: null,
+    privacyUrl: '/privacy-notice/chatbot',
   },
 })
