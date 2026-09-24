@@ -9,7 +9,10 @@ export default function chatbotRoutes(): Router {
 
   router.post('/chat', async (req: Request, res: Response) => {
     const { apiUrl, apiKey } = config.chatbot
-    const upstreamUrl = apiUrl ? `${apiUrl}?domain=online-checkins` : ''
+    // Forward the language the person chose with the site toggle (i18next sets
+    // req.language) so Fred answers in Welsh or English deterministically.
+    const lang = req.language === 'cy' ? 'cy' : 'en'
+    const upstreamUrl = apiUrl ? `${apiUrl}?domain=online-checkins&lang=${lang}` : ''
 
     res.setHeader('Content-Type', 'text/event-stream')
     res.setHeader('Cache-Control', 'no-cache, no-transform')
