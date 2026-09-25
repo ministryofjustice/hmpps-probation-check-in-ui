@@ -45,7 +45,7 @@ init({
     placeholder: content.placeholder,
     welcomeMessage: content.welcomeMessage,
     suggestedQuestions: content.suggestedQuestions,
-    persistSession: false,
+    persistSession: true,
     privacyMessage: null,
     privacyUrl: '/privacy-notice/chatbot',
   },
