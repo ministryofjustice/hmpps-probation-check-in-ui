@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express'
+import { LRUCache } from 'lru-cache'
 import config from '../config'
 import logger from '../../logger'
 
@@ -6,13 +7,18 @@ const UPSTREAM_INACTIVITY_TIMEOUT_MS = 30_000
 const RATE_LIMIT_MAX = 30
 const RATE_LIMIT_WINDOW_MS = 60_000
 const MAX_MESSAGE_LENGTH = 2000
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
+
+export const rateLimitCache = new LRUCache<string, { count: number; resetAt: number }>({
+  max: 10_000,
+  ttl: RATE_LIMIT_WINDOW_MS,
+  ttlResolution: 1_000,
+})
 
 function checkRateLimit(ip: string): boolean {
   const now = Date.now()
-  const entry = rateLimitMap.get(ip)
+  const entry = rateLimitCache.get(ip, { updateAgeOnGet: false })
   if (!entry || entry.resetAt < now) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
+    rateLimitCache.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
     return true
   }
   if (entry.count >= RATE_LIMIT_MAX) return false

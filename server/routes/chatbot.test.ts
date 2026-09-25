@@ -1,6 +1,6 @@
 import express, { Express } from 'express'
 import request from 'supertest'
-import chatbotRoutes from './chatbot'
+import chatbotRoutes, { rateLimitCache } from './chatbot'
 import config from '../config'
 
 jest.mock('../config', () => ({
@@ -23,9 +23,15 @@ jest.mock('../../logger', () => ({
 const mockFetch = jest.fn()
 global.fetch = mockFetch
 
-function makeApp(): Express {
+function makeApp(language?: string): Express {
   const app = express()
   app.use(express.json())
+  if (language) {
+    app.use((req, _res, next) => {
+      ;(req as express.Request & { language: string }).language = language
+      next()
+    })
+  }
   app.use('/api/chatbot', chatbotRoutes())
   return app
 }
@@ -47,6 +53,7 @@ function sseStream(chunks: string[]): ReadableStream<Uint8Array> {
 
 beforeEach(() => {
   mockFetch.mockReset()
+  rateLimitCache.clear()
 })
 
 describe('POST /api/chatbot/chat', () => {
@@ -91,17 +98,55 @@ describe('POST /api/chatbot/chat', () => {
     expect(res.text).toContain('not configured')
   })
 
-  it('returns 400 when message is missing', async () => {
+  it('returns SSE error event when message is missing', async () => {
     const res = await request(makeApp()).post('/api/chatbot/chat').send({}).expect(200)
     expect(res.text).toContain('"type":"error"')
   })
 
-  it('returns 400 when message exceeds max length', async () => {
+  it('returns SSE error event when message exceeds max length', async () => {
     const res = await request(makeApp())
       .post('/api/chatbot/chat')
       .send({ message: 'x'.repeat(2001) })
       .expect(200)
     expect(res.text).toContain('"type":"error"')
+  })
+
+  it('returns 429 when rate limit is exceeded', async () => {
+    mockFetch.mockResolvedValue({
+      ok: true,
+      body: sseStream(['data: {"type":"text","text":"Hi"}\n\n']),
+    })
+
+    for (let i = 0; i < 30; i += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      await request(makeApp()).post('/api/chatbot/chat').send({ message: 'Hello' }).expect(200)
+    }
+
+    await request(makeApp()).post('/api/chatbot/chat').send({ message: 'Hello' }).expect(429)
+  })
+
+  it('appends lang=cy to upstream URL when site language is Welsh', async () => {
+    mockFetch.mockResolvedValue({
+      ok: true,
+      body: sseStream(['data: {"type":"text","text":"Shwmae"}\n\n']),
+    })
+
+    await request(makeApp('cy')).post('/api/chatbot/chat').send({ message: 'Shwmae' }).expect(200)
+
+    const [calledUrl] = mockFetch.mock.calls[0]
+    expect(calledUrl).toContain('lang=cy')
+  })
+
+  it('appends lang=en to upstream URL when site language is English', async () => {
+    mockFetch.mockResolvedValue({
+      ok: true,
+      body: sseStream(['data: {"type":"text","text":"Hello"}\n\n']),
+    })
+
+    await request(makeApp('en')).post('/api/chatbot/chat').send({ message: 'Hello' }).expect(200)
+
+    const [calledUrl] = mockFetch.mock.calls[0]
+    expect(calledUrl).toContain('lang=en')
   })
 })
 

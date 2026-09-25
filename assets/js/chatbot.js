@@ -17,7 +17,7 @@ const CONTENT = {
   },
   cy: {
     displayTitle: 'Helo, Fred ydw i',
-    placeholder: 'Gofynnwch am wiriad ar-lein…',
+    placeholder: 'Gofynnwch am wiriadau ar-lein…',
     welcomeMessage:
       "Fred ydw i. Gofynnwch i mi am wiriadau ar-lein — sut maen nhw'n gweithio, beth fyddwch chi'n cael ei ofyn, beth sy'n digwydd os byddwch chi'n colli un, neu sut mae eich gwybodaeth yn cael ei defnyddio.",
     suggestedQuestions: [

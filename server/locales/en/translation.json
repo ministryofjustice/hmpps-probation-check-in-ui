@@ -1371,7 +1371,7 @@
       "heading": "Privacy Notice – Online check-ins chatbot",
       "purpose": {
         "heading": "Purpose",
-        "body1": "This privacy notice explains how Fred, the AI chatbot on the 'Check your probation account' service, uses your personal information when you use the online check-ins chatbot.",
+        "body1": "This privacy notice explains how Fred, the AI chatbot on the 'Check in with your probation officer' service, uses your personal information when you use the online check-ins chatbot.",
         "body2": "Fred can answer questions about online check-ins — how they work, what you're asked, what happens if you miss one, and how to get support. It cannot access your personal probation record, make decisions about your case, or replace your probation practitioner."
       },
       "howItWorks": {
@@ -1418,14 +1418,14 @@
           "restriction": "Request restriction of processing in certain circumstances",
           "objection": "Object to the processing of your personal data"
         },
-        "sar": "To make a subject access request, contact: <a class=\"govuk-link\" href=\"mailto:Data.Access1@justice.gov.uk\">Data.Access1@justice.gov.uk</a>"
+        "sar": "To make a subject access request, contact: <a class=\"govuk-link\" href=\"mailto:data.access1@justice.gov.uk\">data.access1@justice.gov.uk</a>"
       },
       "complaints": {
         "heading": "Complaints",
         "body": "If you consider that your personal information has been handled incorrectly, you can contact the Information Commissioner for independent advice about data protection.",
         "address": "Information Commissioner's Office<br>Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF<br>Tel: 0303 123 1113<br><a class=\"govuk-link\" href=\"https://www.ico.org.uk\">www.ico.org.uk</a>",
         "controller": "The data controller is the Ministry of Justice, 102 Petty France, London, SW1H 9AJ. Tel: 020 3334 3555.",
-        "dpo": "The Data Protection Officer can be contacted at: <a class=\"govuk-link\" href=\"mailto:dataprotection@justice.gov.uk\">dataprotection@justice.gov.uk</a>"
+        "dpo": "The Data Protection Officer can be contacted at: <a class=\"govuk-link\" href=\"mailto:DPO@justice.gov.uk\">DPO@justice.gov.uk</a>"
       }
     }
   }
