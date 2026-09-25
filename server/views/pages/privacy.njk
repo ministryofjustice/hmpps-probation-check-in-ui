@@ -16,6 +16,9 @@
       <p class="govuk-body">
         {{ t('public.privacy.purpose.collect') }}
       </p>
+      {% if chatbotEnabled %}
+        <p class="govuk-body">{{ t('public.privacy.purpose.chatbot') | safe }}</p>
+      {% endif %}
 
       <h2 class="govuk-heading-l">{{ t('public.privacy.definitions.heading') }}</h2>
       <p class="govuk-body">{{ t('public.privacy.definitions.controller') }}</p>
