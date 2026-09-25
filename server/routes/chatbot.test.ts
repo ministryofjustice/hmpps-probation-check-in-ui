@@ -111,7 +111,7 @@ describe('POST /api/chatbot/chat', () => {
     expect(res.text).toContain('"type":"error"')
   })
 
-  it('returns 429 when rate limit is exceeded', async () => {
+  it('returns SSE error event when rate limit is exceeded', async () => {
     mockFetch.mockResolvedValue({
       ok: true,
       body: sseStream(['data: {"type":"text","text":"Hi"}\n\n']),
@@ -122,7 +122,10 @@ describe('POST /api/chatbot/chat', () => {
       await request(makeApp()).post('/api/chatbot/chat').send({ message: 'Hello' }).expect(200)
     }
 
-    await request(makeApp()).post('/api/chatbot/chat').send({ message: 'Hello' }).expect(429)
+    const res = await request(makeApp()).post('/api/chatbot/chat').send({ message: 'Hello' }).expect(200)
+    expect(res.text).toContain('"type":"error"')
+    expect(res.text).toContain('Too many requests')
+    expect(mockFetch).toHaveBeenCalledTimes(30)
   })
 
   it('appends lang=cy to upstream URL when site language is Welsh', async () => {

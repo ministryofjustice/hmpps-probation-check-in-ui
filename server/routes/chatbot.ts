@@ -30,12 +30,6 @@ export default function chatbotRoutes(): Router {
   const router = Router()
 
   router.post('/chat', async (req: Request, res: Response) => {
-    const ip = req.ip ?? req.socket.remoteAddress ?? 'unknown'
-    if (!checkRateLimit(ip)) {
-      res.status(429).json({ error: 'Too many requests. Please wait before sending another message.' })
-      return
-    }
-
     const { apiUrl, apiKey } = config.chatbot
     // Forward the language the person chose with the site toggle (i18next sets
     // req.language) so Fred answers in Welsh or English deterministically.
@@ -48,6 +42,16 @@ export default function chatbotRoutes(): Router {
 
     const send = (payload: Record<string, unknown>) => {
       res.write(`data: ${JSON.stringify(payload)}\n\n`)
+    }
+
+    // The widget shows the raw HTTP status on any non-2xx, so rate-limit
+    // rejections go out as an SSE error event like every other failure path.
+    const ip = req.ip ?? req.socket.remoteAddress ?? 'unknown'
+    if (!checkRateLimit(ip)) {
+      logger.warn('Chatbot rate limit exceeded')
+      send({ type: 'error', text: 'Too many requests. Please wait a minute before sending another message.' })
+      res.end()
+      return
     }
 
     if (!config.chatbot.enabled || !apiUrl || !apiKey) {
