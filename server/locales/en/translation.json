@@ -1399,14 +1399,18 @@
         "heading": "Who processes your information",
         "intro": "Your personal data will be processed by:",
         "items": {
-          "microsoft": "<strong>Microsoft Azure AI Foundry</strong> and associated Azure cloud services, which generate chatbot responses. The deployment is hosted in Sweden. Where personal data is transferred outside the UK, Standard Contractual Clauses are in place.",
-          "aws": "<strong>Amazon Web Services (AWS)</strong> managed databases (PostgreSQL) hosted on the MoJ Cloud Platform in the UK, which store chatbot messages during the retention period."
+          "microsoft": "<strong>Microsoft Azure AI Foundry</strong> and associated Azure cloud services, which generate chatbot responses and support the operation of the chatbot.",
+          "aws": "<strong>Amazon Web Services (AWS)</strong> managed databases (PostgreSQL) hosted on the MoJ Cloud Platform in the UK, which securely store chatbot messages and responses during the retention period."
         },
         "outro": "Microsoft and AWS act as data processors on behalf of the MoJ and do not act as joint controllers."
       },
+      "internationalTransfers": {
+        "heading": "International Transfers",
+        "body": "The Azure AI Foundry deployment used by the chatbot is hosted in Sweden. Where personal data is transferred outside the UK, appropriate safeguards such as Standard Contractual Clauses are in place."
+      },
       "retention": {
-        "heading": "Retention",
-        "body": "Questions you submit and chatbot responses are retained for 90 days from the date they are created, after which they are automatically deleted."
+        "heading": "Retention period for information collected",
+        "body": "Questions submitted by users and chatbot responses are retained for 90 days from the date they are created, after which they are automatically deleted."
       },
       "yourRights": {
         "heading": "Your rights",
