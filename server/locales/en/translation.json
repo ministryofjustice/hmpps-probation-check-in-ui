@@ -803,7 +803,8 @@
           "complain": "how you can complain if you think we have done something wrong"
         },
         "hmpps": "The Probation Service is one part of Her Majesty’s Prison and Probation Service (HMPPS) which is part of the Ministry of Justice (MoJ).",
-        "collect": "We need to collect your personal information to carry out functions such as delivering sentences given by the courts, in custody and the community, and rehabilitating people in our care through education and employment."
+        "collect": "We need to collect your personal information to carry out functions such as delivering sentences given by the courts, in custody and the community, and rehabilitating people in our care through education and employment.",
+        "chatbot": "If you use the Ask Fred chatbot, the <a class=\"govuk-link\" href=\"/privacy-notice/chatbot\">chatbot privacy notice</a> explains how your messages are used."
       },
       "definitions": {
         "heading": "Definitions",
