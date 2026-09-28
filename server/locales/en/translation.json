@@ -871,7 +871,7 @@
           "notForSale": "not make your personal information available for sale to others",
           "considerRequest": "consider your request to correct, stop collecting or delete your personal information if relevant and legal"
         },
-        "survey": "Occasionally we may use your contact information to ask you if you would like to complete a survey, or take part in research about online check ins. We use this information to see where and how we could improve our services to you.",
+        "survey": "Occasionally we may use your contact information to ask you if you would like to complete a survey, or take part in research about online check ins or other services for people on probation. We use this information to see where and how we could improve probation services and digital products we offer you. ",
         "moreInfo": "If you want more information on how we use and store your data, read the <a class=\"govuk-link\" href=\"/privacy-notice\">Probation Service Privacy Notice</a> and the <a target=\"_blank\" rel=\"nofollow\" href=\"https://www.gov.uk/government/publications/records-information-management-policy-psi-042018-pi-022018?_ga=2.111056325.1998926715.1755701905-1493322833.1755701905\" class=\"govuk-link\">HMPPS Records, Information Management and Retention Policy</a>."
       },
       "retention": {
