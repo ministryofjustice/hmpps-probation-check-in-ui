@@ -15,16 +15,19 @@ const CONTENT = {
       'How is my information used?',
     ],
   },
+  // Welsh terminology follows the translation team's existing locale
+  // (server/locales/cy): a check-in is a "cyfarfod diweddaru", online
+  // check-ins are "cyfarfodydd diweddaru ar-lein".
   cy: {
     displayTitle: 'Helo, Fred ydw i',
-    placeholder: 'Gofynnwch am wiriadau ar-lein…',
+    placeholder: 'Gofynnwch am gyfarfodydd diweddaru ar-lein…',
     welcomeMessage:
-      "Fred ydw i. Gofynnwch i mi am wiriadau ar-lein — sut maen nhw'n gweithio, beth fyddwch chi'n cael ei ofyn, beth sy'n digwydd os byddwch chi'n colli un, neu sut mae eich gwybodaeth yn cael ei defnyddio.",
+      "Fred ydw i. Gofynnwch i mi am gyfarfodydd diweddaru ar-lein — sut maen nhw'n gweithio, pa gwestiynau a ofynnir i chi, beth sy'n digwydd os byddwch chi'n methu un, neu sut mae eich gwybodaeth yn cael ei defnyddio.",
     suggestedQuestions: [
-      'Sut mae gwiriadau ar-lein yn gweithio?',
-      'Beth fyddaf yn cael ei ofyn?',
-      'Beth os byddaf yn colli gwiriad?',
-      "A allaf roi'r gorau i wiriad ar-lein?",
+      'Sut mae cyfarfodydd diweddaru ar-lein yn gweithio?',
+      'Pa gwestiynau fydd yn cael eu gofyn i mi?',
+      'Beth os byddaf yn methu cyfarfod diweddaru?',
+      'A allaf stopio defnyddio cyfarfodydd diweddaru ar-lein?',
       'Sut mae fy ngwybodaeth yn cael ei defnyddio?',
     ],
   },
