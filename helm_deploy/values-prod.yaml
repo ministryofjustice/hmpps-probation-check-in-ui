@@ -41,7 +41,7 @@ generic-service:
     AUDIT_ENABLED: "false"
     FEATURE_FACE_LIVENESS: 'true'
     CHATBOT_ENABLED: 'false'
-    CHATBOT_API_URL: 'https://probationchatbot-prod.apps.live.cloud-platform.service.justice.gov.uk/api/backend/chatbot/chat-embed-stream'
+    CHATBOT_API_URL: 'https://probationchatbot-prod.apps.live.cloud-platform.service.justice.gov.uk/api/proxy/chatbot/chat-embed-stream'
 
 generic-prometheus-alerts:
   alertSeverity: hmpps_esupervision_alerts
