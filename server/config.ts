@@ -83,6 +83,11 @@ export default {
   sqs: {
     audit: auditConfig(),
   },
+  chatbot: {
+    enabled: get('CHATBOT_ENABLED', 'false') === 'true',
+    apiUrl: get('CHATBOT_API_URL', ''),
+    apiKey: get('CHATBOT_API_KEY', ''),
+  },
   awsRegion: get('AWS_REGION', 'eu-west-1'),
   environmentName: get('ENVIRONMENT_NAME', ''),
 }

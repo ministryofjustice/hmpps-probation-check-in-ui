@@ -27,6 +27,15 @@
         <span class="govuk-service-navigation__service-name">
           <span class="govuk-service-navigation__text">{{ t('common.serviceName') }}</span>
         </span>
+        {% if chatbotEnabled %}
+          <nav aria-label="{{ t('common.askFred') }}">
+            <ul class="govuk-service-navigation__list">
+              <li class="govuk-service-navigation__item">
+                <a class="govuk-service-navigation__link" href="/chat">{{ t('common.askFred') }}</a>
+              </li>
+            </ul>
+          </nav>
+        {% endif %}
         {% include "partials/languageToggle.njk" %}
       </div>
     </div>
@@ -44,8 +53,7 @@
   </section>
 {% endblock %}
 
-{% block bodyStart %}
-{% endblock %}
+{% block bodyStart %}{% endblock %}
 
 {% block footer %}
   {{

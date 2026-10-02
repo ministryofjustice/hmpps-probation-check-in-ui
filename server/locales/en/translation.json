@@ -50,7 +50,8 @@
     },
     "visuallyHidden": {
       "mentalHealthTextBox": "Selecting this option will reveal a textbox"
-    }
+    },
+    "askFred": "Ask Fred"
   },
   "submission": {
     "index": {
@@ -802,7 +803,8 @@
           "complain": "how you can complain if you think we have done something wrong"
         },
         "hmpps": "The Probation Service is one part of Her Majesty’s Prison and Probation Service (HMPPS) which is part of the Ministry of Justice (MoJ).",
-        "collect": "We need to collect your personal information to carry out functions such as delivering sentences given by the courts, in custody and the community, and rehabilitating people in our care through education and employment."
+        "collect": "We need to collect your personal information to carry out functions such as delivering sentences given by the courts, in custody and the community, and rehabilitating people in our care through education and employment.",
+        "chatbot": "If you use the Ask Fred chatbot, the <a class=\"govuk-link\" href=\"/privacy-notice/chatbot\">chatbot privacy notice</a> explains how your messages are used."
       },
       "definitions": {
         "heading": "Definitions",
@@ -1360,6 +1362,75 @@
       "thankyou": {
         "heading": "Thank you for your feedback",
         "body": "Your feedback is anonymous so you will not receive a reply."
+      }
+    },
+    "chat": {
+      "title": "Ask Fred – Online check-ins"
+    },
+    "chatbotPrivacy": {
+      "title": "Ask Fred privacy notice – Online check-ins",
+      "heading": "Privacy Notice – Online check-ins chatbot",
+      "purpose": {
+        "heading": "Purpose",
+        "body1": "This privacy notice explains how Fred, the AI chatbot on the 'Check in with your probation officer' service, uses your personal information when you use the online check-ins chatbot.",
+        "body2": "Fred can answer questions about online check-ins — how they work, what you're asked, what happens if you miss one, and how to get support. It cannot access your personal probation record, make decisions about your case, or replace your probation practitioner."
+      },
+      "howItWorks": {
+        "heading": "How the chatbot works",
+        "body": "When you type a question, it is sent to Microsoft Azure AI Foundry to generate a response. The chatbot does not have access to your probation record and does not retrieve personal information from probation systems."
+      },
+      "whatInfo": {
+        "heading": "What information we use",
+        "intro": "We process:",
+        "items": {
+          "messages": "Questions and messages you type into the chatbot",
+          "responses": "The chatbot responses generated during your session"
+        },
+        "noRecord": "We do not use your name, case reference, or any information from your probation record to answer questions."
+      },
+      "whoResponsible": {
+        "heading": "Who is responsible for your information?",
+        "body": "The Ministry of Justice (MoJ) is the data controller."
+      },
+      "lawfulBasis": {
+        "heading": "Lawful basis",
+        "body": "The legal basis for processing your personal data is Article 6(1)(e) UK GDPR — processing necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the data controller."
+      },
+      "whoProcesses": {
+        "heading": "Who processes your information",
+        "intro": "Your personal data will be processed by:",
+        "items": {
+          "microsoft": "<strong>Microsoft Azure AI Foundry</strong> and associated Azure cloud services, which generate chatbot responses and support the operation of the chatbot.",
+          "aws": "<strong>Amazon Web Services (AWS)</strong> managed databases (PostgreSQL) hosted on the MoJ Cloud Platform in the UK, which securely store chatbot messages and responses during the retention period."
+        },
+        "outro": "Microsoft and AWS act as data processors on behalf of the MoJ and do not act as joint controllers."
+      },
+      "internationalTransfers": {
+        "heading": "International Transfers",
+        "body": "The Azure AI Foundry deployment used by the chatbot is hosted in Sweden. Where personal data is transferred outside the UK, appropriate safeguards such as Standard Contractual Clauses are in place."
+      },
+      "retention": {
+        "heading": "Retention period for information collected",
+        "body": "Questions submitted by users and chatbot responses are retained for 90 days from the date they are created, after which they are automatically deleted."
+      },
+      "yourRights": {
+        "heading": "Your rights",
+        "intro": "You have the right to:",
+        "items": {
+          "access": "Request access to your personal information",
+          "correction": "Request correction of inaccurate information",
+          "deletion": "Request deletion of retained chatbot messages where applicable",
+          "restriction": "Request restriction of processing in certain circumstances",
+          "objection": "Object to the processing of your personal data"
+        },
+        "sar": "To make a subject access request, contact: <a class=\"govuk-link\" href=\"mailto:data.access1@justice.gov.uk\">data.access1@justice.gov.uk</a>"
+      },
+      "complaints": {
+        "heading": "Complaints",
+        "body": "If you consider that your personal information has been handled incorrectly, you can contact the Information Commissioner for independent advice about data protection.",
+        "address": "Information Commissioner's Office<br>Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF<br>Tel: 0303 123 1113<br><a class=\"govuk-link\" href=\"https://www.ico.org.uk\">www.ico.org.uk</a>",
+        "controller": "The data controller is the Ministry of Justice, 102 Petty France, London, SW1H 9AJ. Tel: 020 3334 3555.",
+        "dpo": "The Data Protection Officer can be contacted at: <a class=\"govuk-link\" href=\"mailto:DPO@justice.gov.uk\">DPO@justice.gov.uk</a>"
       }
     }
   }

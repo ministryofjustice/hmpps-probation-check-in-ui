@@ -50,7 +50,8 @@
     },
     "visuallyHidden": {
       "mentalHealthTextBox": ""
-    }
+    },
+    "askFred": "Gofynnwch i Fred"
   },
   "submission": {
     "index": {
@@ -783,7 +784,8 @@
           "complain": "y ffordd y gallwch gwyno os ydych chi’n meddwl ein bod wedi gwneud rhywbeth o’i le"
         },
         "hmpps": "Mae’r Gwasanaeth Prawf yn un rhan o Wasanaeth Carchardai a Phrawf Ei Fawrhydi, sy’n rhan o’r Weinyddiaeth Gyfiawnder.",
-        "collect": "Bydd angen i ni gasglu’ch gwybodaeth bersonol er mwyn cyflawni swyddogaethau fel cyflawni dedfrydau a roddir gan y llysoedd (yn y ddalfa ac yn y gymuned), ac adsefydlu pobl yn ein gofal drwy addysg a chyflogaeth. "
+        "collect": "Bydd angen i ni gasglu’ch gwybodaeth bersonol er mwyn cyflawni swyddogaethau fel cyflawni dedfrydau a roddir gan y llysoedd (yn y ddalfa ac yn y gymuned), ac adsefydlu pobl yn ein gofal drwy addysg a chyflogaeth. ",
+        "chatbot": "Os ydych chi’n defnyddio’r chatbot Gofynnwch i Fred, mae <a class=\"govuk-link\" href=\"/privacy-notice/chatbot\">hysbysiad preifatrwydd y chatbot</a> yn egluro sut mae eich negeseuon yn cael eu defnyddio."
       },
       "definitions": {
         "heading": "Diffiniadau",
@@ -1341,6 +1343,75 @@
       "thankyou": {
         "heading": "",
         "body": ""
+      }
+    },
+    "chat": {
+      "title": "Gofynnwch i Fred – Cyfarfodydd diweddaru ar-lein"
+    },
+    "chatbotPrivacy": {
+      "title": "Hysbysiad preifatrwydd Gofynnwch i Fred – Cyfarfodydd diweddaru ar-lein",
+      "heading": "Hysbysiad Preifatrwydd – Chatbot cyfarfodydd diweddaru ar-lein",
+      "purpose": {
+        "heading": "Pwrpas",
+        "body1": "Mae’r hysbysiad preifatrwydd hwn yn egluro sut mae Fred, y chatbot AI ar y gwasanaeth ‘Cyfarfod diweddaru gyda’ch swyddog prawf’, yn defnyddio eich gwybodaeth bersonol pan fyddwch chi’n defnyddio chatbot y cyfarfodydd diweddaru ar-lein.",
+        "body2": "Gall Fred ateb cwestiynau am gyfarfodydd diweddaru ar-lein – sut maen nhw’n gweithio, pa gwestiynau a ofynnir i chi, beth sy’n digwydd os byddwch chi’n methu un, a sut i gael cymorth. Ni all gael mynediad at eich cofnod prawf personol, gwneud penderfyniadau am eich achos, na chymryd lle eich swyddog prawf."
+      },
+      "howItWorks": {
+        "heading": "Sut mae’r chatbot yn gweithio",
+        "body": "Pan fyddwch chi’n teipio cwestiwn, caiff ei anfon at Microsoft Azure AI Foundry i gynhyrchu ymateb. Nid oes gan y chatbot fynediad at eich cofnod prawf ac nid yw’n adalw gwybodaeth bersonol o systemau prawf."
+      },
+      "whatInfo": {
+        "heading": "Pa wybodaeth rydym yn ei defnyddio",
+        "intro": "Rydym yn prosesu:",
+        "items": {
+          "messages": "Cwestiynau a negeseuon rydych chi’n eu teipio i’r chatbot",
+          "responses": "Ymatebion y chatbot a gynhyrchir yn ystod eich sesiwn"
+        },
+        "noRecord": "Nid ydym yn defnyddio eich enw, cyfeirnod eich achos, nac unrhyw wybodaeth o’ch cofnod prawf i ateb cwestiynau."
+      },
+      "whoResponsible": {
+        "heading": "Pwy sy’n gyfrifol am eich gwybodaeth?",
+        "body": "Y Weinyddiaeth Gyfiawnder (MoJ) yw’r rheolydd data."
+      },
+      "lawfulBasis": {
+        "heading": "Sail gyfreithiol",
+        "body": "Y sail gyfreithiol ar gyfer prosesu eich data personol yw Erthygl 6(1)(e) GDPR y DU – prosesu sy’n angenrheidiol er mwyn cyflawni tasg a wneir er budd y cyhoedd neu wrth arfer awdurdod swyddogol sydd wedi’i freinio yn y rheolydd data."
+      },
+      "whoProcesses": {
+        "heading": "Pwy sy’n prosesu eich gwybodaeth",
+        "intro": "Bydd eich data personol yn cael ei brosesu gan:",
+        "items": {
+          "microsoft": "<strong>Microsoft Azure AI Foundry</strong> a gwasanaethau cwmwl Azure cysylltiedig, sy’n cynhyrchu ymatebion y chatbot ac yn cefnogi gweithrediad y chatbot.",
+          "aws": "Cronfeydd data a reolir <strong>Amazon Web Services (AWS)</strong> (PostgreSQL) a gynhelir ar Blatfform Cwmwl y Weinyddiaeth Gyfiawnder yn y DU, sy’n storio negeseuon ac ymatebion y chatbot yn ddiogel yn ystod y cyfnod cadw."
+        },
+        "outro": "Mae Microsoft ac AWS yn gweithredu fel prosesyddion data ar ran y Weinyddiaeth Gyfiawnder ac nid ydynt yn gweithredu fel cyd-reolyddion."
+      },
+      "internationalTransfers": {
+        "heading": "Trosglwyddiadau Rhyngwladol",
+        "body": "Mae’r gwasanaeth Azure AI Foundry a ddefnyddir gan y chatbot wedi’i leoli yn Sweden. Lle caiff data personol ei drosglwyddo y tu allan i’r DU, mae mesurau diogelu priodol, fel Cymalau Cytundebol Safonol, ar waith."
+      },
+      "retention": {
+        "heading": "Cyfnod cadw’r wybodaeth a gesglir",
+        "body": "Caiff cwestiynau a gyflwynir gan ddefnyddwyr ac ymatebion y chatbot eu cadw am 90 diwrnod o’r dyddiad y cânt eu creu, ac yna cânt eu dileu’n awtomatig."
+      },
+      "yourRights": {
+        "heading": "Eich hawliau",
+        "intro": "Mae gennych yr hawl i:",
+        "items": {
+          "access": "ofyn am fynediad at eich gwybodaeth bersonol",
+          "correction": "ofyn am gywiro gwybodaeth anghywir",
+          "deletion": "ofyn am ddileu negeseuon chatbot a gedwir, lle bo hynny’n berthnasol",
+          "restriction": "ofyn am gyfyngu ar brosesu mewn rhai amgylchiadau",
+          "objection": "wrthwynebu prosesu eich data personol"
+        },
+        "sar": "I wneud cais am fynediad at ddata gan y testun, cysylltwch â: <a class=\"govuk-link\" href=\"mailto:data.access1@justice.gov.uk\">data.access1@justice.gov.uk</a>"
+      },
+      "complaints": {
+        "heading": "Cwynion",
+        "body": "Os ydych chi’n credu bod eich gwybodaeth bersonol wedi cael ei thrin yn anghywir, gallwch gysylltu â’r Comisiynydd Gwybodaeth i gael cyngor annibynnol ar ddiogelu data.",
+        "address": "Information Commissioner's Office<br>Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF<br>Ffôn: 0303 123 1113<br><a class=\"govuk-link\" href=\"https://www.ico.org.uk\">www.ico.org.uk</a>",
+        "controller": "Y rheolydd data yw’r Weinyddiaeth Gyfiawnder, 102 Petty France, Llundain, SW1H 9AJ. Ffôn: 020 3334 3555.",
+        "dpo": "Gallwch gysylltu â’r Swyddog Diogelu Data yn: <a class=\"govuk-link\" href=\"mailto:DPO@justice.gov.uk\">DPO@justice.gov.uk</a>"
       }
     }
   }
