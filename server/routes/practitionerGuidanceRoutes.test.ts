@@ -22,7 +22,7 @@ describe('practitioner guidance routes', () => {
     expect(res.text).toContain('href="/practitioner-guidance/how-you-can-use-online-check-ins"')
   })
 
-  it.each(practitionerGuidancePages.map(page => [practitionerGuidancePath(page), page]))(
+  it.each(practitionerGuidancePages.map(page => [practitionerGuidancePath(page), page] as const))(
     'renders %s with the contents list and pagination',
     async (path, page) => {
       const res = await request(app).get(path)
