@@ -1093,6 +1093,55 @@
     "practitionerGuidance": {
       "title": "",
       "headerServiceLabel": "",
+      "sectionName": "",
+      "contents": {
+        "heading": "",
+        "ariaLabel": ""
+      },
+      "pages": {
+        "about": {
+          "title": ""
+        },
+        "howYouCanUse": {
+          "title": ""
+        },
+        "beforeYouSignSomeoneUp": {
+          "title": ""
+        },
+        "whatThePersonOnProbationViews": {
+          "title": ""
+        },
+        "whoCanUse": {
+          "title": ""
+        },
+        "signingSomeoneUp": {
+          "title": ""
+        },
+        "addingAdditionalQuestions": {
+          "title": ""
+        },
+        "reviewingCheckIn": {
+          "title": ""
+        },
+        "stoppingCancellingRestarting": {
+          "title": ""
+        },
+        "updatingInformation": {
+          "title": ""
+        },
+        "timeOffOrChangingPractitioner": {
+          "title": ""
+        },
+        "recordedInNdelius": {
+          "title": ""
+        },
+        "havingDifficulty": {
+          "title": ""
+        },
+        "givingFeedback": {
+          "title": ""
+        }
+      },
       "intro": "Mae cofrestriadau ar-lein yn caniatáu i bobl ar brawf roi'r wybodaeth ddiweddaraf i chi am eu hanghenion a sut maent yn teimlo. Byddant yn gwneud hyn trwy ateb rhai cwestiynau am sut maent ac os oes angen unrhyw gymorth arnynt, a recordio fideo 5 eiliad y byddwn yn ei ddefnyddio i wirio eu hunaniaeth.",
       "meaning": {
         "heading": "Beth mae cofrestriadau ar-lein yn ei olygu i chi",

@@ -1112,6 +1112,55 @@
     "practitionerGuidance": {
       "title": "About online check ins",
       "headerServiceLabel": "Manage probation check ins <strong class=\"govuk-tag govuk-phase-banner__content__tag\">Private Beta</strong>",
+      "sectionName": "Practitioner guidance",
+      "contents": {
+        "heading": "Contents",
+        "ariaLabel": "Practitioner guidance contents"
+      },
+      "pages": {
+        "about": {
+          "title": "About online check ins and what you need to do"
+        },
+        "howYouCanUse": {
+          "title": "How you can use online check ins"
+        },
+        "beforeYouSignSomeoneUp": {
+          "title": "Before you sign someone up to use online check ins"
+        },
+        "whatThePersonOnProbationViews": {
+          "title": "What the person on probation views"
+        },
+        "whoCanUse": {
+          "title": "Finding out who can use online check ins"
+        },
+        "signingSomeoneUp": {
+          "title": "Signing someone up to use online check ins"
+        },
+        "addingAdditionalQuestions": {
+          "title": "Adding additional questions to online check ins"
+        },
+        "reviewingCheckIn": {
+          "title": "Reviewing a submitted or missed check in"
+        },
+        "stoppingCancellingRestarting": {
+          "title": "Stopping, cancelling and restarting check ins"
+        },
+        "updatingInformation": {
+          "title": "Updating someone’s contact details or other check in information"
+        },
+        "timeOffOrChangingPractitioner": {
+          "title": "Taking time off or changing a person’s probation practitioner"
+        },
+        "recordedInNdelius": {
+          "title": "What gets recorded in NDelius"
+        },
+        "havingDifficulty": {
+          "title": "If someone is having difficulty using online check ins"
+        },
+        "givingFeedback": {
+          "title": "Giving feedback and case studies"
+        }
+      },
       "intro": "Online check ins allow people on probation to update you about their needs and how they are feeling. They’ll do this by answering some questions about how they are and if they need any support. We’ll then ask them to verify their identity to confirm it’s them completing the check in. Once they have completed their check in, you’ll review their answers and can use this information to help monitor risk.",
       "meaning": {
         "heading": "What online check ins mean for you",
