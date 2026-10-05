@@ -15,6 +15,7 @@ describe('practitioner guidance routes', () => {
 
     expect(res.status).toBe(200)
     expect(res.text).toContain('<h1 class="govuk-heading-xl">Online check ins</h1>')
+    expect(res.text).toContain('<h2 class="govuk-heading-l">About online check ins and what you need to do</h2>')
     // index has no previous page but does have a next page
     expect(res.text).not.toContain('govuk-pagination__prev')
     expect(res.text).toContain('govuk-pagination__next')
