@@ -14,7 +14,7 @@ describe('practitioner guidance routes', () => {
     const res = await request(app).get('/practitioner-guidance')
 
     expect(res.status).toBe(200)
-    expect(res.text).toContain('<h1 class="govuk-heading-xl">About online check ins and what you need to do</h1>')
+    expect(res.text).toContain('<h1 class="govuk-heading-xl">Online check ins</h1>')
     // index has no previous page but does have a next page
     expect(res.text).not.toContain('govuk-pagination__prev')
     expect(res.text).toContain('govuk-pagination__next')
