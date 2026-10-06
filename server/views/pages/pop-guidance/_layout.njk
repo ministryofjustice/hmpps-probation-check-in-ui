@@ -1,0 +1,65 @@
+{% extends "../../partials/layout.njk" %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/pagination/macro.njk" import govukPagination %}
+
+{% block beforeContent %}
+  {% if backLink %}
+    <div class="es-page-actions">
+      <div class="es-page-actions__back">
+        {{
+          govukBackLink({
+            text: t('common.buttons.back'),
+            href: backLink
+          })
+        }}
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{ t('public.popGuidance.heading') }}</h1>
+      <nav class="es-contents-list" aria-label="{{ t('public.popGuidance.contents.ariaLabel') }}">
+        <p class="es-contents-list__heading">
+          {{ t('public.popGuidance.contents.heading') }}
+        </p>
+        <ul class="govuk-list es-contents-list__list">
+          {% for item in contents %}
+            <li class="es-contents-list__item">
+              {% if item.current %}
+                <span class="es-contents-list__current" aria-current="page">{{ item.text }}</span>
+              {% else %}
+                <a class="govuk-link govuk-link--no-visited-state" href="{{ item.href }}">{{ item.text }}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <h2 class="govuk-heading-l">{{ pageTitle }}</h2>
+
+      {% block guidanceContent %}{% endblock %}
+
+      {% if previousPage or nextPage %}
+        {{
+          govukPagination({
+            classes: "govuk-!-margin-top-8",
+            landmarkLabel: t('common.pagination.ariaLabel'),
+            previous: {
+              href: previousPage.href,
+              text: t('common.pagination.previous'),
+              labelText: previousPage.text
+            } if previousPage else null,
+            next: {
+              href: nextPage.href,
+              text: t('common.pagination.next'),
+              labelText: nextPage.text
+            } if nextPage else null
+          })
+        }}
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
