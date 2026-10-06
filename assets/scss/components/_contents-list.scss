@@ -1,0 +1,35 @@
+@use 'govuk-frontend/dist/govuk/index' as gds;
+
+.es-contents-list {
+  margin-bottom: gds.govuk-spacing(6);
+
+  @include gds.govuk-media-query($from: tablet) {
+    margin-bottom: gds.govuk-spacing(8);
+  }
+}
+
+.es-contents-list__heading {
+  margin-bottom: gds.govuk-spacing(2);
+}
+
+.es-contents-list__list {
+  margin-bottom: 0;
+}
+
+.es-contents-list__item {
+  position: relative;
+  padding-left: gds.govuk-spacing(5);
+  margin-bottom: gds.govuk-spacing(1);
+
+  &::before {
+    content: '\2014';
+    position: absolute;
+    left: 0;
+    overflow: hidden;
+    width: gds.govuk-spacing(4);
+  }
+}
+
+.es-contents-list__current {
+  @include gds.govuk-font($size: 19);
+}

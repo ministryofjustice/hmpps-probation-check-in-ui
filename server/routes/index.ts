@@ -1,5 +1,6 @@
 import { type RequestHandler, Router } from 'express'
 import asyncMiddleware from '../middleware/asyncMiddleware'
+import practitionerGuidanceRoutes from './practitionerGuidanceRoutes'
 
 export default function routes(): Router {
   const router = Router()
@@ -27,9 +28,7 @@ export default function routes(): Router {
     res.render('pages/guidance', { backLink })
   })
 
-  get('/practitioner-guidance', (req, res, next) => {
-    res.render('pages/practitioner-guidance')
-  })
+  router.use(practitionerGuidanceRoutes())
 
   get('/.well-known/appspecific/com.chrome.devtools.json', async (req, res, next) => {
     return res.status(404).render('pages/error')
