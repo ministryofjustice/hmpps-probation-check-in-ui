@@ -2,11 +2,11 @@ import { type RequestHandler, Router } from 'express'
 import asyncMiddleware from '../middleware/asyncMiddleware'
 import { POP_GUIDANCE_BASE_PATH, popGuidancePages, popGuidancePath } from './popGuidancePages'
 
-const renderGuidancePage: RequestHandler = (req, res, next) => {
+const renderGuidancePage: RequestHandler = (req, res) => {
   const slug = typeof req.params.slug === 'string' ? req.params.slug : ''
   const index = popGuidancePages.findIndex(page => page.slug === slug)
   if (index < 0) {
-    next()
+    res.status(404).render('pages/not-found')
     return
   }
 
