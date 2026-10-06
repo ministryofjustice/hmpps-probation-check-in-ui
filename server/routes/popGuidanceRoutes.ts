@@ -26,7 +26,7 @@ const renderGuidancePage: RequestHandler = (req, res, next) => {
 
   res.render(`pages/pop-guidance/${currentPage.view}`, {
     pageTitle: titleFor(currentPage.titleKey),
-    backLink: submissionId ? `/${submissionId}` : undefined,
+    backLink: submissionId ? `/${encodeURIComponent(submissionId)}` : undefined,
     contents: popGuidancePages.map(page => ({ ...toLink(page), current: page.slug === slug })),
     previousPage: previous ? toLink(previous) : null,
     nextPage: following ? toLink(following) : null,
