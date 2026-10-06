@@ -1,6 +1,7 @@
 import { type RequestHandler, Router } from 'express'
 import asyncMiddleware from '../middleware/asyncMiddleware'
 import practitionerGuidanceRoutes from './practitionerGuidanceRoutes'
+import popGuidanceRoutes from './popGuidanceRoutes'
 
 export default function routes(): Router {
   const router = Router()
@@ -22,12 +23,7 @@ export default function routes(): Router {
     res.render('pages/cookies')
   })
 
-  get('/guidance', (req, res, next) => {
-    const { submissionId } = req.query
-    const backLink = submissionId ? `/${submissionId}` : undefined
-    res.render('pages/guidance', { backLink })
-  })
-
+  router.use(popGuidanceRoutes())
   router.use(practitionerGuidanceRoutes())
 
   get('/.well-known/appspecific/com.chrome.devtools.json', async (req, res, next) => {
