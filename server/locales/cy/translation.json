@@ -51,7 +51,7 @@
     "visuallyHidden": {
       "mentalHealthTextBox": ""
     },
-    "askFred": "Gofynnwch i Fred"
+    "skipToChatbot": "Neidio i'r chatbot"
   },
   "submission": {
     "index": {
@@ -1344,9 +1344,6 @@
         "heading": "",
         "body": ""
       }
-    },
-    "chat": {
-      "title": "Gofynnwch i Fred – Cyfarfodydd diweddaru ar-lein"
     },
     "chatbotPrivacy": {
       "title": "Hysbysiad preifatrwydd Gofynnwch i Fred – Cyfarfodydd diweddaru ar-lein",

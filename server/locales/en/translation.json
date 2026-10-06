@@ -51,7 +51,7 @@
     "visuallyHidden": {
       "mentalHealthTextBox": "Selecting this option will reveal a textbox"
     },
-    "askFred": "Ask Fred"
+    "skipToChatbot": "Skip to chatbot"
   },
   "submission": {
     "index": {
@@ -1363,9 +1363,6 @@
         "heading": "Thank you for your feedback",
         "body": "Your feedback is anonymous so you will not receive a reply."
       }
-    },
-    "chat": {
-      "title": "Ask Fred – Online check-ins"
     },
     "chatbotPrivacy": {
       "title": "Ask Fred privacy notice – Online check-ins",
