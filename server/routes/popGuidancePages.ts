@@ -49,7 +49,3 @@ export const popGuidancePages: readonly PopGuidancePage[] = [
 export function popGuidancePath(page: PopGuidancePage): string {
   return page.slug ? `${POP_GUIDANCE_BASE_PATH}/${page.slug}` : POP_GUIDANCE_BASE_PATH
 }
-
-export function findPopGuidancePage(slug: string): PopGuidancePage | undefined {
-  return popGuidancePages.find(page => page.slug === slug)
-}
