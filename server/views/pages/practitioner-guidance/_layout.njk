@@ -2,16 +2,20 @@
 {%- from "moj/components/header/macro.njk" import mojHeader -%}
 {% from "govuk/components/pagination/macro.njk" import govukPagination %}
 
+{% block pageTitle %}
+ {{ pageTitle }} - {{ t('common.serviceNamePractitioner') }}
+{% endblock %}
+
 {% block header %}
   {{
     mojHeader({
       organisationLabel: {
         text: "HMPPS",
-        href: "/"
+        href: "/practitioner-guidance"
       },
       serviceLabel: {
         html: t('public.practitionerGuidance.headerServiceLabel'),
-        href: "/"
+        href: "/practitioner-guidance"
       }
     })
   }}
