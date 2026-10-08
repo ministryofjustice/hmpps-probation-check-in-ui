@@ -19,6 +19,7 @@ jest.mock('../services', () => ({
 
 jest.mock('../../logger', () => ({
   info: jest.fn(),
+  warn: jest.fn(),
   error: jest.fn(),
 }))
 
@@ -41,6 +42,7 @@ describe('submissionController', () => {
     const buildRes = () => {
       const res: any = {}
       res.render = jest.fn()
+      res.status = jest.fn().mockReturnValue(res)
       res.redirect = jest.fn()
       res.locals = { checkin: { crn: 'X123456' } }
       return res
@@ -103,6 +105,37 @@ describe('submissionController', () => {
       expect(req.session.formData.autoVerifyResult).toBeUndefined()
       expect(req.session.formData.isLive).toBeUndefined()
       expect(res.redirect).toHaveBeenCalledWith('/sub-1/questions/mental-health')
+    })
+
+    it('renders the retryable unavailable page with a 503 when the API cannot check the details', async () => {
+      verifyIdentity.mockRejectedValueOnce({ responseStatus: 503 })
+      const req: any = buildReq({ session: { formData: { firstName: 'John', lastName: 'Doe' } } })
+      const res = buildRes()
+
+      await handleVerify(req, res as any, mockNext)
+
+      expect(res.status).toHaveBeenCalledWith(503)
+      expect(res.render).toHaveBeenCalledWith('pages/submission/verification-unavailable', { submissionId: 'sub-1' })
+      expect(res.render).not.toHaveBeenCalledWith('pages/submission/no-match-found', expect.anything())
+      expect(logger.warn).toHaveBeenCalledWith('Identity verification unavailable for submissionId sub-1')
+      expect(mockNext).not.toHaveBeenCalled()
+      expect(res.redirect).not.toHaveBeenCalled()
+      expect(req.session.submissionAuthorized).toBeUndefined()
+      // Entered details stay in the session so "Try again" pre-fills the form
+      expect(req.session.formData).toEqual({ firstName: 'John', lastName: 'Doe' })
+    })
+
+    it('passes any other API error to the error handler', async () => {
+      const error = { responseStatus: 500 }
+      verifyIdentity.mockRejectedValueOnce(error)
+      const req: any = buildReq()
+      const res = buildRes()
+
+      await handleVerify(req, res as any, mockNext)
+
+      expect(mockNext).toHaveBeenCalledWith(error)
+      expect(res.render).not.toHaveBeenCalled()
+      expect(req.session.submissionAuthorized).toBeUndefined()
     })
   })
 

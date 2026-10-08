@@ -100,6 +100,14 @@
         "lastNameRequired": "Rhowch eich cyfenw"
       }
     },
+    "verificationUnavailable": {
+      "title": "We could not check your details because there was a technical problem",
+      "intro": "We were unable to check your details to access your check in. You can try again now or come back later.",
+      "help": {
+        "heading": "Need help?",
+        "intro": "If you try again and still cannot access your check in, you should contact your probation officer."
+      }
+    },
     "noMatchFound": {
       "title": "Ni chanfuwyd unrhyw beth sy’n cyd-fynd",
       "intro": "Nid oedd modd i ni ddilysu pwy ydych chi. Gwiriwch eich gwybodaeth am wallau a rhowch gynnig arall arni.",
