@@ -6,19 +6,19 @@ import '@justiceaiunit/chatbot-widget/style.css'
 // open the privacy notice at config.privacyUrl.
 //
 // Welsh terminology follows the translation team's existing locale
-// (server/locales/cy): a check-in is a "cyfarfod diweddaru", online check-ins
+// (server/locales/cy): a check in is a "cyfarfod diweddaru", online check ins
 // are "cyfarfodydd diweddaru ar-lein". The Welsh below is a developer
 // translation to be replaced by the translation team's wording.
 const CONTENT = {
   en: {
-    placeholder: 'Ask about online check-ins',
+    placeholder: 'Ask about online check ins',
     welcomeMessage: [
       "Hi, I'm Fred.",
       "I'm an AI chatbot assistant.",
       // The two trailing spaces are a markdown hard break, keeping the question
       // and its explanation together in one paragraph.
       '**What would you like to know?**  \n' +
-        'I can help you by answering questions about online check-ins, or help if you are stuck. ' +
+        'I can help you by answering questions about online check ins, or help if you are stuck. ' +
         'I use this [guidance about Check in with your probation officer](/guidance). I may make mistakes.',
       'By continuing, you agree to our [privacy notice](#privacy).',
     ].join('\n\n'),
