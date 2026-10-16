@@ -78,6 +78,8 @@ generic-service:
       REDIS_AUTH_TOKEN: 'auth_token'
     hmpps-probation-check-in-ui-application-insights:
       APPLICATIONINSIGHTS_CONNECTION_STRING: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+    hmpps-probation-check-in-ui-chatbot-api-key:
+      CHATBOT_API_KEY: 'CHATBOT_API_KEY'
     ip-info-token:
       IP_INFO_TOKEN: 'token'
     # This secret will need to be created in your namespace (note it isn't in hmpps-templates-dev)
