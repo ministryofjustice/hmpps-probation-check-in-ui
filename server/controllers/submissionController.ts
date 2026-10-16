@@ -112,6 +112,11 @@ export const handleVerify: RequestHandler = async (req, res: Response<object, Su
     logger.info(`User is verified and check in authorised for submissionId ${submissionId}`)
     return res.redirect(`/${submissionId}/questions/mental-health`)
   } catch (error) {
+    if (error?.responseStatus === 503) {
+      // The API could not reach NDelius, so the details were not checked - offer a retry, not "no match".
+      logger.warn(`Identity verification unavailable for submissionId ${submissionId}`)
+      return res.status(503).render('pages/submission/verification-unavailable', { submissionId })
+    }
     logger.error(`Error verifying identity for submissionId ${submissionId}`, error)
     return next(error)
   }

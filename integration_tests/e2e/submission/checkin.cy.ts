@@ -12,6 +12,7 @@ import ConfirmationPage from '../../pages/submission/confirmationPage'
 import MentalHealthPage from '../../pages/submission/mentalHealthPage'
 import PersonalDetailsPage from '../../pages/submission/personalDetailsPage'
 import SubmissionPage from '../../pages/submission/submissionPage'
+import VerificationUnavailablePage from '../../pages/submission/verificationUnavailablePage'
 import VideoInformPage from '../../pages/submission/video/informPage'
 import VideoRecordPage from '../../pages/submission/video/recordPage'
 import VideoViewPage from '../../pages/submission/video/viewPage'
@@ -160,5 +161,28 @@ describe('Start Check-in Journey', () => {
     additionalQuestionPage.checkOnPage()
     additionalQuestionPage.errorSummary().should('be.visible').and('contain.text', 'Enter your answer to the question')
     additionalQuestionPage.errorMessage().should('be.visible').and('contain.text', 'Enter your answer to the question')
+  })
+
+  it('should offer a retry, not "no match", when identity verification is unavailable', () => {
+    cy.task('stubVerifyIdentityUnavailable', testCheckin)
+    cy.visit(`/${testCheckin.uuid}/verify`)
+    const personalDetailsPage = SubmissionPage.verifyOnPage(PersonalDetailsPage)
+    personalDetailsPage.completeForm({ firstName: 'John', lastName: 'Smith', day: '14', month: '5', year: '1985' })
+    personalDetailsPage.continueButton().click()
+
+    const unavailablePage = SubmissionPage.verifyOnPage(VerificationUnavailablePage)
+    cy.title().should(
+      'eq',
+      'We could not check your details because there was a technical problem - Check in with your probation officer',
+    )
+    cy.contains('No match found').should('not.exist')
+    unavailablePage.tryAgainButton().click()
+
+    const retryPage = SubmissionPage.verifyOnPage(PersonalDetailsPage)
+    retryPage.firstNameField().should('have.value', 'John')
+    retryPage.lastNameField().should('have.value', 'Smith')
+    retryPage.dayField().should('have.value', '14')
+    retryPage.monthField().should('have.value', '5')
+    retryPage.yearField().should('have.value', '1985')
   })
 })

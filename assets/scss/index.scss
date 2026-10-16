@@ -1,9 +1,12 @@
-@use 'govuk-frontend/dist/govuk/index' with (
+@use '@ministryofjustice/frontend/moj/all' as * with (
   $govuk-global-styles: true,
-  $govuk-assets-path: '/assets/'
+  $moj-assets-path: '/assets/'
 );
 
-@use '@ministryofjustice/frontend/moj/all' as moj;
+@use 'govuk-frontend/dist/govuk/index';
+@use 'govuk-frontend/dist/govuk/helpers/font-faces--internal' as font-faces;
 
 @use './components/all';
 @use './overrides/local';
+
+@include font-faces.gds-transport;

@@ -470,6 +470,24 @@ export default {
     })
   },
 
+  stubVerifyIdentityUnavailable: (checkin: Checkin): SuperAgentRequest => {
+    return stubFor({
+      request: {
+        method: 'POST',
+        urlPattern: apiUrlPattern(`/offender_checkins/${checkin.uuid}/identity-verify`),
+      },
+      response: {
+        status: 503,
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        jsonBody: {
+          status: 503,
+          userMessage: 'Unable to verify personal details at the moment, please try again',
+          developerMessage: 'Could not verify personal details: NDelius unavailable',
+        },
+      },
+    })
+  },
+
   stubSubmitCheckin: (checkin: Checkin): SuperAgentRequest => {
     const submittedCheckin = { ...checkin, status: CheckinStatus.Submitted }
     return stubFor({

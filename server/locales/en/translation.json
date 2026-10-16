@@ -15,7 +15,7 @@
       "htmlNoLink": "This is a new service – your feedback will help us to improve it."
     },
     "footer": {
-      "guidance": "Online check in guidance",
+      "guidance": "Online check in guidance (opens in new tab)",
       "cookies": "Cookies",
       "privacy": "Privacy",
       "accessibility": "Accessibility statement",
@@ -99,6 +99,14 @@
       "errors": {
         "firstNameRequired": "Enter your first name",
         "lastNameRequired": "Enter your last name"
+      }
+    },
+    "verificationUnavailable": {
+      "title": "We could not check your details because there was a technical problem",
+      "intro": "We were unable to check your details to access your check in. You can try again now or come back later.",
+      "help": {
+        "heading": "Need help?",
+        "intro": "If you try again and still cannot access your check in, you should contact your probation officer."
       }
     },
     "noMatchFound": {
@@ -820,7 +828,7 @@
           "nameAddress": "your name and address",
           "phone": "telephone number",
           "dob": "date of birth",
-          "photoVideo": "photo and video",
+          "photoVideo": "photo",
           "feelings": "information you give us about how you are feeling",
           "location": "your location",
           "feedback": "your feedback about the service"
@@ -873,7 +881,7 @@
           "notForSale": "not make your personal information available for sale to others",
           "considerRequest": "consider your request to correct, stop collecting or delete your personal information if relevant and legal"
         },
-        "survey": "Occasionally we may use your contact information to ask you if you would like to complete a survey, or take part in research about online check ins. We use this information to see where and how we could improve our services to you.",
+        "survey": "Occasionally we may use your contact information to ask you if you would like to complete a survey, or take part in research about online check ins or other services for people on probation. We use this information to see where and how we could improve probation services and digital products we offer you. ",
         "moreInfo": "If you want more information on how we use and store your data, read the <a class=\"govuk-link\" href=\"/privacy-notice\">Probation Service Privacy Notice</a> and the <a target=\"_blank\" rel=\"nofollow\" href=\"https://www.gov.uk/government/publications/records-information-management-policy-psi-042018-pi-022018?_ga=2.111056325.1998926715.1755701905-1493322833.1755701905\" class=\"govuk-link\">HMPPS Records, Information Management and Retention Policy</a>."
       },
       "retention": {
@@ -1005,115 +1013,94 @@
         "privacyLink": "You can <a class=\"govuk-link\" href=\"/privacy-notice\">check our privacy policy to learn more about how your data is used</a>."
       }
     },
-    "guidance": {
-      "title": "About the Check in with your probation officer service",
-      "intro": "This service will allow you to check in with your probation officer online. This could be used in between your in-person appointments, or to replace some of your in-person appointments.",
-      "choosing": {
-        "heading": "Choosing if online check ins are right for you",
-        "talk": "Your probation officer will talk with you about how online check ins work, and you can decide together if you’d like to use them or if they’re something that’s suitable for you.",
-        "stop": "You can stop online check ins at any time by talking to your probation officer.",
-        "accessible": "We are working to make these online check ins as accessible as possible. We will continue this work to fix any accessibility issues that come up."
+    "popGuidance": {
+      "heading": "Check in with your probation officer guidance",
+      "contents": {
+        "heading": "Contents",
+        "ariaLabel": "Guidance contents"
       },
-      "signup": {
-        "heading": "How you’ll be signed up to use online check ins",
-        "intro": "If you choose to use online check ins, you’ll be signed up by your probation officer. They may do this in your in-person appointment. To sign up, they will need to enter:",
-        "items": {
-          "name": "your name and date of birth",
-          "phone": "your phone number or email address",
-          "photo": "a photograph of your face we can use to match your identity",
-          "startDate": "the date you will start using online check ins",
-          "frequency": "how often you will use online check ins"
+      "pages": {
+        "about": {
+          "title": "About the Check in with your probation officer service"
         },
-        "confirm": "Once you’ve been signed up, you’ll get a message to your preferred contact method to confirm you have signed up and telling you when you’ll get a link to complete your first check in online.",
-        "photoMatch": {
-          "heading": "How we use your photo to match with your submissions",
-          "body": "We take a photo of you during sign up to match with a video you’ll take during your check in. This is to make sure it’s you completing a check in, just like some banking apps ask for a photo or video to check you’re the right person. Your probation officer may take this or ask you to take it and send it to them."
+        "beforeSignUp": {
+          "title": "Before your probation officer signs you up"
+        },
+        "howWeUseYourInformation": {
+          "title": "How we use your information"
+        },
+        "signingUp": {
+          "title": "Signing up to use online check ins"
+        },
+        "usingOnlineCheckIns": {
+          "title": "Using online check ins"
+        },
+        "questionsWeAsk": {
+          "title": "Questions we ask in your online check in"
+        },
+        "confirmingCheckedIn": {
+          "title": "Confirming you’ve checked in and what happens next"
+        },
+        "struggling": {
+          "title": "What to do if you’re struggling or something goes wrong"
+        },
+        "givingFeedback": {
+          "title": "Giving feedback about online check ins"
         }
-      },
-      "completing": {
-        "heading": "How you will complete a check in",
-        "getLink": {
-          "heading": "Getting the link to use online check ins",
-          "firstCheckIn": "When your probation officer signs you up to use online check ins, they will set a date for your first check in.",
-          "messageDate": "On this date, you’ll get a message either by text or email, whichever one you chose. This will have a link to check in, and you’ll have 3 days to complete it."
-        },
-        "whatAsked": {
-          "heading": "What you'll be asked to do",
-          "intro": "During your check in you’ll be asked:",
-          "items": {
-            "name": "your name and date of birth",
-            "questions": "up to 5 questions about how you are and if you need support with anything",
-            "identity": "verify your identity"
-          },
-          "treat": "You should treat your online check in like any other probation appointment and make sure you’re fully and appropriately dressed.",
-          "outsideUk": "You will not be able to use this service to check in if you are outside of the UK."
-        },
-        "verify": {
-          "heading": "How we verify your identity",
-          "compare": "An image of you verifying your identity will be compared to the photo of you taken when you signed up. This is to confirm it is you completing the check in. You’ll also need to verify your identity by moving your face into a frame on your screen using your camera. Follow the instructions to move your face closer, keeping it in the frame.",
-          "permissions": "You’ll need to accept permissions to access your camera on your device."
-        },
-        "cannotConfirm": {
-          "heading": "If we cannot confirm your identity",
-          "continue": "If we cannot confirm your identity, you can still choose to continue and submit your check in anyway. A failed identity check can be caused by lots of things, such as if you’ve changed how you look, if you are not in a well lit area or if you’ve not moved quickly enough in front of the camera.",
-          "review": "Your probation officer will compare your identity check to your photo when they review your check in. If they have any questions, they will contact you."
-        }
-      },
-      "questions": {
-        "heading": "Questions in your online check in",
-        "intro": "During your online check in, you’ll be asked some questions. There are 2 questions that everyone is asked at every check in:",
-        "items": {
-          "feeling": "How have you been feeling since we last spoke?",
-          "support": "Is there anything you need support with or want to let us know about?"
-        },
-        "extra": "Your probation officer can then choose up to 3 extra questions to ask you. These questions will be about you, your life and anything you’ve been talking with your probation officer about. They’ll choose what to ask you to make sure you can give a proper update to them. This means they’ll be able to help you with things in a better way, and ask about things specific to you and your needs.",
-        "confirmation": {
-          "heading": "Confirmation that you’ve completed the check in and what happens next",
-          "body": "Once you’ve submitted your check in, you’ll get a text or an email to confirm that you’ve completed a check in and that your probation officer will review it and get in touch if needed."
-        },
-        "askedSupport": {
-          "heading": "If you have asked for support",
-          "body": "If you have asked for support with something in your check in, or said that you are not feeling great or you’re struggling, your probation officer will get in touch with you to see what they can do to help."
-        },
-        "failed": {
-          "heading": "If you fail to check in",
-          "body": "If you fail to check in for any reason, your probation officer may stop your check ins and contact you to find out why you’ve not been able to complete a check in.",
-          "difficulty": "If you’re having difficulty using online check ins, you should let your probation officer know as soon as possible so they can stop check ins."
-        }
-      },
-      "struggling": {
-        "heading": "What to do if you’re struggling or something goes wrong",
-        "intro": "Contact your probation officer or speak to them in your face-to-face appointment if you have any issues with online check ins. This could include:",
-        "items": {
-          "notWorking": "the system not working",
-          "difficult": "you're finding it difficult to use",
-          "contactChanged": "you’ve changed your contact details",
-          "lostPhone": "you've lost your phone or have an issue accessing the link",
-          "forget": "you forget to check in",
-          "faceToFace": "you want to go back to face-to-face only"
-        },
-        "noBreach": "Any issues you have with online check ins will not result in a breach of your conditions."
-      },
-      "info": {
-        "heading": "How we will use your information",
-        "body": "We’ll use the information you give us as part of your check in to update your probation officer about how you are doing, and if you need any support. This is stored in our system securely.",
-        "privacyLink": "You can <a class=\"govuk-link\" href=\"/privacy-notice\">check our privacy policy to learn more about how we use your data</a>.",
-        "sar": {
-          "heading": "Subject access requests",
-          "body": "If you would like a copy of the information we hold about you, your probation officer can email the team and ask to see it. This is called a subject access request. You can ask your probation officer and they’ll submit this on your behalf.",
-          "email": "You can also email the team at: <a href=\"mailto:data.access1@justice.gov.uk\" class=\"govuk-link\">data.access1@justice.gov.uk</a> to ask for a copy of the information."
-        }
-      },
-      "feedback": {
-        "heading": "How to give feedback about online check ins",
-        "form": "We have an <a href=\"/feedback\" class=\"govuk-link\">online feedback form for you to tell us your experience of online check ins.</a>",
-        "share": "You can fill in the form yourself or with your probation officer whenever you have something to share about online check ins.",
-        "other": "There’ll be other opportunities for you to give feedback, for example, you could choose to talk about your experience in short phone calls."
       }
     },
     "practitionerGuidance": {
       "title": "About online check ins",
       "headerServiceLabel": "Manage probation check ins <strong class=\"govuk-tag govuk-phase-banner__content__tag\">Private Beta</strong>",
+      "sectionName": "Practitioner guidance",
+      "contents": {
+        "heading": "Contents",
+        "ariaLabel": "Practitioner guidance contents"
+      },
+      "pages": {
+        "about": {
+          "title": "About online check ins and what you need to do"
+        },
+        "howYouCanUse": {
+          "title": "How you can use online check ins"
+        },
+        "beforeYouSignSomeoneUp": {
+          "title": "Before you sign someone up to use online check ins"
+        },
+        "whatThePersonOnProbationViews": {
+          "title": "What the person on probation views"
+        },
+        "whoCanUse": {
+          "title": "Finding out who can use online check ins"
+        },
+        "signingSomeoneUp": {
+          "title": "Signing someone up to use online check ins"
+        },
+        "addingAdditionalQuestions": {
+          "title": "Adding additional questions to online check ins"
+        },
+        "reviewingCheckIn": {
+          "title": "Reviewing a submitted or missed check in"
+        },
+        "stoppingCancellingRestarting": {
+          "title": "Stopping, cancelling and restarting check ins"
+        },
+        "updatingInformation": {
+          "title": "Updating someone’s contact details or other check in information"
+        },
+        "timeOffOrChangingPractitioner": {
+          "title": "Taking time off or changing a person’s probation practitioner"
+        },
+        "recordedInNdelius": {
+          "title": "What gets recorded in NDelius"
+        },
+        "havingDifficulty": {
+          "title": "If someone is having difficulty using online check ins"
+        },
+        "givingFeedback": {
+          "title": "Giving feedback and case studies"
+        }
+      },
       "intro": "Online check ins allow people on probation to update you about their needs and how they are feeling. They’ll do this by answering some questions about how they are and if they need any support. We’ll then ask them to verify their identity to confirm it’s them completing the check in. Once they have completed their check in, you’ll review their answers and can use this information to help monitor risk.",
       "meaning": {
         "heading": "What online check ins mean for you",
