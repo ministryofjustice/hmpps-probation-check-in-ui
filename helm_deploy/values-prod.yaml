@@ -42,4 +42,4 @@ generic-service:
     FEATURE_FACE_LIVENESS: 'true'
 
 generic-prometheus-alerts:
-  alertSeverity: hmpps_esupervision_alerts
+  alertSeverity: hmpps_esupervision_alerts_prod
