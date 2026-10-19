@@ -90,12 +90,13 @@ describe('POST /api/chatbot/chat', () => {
   it('returns SSE error event when chatbot is not configured', async () => {
     const original = config.chatbot
     config.chatbot = { enabled: false, apiUrl: '', apiKey: '' }
-
-    const res = await request(makeApp()).post('/api/chatbot/chat').send({ message: 'Hello' }).expect(200)
-    config.chatbot = original
-
-    expect(res.text).toContain('"type":"error"')
-    expect(res.text).toContain('not configured')
+    try {
+      const res = await request(makeApp()).post('/api/chatbot/chat').send({ message: 'Hello' }).expect(200)
+      expect(res.text).toContain('"type":"error"')
+      expect(res.text).toContain('not configured')
+    } finally {
+      config.chatbot = original
+    }
   })
 
   it('returns SSE error event when message is missing', async () => {
@@ -198,5 +199,57 @@ describe('POST /api/chatbot/chat/feedback', () => {
       .post('/api/chatbot/chat/feedback')
       .send({ message_id: 'msg-1', feedback_type: 'thumbs_up' })
       .expect(502)
+  })
+})
+
+describe('POST /api/chatbot/chat: upstream failures after the stream has started', () => {
+  it('sends an SSE error event when the upstream stream breaks mid-way', async () => {
+    const encoder = new TextEncoder()
+    let pulls = 0
+    const brokenStream = new ReadableStream<Uint8Array>({
+      pull(controller) {
+        pulls += 1
+        if (pulls === 1) controller.enqueue(encoder.encode('data: {"type":"chunk","text":"Hel"}\n\n'))
+        else controller.error(new Error('socket hang up'))
+      },
+    })
+    mockFetch.mockResolvedValue({ ok: true, status: 200, body: brokenStream })
+
+    const res = await request(makeApp()).post('/api/chatbot/chat').send({ message: 'Hello' }).expect(200)
+    expect(res.text).toContain('"text":"Hel"')
+    expect(res.text).toContain('"type":"error"')
+    expect(res.text).toContain('unavailable')
+  })
+
+  it('rejects an over-long session_token before contacting the upstream', async () => {
+    const res = await request(makeApp())
+      .post('/api/chatbot/chat')
+      .send({ message: 'Hello', session_token: 'x'.repeat(501) })
+      .expect(200)
+    expect(res.text).toContain('Invalid request')
+    expect(mockFetch).not.toHaveBeenCalled()
+  })
+})
+
+describe('POST /api/chatbot/chat/feedback: abuse controls', () => {
+  it('shares the per-client rate limit with /chat', async () => {
+    rateLimitCache.set('::ffff:127.0.0.1', { count: 30, resetAt: Date.now() + 60_000 })
+    await request(makeApp())
+      .post('/api/chatbot/chat/feedback')
+      .send({ message_id: 'msg-1', feedback_type: 'thumbs_up' })
+      .expect(429)
+    expect(mockFetch).not.toHaveBeenCalled()
+  })
+
+  it('rejects non-string identifiers instead of relaying them', async () => {
+    await request(makeApp())
+      .post('/api/chatbot/chat/feedback')
+      .send({ message_id: { $gt: '' }, feedback_type: 'thumbs_up' })
+      .expect(400)
+    await request(makeApp())
+      .post('/api/chatbot/chat/feedback')
+      .send({ message_id: 'msg-1', feedback_type: 'thumbs_up', session_token: 'x'.repeat(501) })
+      .expect(400)
+    expect(mockFetch).not.toHaveBeenCalled()
   })
 })
