@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 # Stage: base image
 FROM node:24-alpine AS base
 
@@ -37,7 +38,7 @@ ARG GIT_REF
 ARG GIT_BRANCH
 
 COPY package*.json .allowed-scripts.mjs .npmrc ./
-# TEMP: NODE_AUTH_TOKEN is mounted as a BuildKit secret because the private
+# TEMP: NODE_AUTH_TOKEN is mounted as a BuildKit secret because the internal
 # @justiceaiunit/chatbot-widget package lives in JAIU's GitHub Packages and
 # needs auth during `npm ci`. When the widget moves to a public / MoJ-scoped
 # registry, revert this to a plain `RUN npm run setup` and revert the inlined

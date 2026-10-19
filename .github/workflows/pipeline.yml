@@ -114,7 +114,7 @@ jobs:
     with:
       environment: ${{ matrix.environments }}
   # TEMP: Inlined from hmpps-github-actions/.../docker_build.yml@v2 so we can
-  # pass NODE_AUTH_TOKEN to `docker build` as a BuildKit secret. The private
+  # pass NODE_AUTH_TOKEN to `docker build` as a BuildKit secret. The internal
   # @justiceaiunit/chatbot-widget package needs the token during `npm ci` in
   # the Dockerfile. GitHub Actions blocks `${{ secrets.X }}` inside `with:`
   # values on reusable workflow calls (security policy — prevents leaking
@@ -154,11 +154,14 @@ jobs:
       - name: Set docker tags
         id: set_tags
         shell: bash
+        env:
+          APP_VERSION: ${{ steps.app_version.outputs.version }}
+          ADDITIONAL_TAG: ${{ inputs.additional_docker_tag }}
         run: |
           BASE_TAG="ghcr.io/ministryofjustice/hmpps-probation-check-in-ui"
-          TAGS="${BASE_TAG}:${{ steps.app_version.outputs.version }},${BASE_TAG}:latest"
-          if [[ -n "${{ inputs.additional_docker_tag }}" ]]; then
-            TAGS="${TAGS},${BASE_TAG}:${{ inputs.additional_docker_tag }}"
+          TAGS="${BASE_TAG}:${APP_VERSION},${BASE_TAG}:latest"
+          if [[ -n "${ADDITIONAL_TAG}" ]]; then
+            TAGS="${TAGS},${BASE_TAG}:${ADDITIONAL_TAG}"
           fi
           echo "tags=$TAGS" >> "$GITHUB_OUTPUT"
       - name: Build and push docker image
