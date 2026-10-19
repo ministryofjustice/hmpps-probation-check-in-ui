@@ -34,6 +34,13 @@ generic-service:
           ctl:ruleRemoveTargetByTag=attack-rce;ARGS:additionalAnswer"
       SecDefaultAction "phase:2,pass,log,tag:github_team=stg-pathfinders,tag:namespace={{ .Release.Namespace }}"
 
+  # The chatbot API key is only referenced where the chatbot is enabled, so the
+  # other environments do not need the secret to start. Add the same block to
+  # an environment's values file when enabling the chatbot there.
+  namespace_secrets:
+    hmpps-probation-check-in-ui-chatbot-api-key:
+      CHATBOT_API_KEY: 'CHATBOT_API_KEY'
+
   env:
     INGRESS_URL: 'https://probation-check-in-dev.hmpps.service.justice.gov.uk'
     HMPPS_AUTH_URL: 'https://sign-in-dev.hmpps.service.justice.gov.uk/auth'
