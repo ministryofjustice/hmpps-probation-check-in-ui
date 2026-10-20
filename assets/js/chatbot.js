@@ -19,7 +19,7 @@ const CONTENT = {
       // and its explanation together in one paragraph.
       '**What would you like to know?**  \n' +
         'I can help you by answering questions about online check ins, or help if you are stuck. ' +
-        'I use this [guidance about Check in with your probation officer](/guidance). I may make mistakes.',
+        'I use this guidance: [Check in with your probation officer](/guidance). I may make mistakes.',
       'By continuing, you agree to our [privacy notice](#privacy).',
     ].join('\n\n'),
     strings: {
@@ -40,7 +40,7 @@ const CONTENT = {
       'Cynorthwyydd chatbot AI ydw i.',
       '**Beth hoffech chi ei wybod?**  \n' +
         "Gallaf eich helpu drwy ateb cwestiynau am gyfarfodydd diweddaru ar-lein, neu helpu os ydych chi'n sownd. " +
-        "Rwy'n defnyddio'r [canllawiau ar gyfer Cyfarfod diweddaru gyda'ch swyddog prawf](/guidance). " +
+        "Rwy'n defnyddio'r canllawiau hyn: [Cyfarfod diweddaru gyda'ch swyddog prawf](/guidance). " +
         'Efallai y byddaf yn gwneud camgymeriadau.',
       "Drwy barhau, rydych chi'n cytuno i'n [hysbysiad preifatrwydd](#privacy).",
     ].join('\n\n'),
