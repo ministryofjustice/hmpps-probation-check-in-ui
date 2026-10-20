@@ -15,6 +15,10 @@ export default function routes(): Router {
     res.render('pages/privacy')
   })
 
+  get('/privacy-notice/chatbot', (req, res, next) => {
+    res.render('pages/chatbot-privacy')
+  })
+
   get('/accessibility', (req, res, next) => {
     res.render('pages/accessibility')
   })

@@ -74,6 +74,18 @@ The easiest way to run the app is to use docker compose to create the service an
 
 `docker compose up`
 
+### Authenticate with GitHub Packages
+
+`@justiceaiunit/chatbot-widget` (Fred, the online check ins chatbot) is an internal package on GitHub Packages, not the public npm registry, so `npm install`/`npm ci` need a token with `read:packages`. The easiest way is the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh auth login
+gh auth refresh -s read:packages
+export NODE_AUTH_TOKEN="$(gh auth token)"
+```
+
+Add the `export` line to your shell profile so it persists. `.npmrc` reads `NODE_AUTH_TOKEN`; CI and the Docker build supply it from `GITHUB_TOKEN`. This mirrors the set-up in `hmpps-people-on-probation-ui`, which uses the same package.
+
 ### Running the app for development
 
 To start the main services excluding the example typescript template app:

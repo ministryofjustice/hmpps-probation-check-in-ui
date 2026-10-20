@@ -1,62 +1,171 @@
 name: Build and deploy to environment
 
 on:
-    workflow_dispatch:
-        inputs:
-            environment:
-                description: Environment to deploy to
-                type: choice
-                required: true
-                options:
-                    - dev
-                    - test
-                default: "test"
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to deploy to
+        type: choice
+        required: true
+        options:
+          - dev
+          - test
+        default: "test"
 
 permissions:
-    contents: read
-    packages: write
+  contents: read
+  packages: write
 
 jobs:
-    node_build:
-        name: node build
-        uses: ministryofjustice/hmpps-github-actions/.github/workflows/node_build.yml@v2 # WORKFLOW_VERSION
+  # Inlined from hmpps-github-actions/.../node_build.yml@v2 so we can set
+  # NODE_AUTH_TOKEN on the install step to pull @justiceaiunit/chatbot-widget
+  # from JAIU's GitHub Packages. GitHub Actions blocks `${{ secrets.X }}`
+  # inside `with:` values on reusable workflow calls (security policy —
+  # prevents leaking caller secrets to callee workflows), so we can't
+  # thread the token through the shared node_build.yml@v2 workflow's
+  # `install_command` input. Inlining is the only way from this side to
+  # expose NODE_AUTH_TOKEN to `npm ci`.
+  node_build:
+    name: node build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
-            install_command: 'npm run setup'
-        secrets: inherit
-    node_unit_tests:
-        name: node unit tests
-        uses: ministryofjustice/hmpps-github-actions/.github/workflows/node_unit_tests.yml@v2 # WORKFLOW_VERSION
-        needs: [node_build]
-        secrets: inherit
-    node_integration_tests:
-        name: node integration tests
-        uses: ministryofjustice/hmpps-github-actions/.github/workflows/node_integration_tests.yml@v2 # WORKFLOW_VERSION
-        needs: [node_build]
-        secrets: inherit
-    helm_lint:
-        name: helm lint
-        uses: ministryofjustice/hmpps-github-actions/.github/workflows/test_helm_lint.yml@v2 # WORKFLOW_VERSION
-        secrets: inherit
+          node-version-file: .nvmrc
+      - name: update npm
+        shell: bash
+        run: npm install -g npm@latest
+      - name: restore cache
+        id: restore-cache
+        uses: actions/cache/restore@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+        env:
+          cache-name: node-modules
         with:
-            environment: ${{ inputs.environment }}
-    build:
-        name: Build docker image
-        uses: ministryofjustice/hmpps-github-actions/.github/workflows/docker_build.yml@v2 # WORKFLOW_VERSION
-        needs:
-            - node_integration_tests
-            - node_unit_tests
+          path: |
+            ./node_modules
+            ~/.cache/Cypress
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json', '!**/node_modules/**') }}
+      - name: install dependencies
+        if: steps.restore-cache.outputs.cache-hit != 'true'
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run setup
+      - name: build npm
+        shell: bash
+        run: npm run build
+      - name: Linter check
+        shell: bash
+        run: npm run lint
+      - name: upload the artifacts
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
-            docker_registry: "ghcr.io"
-            registry_org: "ministryofjustice"
-            push: true
-            docker_multiplatform: false
-    deploy:
-        name: Deploy to ${{ inputs.environment }}
-        needs:
-            - build
-            - helm_lint
-        uses: ministryofjustice/hmpps-github-actions/.github/workflows/deploy_env.yml@v2 # WORKFLOW_VERSION
-        secrets: inherit
+          name: npm_build_artifacts
+          path: |
+            build/
+            dist/
+            assets/stylesheets/
+      - name: save cache
+        id: save-cache
+        uses: actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+        env:
+          cache-name: node-modules
         with:
-            environment: ${{ inputs.environment }}
-            app_version: "${{ needs.build.outputs.app_version }}"
+          path: |
+            ./node_modules
+            ~/.cache/Cypress
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json', '!**/node_modules/**') }}
+  # generic node unit tests - feel free to override with local tests if required
+  node_unit_tests:
+    name: node unit tests
+    uses: ministryofjustice/hmpps-github-actions/.github/workflows/node_unit_tests.yml@v2 # WORKFLOW_VERSION
+    needs: [node_build]
+    secrets: inherit
+  node_integration_tests:
+    name: node integration tests
+    uses: ministryofjustice/hmpps-github-actions/.github/workflows/node_integration_tests.yml@v2 # WORKFLOW_VERSION
+    needs: [node_build]
+    secrets: inherit
+  helm_lint:
+    name: helm lint
+    uses: ministryofjustice/hmpps-github-actions/.github/workflows/test_helm_lint.yml@v2 # WORKFLOW_VERSION
+    secrets: inherit
+    with:
+      environment: ${{ inputs.environment }}
+  # TEMP: Inlined from hmpps-github-actions/.../docker_build.yml@v2 so we can
+  # pass NODE_AUTH_TOKEN to `docker build` as a BuildKit secret. The internal
+  # @justiceaiunit/chatbot-widget package needs the token during `npm ci` in
+  # the Dockerfile. GitHub Actions blocks `${{ secrets.X }}` inside `with:`
+  # values on reusable workflow calls (security policy — prevents leaking
+  # caller secrets to callee workflows), so we can't thread the token through
+  # the shared docker_build.yml@v2 workflow's `additional_docker_build_args`
+  # input either. Inlining is the only path from this side.
+  #
+  # When @justiceaiunit/chatbot-widget moves to a public / MoJ-scoped registry,
+  # revert this back to `uses: .../docker_build.yml@v2` (see git history) and
+  # drop the BuildKit-secret handling in the Dockerfile.
+  build:
+    name: Build docker image
+    runs-on: ubuntu-latest
+    needs:
+      - node_integration_tests
+      - node_unit_tests
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      app_version: ${{ steps.app_version.outputs.version }}
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        with:
+          persist-credentials: false
+      - id: app_version
+        uses: ministryofjustice/hmpps-github-shared-actions/.github/actions/build-test-and-deploy/create_app_version@c241b9febb7a4fc11e88d0e781cbdfcf8abd84a5 # v1.0.17
+      - uses: docker/setup-qemu-action@ce360397dd3f832beb865e1373c09c0e9f86d70a # v4
+      - uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
+      - name: Docker login to ghcr.io
+        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+      - name: Set docker tags
+        id: set_tags
+        shell: bash
+        env:
+          APP_VERSION: ${{ steps.app_version.outputs.version }}
+        run: |
+          BASE_TAG="ghcr.io/ministryofjustice/hmpps-probation-check-in-ui"
+          TAGS="${BASE_TAG}:${APP_VERSION},${BASE_TAG}:latest"
+          echo "tags=$TAGS" >> "$GITHUB_OUTPUT"
+      - name: Build and push docker image
+        uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7
+        with:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          context: .
+          push: true
+          provenance: false
+          build-args: |
+            BUILD_NUMBER=${{ steps.app_version.outputs.version }}
+            GIT_REF=${{ github.sha }}
+            GIT_BRANCH=${{ github.ref_name }}
+          # TEMP: NODE_AUTH_TOKEN needed to pull @justiceaiunit/chatbot-widget
+          # inside the Dockerfile. Remove once the package registry moves.
+          secrets: |
+            NODE_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+          tags: ${{ steps.set_tags.outputs.tags }}
+  deploy:
+    name: Deploy to ${{ inputs.environment }}
+    needs:
+      - build
+      - helm_lint
+    uses: ministryofjustice/hmpps-github-actions/.github/workflows/deploy_env.yml@v2 # WORKFLOW_VERSION
+    secrets: inherit
+    with:
+      environment: ${{ inputs.environment }}
+      app_version: "${{ needs.build.outputs.app_version }}"

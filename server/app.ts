@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import nunjucksSetup from './utils/nunjucksSetup'
 import errorHandler from './errorHandler'
+import chatbotRoutes from './routes/chatbot'
 import feedbackRoutes from './routes/feedbackRoutes'
 import setUpAuthentication from './middleware/setUpAuthentication'
 import setUpCsrf from './middleware/setUpCsrf'
@@ -43,6 +44,11 @@ export default function createApp(services: Services): express.Application {
 
   nunjucksSetup(app)
   app.use(setUpAuthentication())
+
+  // Chatbot proxy: before CSRF (widget POSTs are not form submissions) but
+  // still behind restrictToUK — anonymous users outside the UK cannot use it.
+  app.use('/api/chatbot', restrictToUK, chatbotRoutes())
+
   app.use(setUpCsrf())
 
   app.use(bodyParser.json())
