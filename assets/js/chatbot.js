@@ -19,8 +19,8 @@ const CONTENT = {
       // and its explanation together in one paragraph.
       '**What would you like to know?**  \n' +
         'I can help you by answering questions about online check ins, or help if you are stuck. ' +
-        'I use this guidance: [Check in with your probation officer](/guidance). I may make mistakes.',
-      'By continuing, you agree to our [privacy notice](#privacy).',
+        'I use this guidance: [Check in with your probation officer (opens in new tab)](/guidance). I may make mistakes.',
+      'By continuing, you agree to our [privacy notice (opens in new tab)](#privacy).',
     ].join('\n\n'),
     strings: {
       launcher: 'Ask chatbot for help',
@@ -28,7 +28,7 @@ const CONTENT = {
       panelSubtitle: 'AI Chatbot assistant',
       close: 'Close chat',
       footerPrefix: 'By using Fred you agree to our',
-      privacyNotice: 'privacy notice',
+      privacyNotice: 'privacy notice (opens in new tab)',
       footerSuffix: '',
     },
   },
@@ -40,9 +40,9 @@ const CONTENT = {
       'Cynorthwyydd chatbot AI ydw i.',
       '**Beth hoffech chi ei wybod?**  \n' +
         "Gallaf eich helpu drwy ateb cwestiynau am gyfarfodydd diweddaru ar-lein, neu helpu os ydych chi'n sownd. " +
-        "Rwy'n defnyddio'r canllawiau hyn: [Cyfarfod diweddaru gyda'ch swyddog prawf](/guidance). " +
+        "Rwy'n defnyddio'r canllawiau hyn: [Cyfarfod diweddaru gyda'ch swyddog prawf (mae'n agor mewn tab newydd)](/guidance). " +
         'Efallai y byddaf yn gwneud camgymeriadau.',
-      "Drwy barhau, rydych chi'n cytuno i'n [hysbysiad preifatrwydd](#privacy).",
+      "Drwy barhau, rydych chi'n cytuno i'n [hysbysiad preifatrwydd (mae'n agor mewn tab newydd)](#privacy).",
     ].join('\n\n'),
     strings: {
       launcher: "Gofyn i'r chatbot am help",
@@ -60,7 +60,7 @@ const CONTENT = {
         "Mae'n ddrwg gen i, rwy'n cael trafferth cysylltu ar hyn o bryd. Rhowch gynnig arall arni mewn munud.",
       loading: 'Yn aros am ateb',
       footerPrefix: "Drwy ddefnyddio Fred rydych chi'n cytuno i'n",
-      privacyNotice: 'hysbysiad preifatrwydd',
+      privacyNotice: "hysbysiad preifatrwydd (mae'n agor mewn tab newydd)",
       footerSuffix: '',
     },
   },
@@ -84,7 +84,8 @@ initPopup({
     privacyMessage: null,
     privacyUrl: '/privacy-notice/chatbot',
     // Same tab: the notice is on this site and the conversation is persisted.
-    privacyOpensInNewTab: false,
+    privacyOpensInNewTab: true,
+    linksOpenInNewTab: true, // guidance and privacy links open a new tab so the chat is never lost
     // The in-chat feedback survey is English-only.
     surveyEnabled: lang === 'en',
     strings: content.strings,
