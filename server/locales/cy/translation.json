@@ -1281,10 +1281,15 @@
           "veryDifficult": "Anodd iawn",
           "error": ""
         },
-        "gettingSupport": {
-          "legend": "A ydych chi’n cael y gefnogaeth sydd ei hangen arnoch gan y gwasanaeth prawf? (dewisol)",
-          "yes": "Ydw",
-          "no": "Nac ydw"
+        "helpsFeelSupported": {
+          "legend": "",
+          "yes": "",
+          "no": ""
+        },
+        "lessContactNeeded": {
+          "legend": "",
+          "yes": "",
+          "no": ""
         },
         "improvements": {
           "legend": "Pa rannau o'r cyfarfodydd diweddaru ar-lein y gallem eu gwella? (dewisol)"

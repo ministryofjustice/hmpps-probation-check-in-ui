@@ -1336,8 +1336,13 @@
           "veryDifficult": "Very difficult",
           "error": "Select how easy it was to use online check ins"
         },
-        "gettingSupport": {
-          "legend": "Are you getting the support you need from probation? (optional)",
+        "helpsFeelSupported": {
+          "legend": "Do online check ins help you feel supported by probation? (optional)",
+          "yes": "Yes",
+          "no": "No"
+        },
+        "lessContactNeeded": {
+          "legend": "Does using online check ins mean you need to get in touch with your probation officer less? (optional)",
           "yes": "Yes",
           "no": "No"
         },

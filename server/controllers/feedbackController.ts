@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from 'express'
 import logger from '../../logger'
 import { services } from '../services'
-import Feedback, { GettingSupport, HowEasy, Improvement } from '../data/models/feedback'
+import Feedback, { HowEasy, Improvement, YesNo } from '../data/models/feedback'
 
 const HOW_EASY_VALUES = new Set<HowEasy>(['veryEasy', 'easy', 'neitherEasyOrDifficult', 'difficult', 'veryDifficult'])
 
-const GETTING_SUPPORT_VALUES = new Set<GettingSupport>(['yes', 'no'])
+const YES_NO_VALUES = new Set<YesNo>(['yes', 'no'])
 
 const IMPROVEMENT_VALUES = new Set<Improvement>([
   'findingOutAboutCheckIns',
@@ -22,12 +22,14 @@ const IMPROVEMENT_VALUES = new Set<Improvement>([
 
 export const sanitiseFeedback = (
   inputtedHowEasy: unknown,
-  inputtedGettingSupport: unknown,
+  inputtedHelpsFeelSupported: unknown,
+  inputtedLessContactNeeded: unknown,
   inputtedImprovements: unknown,
 ) => {
   const output: {
     howEasy?: HowEasy
-    gettingSupport?: GettingSupport
+    helpsFeelSupported?: YesNo
+    lessContactNeeded?: YesNo
     improvements?: Improvement[]
   } = {}
 
@@ -36,10 +38,17 @@ export const sanitiseFeedback = (
   }
 
   if (
-    typeof inputtedGettingSupport === 'string' &&
-    GETTING_SUPPORT_VALUES.has(inputtedGettingSupport as GettingSupport)
+    typeof inputtedHelpsFeelSupported === 'string' &&
+    YES_NO_VALUES.has(inputtedHelpsFeelSupported as YesNo)
   ) {
-    output.gettingSupport = inputtedGettingSupport as GettingSupport
+    output.helpsFeelSupported = inputtedHelpsFeelSupported as YesNo
+  }
+
+  if (
+    typeof inputtedLessContactNeeded === 'string' &&
+    YES_NO_VALUES.has(inputtedLessContactNeeded as YesNo)
+  ) {
+    output.lessContactNeeded = inputtedLessContactNeeded as YesNo
   }
 
   if (Array.isArray(inputtedImprovements)) {
@@ -60,9 +69,9 @@ export const sanitiseFeedback = (
 }
 
 export default async function handleFeedbackSubmission(req: Request, res: Response, next: NextFunction) {
-  const { howEasy, gettingSupport, improvements } = req.body
+  const { howEasy, helpsFeelSupported, lessContactNeeded, improvements } = req.body
 
-  const sanitisedFeedback = sanitiseFeedback(howEasy, gettingSupport, improvements)
+  const sanitisedFeedback = sanitiseFeedback(howEasy, helpsFeelSupported, lessContactNeeded, improvements)
 
   if (Object.keys(sanitisedFeedback).length === 0) {
     logger.info('Not saving feedback as it was empty or only contained incorrect values')
