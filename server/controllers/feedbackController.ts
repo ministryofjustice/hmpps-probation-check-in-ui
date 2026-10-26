@@ -37,17 +37,11 @@ export const sanitiseFeedback = (
     output.howEasy = inputtedHowEasy as HowEasy
   }
 
-  if (
-    typeof inputtedHelpsFeelSupported === 'string' &&
-    YES_NO_VALUES.has(inputtedHelpsFeelSupported as YesNo)
-  ) {
+  if (typeof inputtedHelpsFeelSupported === 'string' && YES_NO_VALUES.has(inputtedHelpsFeelSupported as YesNo)) {
     output.helpsFeelSupported = inputtedHelpsFeelSupported as YesNo
   }
 
-  if (
-    typeof inputtedLessContactNeeded === 'string' &&
-    YES_NO_VALUES.has(inputtedLessContactNeeded as YesNo)
-  ) {
+  if (typeof inputtedLessContactNeeded === 'string' && YES_NO_VALUES.has(inputtedLessContactNeeded as YesNo)) {
     output.lessContactNeeded = inputtedLessContactNeeded as YesNo
   }
 
