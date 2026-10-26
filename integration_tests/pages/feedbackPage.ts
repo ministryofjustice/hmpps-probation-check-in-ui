@@ -10,8 +10,12 @@ export default class FeedbackPage extends Page {
     cy.get('input[name="howEasy"]').check(value)
   }
 
-  selectGettingSupport(value: 'yes' | 'no'): void {
-    cy.get('input[name="gettingSupport"]').check(value)
+  selectHelpsFeelSupported(value: 'yes' | 'no'): void {
+    cy.get('input[name="helpsFeelSupported"]').check(value)
+  }
+
+  selectLessContactNeeded(value: 'yes' | 'no'): void {
+    cy.get('input[name="lessContactNeeded"]').check(value)
   }
 
   selectImprovement(value: Improvement): void {

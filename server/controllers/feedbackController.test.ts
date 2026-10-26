@@ -47,6 +47,8 @@ describe('feedbackController', () => {
         body: {
           howEasy: 'invalid',
           gettingSupport: 'nope',
+          helpsFeelSupported: 'nope',
+          lessContactNeeded: 'nope',
           improvements: ['bad'],
         },
       }
@@ -64,6 +66,8 @@ describe('feedbackController', () => {
         body: {
           howEasy: 'easy',
           gettingSupport: 'yes',
+          helpsFeelSupported: 'yes',
+          lessContactNeeded: 'no',
           improvements: ['gettingHelp'],
         },
       }
@@ -73,7 +77,63 @@ describe('feedbackController', () => {
       await handleFeedbackSubmission(req, res, mockNext)
 
       expect(submitFeedback).toHaveBeenCalledTimes(1)
+      expect(submitFeedback).toHaveBeenCalledWith(
+        expect.objectContaining({
+          feedback: {
+            version: 1,
+            howEasy: 'easy',
+            helpsFeelSupported: 'yes',
+            lessContactNeeded: 'no',
+            improvements: ['gettingHelp'],
+          },
+        }),
+      )
       expect(res.render).toHaveBeenCalledWith('pages/feedback/thankyou')
+    })
+
+    it('submits one answered question without the unanswered question or legacy field', async () => {
+      const req: any = {
+        body: {
+          howEasy: 'easy',
+          helpsFeelSupported: 'yes',
+          gettingSupport: 'no',
+        },
+      }
+
+      const res = buildMockResponse()
+
+      await handleFeedbackSubmission(req, res, mockNext)
+
+      expect(submitFeedback).toHaveBeenCalledWith(
+        expect.objectContaining({
+          feedback: {
+            version: 1,
+            howEasy: 'easy',
+            helpsFeelSupported: 'yes',
+          },
+        }),
+      )
+    })
+
+    it('submits neither optional question when both are unanswered', async () => {
+      const req: any = {
+        body: {
+          howEasy: 'easy',
+        },
+      }
+
+      const res = buildMockResponse()
+
+      await handleFeedbackSubmission(req, res, mockNext)
+
+      expect(submitFeedback).toHaveBeenCalledWith(
+        expect.objectContaining({
+          feedback: {
+            version: 1,
+            howEasy: 'easy',
+          },
+        }),
+      )
     })
 
     it('passes error to next when submitFeedback throws', async () => {
@@ -96,27 +156,32 @@ describe('feedbackController', () => {
 
   describe('sanitiseFeedback', () => {
     it('returns an empty object when all inputs are invalid', () => {
-      const result = sanitiseFeedback(123, false, { random: 'string' })
+      const result = sanitiseFeedback(123, false, false, { random: 'string' })
       expect(result).toEqual({})
     })
 
     it('accepts valid howEasy value', () => {
-      const result = sanitiseFeedback('easy', null, null)
+      const result = sanitiseFeedback('easy', null, null, null)
       expect(result).toEqual({ howEasy: 'easy' })
     })
 
     it('rejects invalid howEasy value', () => {
-      const result = sanitiseFeedback('superEasy', null, null)
+      const result = sanitiseFeedback('superEasy', null, null, null)
       expect(result).toEqual({})
     })
 
-    it('accepts valid gettingSupport value', () => {
-      const result = sanitiseFeedback(null, 'yes', null)
-      expect(result).toEqual({ gettingSupport: 'yes' })
+    it('accepts valid helpsFeelSupported value', () => {
+      const result = sanitiseFeedback(null, 'yes', null, null)
+      expect(result).toEqual({ helpsFeelSupported: 'yes' })
+    })
+
+    it('accepts valid lessContactNeeded value', () => {
+      const result = sanitiseFeedback(null, null, 'no', null)
+      expect(result).toEqual({ lessContactNeeded: 'no' })
     })
 
     it('filters invalid improvements from array', () => {
-      const result = sanitiseFeedback(null, null, ['takingAVideo', 'nonsense', 123])
+      const result = sanitiseFeedback(null, null, null, ['takingAVideo', 'nonsense', 123])
 
       expect(result).toEqual({
         improvements: ['takingAVideo'],
@@ -124,23 +189,24 @@ describe('feedbackController', () => {
     })
 
     it('returns empty object when improvements array contains no valid values', () => {
-      const result = sanitiseFeedback(null, null, ['nope', 'stillNo'])
+      const result = sanitiseFeedback(null, null, null, ['nope', 'stillNo'])
       expect(result).toEqual({})
     })
 
     it('wraps single valid improvement string into array', () => {
-      const result = sanitiseFeedback(null, null, 'gettingHelp')
+      const result = sanitiseFeedback(null, null, null, 'gettingHelp')
       expect(result).toEqual({
         improvements: ['gettingHelp'],
       })
     })
 
     it('combines multiple valid fields', () => {
-      const result = sanitiseFeedback('veryEasy', 'no', ['takingAVideo', 'gettingHelp'])
+      const result = sanitiseFeedback('veryEasy', 'no', 'yes', ['takingAVideo', 'gettingHelp'])
 
       expect(result).toEqual({
         howEasy: 'veryEasy',
-        gettingSupport: 'no',
+        helpsFeelSupported: 'no',
+        lessContactNeeded: 'yes',
         improvements: ['takingAVideo', 'gettingHelp'],
       })
     })

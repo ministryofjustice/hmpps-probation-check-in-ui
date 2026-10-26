@@ -59,22 +59,45 @@
 
         {{
           govukRadios({
-              name: "gettingSupport",
-              value: formData["gettingSupport"],
+              name: "helpsFeelSupported",
+              value: formData["helpsFeelSupported"],
               fieldset: {
                 legend: {
-                  text: t('public.feedback.provide.gettingSupport.legend'),
+                  text: t('public.feedback.provide.helpsFeelSupported.legend'),
                   classes: "govuk-fieldset__legend--m"
                 }
               },
               items: [
               {
                 value: "yes",
-                text: t('public.feedback.provide.gettingSupport.yes')
+                text: t('public.feedback.provide.helpsFeelSupported.yes')
               },
               {
                 value: "no",
-                text: t('public.feedback.provide.gettingSupport.no')
+                text: t('public.feedback.provide.helpsFeelSupported.no')
+              }
+            ]
+          })
+        }}
+
+        {{
+          govukRadios({
+              name: "lessContactNeeded",
+              value: formData["lessContactNeeded"],
+              fieldset: {
+                legend: {
+                  text: t('public.feedback.provide.lessContactNeeded.legend'),
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+              {
+                value: "yes",
+                text: t('public.feedback.provide.lessContactNeeded.yes')
+              },
+              {
+                value: "no",
+                text: t('public.feedback.provide.lessContactNeeded.no')
               }
             ]
           })

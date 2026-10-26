@@ -5,7 +5,8 @@ const feedbackFormSchema = z.object({
   howEasy: z.enum(['veryEasy', 'easy', 'neitherEasyOrDifficult', 'difficult', 'veryDifficult'], {
     error: i18nMessage('public.feedback.provide.howEasy.error'),
   }),
-  gettingSupport: z.enum(['yes', 'no']).optional(),
+  helpsFeelSupported: z.enum(['yes', 'no']).optional(),
+  lessContactNeeded: z.enum(['yes', 'no']).optional(),
   improvements: z.union([z.string(), z.array(z.string())]).optional(),
 })
 

@@ -1,5 +1,6 @@
 export type HowEasy = 'veryEasy' | 'easy' | 'neitherEasyOrDifficult' | 'difficult' | 'veryDifficult'
-export type GettingSupport = 'yes' | 'no'
+export type YesNo = 'yes' | 'no'
+export type GettingSupport = YesNo
 export type Improvement =
   | 'findingOutAboutCheckIns'
   | 'beingSignedUpToCheckIns'
@@ -16,6 +17,8 @@ type FeedbackContent = {
   version: 1 // Needs updating here as well as in the code, if increased
   howEasy?: HowEasy
   gettingSupport?: GettingSupport
+  helpsFeelSupported?: YesNo
+  lessContactNeeded?: YesNo
   improvements?: Improvement[]
 }
 
