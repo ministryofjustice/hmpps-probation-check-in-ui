@@ -50,9 +50,13 @@ export default function chatbotRoutes(): Router {
 
   router.post('/chat', async (req: Request, res: Response) => {
     const { apiUrl, apiKey } = config.chatbot
-    // Forward the language the person chose with the site toggle (i18next sets
-    // req.language) so Fred answers in Welsh or English deterministically.
-    const lang = req.language === 'cy' ? 'cy' : 'en'
+    // Forward the language of the page the person is on so Fred answers in
+    // Welsh or English deterministically. The widget sends it as
+    // body.language; fall back to the site toggle's cookie (i18next sets
+    // req.language), which another tab may have switched since this page
+    // was rendered.
+    const pageLanguage = typeof req.body?.language === 'string' ? req.body.language : req.language
+    const lang = pageLanguage === 'cy' ? 'cy' : 'en'
     const upstreamUrl = apiUrl ? `${apiUrl}?domain=online-checkins&lang=${lang}` : ''
 
     res.setHeader('Content-Type', 'text/event-stream')

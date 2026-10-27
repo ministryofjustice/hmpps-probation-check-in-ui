@@ -88,6 +88,10 @@ initPopup({
     linksOpenInNewTab: true, // guidance and privacy links open a new tab so the chat is never lost
     // The in-chat feedback survey is English-only.
     surveyEnabled: lang === 'en',
+    // Sent with every message so Fred answers in this page's language. The
+    // proxy prefers it to the site's language cookie, which another tab may
+    // have switched.
+    language: lang,
     strings: content.strings,
   },
 })
