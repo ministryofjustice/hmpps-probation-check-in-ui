@@ -152,6 +152,32 @@ describe('POST /api/chatbot/chat', () => {
     const [calledUrl] = mockFetch.mock.calls[0]
     expect(calledUrl).toContain('lang=en')
   })
+
+  it('prefers the language of the page the message came from over the site cookie', async () => {
+    mockFetch.mockResolvedValue({
+      ok: true,
+      body: sseStream(['data: {"type":"text","text":"Hello"}\n\n']),
+    })
+
+    // Welsh cookie (switched in another tab) but the page is still English.
+    await request(makeApp('cy')).post('/api/chatbot/chat').send({ message: 'Hello', language: 'en' }).expect(200)
+    expect(mockFetch.mock.calls[0][0]).toContain('lang=en')
+
+    // English cookie but the page is Welsh.
+    await request(makeApp('en')).post('/api/chatbot/chat').send({ message: 'Shwmae', language: 'cy' }).expect(200)
+    expect(mockFetch.mock.calls[1][0]).toContain('lang=cy')
+  })
+
+  it('treats an unsupported page language as English', async () => {
+    mockFetch.mockResolvedValue({
+      ok: true,
+      body: sseStream(['data: {"type":"text","text":"Hello"}\n\n']),
+    })
+
+    await request(makeApp('cy')).post('/api/chatbot/chat').send({ message: 'Hello', language: 'fr' }).expect(200)
+
+    expect(mockFetch.mock.calls[0][0]).toContain('lang=en')
+  })
 })
 
 describe('POST /api/chatbot/chat/feedback', () => {
