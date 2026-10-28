@@ -1273,7 +1273,7 @@
         "optional": "Gallwch ateb y cwestiynau hyn os ydych chi eisiau rhoi adborth ar ddefnyddio cyfarfodydd diweddaru ar-lein i'n helpu ni i'w gwella. Mae hyn yn gwbl ddewisol.",
         "anonymous": "Mae eich adborth yn ddienw.",
         "howEasy": {
-          "legend": "Pa mor hawdd oedd defnyddio cyfarfodydd diweddaru ar-lein? (dewisol)",
+          "legend": "Pa mor hawdd oedd defnyddio cyfarfodydd diweddaru ar-lein?",
           "veryEasy": "Hawdd iawn",
           "easy": "Hawdd",
           "neitherEasyOrDifficult": "Ddim yn hawdd nac yn anodd",
