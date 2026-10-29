@@ -38,6 +38,14 @@
   width: 100%;
 }
 
+// While the fullscreen camera module is on screen, its cancel button and the
+// chatbot launcher are both pinned to the bottom of the viewport and the page
+// does not scroll, so the launcher sat on top of Cancel. Hide the launcher for
+// the duration of the identity check; it returns with the results page.
+body:has(.amplify-liveness-camera-module--mobile) #chatbot-root .chatbot-popup-launcher {
+  display: none;
+}
+
 // Suppress the cancel button until Amplify has left the start screen AND the user has
 // clicked "Start identity check". The `--started` modifier (added in face-liveness.tsx on
 // click) is one gate; the `:has()` gate on the start-screen header is the other, and it
