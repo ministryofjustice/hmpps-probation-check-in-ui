@@ -15,10 +15,7 @@ const CONTENT = {
     welcomeMessage: [
       "Hi, I'm Fred.",
       "I'm an AI chatbot assistant.",
-      // The two trailing spaces are a markdown hard break, keeping the question
-      // and its explanation together in one paragraph.
-      '**What would you like to know?**  \n' +
-        'I can help you by answering questions about online check ins, or help if you are stuck. ' +
+      'I can help you by answering questions about online check ins, or help if you are stuck. ' +
         'I use this guidance: [Check in with your probation officer (opens in new tab)](/guidance). I may make mistakes.',
       'By continuing, you agree to our [privacy notice (opens in new tab)](#privacy).',
     ].join('\n\n'),
@@ -38,8 +35,7 @@ const CONTENT = {
     welcomeMessage: [
       'Helo, Fred ydw i.',
       'Cynorthwyydd chatbot AI ydw i.',
-      '**Beth hoffech chi ei wybod?**  \n' +
-        "Gallaf eich helpu drwy ateb cwestiynau am gyfarfodydd diweddaru ar-lein, neu helpu os ydych chi'n sownd. " +
+      "Gallaf eich helpu drwy ateb cwestiynau am gyfarfodydd diweddaru ar-lein, neu helpu os ydych chi'n sownd. " +
         "Rwy'n defnyddio'r canllawiau hyn: [Cyfarfod diweddaru gyda'ch swyddog prawf (mae'n agor mewn tab newydd)](/guidance). " +
         'Efallai y byddaf yn gwneud camgymeriadau.',
       "Drwy barhau, rydych chi'n cytuno i'n [hysbysiad preifatrwydd (mae'n agor mewn tab newydd)](#privacy).",
