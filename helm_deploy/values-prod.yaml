@@ -44,4 +44,4 @@ generic-service:
     CHATBOT_API_URL: 'https://probationchatbot-prod.apps.live.cloud-platform.service.justice.gov.uk/api/proxy/chatbot/chat-embed-stream'
 
 generic-prometheus-alerts:
-  alertSeverity: hmpps_esupervision_alerts
+  alertSeverity: hmpps_esupervision_alerts_prod
