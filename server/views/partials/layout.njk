@@ -36,7 +36,7 @@
     </div>
   </section>
 
-  <section aria-label="Feedback banner">
+  <section aria-label="Feedback banner"{% if hideFeedbackOnPrint %} class="govuk-!-display-none-print"{% endif %}>
     {{
       govukPhaseBanner({
       tag: {

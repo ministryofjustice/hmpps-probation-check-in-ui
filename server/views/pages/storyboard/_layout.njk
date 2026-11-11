@@ -1,0 +1,29 @@
+{% extends "../../partials/layout.njk" %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% set hideFeedbackOnPrint = true %}
+
+{% block beforeContent %}
+  {% if backLink %}
+    <div class="es-page-actions">
+      <div class="es-page-actions__back">
+        {{
+          govukBackLink({
+            text: t('common.buttons.back'),
+            href: backLink
+          })
+        }}
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="es-storyboard-print">
+       {% block storyboardContent %}{% endblock %}
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {{ super() }}
+  {% include "partials/guidancePrintFooter.njk" %}
+{% endblock %}
