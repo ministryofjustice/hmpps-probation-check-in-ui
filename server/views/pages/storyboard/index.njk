@@ -3,85 +3,85 @@
 
 {% block storyboardContent %}
 <div class="govuk-grid-row">
-    <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
-    <h2 class="govuk-heading-l">How online check ins work</h2>
-    <p class="govuk-body">We have an online tool that allows you to check in with your probation officer online alongside your face to face appointments.</p>
+    <h1 class="govuk-heading-xl">{{ t('public.storyboard.title') }}</h1>
+    <h2 class="govuk-heading-l">{{ t('public.storyboard.heading') }}</h2>
+    <p class="govuk-body">{{ t('public.storyboard.intro') }}</p>
 </div>
 <div class="govuk-grid-row">
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <div class="govuk-grid-column-one-half govuk-!-static-padding-left-0">
-        <h3 class="govuk-heading-m">Step 1: Before you sign up</h3>
-        <p class="govuk-body">You’ll chat with your probation officer to see if online check ins is something that works for you. You can ask to try using online check ins to see if they work for you.</p>
-        <p class="govuk-body">Online check ins are optional, and you can choose if you’d like to use them or not. You will not be breached if you decide not to use them, or if you miss a check in.</p>
-        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/before-your-probation-officer-signs-you-up" rel="noreferrer noopener" target="_blank">What happens and things you need to know (opens in new tab)</a></p>
+        <h3 class="govuk-heading-m">{{ t('public.storyboard.step1.title') }}</h3>
+        <p class="govuk-body">{{ t('public.storyboard.step1.body1') }}</p>
+        <p class="govuk-body">{{ t('public.storyboard.step1.body2') }}</p>
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/before-your-probation-officer-signs-you-up" rel="noreferrer noopener" target="_blank">{{ t('public.storyboard.step1.link') }} (opens in new tab)</a></p>
     </div>
     <div class="govuk-grid-column-one-half govuk-!-static-padding-right-0">
-      <img class="govuk-!-width-full" src="/assets/images/Step1.png" alt="Two people having a conversation" />
+      <img class="govuk-!-width-full" src="/assets/images/Step1.png" alt="{{ t('public.storyboard.step1.alt') }}" />
     </div>
 </div>
 <div class="govuk-grid-row">
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <div class="govuk-grid-column-one-half govuk-!-static-padding-left-0">
-        <h3 class="govuk-heading-m">Step 2: Signing up</h3>
-        <p class="govuk-body">If you choose to use online check ins, your probation officer will sign you up. They’ll take a photograph of your face, which we will use to match your identity.</p>
-        <p class="govuk-body">Once you’ve been signed up, you’ll get a text or email confirming this.</p>
+        <h3 class="govuk-heading-m">{{ t('public.storyboard.step2.title') }}</h3>
+        <p class="govuk-body">{{ t('public.storyboard.step2.body1') }}</p>
+        <p class="govuk-body">{{ t('public.storyboard.step2.body2') }}</p>
 
-        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/signing-up-to-use-online-check-ins" rel="noreferrer noopener" target="_blank">How signing up to use online check ins works (opens in new tab).</a></p>
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/signing-up-to-use-online-check-ins" rel="noreferrer noopener" target="_blank">{{ t('public.storyboard.step2.link') }} (opens in new tab).</a></p>
     </div>
     <div class="govuk-grid-column-one-half govuk-!-static-padding-right-0">
-      <img class="govuk-!-width-full" src="/assets/images/Step2.png" alt="A sign up form and a text showing sign up was successful" />
+      <img class="govuk-!-width-full" src="/assets/images/Step2.png" alt="{{ t('public.storyboard.step2.alt') }}" />
     </div>
 </div>
 <div class="govuk-grid-row">
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <div class="govuk-grid-column-one-half govuk-!-static-padding-left-0">
-        <h3 class="govuk-heading-m">Step 3: Getting ready to check in</h3>
-        <p class="govuk-body">When it is time to check in, you’ll get a reminder text or email. This will include a link to complete your check in. You’ll have 3 days to complete your check in.</p>
-        <p class="govuk-body">You will need to be in the UK, and you’ll need access to the internet. This can be Wi-Fi or mobile data.</p>
+        <h3 class="govuk-heading-m">{{ t('public.storyboard.step3.title') }}</h3>
+        <p class="govuk-body">{{ t('public.storyboard.step3.body1') }}</p>
+        <p class="govuk-body">{{ t('public.storyboard.step3.body2') }}</p>
 
-        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/using-online-check-ins" rel="noreferrer noopener" target="_blank">How checking in works (opens in new tab).</a></p>
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/using-online-check-ins" rel="noreferrer noopener" target="_blank">{{ t('public.storyboard.step3.link') }} (opens in new tab).</a></p>
     </div>
     <div class="govuk-grid-column-one-half govuk-!-static-padding-right-0">
-      <img class="govuk-!-width-full" src="/assets/images/Step3.png" alt="A text message showing a reminder to check in with a link" />
+      <img class="govuk-!-width-full" src="/assets/images/Step3.png" alt="{{ t('public.storyboard.step3.alt') }}" />
     </div>
 </div>
 <div class="govuk-grid-row">
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <div class="govuk-grid-column-one-half govuk-!-static-padding-left-0">
-        <h3 class="govuk-heading-m">Step 4: How checking in works</h3>
-        <p class="govuk-body">When you click the link, you’ll have up to 5 questions to answer. Then you’ll need to verify your identity, by moving in front of your camera, so we know it is you.</p>
-        <p class="govuk-body">Once you’ve completed your check in and clicked submit, you will get a confirmation text or email to say you’ve checked in.</p>
+        <h3 class="govuk-heading-m">{{ t('public.storyboard.step4.title') }}</h3>
+        <p class="govuk-body">{{ t('public.storyboard.step4.body1') }}</p>
+        <p class="govuk-body">{{ t('public.storyboard.step4.body2') }}</p>
 
-        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/using-online-check-ins" rel="noreferrer noopener" target="_blank">How you verify your identity (opens in new tab).</a></p>
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/using-online-check-ins" rel="noreferrer noopener" target="_blank">{{ t('public.storyboard.step4.link') }} (opens in new tab).</a></p>
     </div>
     <div class="govuk-grid-column-one-half govuk-!-static-padding-right-0">
-      <img class="govuk-!-width-full" src="/assets/images/Step4.png" alt="A set of steps showing a form, questions to answer and an identity check" />
+      <img class="govuk-!-width-full" src="/assets/images/Step4.png" alt="{{ t('public.storyboard.step4.alt') }}" />
     </div>
 </div>
 <div class="govuk-grid-row">
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <div class="govuk-grid-column-one-half govuk-!-static-padding-left-0">
-        <h3 class="govuk-heading-m">Step 5: What happens after you check in online</h3>
-        <p class="govuk-body">Your probation officer will be able to see the information you’ve submitted in your check in, so they can see how you are doing.</p>
-        <p class="govuk-body">If you’ve said you need support with something, your probation officer may get in touch with you.</p>
+        <h3 class="govuk-heading-m">{{ t('public.storyboard.step5.title') }}</h3>
+        <p class="govuk-body">{{ t('public.storyboard.step5.body1') }}</p>
+        <p class="govuk-body">{{ t('public.storyboard.step5.body2') }}</p>
 
-        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/confirming-youve-checked-in-and-what-happens-next" rel="noreferrer noopener" target="_blank">What happens after you’ve checked in (opens in new tab).</a></p>
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/confirming-youve-checked-in-and-what-happens-next" rel="noreferrer noopener" target="_blank">{{ t('public.storyboard.step5.link') }} (opens in new tab).</a></p>
     </div>
     <div class="govuk-grid-column-one-half govuk-!-static-padding-right-0">
-      <img class="govuk-!-width-full" src="/assets/images/Step5.png" alt="A text showing you have successfully checked in, and a review of your check in, seen by the probation officer" />
+      <img class="govuk-!-width-full" src="/assets/images/Step5.png" alt="{{ t('public.storyboard.step5.alt') }}" />
     </div>
 </div>
 <div class="govuk-grid-row">
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <div class="govuk-grid-column-one-half govuk-!-static-padding-left-0">
-        <h3 class="govuk-heading-m">Step 6: If you need help using online check ins</h3>
-        <p class="govuk-body">If you need help using online check ins, you can speak to your probation officer. You can also go to the reception at your probation office and ask to speak to an Engaging People on Probation (EPOP) representative. They may be able to help you with using technology. </p>
-        <p class="govuk-body">If you try online check ins and decide you do not want to use them any more, you can ask your probation officer to stop using them.</p>
+        <h3 class="govuk-heading-m">{{ t('public.storyboard.step6.title') }}</h3>
+        <p class="govuk-body">{{ t('public.storyboard.step6.body1') }}</p>
+        <p class="govuk-body">{{ t('public.storyboard.step6.body2') }}</p>
 
-        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/what-to-do-if-youre-struggling-or-something-goes-wrong" rel="noreferrer noopener" target="_blank">Getting help with online check ins (opens in new tab).</a></p>
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/what-to-do-if-youre-struggling-or-something-goes-wrong" rel="noreferrer noopener" target="_blank">{{ t('public.storyboard.step6.link') }} (opens in new tab).</a></p>
     </div>
     <div class="govuk-grid-column-one-half govuk-!-static-padding-right-0">
-      <img class="govuk-!-width-full" src="/assets/images/Step6.png" alt="A person with a speech bubble that has a question mark in it, and a person with a speech bubble with a stop sign in it" />
+      <img class="govuk-!-width-full" src="/assets/images/Step6.png" alt="{{ t('public.storyboard.step6.alt') }}" />
     </div>
 </div>
 <div class="govuk-grid-row">

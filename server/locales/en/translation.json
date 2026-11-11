@@ -1322,6 +1322,53 @@
       "title": "Sorry, the service is not available outside of the UK",
       "body": "You cannot use this service if you are currently outside of the UK. Contact your probation officer for help."
     },
+    "storyboard": {
+      "title": "Online check ins storyboard",
+      "heading": "How online check ins work",
+      "intro": "We have an online tool that allows you to check in with your probation officer online alongside your face to face appointments.",
+      "step1": {
+        "title": "Step 1: Before you sign up",
+        "body1": "You'll chat with your probation officer to see if online check ins is something that works for you. You can ask to try using online check ins to see if they work for you.",
+        "body2": "Online check ins are optional, and you can choose if you'd like to use them or not. You will not be breached if you decide not to use them, or if you miss a check in.",
+        "link": "What happens and things you need to know",
+        "alt": "Two people having a conversation"
+      },
+      "step2": {
+        "title": "Step 2: Signing up",
+        "body1": "If you choose to use online check ins, your probation officer will sign you up. They'll take a photograph of your face, which we will use to match your identity.",
+        "body2": "Once you've been signed up, you'll get a text or email confirming this.",
+        "link": "How signing up to use online check ins works",
+        "alt": "A sign up form and a text showing sign up was successful"
+      },
+      "step3": {
+        "title": "Step 3: Getting ready to check in",
+        "body1": "When it is time to check in, you'll get a reminder text or email. This will include a link to complete your check in. You'll have 3 days to complete your check in.",
+        "body2": "You will need to be in the UK, and you'll need access to the internet. This can be Wi-Fi or mobile data.",
+        "link": "How checking in works",
+        "alt": "A text message showing a reminder to check in with a link"
+      },
+      "step4": {
+        "title": "Step 4: How checking in works",
+        "body1": "When you click the link, you'll have up to 5 questions to answer. Then you'll need to verify your identity, by moving in front of your camera, so we know it is you.",
+        "body2": "Once you've completed your check in and clicked submit, you will get a confirmation text or email to say you've checked in.",
+        "link": "How you verify your identity",
+        "alt": "A set of steps showing a form, questions to answer and an identity check"
+      },
+      "step5": {
+        "title": "Step 5: What happens after you check in online",
+        "body1": "Your probation officer will be able to see the information you've submitted in your check in, so they can see how you are doing.",
+        "body2": "If you've said you need support with something, your probation officer may get in touch with you.",
+        "link": "What happens after you've checked in",
+        "alt": "A text showing you have successfully checked in, and a review of your check in, seen by the probation officer"
+      },
+      "step6": {
+        "title": "Step 6: If you need help using online check ins",
+        "body1": "If you need help using online check ins, you can speak to your probation officer. You can also go to the reception at your probation office and ask to speak to an Engaging People on Probation (EPOP) representative. They may be able to help you with using technology.",
+        "body2": "If you try online check ins and decide you do not want to use them any more, you can ask your probation officer to stop using them.",
+        "link": "Getting help with online check ins",
+        "alt": "A person with a speech bubble that has a question mark in it, and a person with a speech bubble with a stop sign in it"
+      }
+    },
     "feedback": {
       "provide": {
         "heading": "Give feedback about online check ins",
