@@ -9,21 +9,6 @@ mojFrontend.initAll()
 const printButton = document.querySelector('[data-print-page]')
 const printPage = printButton?.closest('.es-print-page, main')
 if (printPage && printButton) {
-  let printLinks = []
-
-  window.addEventListener('beforeprint', () => {
-    printLinks = Array.from(printPage.querySelectorAll('a[href]'))
-      .map(link => ({ link, href: link.getAttribute('href') }))
-      .filter(item => item.href !== null)
-
-    printLinks.forEach(({ link }) => link.removeAttribute('href'))
-  })
-
-  window.addEventListener('afterprint', () => {
-    printLinks.forEach(({ link, href }) => link.setAttribute('href', href))
-    printLinks = []
-  })
-
   printButton.addEventListener('click', () => window.print())
 }
 
