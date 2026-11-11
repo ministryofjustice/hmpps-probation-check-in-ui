@@ -1267,6 +1267,53 @@
       "title": "Nid yw'r gwasanaeth hwn ar gael",
       "body": "Dim ond o fewn y Deyrnas Unedig y mae'r gwasanaeth hwn ar gael."
     },
+    "storyboard": {
+      "title": "",
+      "heading": "",
+      "intro": "",
+      "step1": {
+        "title": "",
+        "body1": "",
+        "body2": "",
+        "link": "",
+        "alt": ""
+      },
+      "step2": {
+        "title": "",
+        "body1": "",
+        "body2": "",
+        "link": "",
+        "alt": ""
+      },
+      "step3": {
+        "title": "",
+        "body1": "",
+        "body2": "",
+        "link": "",
+        "alt": ""
+      },
+      "step4": {
+        "title": "",
+        "body1": "",
+        "body2": "",
+        "link": "",
+        "alt": ""
+      },
+      "step5": {
+        "title": "",
+        "body1": "",
+        "body2": "",
+        "link": "",
+        "alt": ""
+      },
+      "step6": {
+        "title": "",
+        "body1": "",
+        "body2": "",
+        "link": "",
+        "alt": ""
+      }
+    },
     "feedback": {
       "provide": {
         "heading": "Rhoi adborth am gyfarfodydd diweddaru ar-lein",

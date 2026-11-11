@@ -6,6 +6,12 @@ import VideoRecorder from './video'
 govukFrontend.initAll()
 mojFrontend.initAll()
 
+const printButton = document.querySelector('[data-print-page]')
+const printPage = printButton?.closest('.es-print-page, main')
+if (printPage && printButton) {
+  printButton.addEventListener('click', () => window.print())
+}
+
 // Accessibility
 
 const { hash } = window.location

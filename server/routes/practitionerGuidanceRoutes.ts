@@ -35,6 +35,15 @@ const renderGuidancePage: RequestHandler = (req, res, next) => {
 export default function practitionerGuidanceRoutes(): Router {
   const router = Router()
 
+  router.get(
+    '/practitioner-guidance-one-page',
+    asyncMiddleware((req, res) => {
+      res.render('pages/practitioner-guidance-one-page/index', {
+        pageTitle: 'Introducing people on probation to online check ins ',
+      })
+    }),
+  )
+
   router.get(PRACTITIONER_GUIDANCE_BASE_PATH, asyncMiddleware(renderGuidancePage))
   router.get(`${PRACTITIONER_GUIDANCE_BASE_PATH}/:slug`, asyncMiddleware(renderGuidancePage))
 

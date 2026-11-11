@@ -1,0 +1,97 @@
+{% extends "./_layout.njk" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block storyboardContent %}
+<div class="govuk-grid-row">
+    <h1 class="govuk-heading-xl">{{ t('public.storyboard.title') }}</h1>
+    <h2 class="govuk-heading-l">{{ t('public.storyboard.heading') }}</h2>
+    <p class="govuk-body">{{ t('public.storyboard.intro') }}</p>
+</div>
+<div class="govuk-grid-row">
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+    <div class="govuk-grid-column-one-half govuk-!-static-padding-left-0">
+        <h3 class="govuk-heading-m">{{ t('public.storyboard.step1.title') }}</h3>
+        <p class="govuk-body">{{ t('public.storyboard.step1.body1') }}</p>
+        <p class="govuk-body">{{ t('public.storyboard.step1.body2') }}</p>
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/before-your-probation-officer-signs-you-up" rel="noreferrer noopener" target="_blank">{{ t('public.storyboard.step1.link') }} (opens in new tab)</a></p>
+    </div>
+    <div class="govuk-grid-column-one-half govuk-!-static-padding-right-0">
+      <img class="govuk-!-width-full" src="/assets/images/Step1.png" alt="{{ t('public.storyboard.step1.alt') }}" />
+    </div>
+</div>
+<div class="govuk-grid-row">
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+    <div class="govuk-grid-column-one-half govuk-!-static-padding-left-0">
+        <h3 class="govuk-heading-m">{{ t('public.storyboard.step2.title') }}</h3>
+        <p class="govuk-body">{{ t('public.storyboard.step2.body1') }}</p>
+        <p class="govuk-body">{{ t('public.storyboard.step2.body2') }}</p>
+
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/signing-up-to-use-online-check-ins" rel="noreferrer noopener" target="_blank">{{ t('public.storyboard.step2.link') }} (opens in new tab).</a></p>
+    </div>
+    <div class="govuk-grid-column-one-half govuk-!-static-padding-right-0">
+      <img class="govuk-!-width-full" src="/assets/images/Step2.png" alt="{{ t('public.storyboard.step2.alt') }}" />
+    </div>
+</div>
+<div class="govuk-grid-row">
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+    <div class="govuk-grid-column-one-half govuk-!-static-padding-left-0">
+        <h3 class="govuk-heading-m">{{ t('public.storyboard.step3.title') }}</h3>
+        <p class="govuk-body">{{ t('public.storyboard.step3.body1') }}</p>
+        <p class="govuk-body">{{ t('public.storyboard.step3.body2') }}</p>
+
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/using-online-check-ins" rel="noreferrer noopener" target="_blank">{{ t('public.storyboard.step3.link') }} (opens in new tab).</a></p>
+    </div>
+    <div class="govuk-grid-column-one-half govuk-!-static-padding-right-0">
+      <img class="govuk-!-width-full" src="/assets/images/Step3.png" alt="{{ t('public.storyboard.step3.alt') }}" />
+    </div>
+</div>
+<div class="govuk-grid-row">
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+    <div class="govuk-grid-column-one-half govuk-!-static-padding-left-0">
+        <h3 class="govuk-heading-m">{{ t('public.storyboard.step4.title') }}</h3>
+        <p class="govuk-body">{{ t('public.storyboard.step4.body1') }}</p>
+        <p class="govuk-body">{{ t('public.storyboard.step4.body2') }}</p>
+
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/using-online-check-ins" rel="noreferrer noopener" target="_blank">{{ t('public.storyboard.step4.link') }} (opens in new tab).</a></p>
+    </div>
+    <div class="govuk-grid-column-one-half govuk-!-static-padding-right-0">
+      <img class="govuk-!-width-full" src="/assets/images/Step4.png" alt="{{ t('public.storyboard.step4.alt') }}" />
+    </div>
+</div>
+<div class="govuk-grid-row">
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+    <div class="govuk-grid-column-one-half govuk-!-static-padding-left-0">
+        <h3 class="govuk-heading-m">{{ t('public.storyboard.step5.title') }}</h3>
+        <p class="govuk-body">{{ t('public.storyboard.step5.body1') }}</p>
+        <p class="govuk-body">{{ t('public.storyboard.step5.body2') }}</p>
+
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/confirming-youve-checked-in-and-what-happens-next" rel="noreferrer noopener" target="_blank">{{ t('public.storyboard.step5.link') }} (opens in new tab).</a></p>
+    </div>
+    <div class="govuk-grid-column-one-half govuk-!-static-padding-right-0">
+      <img class="govuk-!-width-full" src="/assets/images/Step5.png" alt="{{ t('public.storyboard.step5.alt') }}" />
+    </div>
+</div>
+<div class="govuk-grid-row">
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+    <div class="govuk-grid-column-one-half govuk-!-static-padding-left-0">
+        <h3 class="govuk-heading-m">{{ t('public.storyboard.step6.title') }}</h3>
+        <p class="govuk-body">{{ t('public.storyboard.step6.body1') }}</p>
+        <p class="govuk-body">{{ t('public.storyboard.step6.body2') }}</p>
+
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/guidance/what-to-do-if-youre-struggling-or-something-goes-wrong" rel="noreferrer noopener" target="_blank">{{ t('public.storyboard.step6.link') }} (opens in new tab).</a></p>
+    </div>
+    <div class="govuk-grid-column-one-half govuk-!-static-padding-right-0">
+      <img class="govuk-!-width-full" src="/assets/images/Step6.png" alt="{{ t('public.storyboard.step6.alt') }}" />
+    </div>
+</div>
+<div class="govuk-grid-row">
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+{{ govukButton({
+  html: '<img class="es-print-button__icon" src="/assets/images/icon-print.svg" alt="" width="18" height="18" /> Print this page',
+  type: "button",
+  classes: "govuk-button--secondary es-print-button",
+  attributes: { "data-print-page": "" }
+}) }}
+</div>
+{% endblock %}

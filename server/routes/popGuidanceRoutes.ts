@@ -36,6 +36,15 @@ const renderGuidancePage: RequestHandler = (req, res) => {
 export default function popGuidanceRoutes(): Router {
   const router = Router()
 
+  router.get(
+    '/storyboard',
+    asyncMiddleware((req, res) => {
+      res.render('pages/storyboard/index', {
+        pageTitle: 'Check in with your probation officer ',
+      })
+    }),
+  )
+
   router.get(POP_GUIDANCE_BASE_PATH, asyncMiddleware(renderGuidancePage))
   router.get(`${POP_GUIDANCE_BASE_PATH}/:slug`, asyncMiddleware(renderGuidancePage))
 
