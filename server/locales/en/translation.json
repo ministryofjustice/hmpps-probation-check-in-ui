@@ -136,6 +136,10 @@
       "title": "Your check in link has expired",
       "intro": "Contact your probation officer to request a new link."
     },
+    "cancelled": {
+      "title": "Your check in has been cancelled by your probation officer",
+      "intro": "Contact your probation officer for help or if you have any questions."
+    },
     "timeout": {
       "title": "Your check in has been reset",
       "intro": "For your security, your answers have been deleted.",

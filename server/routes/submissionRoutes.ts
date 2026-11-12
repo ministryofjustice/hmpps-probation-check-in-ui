@@ -70,6 +70,9 @@ export default function routes({ esupervisionService }: Services): Router {
       const expired = () => {
         res.render('pages/submission/expired')
       }
+      const cancelled = () => {
+        res.render('pages/submission/cancelled')
+      }
 
       if (submissionId) {
         // lookup submission from the API
@@ -80,6 +83,8 @@ export default function routes({ esupervisionService }: Services): Router {
             next()
           } else if (checkinResponse.checkin.status === 'EXPIRED') {
             expired()
+          } else if (checkinResponse.checkin.status === 'CANCELLED') {
+            cancelled()
           } else if (checkinResponse.checkin.status !== 'CREATED') {
             notFound()
           } else {
