@@ -136,6 +136,10 @@
       "title": "Mae dolen eich cyfarfod diweddaru wedi dod i ben",
       "intro": "Cysylltwch â'ch swyddog prawf i ofyn am ddolen newydd."
     },
+    "cancelled": {
+      "title": "",
+      "intro": ""
+    },
     "timeout": {
       "title": "Mae eich cyfarfod diweddaru wedi cael ei ailosod",
       "intro": "Er eich diogelwch chi, mae eich atebion wedi cael eu dileu.",
