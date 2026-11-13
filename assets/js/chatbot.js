@@ -14,9 +14,15 @@ const CONTENT = {
     placeholder: 'Ask about online check ins',
     welcomeMessage: [
       "Hi, I'm the AI assistant.",
-      "I'm an AI chatbot.",
+      "I'm an AI chatbot assistant.",
       'I can help you by answering questions about online check ins, or help if you are stuck. ' +
-        'I use this guidance: [Check in with your probation officer (opens in new tab)](/guidance). I may make mistakes.',
+        'I use this [guidance about Check in with your probation officer (opens in new tab)](/guidance). ' +
+        'I am not a human, I may make mistakes.',
+      'Do not share any personal data about yourself or others.',
+      'Anything you ask in here:\n\n' +
+        '- will not be passed on to your probation officer\n' +
+        '- cannot be used as proof of contacting your probation officer',
+      'Things you ask in this chat might be used to help us to improve online check ins.',
       'By continuing, you agree to our [privacy notice (opens in new tab)](#privacy).',
     ].join('\n\n'),
     strings: {
@@ -34,10 +40,15 @@ const CONTENT = {
     placeholder: 'Gofynnwch gwestiwn',
     welcomeMessage: [
       'Helo, y cynorthwyydd AI ydw i.',
-      'Chatbot AI ydw i.',
+      'Cynorthwyydd chatbot AI ydw i.',
       "Gallaf eich helpu drwy ateb cwestiynau am gyfarfodydd diweddaru ar-lein, neu helpu os ydych chi'n sownd. " +
-        "Rwy'n defnyddio'r canllawiau hyn: [Cyfarfod diweddaru gyda'ch swyddog prawf (mae'n agor mewn tab newydd)](/guidance). " +
-        'Efallai y byddaf yn gwneud camgymeriadau.',
+        "Rwy'n defnyddio'r [canllawiau hyn am Cyfarfod diweddaru gyda'ch swyddog prawf (mae'n agor mewn tab newydd)](/guidance). " +
+        'Nid person ydw i, ac efallai y byddaf yn gwneud camgymeriadau.',
+      'Peidiwch â rhannu unrhyw ddata personol amdanoch chi eich hun nac am eraill.',
+      "Unrhyw beth rydych chi'n ei ofyn yma:\n\n" +
+        "- ni fydd yn cael ei drosglwyddo i'ch swyddog prawf\n" +
+        "- ni ellir ei ddefnyddio fel prawf eich bod wedi cysylltu â'ch swyddog prawf",
+      "Efallai y bydd pethau rydych chi'n eu gofyn yn y sgwrs hon yn cael eu defnyddio i'n helpu i wella cyfarfodydd diweddaru ar-lein.",
       "Drwy barhau, rydych chi'n cytuno i'n [hysbysiad preifatrwydd (mae'n agor mewn tab newydd)](#privacy).",
     ].join('\n\n'),
     strings: {
