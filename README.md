@@ -150,3 +150,5 @@ Or run tests with the UI:
 ## Change log
 
 A changelog for the service is available [here](./CHANGELOG.md)
+
+## Change log for the template project
