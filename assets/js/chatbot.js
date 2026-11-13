@@ -42,7 +42,7 @@ const CONTENT = {
       'Helo, y cynorthwyydd AI ydw i.',
       'Cynorthwyydd chatbot AI ydw i.',
       "Gallaf eich helpu drwy ateb cwestiynau am gyfarfodydd diweddaru ar-lein, neu helpu os ydych chi'n sownd. " +
-        "Rwy'n defnyddio'r [canllawiau hyn am Cyfarfod diweddaru gyda'ch swyddog prawf (mae'n agor mewn tab newydd)](/guidance). " +
+        "Rwy'n defnyddio'r [canllawiau hyn am Gyfarfod diweddaru gyda'ch swyddog prawf (mae'n agor mewn tab newydd)](/guidance). " +
         'Nid person ydw i, ac efallai y byddaf yn gwneud camgymeriadau.',
       'Peidiwch â rhannu unrhyw ddata personol amdanoch chi eich hun nac am eraill.',
       "Unrhyw beth rydych chi'n ei ofyn yma:\n\n" +
