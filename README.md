@@ -76,7 +76,7 @@ The easiest way to run the app is to use docker compose to create the service an
 
 ### Authenticate with GitHub Packages
 
-`@justiceaiunit/chatbot-widget` (Fred, the online check ins chatbot) is an internal package on GitHub Packages, not the public npm registry, so `npm install`/`npm ci` need a token with `read:packages`. The easiest way is the [GitHub CLI](https://cli.github.com/):
+`@justiceaiunit/chatbot-widget` (the AI assistant, the online check ins chatbot) is an internal package on GitHub Packages, not the public npm registry, so `npm install`/`npm ci` need a token with `read:packages`. The easiest way is the [GitHub CLI](https://cli.github.com/):
 
 ```bash
 gh auth login

@@ -797,7 +797,7 @@
         },
         "hmpps": "Mae’r Gwasanaeth Prawf yn un rhan o Wasanaeth Carchardai a Phrawf Ei Fawrhydi, sy’n rhan o’r Weinyddiaeth Gyfiawnder.",
         "collect": "Bydd angen i ni gasglu’ch gwybodaeth bersonol er mwyn cyflawni swyddogaethau fel cyflawni dedfrydau a roddir gan y llysoedd (yn y ddalfa ac yn y gymuned), ac adsefydlu pobl yn ein gofal drwy addysg a chyflogaeth. ",
-        "chatbot": "Os ydych chi’n defnyddio’r chatbot Gofynnwch i Fred, mae <a class=\"govuk-link\" href=\"/privacy-notice/chatbot\">hysbysiad preifatrwydd y chatbot</a> yn egluro sut mae eich negeseuon yn cael eu defnyddio."
+        "chatbot": "Os ydych chi’n defnyddio chatbot y cynorthwyydd AI, mae <a class=\"govuk-link\" href=\"/privacy-notice/chatbot\">hysbysiad preifatrwydd y chatbot</a> yn egluro sut mae eich negeseuon yn cael eu defnyddio."
       },
       "definitions": {
         "heading": "Diffiniadau",
@@ -1353,12 +1353,12 @@
       }
     },
     "chatbotPrivacy": {
-      "title": "Hysbysiad preifatrwydd Gofynnwch i Fred – Cyfarfodydd diweddaru ar-lein",
+      "title": "Hysbysiad preifatrwydd y cynorthwyydd AI – Cyfarfodydd diweddaru ar-lein",
       "heading": "Hysbysiad Preifatrwydd – Chatbot cyfarfodydd diweddaru ar-lein",
       "purpose": {
         "heading": "Pwrpas",
-        "body1": "Mae’r hysbysiad preifatrwydd hwn yn egluro sut mae Fred, y chatbot AI ar y gwasanaeth ‘Cyfarfod diweddaru gyda’ch swyddog prawf’, yn defnyddio eich gwybodaeth bersonol pan fyddwch chi’n defnyddio chatbot y cyfarfodydd diweddaru ar-lein.",
-        "body2": "Gall Fred ateb cwestiynau am gyfarfodydd diweddaru ar-lein – sut maen nhw’n gweithio, pa gwestiynau a ofynnir i chi, beth sy’n digwydd os byddwch chi’n methu un, a sut i gael cymorth. Ni all gael mynediad at eich cofnod prawf personol, gwneud penderfyniadau am eich achos, na chymryd lle eich swyddog prawf."
+        "body1": "Mae’r hysbysiad preifatrwydd hwn yn egluro sut mae’r Cynorthwyydd AI, y chatbot AI ar y gwasanaeth ‘Cyfarfod diweddaru gyda’ch swyddog prawf’, yn defnyddio eich gwybodaeth bersonol pan fyddwch chi’n defnyddio chatbot y cyfarfodydd diweddaru ar-lein.",
+        "body2": "Gall y cynorthwyydd AI ateb cwestiynau am gyfarfodydd diweddaru ar-lein – sut maen nhw’n gweithio, pa gwestiynau a ofynnir i chi, beth sy’n digwydd os byddwch chi’n methu un, a sut i gael cymorth. Ni all gael mynediad at eich cofnod prawf personol, gwneud penderfyniadau am eich achos, na chymryd lle eich swyddog prawf."
       },
       "howItWorks": {
         "heading": "Sut mae’r chatbot yn gweithio",
