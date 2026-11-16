@@ -22,7 +22,7 @@ const CONTENT = {
       'Anything you ask in here:\n\n' +
         '- will not be passed on to your probation officer\n' +
         '- cannot be used as proof of contacting your probation officer',
-      'Things you ask in this chat might be used to help us to improve online check ins.',
+      'We use the conversation between the AI assistant and you to see where and how we could improve probation services and digital products we offer you.',
       'By continuing, you agree to our [privacy notice (opens in new tab)](#privacy).',
     ].join('\n\n'),
     strings: {
@@ -48,7 +48,7 @@ const CONTENT = {
       "Unrhyw beth rydych chi'n ei ofyn yma:\n\n" +
         "- ni fydd yn cael ei drosglwyddo i'ch swyddog prawf\n" +
         "- ni ellir ei ddefnyddio fel prawf eich bod wedi cysylltu â'ch swyddog prawf",
-      "Efallai y bydd pethau rydych chi'n eu gofyn yn y sgwrs hon yn cael eu defnyddio i'n helpu i wella cyfarfodydd diweddaru ar-lein.",
+      "Rydym yn defnyddio'r sgwrs rhwng y cynorthwyydd AI a chi i weld ble a sut y gallem wella gwasanaethau prawf a'r cynhyrchion digidol rydym yn eu cynnig i chi.",
       "Drwy barhau, rydych chi'n cytuno i'n [hysbysiad preifatrwydd (mae'n agor mewn tab newydd)](#privacy).",
     ].join('\n\n'),
     strings: {
