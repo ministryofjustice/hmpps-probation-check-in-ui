@@ -816,7 +816,7 @@
         },
         "hmpps": "The Probation Service is one part of Her Majesty’s Prison and Probation Service (HMPPS) which is part of the Ministry of Justice (MoJ).",
         "collect": "We need to collect your personal information to carry out functions such as delivering sentences given by the courts, in custody and the community, and rehabilitating people in our care through education and employment.",
-        "chatbot": "If you use the Ask Fred chatbot, the <a class=\"govuk-link\" href=\"/privacy-notice/chatbot\">chatbot privacy notice</a> explains how your messages are used."
+        "chatbot": "If you use the AI assistant chatbot, the <a class=\"govuk-link\" href=\"/privacy-notice/chatbot\">chatbot privacy notice</a> explains how your messages are used."
       },
       "definitions": {
         "heading": "Definitions",
@@ -1408,12 +1408,12 @@
       }
     },
     "chatbotPrivacy": {
-      "title": "Ask Fred privacy notice – Online check ins",
+      "title": "AI assistant privacy notice – Online check ins",
       "heading": "Privacy Notice – Online check ins chatbot",
       "purpose": {
         "heading": "Purpose",
-        "body1": "This privacy notice explains how Fred, the AI chatbot on the 'Check in with your probation officer' service, uses your personal information when you use the online check ins chatbot.",
-        "body2": "Fred can answer questions about online check ins — how they work, what you're asked, what happens if you miss one, and how to get support. It cannot access your personal probation record, make decisions about your case, or replace your probation practitioner."
+        "body1": "This privacy notice explains how the AI assistant, the AI chatbot on the 'Check in with your probation officer' service, uses your personal information when you use the online check ins chatbot.",
+        "body2": "The AI assistant can answer questions about online check ins — how they work, what you're asked, what happens if you miss one, and how to get support. It cannot access your personal probation record, make decisions about your case, or replace your probation practitioner."
       },
       "howItWorks": {
         "heading": "How the chatbot works",

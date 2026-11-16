@@ -50,7 +50,7 @@ export default function chatbotRoutes(): Router {
 
   router.post('/chat', async (req: Request, res: Response) => {
     const { apiUrl, apiKey } = config.chatbot
-    // Forward the language of the page the person is on so Fred answers in
+    // Forward the language of the page the person is on so the chatbot answers in
     // Welsh or English deterministically. The widget sends it as
     // body.language; fall back to the site toggle's cookie (i18next sets
     // req.language), which another tab may have switched since this page
