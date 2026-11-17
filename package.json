@@ -177,6 +177,9 @@
     "systeminformation": "^5.33.16",
     "undici@>=4.0.0 <6.29.1": "^6.29.1",
     "glob@>=9.0.0 <14.0.2": "^14.0.6",
-    "minimatch@>=7.0.0 <11.0.1": "^11.0.8"
+    "minimatch@>=7.0.0 <11.0.1": "^11.0.8",
+    "@ministryofjustice/hmpps-azure-telemetry": {
+      "@opentelemetry/instrumentation-http": "0.222.0"
+    }
   }
 }
