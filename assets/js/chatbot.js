@@ -13,7 +13,7 @@ const CONTENT = {
   en: {
     placeholder: 'Ask about online check ins',
     welcomeMessage: [
-      "Hi, I'm AI assistant.",
+      "Hi, I'm the AI assistant.",
       'I can help you by answering questions about online check ins, or help if you are stuck. ' +
         'I use this [guidance about Check in with your probation officer (opens in new tab)](/guidance). ' +
         'I am not a human, I may make mistakes.',
