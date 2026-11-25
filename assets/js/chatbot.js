@@ -13,8 +13,7 @@ const CONTENT = {
   en: {
     placeholder: 'Ask about online check ins',
     welcomeMessage: [
-      "Hi, I'm the AI assistant.",
-      "I'm an AI chatbot assistant.",
+      "Hi, I'm AI assistant.",
       'I can help you by answering questions about online check ins, or help if you are stuck. ' +
         'I use this [guidance about Check in with your probation officer (opens in new tab)](/guidance). ' +
         'I am not a human, I may make mistakes.',
@@ -22,7 +21,6 @@ const CONTENT = {
       'Anything you ask in here:\n\n' +
         '- will not be passed on to your probation officer\n' +
         '- cannot be used as proof of contacting your probation officer',
-      'We use the conversation between the AI assistant and you to see where and how we could improve probation services and digital products we offer you.',
       'By continuing, you agree to our [privacy notice (opens in new tab)](#privacy).',
     ].join('\n\n'),
     strings: {
@@ -40,7 +38,6 @@ const CONTENT = {
     placeholder: 'Gofynnwch gwestiwn',
     welcomeMessage: [
       'Helo, y cynorthwyydd AI ydw i.',
-      'Cynorthwyydd chatbot AI ydw i.',
       "Gallaf eich helpu drwy ateb cwestiynau am gyfarfodydd diweddaru ar-lein, neu helpu os ydych chi'n sownd. " +
         "Rwy'n defnyddio'r [canllawiau hyn am Gyfarfod diweddaru gyda'ch swyddog prawf (mae'n agor mewn tab newydd)](/guidance). " +
         'Nid person ydw i, ac efallai y byddaf yn gwneud camgymeriadau.',
@@ -48,7 +45,6 @@ const CONTENT = {
       "Unrhyw beth rydych chi'n ei ofyn yma:\n\n" +
         "- ni fydd yn cael ei drosglwyddo i'ch swyddog prawf\n" +
         "- ni ellir ei ddefnyddio fel prawf eich bod wedi cysylltu â'ch swyddog prawf",
-      "Rydym yn defnyddio'r sgwrs rhwng y cynorthwyydd AI a chi i weld ble a sut y gallem wella gwasanaethau prawf a'r cynhyrchion digidol rydym yn eu cynnig i chi.",
       "Drwy barhau, rydych chi'n cytuno i'n [hysbysiad preifatrwydd (mae'n agor mewn tab newydd)](#privacy).",
     ].join('\n\n'),
     strings: {
